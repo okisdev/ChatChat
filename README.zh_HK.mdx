@@ -1,0 +1,97 @@
+# [Chat Chat](https://chat.okisdev.com)
+
+> Chat Chat，解鎖你的下一級 AI 對話體驗。在這裡，你可以使用 OpenAI、微軟 Azure、Claude、Cohere、Hugging Face 等多個 API，讓你的 AI 對話體驗更加豐富。
+
+[![LICENSE](https://img.shields.io/github/license/okisdev/ChatChat?style=flat-square)](https://github.com/okisdev/ChatChat/blob/master/LICENSE)
+
+<p align='center'>
+    <a href='README.mdx'>English</a> | <a href='README.mdx'>繁體中文</a> | <a href='README.zh_CN.mdx'>簡體中文</a>
+</p>
+
+## 重要提示
+
+-   部分 API 為付費 API，使用前請確保你已經閱讀並同意了相關服務條款。
+-   本項目會在一定範圍內獲取到用戶部分數據，請確保你已經閱讀並同意了隱私政策。
+-   部分功能還在開發中，歡迎提交 PR 或者 Issue。
+
+## 預覽
+
+![UI](https://cdn.harrly.com/project/GitHub/Chat-Chat/img/UI-1.png)
+
+![Dashboard](https://cdn.harrly.com/project/GitHub/Chat-Chat/img/Dashboard-1.png)
+
+## 功能
+
+-   [x] TTS
+-   [x] 與文件聊天
+-   [x] 支持分享對話
+-   [x] 支持流信息（SSE）
+-   [x] Markdown 格式化
+-   [x] 支持消息代碼語法高亮
+-   [x] 支持 System Prompt
+-   [x] 快捷菜單（command + k）
+-   [x] 聊天記錄（本地和雲端同步）
+-   [x] 封裝的 API（不再需要代理）
+-   [x] 支持插件功能（`/search`, `/fetch`）
+-   [x] 支持 OpenAI, Microsoft Azure, Claude, Cohere, Hugging Face
+
+## Roadmap
+
+-   [ ] 語音輸入
+-   [ ] 黑暗模式
+-   [x] 個人儀表板
+-   [ ] 多語言支持
+-   [ ] 支持更多 API
+
+## 使用
+
+### 文檔
+
+[請看文檔](https://docs.okis.dev/chat/)
+
+### 前提條件
+
+-   來自 OpenAI、Microsoft Azure、Claude、Cohere、Hugging Face 的任何 API 密鑰
+
+### 環境變量
+
+| 變量名                | 描述             | 默認值                  | 是否必須 | 說明                     |
+| --------------------- | ---------------- | ----------------------- | -------- | ------------------------ |
+| `BASE_URL`            | 網站的 URL       | `http://localhost:3000` | 是       | 部署在其他平台時需要修改 |
+| `OPENAI_API_KEY`      | OpenAI API 密鑰  |                         | 否       |                          |
+| `OPENAI_API_ENDPOINT` | OpenAI API 端點  |                         | 否       |                          |
+| `DATABASE_URL`        | 數據庫 URL       |                         | 是       |                          |
+| `NEXTAUTH_URL`        | NextAuth URL     |                         | 是       |                          |
+| `NEXTAUTH_SECRET`     | NextAuth 密鑰    |                         | 是       |                          |
+| `EMAIL_HOST`          | 郵件服務器       |                         | 否       |                          |
+| `EMAIL_PORT`          | 郵件服務器端口   |                         | 否       |                          |
+| `EMAIL_USERNAME`      | 郵件服務器用戶名 |                         | 否       |                          |
+| `EMAIL_PASSWORD`      | 郵件服務器密碼   |                         | 否       |                          |
+| `EMAIL_FORM`          | 郵件發送地址     |                         | 否       |                          |
+
+### 部署
+
+#### 本地部署
+
+```bash
+git clone
+cd ChatChat
+yarn
+yarn dev
+```
+
+#### Vercel
+
+[![部署在 Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/okisdev/ChatChat)
+
+## LICENSE
+
+[AGPL-3.0](./LICENSE)
+
+## 支持我
+
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/okisdev)
+
+## 技術棧
+
+nextjs / tailwindcss / shadcn UI

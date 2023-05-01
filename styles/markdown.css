@@ -1,0 +1,75 @@
+.markdown-inline-code {
+    @apply rounded-sm bg-gray-100 px-1 py-0.5 text-black dark:bg-stone-500 dark:text-stone-300 !important;
+}
+
+.markdown-code {
+    @apply border-2 border-slate-700 font-JetBrainsMono dark:border-stone-300 !important;
+}
+
+.markdown-code-language {
+    @apply select-none text-2xl !important;
+}
+
+.markdown-h1 {
+    @apply text-4xl font-bold !important;
+}
+
+.markdown-h2 {
+    @apply text-3xl font-bold !important;
+}
+
+.markdown-h3 {
+    @apply text-2xl font-bold !important;
+}
+
+.markdown-h4 {
+    @apply text-xl font-bold !important;
+}
+
+.markdown-h5 {
+    @apply text-lg font-bold !important;
+}
+
+.markdown-ul {
+    @apply mx-1 list-disc pl-3 text-gray-600 dark:text-stone-300 !important;
+}
+
+.markdown-li {
+    @apply mb-1 list-outside !important;
+}
+
+.markdown-ol {
+    @apply mx-1 list-decimal pl-3 text-gray-600 dark:text-stone-300 !important;
+}
+
+.markdown-blockquote {
+    @apply border-l-4 border-gray-200 pl-4 !important;
+}
+
+.markdown-a {
+    @apply font-medium text-stone-700 transition-colors duration-300 hover:text-sky-700 dark:text-stone-300 dark:hover:text-sky-300 !important;
+}
+
+.markdown-table {
+    @apply table-auto border-collapse border border-gray-200 bg-white text-center shadow-md !important;
+}
+
+.markdown-thead {
+    @apply border-b border-gray-200 bg-stone-400 font-semibold text-black !important;
+}
+
+.markdown-tbody {
+    @apply border border-gray-200 !important;
+}
+
+.markdown-tr {
+    @apply bg-gray-100 !important;
+}
+
+.markdown-th {
+    @apply border border-gray-200 px-2 py-1 !important;
+}
+
+.markdown-td {
+    @apply border border-gray-200 px-2 py-1 !important;
+}

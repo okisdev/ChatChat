@@ -1,0 +1,108 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map(name: "sessions")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  platform      String    @default("init")
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @default(now()) @map(name: "updated_at")
+
+  defaultProvider      String?
+  openAIKey            String?
+  allowRecordCloudSync Boolean @default(false)
+
+  sessions Session[]
+  Record   Record[]
+  Share    Share[]
+  teams    TeamMember[]
+
+  @@map(name: "users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map(name: "verification_tokens")
+}
+
+model Record {
+  id        String   @id @default(cuid())
+  type      String
+  title     String
+  content   Json?
+  share     Boolean  @default(false)
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+  authorId  String
+
+  author User @relation(fields: [authorId], references: [id])
+
+  @@map(name: "records")
+}
+
+model Share {
+  id        String   @id @default(cuid())
+  type      String
+  title     String
+  content   Json?
+  share     Boolean  @default(true)
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    String?
+
+  @@map(name: "shares")
+}
+
+model Team {
+  id             String   @id @default(cuid())
+  name           String
+  accessCode     String   @unique
+  openAIKey      String?  @unique
+  openAIEndpoint String?
+  invitationOpen Boolean  @default(false)
+  createdAt      DateTime @default(now()) @map(name: "created_at")
+  updatedAt      DateTime @default(now()) @map(name: "updated_at")
+  authorId       String
+
+  allowVerfiedUsers Boolean @default(false)
+
+  members TeamMember[]
+
+  @@map(name: "teams")
+}
+
+model TeamMember {
+  id     String @id @default(cuid())
+  teamId String
+  userId String
+
+  user User @relation(fields: [userId], references: [id])
+  Team Team @relation(fields: [teamId], references: [id])
+
+  @@unique([teamId, userId])
+  @@map(name: "team_members")
+}

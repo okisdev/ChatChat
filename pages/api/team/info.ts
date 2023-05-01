@@ -1,0 +1,43 @@
+import { NextApiRequest, NextApiResponse } from 'next';
+
+import { getServerSession } from 'next-auth';
+
+import { authOptions } from '@/lib/auth';
+import { database } from '@/lib/database';
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const session = await getServerSession(req, res, authOptions);
+
+    // if (!session) {
+    //     return res.status(401).json({ error: 'Unauthorized' });
+    // }
+
+    // console.log(session);
+
+    const accessCode = req.query.accessCode as string;
+
+    if (!accessCode && accessCode == '') {
+        return res.status(400).json({
+            error: 'No access code provided',
+        });
+    }
+
+    const team = await database.team.findUnique({
+        where: {
+            accessCode: accessCode,
+        },
+        select: {
+            openAIKey: true,
+            openAIEndpoint: true,
+        },
+    });
+
+    if (!team) {
+        return res.status(400).json({ error: 'No record' });
+    }
+
+    return res.json({
+        apiKey: team?.openAIKey,
+        apiEndpoint: team?.openAIEndpoint || 'https://api.openai.com',
+    });
+}
