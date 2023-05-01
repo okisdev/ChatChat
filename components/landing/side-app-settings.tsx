@@ -224,15 +224,10 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     };
 
     const onSave = () => {
-        if (serviceProvider == 'OpenAI' || serviceProvider == 'Azure' || serviceProvider == 'Custom') {
+        if (serviceProvider == 'OpenAI') {
             if (!useCloudSettings) {
                 if (!apiKey) {
                     toast.error('Please fill in all the fields');
-                    return;
-                }
-
-                if (serviceProvider == 'OpenAI' && !apiKey.startsWith('sk-')) {
-                    toast.error('Invalid API Key');
                     return;
                 }
 
