@@ -430,6 +430,20 @@ const ChatMain = () => {
                             reGenerate={(index: number) => {
                                 handleMessageSend(conversations[index - 1], index, null);
                             }}
+                            onEdit={(index: number) => {
+                                const newContent = prompt('Edit message:', conversations[index].content);
+
+                                if (newContent !== null) {
+                                    const newMessage: AppMessageProps = {
+                                        role: 'user',
+                                        content: newContent,
+                                    };
+
+                                    setConversations(conversations.slice(0, index));
+
+                                    handleMessageSend(newMessage);
+                                }
+                            }}
                         />
                     ) : (
                         <ModeSettings systemPromptContent={systemPromptContent} setSystemPromptContent={setSystemPromptContent} />

@@ -14,11 +14,13 @@ const MainContent = ({
     waitingSystemResponse,
     conversations,
     reGenerate,
+    onEdit,
 }: {
     systemResponse: string;
     waitingSystemResponse: boolean;
     conversations: AppMessageProps[];
     reGenerate: (index: number) => void;
+    onEdit: (index: number) => void;
 }) => {
     const ttsConfig = useAtomValue(store.textToSpeechConfigAtom);
 
@@ -69,6 +71,13 @@ const MainContent = ({
                             <div className='flex select-none items-center space-x-2 px-1'>
                                 {isUser ? (
                                     <>
+                                        <button
+                                            className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
+                                            onClick={() => onEdit(index)}
+                                        >
+                                            <TbCopy />
+                                            <span>Edit</span>
+                                        </button>
                                         <button
                                             className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
                                             onClick={() => onCopy(index)}
