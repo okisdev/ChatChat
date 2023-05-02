@@ -397,10 +397,16 @@ const OpenAICard = ({
         });
     }, []);
 
+    useEffect(() => {
+        if (!user) {
+            setUseCloudSettings(false);
+        }
+    }, [setUseCloudSettings, user]);
+
     return (
         <>
             <div className='inline-flex'>
-                <Label className=''>Service Status</Label>
+                <Label>Service Status</Label>
                 <Tippy content={loadingOpenAIReachable ? 'Wait OpenAI Response' : openAIReachable ? 'OpenAI API is Reachable' : 'OpenAI API is Unreachable'}>
                     <button>
                         <TbPointFilled className={loadingOpenAIReachable ? 'text-amber-500' : openAIReachable ? 'text-green-500' : 'text-red-500'} aria-label='API Reachable' />

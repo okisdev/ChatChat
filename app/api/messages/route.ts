@@ -36,7 +36,7 @@ export async function POST(req: Request): Promise<Response> {
             } else {
                 const openAIMessagesResponse = await sendOpenAIMessages(openAIPayload, openAIAPIKey, openAIAPIEndpoint);
 
-                return new Response(JSON.stringify(openAIMessagesResponse));
+                return new Response(openAIMessagesResponse);
             }
         case 'Azure':
             const azureAPIKey = config?.apiKey as string;

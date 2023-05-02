@@ -67,5 +67,9 @@ export async function sendOpenAIMessages(payload: OpenAIChatPayload, apiKey: str
 
     const data = await res.json();
 
+    if (data.error) {
+        return 'ERROR: ' + data.error.message;
+    }
+
     return data.choices[0].message.content;
 }
