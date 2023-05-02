@@ -428,7 +428,21 @@ const FileMain = () => {
                                 waitingSystemResponse={waitingSystemResponse}
                                 conversations={clearedConversation}
                                 reGenerate={(index: number) => {
-                                    handleMessageSend(conversations[index - 1], index);
+                                    handleMessageSend(conversations[index + 3], index + 3);
+                                }}
+                                onEdit={(index: number) => {
+                                    const newContent = prompt('Edit message:', clearedConversation[index].content);
+
+                                    if (newContent !== null) {
+                                        const newMessage: AppMessageProps = {
+                                            role: 'user',
+                                            content: newContent,
+                                        };
+
+                                        setConversations(conversations.slice(0, index + 3));
+
+                                        handleMessageSend(newMessage);
+                                    }
                                 }}
                             />
                         </div>
