@@ -431,7 +431,6 @@ const FileMain = () => {
                                     handleMessageSend(conversations[index + 3], index + 3);
                                 }}
                                 onEdit={(index: number) => {
-                                    console.log(index);
                                     const newContent = prompt('Edit message:', clearedConversation[index].content);
 
                                     if (newContent !== null) {
