@@ -81,7 +81,6 @@ const ChatMain = () => {
     // Search
     const searchPluginConfig = useAtomValue(store.searchConfigAtom);
 
-
     useEffect(() => {
         if (!userSettings) {
             const getUserInfo = async () => {
@@ -197,7 +196,7 @@ const ChatMain = () => {
                         toast.error('Please set up your Google Programmable Search Engine API Key and Search Engine ID in the settings page.');
                         return;
                     }
-                    pluginResponse = await getSearchFromGoogleProgrammableSearchEngine(searchPluginConfig.searchEngineID, searchPluginConfig.searchAPIKey, message.content);
+                    pluginResponse = await getSearchFromGoogleProgrammableSearchEngine(searchPluginConfig.searchAPIKey, searchPluginConfig.searchEngineID, message.content);
                     pluginPrompt =
                         'I search ' +
                         message.content +

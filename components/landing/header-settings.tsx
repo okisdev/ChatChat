@@ -293,11 +293,11 @@ const HeaderSettings = () => {
                             </div>
                             <div>
                                 <Label>Search Engine ID</Label>
-                                <Input placeholder='AIzaSyB......' value={searchEngineID} onChange={(e) => setSearchEngineID(e.target.value)} />
+                                <Input placeholder='55b885......' value={searchEngineID} onChange={(e) => setSearchEngineID(e.target.value)} />
                             </div>
                             <div>
                                 <Label>Search API Key</Label>
-                                <Input placeholder='55b885......' value={searchAPIKey} onChange={(e) => setSearchAPIKey(e.target.value)} />
+                                <Input placeholder='AIzaSyB......' value={searchAPIKey} onChange={(e) => setSearchAPIKey(e.target.value)} />
                             </div>
                         </div>
                     </TabsContent>
