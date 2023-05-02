@@ -66,19 +66,19 @@ https://user-images.githubusercontent.com/66008528/235539163-35f7ee91-e357-453a-
 
 ### 環境變量
 
-| 變量名                | 描述             | 默認值                  | 是否必須 | 說明                     |
-| --------------------- | ---------------- | ----------------------- | -------- | ------------------------ |
-| `BASE_URL`            | 網站的 URL       | `http://localhost:3000` | 是       | 部署在其他平台時需要修改 |
-| `OPENAI_API_KEY`      | OpenAI API 密鑰  |                         | 否       |                          |
-| `OPENAI_API_ENDPOINT` | OpenAI API 端點  |                         | 否       |                          |
-| `DATABASE_URL`        | 數據庫 URL       |                         | 是       |                          |
-| `NEXTAUTH_URL`        | NextAuth URL     |                         | 是       |                          |
-| `NEXTAUTH_SECRET`     | NextAuth 密鑰    |                         | 是       |                          |
-| `EMAIL_HOST`          | 郵件服務器       |                         | 否       |                          |
-| `EMAIL_PORT`          | 郵件服務器端口   |                         | 否       |                          |
-| `EMAIL_USERNAME`      | 郵件服務器用戶名 |                         | 否       |                          |
-| `EMAIL_PASSWORD`      | 郵件服務器密碼   |                         | 否       |                          |
-| `EMAIL_FORM`          | 郵件發送地址     |                         | 否       |                          |
+| 變量名稱              | 描述                  | 默認                            | 是否強制需要 | 提示                                                                                                |
+| --------------------- | --------------------- | ------------------------------- | ------------ | --------------------------------------------------------------------------------------------------- |
+| `BASE_URL`            | 您的網站 URL          | 本地默認`http://localhost:3000` | **Yes**      | （帶前綴）                                                                                          |
+| `DATABASE_URL`        | Postgresql 數據庫地址 |                                 | **Yes**      | 以 `postgresql://` 開頭 （如果不需要，請填寫 `postgresql://user:password@example.com:port/dbname`） |
+| `NEXTAUTH_URL`        | 您的網站 URL          |                                 | **Yes**      | （不帶前綴）                                                                                        |
+| `NEXTAUTH_SECRET`     | NextAuth Secret       |                                 | **Yes**      | 隨機哈希數值（16 位最佳）                                                                           |
+| `OPENAI_API_KEY`      | OpenAI API 密鑰       |                                 | No           |                                                                                                     |
+| `OPENAI_API_ENDPOINT` | OpenAI API 接入點     |                                 | No           |                                                                                                     |
+| `EMAIL_HOST`          | SMTP Host             |                                 | No           |                                                                                                     |
+| `EMAIL_PORT`          | SMTP Port             |                                 | No           |                                                                                                     |
+| `EMAIL_USERNAME`      | SMTP username         |                                 | No           |                                                                                                     |
+| `EMAIL_PASSWORD`      | SMTP password         |                                 | No           |                                                                                                     |
+| `EMAIL_FORM`          | SMTP 發送地址         |                                 | No           |                                                                                                     |
 
 ### 部署
 
@@ -94,6 +94,15 @@ yarn dev
 #### Vercel
 
 [![部署在 Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/okisdev/ChatChat)
+
+#### Docker
+
+> 請在部署前修改環境變量
+
+```bash
+docker build -t chatchat .
+docker run -p 3000:3000 chatchat -e BASE_URL="" -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
+```
 
 ## LICENSE
 

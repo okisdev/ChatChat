@@ -66,16 +66,19 @@ https://user-images.githubusercontent.com/66008528/235539163-35f7ee91-e357-453a-
 
 ### Environment variables
 
-| Variable Name         | Description                 | Default                 | Required | Description                                |
-| --------------------- | --------------------------- | ----------------------- | -------- | ------------------------------------------ |
-| `BASE_URL`            | URL of the website          | `http://localhost:3000` | Yes      | Required for deployment on other platforms |
-| `OPENAI_API_KEY`      | OpenAI API key              |                         | No       |
-| `OPENAI_API_ENDPOINT` | OpenAI API Endpoint         |                         | No       |
-| `DATABASE_URL`        | database URL                |                         | Yes      |                                            |
-| `NEXTAUTH_URL`        | NextAuth URL                |                         | Yes      |                                            |
-| `NEXTAUTH_SECRET`     | NextAuth key                |                         | Yes      |                                            |
-| `EMAIL_PASSWORD`      | Password of the mail server |                         | No       |
-| `EMAIL_FORM`          | Sending address             |                         | No       |
+| variable name         | description                 | default                               | mandatory                | prompt                                                                                                            |
+| --------------------- | --------------------------- | ------------------------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| `BASE_URL`            | Your website URL            | Local default `http://localhost:3000` | (with prefix) **Yes**    |                                                                                                                   |
+| `DATABASE_URL`        | Postgresql database address |                                       | **Yes**                  | Start with `postgresql://` (if not required, please fill in `postgresql://user:password@example.com:port/dbname`) |
+| `NEXTAUTH_URL`        | Your website URL            |                                       | (without prefix) **Yes** |                                                                                                                   |
+| `NEXTAUTH_SECRET`     | NextAuth Secret             |                                       | **Yes**                  | Random hash (16 bits is best)                                                                                     |
+| `OPENAI_API_KEY`      | OpenAI API key              |                                       | No                       |                                                                                                                   |
+| `OPENAI_API_ENDPOINT` | OpenAI API access point     |                                       | No                       |                                                                                                                   |
+| `EMAIL_HOST`          | SMTP Host                   |                                       | No                       |                                                                                                                   |
+| `EMAIL_PORT`          | SMTP Port                   |                                       | No                       |                                                                                                                   |
+| `EMAIL_USERNAME`      | SMTP username               |                                       | No                       |                                                                                                                   |
+| `EMAIL_PASSWORD`      | SMTP password               |                                       | No                       |                                                                                                                   |
+| `EMAIL_FORM`          | SMTP sending address        |                                       | No                       |                                                                                                                   |
 
 ### Deployment
 
@@ -92,6 +95,15 @@ yarn dev
 
 [![Deployed in Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/okisdev/ChatChat)
 
+#### Docker
+
+> Please modify the environment variables before deployment
+
+```bash
+docker build -t chatchat .
+docker run -p 3000:3000 chatchat -e BASE_URL="" -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
+```
+
 ## LICENSE
 
 [AGPL-3.0](./LICENSE)
@@ -103,3 +115,7 @@ yarn dev
 ## Technology Stack
 
 nextjs / tailwindcss / shadcn UI
+
+```
+
+```
