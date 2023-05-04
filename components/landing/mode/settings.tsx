@@ -84,9 +84,10 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                 setGlobalDisabled(true);
                 setEnableSystemPrompt(false);
                 setIsNoContextConversation(true);
+                setEnableStreamMessages(false);
                 break;
         }
-    }, [serviceProvider, setEnableSystemPrompt, setIsNoContextConversation]);
+    }, [serviceProvider, setEnableStreamMessages, setEnableSystemPrompt, setIsNoContextConversation]);
 
     let CurrentConfig;
 

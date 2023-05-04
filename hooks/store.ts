@@ -12,7 +12,7 @@ const languageAtom = atomWithStorage('language', 'en');
 
 // Conversation Config
 const isSendKeyEnterAtom = atomWithStorage('enterKeySend', false);
-const enableStreamMessagesAtom = atomWithStorage<boolean>('enableStreamMessages', false);
+const enableStreamMessagesAtom = atomWithStorage<boolean>('enableStreamMessages', true);
 const systemPromptContentAtom = atomWithStorage('systemPrompt', '');
 const enableSystemPrompt = atomWithStorage('enableSystemPrompt', false);
 const enablePluginsAtom = atomWithStorage('enablePlugins', false);
