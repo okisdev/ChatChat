@@ -64,11 +64,6 @@ const CodeMain = () => {
             return;
         }
 
-        if (openAIConfig?.apiKey == '') {
-            toast.error('Please enter an API key');
-            return;
-        }
-
         let prompt;
 
         switch (codeMode) {
@@ -105,6 +100,7 @@ const CodeMain = () => {
                     apiTemperature: azureConfig.apiTemperature,
                     apiDeploymentName: azureConfig.apiDeploymentName,
                 };
+                break;
             case 'Team':
                 configPayload = {
                     accessCode: teamConfig.accessCode,
@@ -128,6 +124,7 @@ const CodeMain = () => {
                     apiKey: claudeConfig.apiKey,
                     apiTemperature: claudeConfig.apiTemperature,
                 };
+                break;
             default:
                 break;
         }
