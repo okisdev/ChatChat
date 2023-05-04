@@ -1,13 +1,14 @@
 {
   "name": "chat-chat",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "db-pull": "prisma db pull"
   },
   "dependencies": {
     "@dqbd/tiktoken": "^1.0.3",

@@ -83,6 +83,8 @@ https://user-images.githubusercontent.com/66008528/235539163-35f7ee91-e357-453a-
 
 ### 部署
 
+> 請在部署前更改環境變量，如需更詳細的部署流程請看 https://docs.okis.dev/chat/deployment/
+
 #### 本地部署
 
 ```bash
@@ -96,13 +98,25 @@ yarn dev
 
 [![部署在 Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/okisdev/ChatChat)
 
-#### Docker
+#### Zeabur
 
-> 請在部署前修改環境變量
+訪問 [Zeabur](https://zeabur.com) 來部署
+
+#### Railway
+
+[![部署在 Railway](https://railway.app/button.svg)](https://railway.app/template/-WWW5r)
+
+#### Docker
 
 ```bash
 docker build -t chatchat .
 docker run -p 3000:3000 chatchat -e BASE_URL="" -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
+```
+
+或者
+
+```bash
+docker run -p 3000:3000 ghcr.io/okisdev/chatchat:latest -e BASE_URL="" -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
 ```
 
 ## LICENSE
