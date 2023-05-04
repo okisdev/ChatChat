@@ -7,19 +7,25 @@ import { useAtomValue } from 'jotai';
 
 import { TbSend } from 'react-icons/tb';
 import { IoStopCircle } from 'react-icons/io5';
+import { GrShareOption } from 'react-icons/gr';
 
 import TextareaAutosize from 'react-textarea-autosize';
 
 import { Badge } from '@/components/ui/badge';
 
 import { customConfig } from '@/config/custom.config';
-import Link from 'next/link';
 
 const InputArea = ({
+    conversations,
+    conversationID,
+    conversationType,
     sendMessage,
     waitingSystemResponse,
     stopSystemResponseRef,
 }: {
+    conversations: AppMessageProps[];
+    conversationID: string;
+    conversationType: string;
     sendMessage: (message: AppMessageProps, indexNumber?: number | null, plugin?: any) => void;
     waitingSystemResponse: boolean;
     stopSystemResponseRef: MutableRefObject<boolean>;
@@ -84,6 +90,45 @@ const InputArea = ({
         setTimeout(() => {
             stopSystemResponseRef.current = false;
         }, 1000);
+    };
+
+    const handleShareConversation = async () => {
+        const story = localStorage.getItem(`histories-${conversationType}-${conversationID}`) as string;
+
+        if (!story) {
+            toast.error('Error: Story not found');
+            return;
+        }
+
+        const response = await fetch(`/api/share`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                story,
+            }),
+        });
+
+        if (!response.ok) {
+            if (response.status === 409) {
+                navigator.clipboard.writeText(window.location.host + `/s/${conversationID}`);
+                toast.error(`Share already exists: ${conversationID}`);
+                return;
+            }
+            toast.error('Error: Something went wrong');
+            return;
+        }
+
+        const data = await response.json();
+
+        if (!data.success) {
+            toast.error('Error: Something went wrong');
+            return;
+        }
+
+        navigator.clipboard.writeText(window.location.host + `/s/${conversationID}`);
+        toast.success(`Share: ${conversationID} link copied`);
     };
 
     const handleOnKeyDown = (e: any) => {
@@ -156,14 +201,22 @@ const InputArea = ({
                         </div>
                     )}
                 </div>
-                <div>
-                    {waitingSystemResponse && (
-                        <button className='inline-flex items-center space-x-1 rounded border px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200' onClick={handleStopSystemResponse}>
-                            <IoStopCircle />
-                            <span>Stop Generating</span>
+                {waitingSystemResponse ? (
+                    <button className='inline-flex items-center space-x-1 rounded border px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200' onClick={handleStopSystemResponse}>
+                        <IoStopCircle />
+                        <span>Stop Generating</span>
+                    </button>
+                ) : (
+                    conversations.length > 0 && (
+                        <button className='flex items-center space-x-1 rounded border px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200' onClick={handleShareConversation}>
+                            <GrShareOption />
+                            <p className='inline-flex space-x-1'>
+                                <span>Share</span>
+                                <span className='hidden md:block'>this conversation</span>
+                            </p>
                         </button>
-                    )}
-                </div>
+                    )
+                )}
             </div>
             <div className='relative flex'>
                 {enablePlugins && showCommands && (

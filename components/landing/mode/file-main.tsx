@@ -142,6 +142,7 @@ const FileMain = () => {
                         apiTemperature: azureConfig.apiTemperature,
                         apiDeploymentName: azureConfig.apiDeploymentName,
                     };
+                    break;
                 case 'Team':
                     configPayload = {
                         accessCode: teamConfig.accessCode,
@@ -165,6 +166,7 @@ const FileMain = () => {
                         apiKey: claudeConfig.apiKey,
                         apiTemperature: claudeConfig.apiTemperature,
                     };
+                    break;
                 default:
                     break;
             }
@@ -451,6 +453,9 @@ const FileMain = () => {
             </div>
             {fileAbstract != '' && (
                 <InputArea
+                    conversations={conversations}
+                    conversationID={conversationID}
+                    conversationType='file'
                     sendMessage={(message) => {
                         handleMessageSend(message);
                     }}

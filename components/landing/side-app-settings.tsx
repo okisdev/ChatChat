@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+import Link from 'next/link';
+
 import { User } from '@prisma/client';
 
 import { toast } from 'react-hot-toast';
@@ -25,7 +27,6 @@ import { claudeModelConfig } from '@/config/provider/claude.config';
 import { openAIModelConfig } from '@/config/provider/openai.config';
 import { cohereModelConfig } from '@/config/provider/cohere.config';
 import { huggingFaceModelConfig } from '@/config/provider/huggingface.config';
-import Link from 'next/link';
 
 const SideAppSettings = ({ user }: { user: User | null }) => {
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);

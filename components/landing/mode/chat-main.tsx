@@ -451,6 +451,9 @@ const ChatMain = () => {
                 </div>
                 <div>
                     <InputArea
+                        conversations={conversations}
+                        conversationID={conversationID}
+                        conversationType='chat'
                         sendMessage={(message, indexNumber, plugin) => {
                             handleMessageSend(message, null, plugin);
                         }}
