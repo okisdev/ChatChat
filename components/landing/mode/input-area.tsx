@@ -13,6 +13,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { Badge } from '@/components/ui/badge';
 
 import { customConfig } from '@/config/custom.config';
+import Link from 'next/link';
 
 const InputArea = ({
     sendMessage,
@@ -183,7 +184,7 @@ const InputArea = ({
                 )}
                 <TextareaAutosize
                     className='flex h-10 max-h-56 min-h-[40px] w-full rounded-md border border-slate-300 bg-transparent px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900'
-                    placeholder='Who are you?'
+                    placeholder={`${isSendKeyEnter ? 'Enter to send.' : 'Shift + Enter to send.'} Change in right top settings. ${enablePlugins ? 'Type / to see available commands.' : ''}`}
                     value={userInput}
                     onChange={handleTextAreaChange}
                     onKeyDown={handleOnKeyDown}
@@ -198,7 +199,7 @@ const InputArea = ({
                     </button>
                 </div>
             </div>
-            <p className='text-center text-sm'>{customConfig.InputArea.banner}</p>
+            <div className='text-center'>{customConfig.InputArea.banner}</div>
         </div>
     );
 };

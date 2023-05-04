@@ -202,6 +202,7 @@ const HeaderSettings = () => {
             <DialogTrigger asChild>
                 <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200'>
                     <TbSettingsFilled />
+                    <span className='hidden text-sm md:block'>Conversation Settings</span>
                 </button>
             </DialogTrigger>
             <DialogContent className='flex flex-col justify-between md:h-[500px] md:w-[500px]'>

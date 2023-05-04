@@ -17,8 +17,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
-import { pluginConfig } from '@/config/plugin.config';
-
 const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemPromptContent: string; setSystemPromptContent: (content: string) => void }) => {
     // Global Disabled
     const [globalDisabled, setGlobalDisabled] = useState<boolean>(false);
@@ -76,6 +74,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
             case 'Team':
             case 'Azure':
                 setGlobalDisabled(false);
+                setEnableStreamMessages(true);
                 break;
             default:
             case 'Cohere':
@@ -211,27 +210,6 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                         <Badge variant='secondary' className='font-normal'>
                             Beta
                         </Badge>
-                        {enablePlugins && (
-                            <Popover>
-                                <PopoverTrigger>
-                                    <TbCircleArrowRightFilled className='text-lg' />
-                                </PopoverTrigger>
-                                <PopoverContent className='space-y-2'>
-                                    <div className='flex flex-row items-center space-x-1 text-sm'>
-                                        <ul className='list-inside list-disc space-y-1'>
-                                            {pluginConfig.map((plugin, index: number) => {
-                                                return (
-                                                    <li key={index} className='space-x-1'>
-                                                        <span>{plugin.description}</span>
-                                                        <Badge variant='outline'>/{plugin.name}</Badge>
-                                                    </li>
-                                                );
-                                            })}
-                                        </ul>
-                                    </div>
-                                </PopoverContent>
-                            </Popover>
-                        )}
                     </div>
                 </div>
             </div>

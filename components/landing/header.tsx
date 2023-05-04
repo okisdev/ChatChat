@@ -48,7 +48,7 @@ const LandingHeader = () => {
                         </Sheet>
                     </div>
                 </div>
-                <div className='relative flex items-center space-x-1'>
+                <div className='relative flex items-center space-x-3'>
                     <HeaderSettings />
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>

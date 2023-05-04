@@ -9,10 +9,7 @@ import { toast } from 'react-hot-toast';
 import store from '@/hooks/store';
 import { useAtom } from 'jotai';
 
-import Tippy from '@tippyjs/react';
-
-import { FiSettings } from 'react-icons/fi';
-import { TbPointFilled } from 'react-icons/tb';
+import { FiSettings, FiClipboard } from 'react-icons/fi';
 
 import { Badge } from '@/components/ui/badge';
 import { Label } from '@/components/ui/label';
@@ -20,6 +17,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 
@@ -27,8 +25,7 @@ import { claudeModelConfig } from '@/config/provider/claude.config';
 import { openAIModelConfig } from '@/config/provider/openai.config';
 import { cohereModelConfig } from '@/config/provider/cohere.config';
 import { huggingFaceModelConfig } from '@/config/provider/huggingface.config';
-
-import checkOpenAIReachable from '@/utils/provider/openai/checkOpenAIReachable';
+import Link from 'next/link';
 
 const SideAppSettings = ({ user }: { user: User | null }) => {
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
@@ -302,7 +299,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                     <FiSettings />
                 </button>
             </DialogTrigger>
-            <DialogContent className='flex flex-col justify-between space-y-3 md:h-[700px] md:w-[500px]'>
+            <DialogContent className='flex flex-col justify-between space-y-3 overflow-y-auto md:h-[800px] md:w-[500px]'>
                 <DialogHeader>
                     <DialogTitle>App Settings</DialogTitle>
                 </DialogHeader>
@@ -385,18 +382,6 @@ const OpenAICard = ({
         setApiEndpoint('https://api.openai.com');
     }
 
-    const [openAIReachable, setOpenAIReachable] = useState<boolean>(false);
-    const [loadingOpenAIReachable, setLoadingOpenAIReachable] = useState<boolean>(false);
-
-    useEffect(() => {
-        setLoadingOpenAIReachable(true);
-
-        checkOpenAIReachable().then((res) => {
-            setOpenAIReachable(res);
-            setLoadingOpenAIReachable(false);
-        });
-    }, []);
-
     useEffect(() => {
         if (!user) {
             setUseCloudSettings(false);
@@ -405,14 +390,21 @@ const OpenAICard = ({
 
     return (
         <>
-            <div className='inline-flex'>
-                <Label>Service Status</Label>
-                <Tippy content={loadingOpenAIReachable ? 'Wait OpenAI Response' : openAIReachable ? 'OpenAI API is Reachable' : 'OpenAI API is Unreachable'}>
-                    <button>
-                        <TbPointFilled className={loadingOpenAIReachable ? 'text-amber-500' : openAIReachable ? 'text-green-500' : 'text-red-500'} aria-label='API Reachable' />
-                    </button>
-                </Tippy>
-            </div>
+            <Alert>
+                <FiClipboard />
+                <AlertTitle>Good to know</AlertTitle>
+                <AlertDescription>
+                    You need to provide the{' '}
+                    <Link href='https://platform.openai.com/account/api-keys' target='_blank' className='underline'>
+                        OpenAI API Key
+                    </Link>{' '}
+                    to use this service, or use a similar API interface such as{' '}
+                    <Link href='https://api2d.com/' target='_blank' className='underline'>
+                        API2D
+                    </Link>
+                    .
+                </AlertDescription>
+            </Alert>
             {user && (
                 <div className='flex items-center justify-between'>
                     <Label>Use Cloud Settings</Label>
@@ -474,6 +466,17 @@ const HuggingFaceCard = ({
 }) => {
     return (
         <>
+            <Alert>
+                <FiClipboard />
+                <AlertTitle>Good to know</AlertTitle>
+                <AlertDescription>
+                    You need to provide the{' '}
+                    <Link href='https://huggingface.co/settings/tokens' target='_blank' className='underline'>
+                        Hugging Face Access Token
+                    </Link>{' '}
+                    to use this service.
+                </AlertDescription>
+            </Alert>
             <div className='space-y-1'>
                 <Label className='px-1 font-medium'>Model</Label>
                 <Select value={huggingFaceModel} onValueChange={(value) => setHuggingFaceModel(value)}>
@@ -516,6 +519,21 @@ const ClaudeCard = ({
 }) => {
     return (
         <>
+            <Alert>
+                <FiClipboard />
+                <AlertTitle>Good to know</AlertTitle>
+                <AlertDescription>
+                    You need to provide the{' '}
+                    <Link href='https://console.anthropic.com/account/keys' target='_blank' className='underline'>
+                        Claude API Key
+                    </Link>{' '}
+                    to use this service. Sign up for waitlist{' '}
+                    <Link href='https://www.anthropic.com/product' target='_blank' className='underline'>
+                        here
+                    </Link>
+                    .
+                </AlertDescription>
+            </Alert>
             <div className='h-full space-y-3'>
                 <div className='space-y-1'>
                     <Label className='font-normal'>API Model</Label>
@@ -579,6 +597,21 @@ const AzureCard = ({
 }) => {
     return (
         <>
+            <Alert>
+                <FiClipboard />
+                <AlertTitle>Good to know</AlertTitle>
+                <AlertDescription>
+                    You need to provide the{' '}
+                    <Link href='https://dashboard.cohere.ai/api-keys' target='_blank' className='underline'>
+                        Azure API Key
+                    </Link>{' '}
+                    to use this service. Sign up for access{' '}
+                    <Link href='https://aka.ms/oaiapply' target='_blank' className='underline'>
+                        here
+                    </Link>
+                    .
+                </AlertDescription>
+            </Alert>
             <div className='h-full space-y-3'>
                 <div className='space-y-1'>
                     <Label className='font-normal'>GPT Model</Label>
@@ -642,10 +675,17 @@ const CustomCard = () => {
 
 const TeamCard = ({ accessCode, setAccessCode }: { accessCode: string; setAccessCode: (accessCode: string) => void }) => {
     return (
-        <div className='space-y-1'>
-            <Label>Team Access Code</Label>
-            <Input placeholder='Your team code. For example: 625390220.' value={accessCode} onChange={(e) => setAccessCode(e.target.value)} />
-        </div>
+        <>
+            <Alert>
+                <FiClipboard />
+                <AlertTitle>Good to know</AlertTitle>
+                <AlertDescription>This is a feature for teams. You can create a team in dashboard. However, this feature is only available for fully setup deployment.</AlertDescription>
+            </Alert>
+            <div className='space-y-1'>
+                <Label>Team Access Code</Label>
+                <Input placeholder='Your team code. For example: 625390220.' value={accessCode} onChange={(e) => setAccessCode(e.target.value)} />
+            </div>
+        </>
     );
 };
 
@@ -662,6 +702,17 @@ const CohereCard = ({
 }) => {
     return (
         <>
+            <Alert>
+                <FiClipboard />
+                <AlertTitle>Good to know</AlertTitle>
+                <AlertDescription>
+                    You need to provide the{' '}
+                    <Link href='https://dashboard.cohere.ai/api-keys' target='_blank' className='underline'>
+                        Cohere API Key
+                    </Link>{' '}
+                    to use this service.
+                </AlertDescription>
+            </Alert>
             <div className='space-y-1'>
                 <Label className='px-1 font-medium'>Model</Label>
                 <Select value={cohereModel} onValueChange={(value) => setCohereModel(value)}>

@@ -15,6 +15,7 @@ import { IoLanguage } from 'react-icons/io5';
 import { HiChatBubbleLeft } from 'react-icons/hi2';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { TbContrast, TbMoonFilled, TbSunFilled } from 'react-icons/tb';
+import { GrGithub, GrValidate, GrNodes, GrMail } from 'react-icons/gr';
 
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
@@ -121,6 +122,13 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                                         </DropdownMenuItem>
                                     );
                                 })}
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem>
+                                    <Link href='https://github.com/okisdev/ChatChat' className='flex w-full items-center space-x-2' target='_blank'>
+                                        <GrGithub className='block' />
+                                        <span>Project GitHub</span>
+                                    </Link>
+                                </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuSub>
                                     <DropdownMenuSubTrigger className='cursor-pointer space-x-1'>
