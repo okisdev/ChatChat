@@ -1,0 +1,48 @@
+name: Docker Image CI
+
+on:
+    push:
+        branches:
+            - main
+        tags:
+            - 'v*.*'
+
+env:
+    IMAGE_NAME: chatchat
+
+jobs:
+    get-tags:
+        runs-on: ubuntu-latest
+        outputs:
+            tags: ${{ steps.set-output-id.outputs.tags }}
+        steps:
+            - uses: actions/checkout@v2
+            - name: set-output
+              id: set-output-id
+              run: |
+                  VERSION=edge
+                  if [[ $GITHUB_REF == refs/tags/* ]]; then
+                    VERSION=${GITHUB_REF#refs/tags/v}
+                  fi
+                  echo ::set-output name=tags::${VERSION}
+    push-ghcr:
+        runs-on: ubuntu-20.04
+        env:
+            REGISTRY: ghcr.io
+        steps:
+            - uses: actions/checkout@v2
+            - name: Login
+              uses: docker/login-action@v1
+              with:
+                  registry: ${{ env.REGISTRY }}
+                  username: ${{ github.repository_owner }}
+                  password: ${{ secrets.DOCKER_IMAGE_TOKEN }}
+            - name: Build && Push
+              uses: docker/build-push-action@v2
+              with:
+                  context: .
+                  file: ./Dockerfile
+                  push: true
+                  tags: |
+                      ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ needs.get-tags.outputs.tags }}
+                      ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
