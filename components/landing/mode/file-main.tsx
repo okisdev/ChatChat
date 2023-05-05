@@ -380,7 +380,7 @@ const FileMain = () => {
     };
 
     return (
-        <main className='m-2 flex h-[calc(100%-65px)] flex-grow flex-col space-y-3 rounded-lg bg-white/90 px-4 py-2 shadow backdrop-blur transition-transform duration-500 dark:bg-gray-800 md:h-[calc(100%-80px)] md:p-3'>
+        <main className='m-2 flex h-[calc(100%-65px)] flex-grow flex-col space-y-3 rounded-lg bg-white/90 px-4 py-2 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327] md:h-[calc(100%-80px)] md:p-3'>
             <div className='flex h-[calc(100%-80px)] justify-center space-x-3 overflow-auto'>
                 {fileAbstract == '' && (
                     <div className='flex w-96 items-center justify-center'>

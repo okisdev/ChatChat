@@ -296,7 +296,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     return (
         <Dialog open={isDialogOpen} onOpenChange={(isOpen) => setIsDialogOpen(isOpen)}>
             <DialogTrigger asChild>
-                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200' aria-label='app-settings'>
+                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600' aria-label='app-settings'>
                     <FiSettings />
                 </button>
             </DialogTrigger>

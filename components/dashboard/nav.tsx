@@ -28,7 +28,7 @@ const DashboardNav = ({ user }: { user: any }) => {
             <div className='flex items-center justify-between'>
                 <div className='flex'>
                     {breadcrumbs?.map((breadcrumb, index) => (
-                        <div key={index} className='inline-flex items-center text-2xl font-medium uppercase text-gray-500'>
+                        <div key={index} className='inline-flex items-center text-2xl font-medium uppercase text-gray-500 dark:text-stone-200'>
                             <span className='tracking-wide'>{breadcrumb}</span>
                             {index !== breadcrumbs.length - 1 && (
                                 <span className='mx-2 inline-block'>
@@ -40,14 +40,14 @@ const DashboardNav = ({ user }: { user: any }) => {
                 </div>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Avatar className='inline-flex items-center justify-center space-x-1 rounded-lg p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200'>
+                        <Avatar className='inline-flex items-center justify-center space-x-1 rounded-lg p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'>
                             {user.image ? <AvatarImage src={user?.image} /> : <RxAvatar className='text-2xl' />}
                         </Avatar>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                         <div className='px-1'>
                             <p className='font-medium'>{user?.name}</p>
-                            <p className='text-xs text-slate-800'>{user?.email}</p>
+                            <p className='text-xs text-slate-800 dark:text-stone-300'>{user?.email}</p>
                         </div>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>

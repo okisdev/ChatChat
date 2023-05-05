@@ -5,9 +5,8 @@ import { toast } from 'react-hot-toast';
 import store from '@/hooks/store';
 import { useAtomValue } from 'jotai';
 
-import { TbSend } from 'react-icons/tb';
+import { TbSend, TbShare2 } from 'react-icons/tb';
 import { IoStopCircle } from 'react-icons/io5';
-import { GrShareOption } from 'react-icons/gr';
 
 import TextareaAutosize from 'react-textarea-autosize';
 
@@ -208,8 +207,11 @@ const InputArea = ({
                     </button>
                 ) : (
                     conversations.length > 0 && (
-                        <button className='flex items-center space-x-1 rounded border px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200' onClick={handleShareConversation}>
-                            <GrShareOption />
+                        <button
+                            className='flex items-center space-x-1 rounded border px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:border-stone-500 dark:hover:bg-stone-600'
+                            onClick={handleShareConversation}
+                        >
+                            <TbShare2 className='dark:text-white' />
                             <p className='inline-flex space-x-1'>
                                 <span>Share</span>
                                 <span className='hidden md:block'>this conversation</span>

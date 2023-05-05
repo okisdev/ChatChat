@@ -18,17 +18,27 @@ const AuthForm = ({ login }: { login: boolean }) => {
     const [email, setEmail] = useState<string>('');
 
     const handleEmailSubmit = async () => {
+        if (!email) {
+            return toast.error('Email is required');
+        }
+
+        if (!email.includes('@')) {
+            return toast.error('Invalid email');
+        }
+
         const emailSignIn = await signIn('email', {
             email: email,
             redirect: false,
             callbackUrl: '/profile',
         });
 
-        if (!emailSignIn?.ok) {
-            return toast.error('Email not sent!');
-        } else {
-            return toast.success('Email sent!');
+        console.log(emailSignIn);
+
+        if (emailSignIn?.error) {
+            return toast.error('Failed to send email');
         }
+
+        toast.success('Email sent. Please check your inbox.');
     };
 
     return (
@@ -39,7 +49,7 @@ const AuthForm = ({ login }: { login: boolean }) => {
                         <p className='text-xl font-bold'>Sign In</p>
                         <p className='text-sm'>
                             New User?{' '}
-                            <Link href={'/register'} className='font-medium text-blue-800 underline'>
+                            <Link href={'/register'} className='font-medium text-blue-800 underline dark:text-sky-400'>
                                 Sign up
                             </Link>
                         </p>
@@ -57,7 +67,16 @@ const AuthForm = ({ login }: { login: boolean }) => {
                 )}
             </div>
             <div className='flex flex-col space-y-2' onSubmit={handleEmailSubmit}>
-                <Input placeholder='john@example.com' type='email' autoCapitalize='none' autoComplete='email' autoCorrect='off' value={email} onChange={(e) => setEmail(e.target.value)} />
+                <Input
+                    placeholder='john@example.com'
+                    type='email'
+                    autoCapitalize='none'
+                    autoComplete='email'
+                    autoCorrect='off'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className='dark:bg-stone-600'
+                />
                 <Button variant='default' onClick={handleEmailSubmit}>
                     Sign In With Email
                 </Button>

@@ -55,14 +55,14 @@ const ProfileSettingsForm = ({ user }: { user: User }) => {
                 <div>
                     <div className='space-y-2'>
                         <Label>OpenAI API Key</Label>
-                        <Input value={openAIKey as string} onChange={(e) => setOpenAIKey(e.target.value)} />
+                        <Input value={openAIKey as string} onChange={(e) => setOpenAIKey(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
                     </div>
                 </div>
                 <Separator />
                 <div className='flex h-16 items-center justify-between'>
                     <Label>Language</Label>
                     <Select defaultValue='zh-CN'>
-                        <SelectTrigger className='w-[180px]'>
+                        <SelectTrigger className='w-[180px] dark:border-stone-400 dark:bg-stone-500'>
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -81,7 +81,7 @@ const ProfileSettingsForm = ({ user }: { user: User }) => {
             </div>
             <div>
                 <div className='flex items-end justify-end'>
-                    <Button variant='outline' onClick={() => onSave()}>
+                    <Button variant='outline' onClick={() => onSave()} className='dark:bg-stone-500'>
                         {isLoading ? <AiOutlineLoading3Quarters className='animate-spin' /> : 'Save'}
                     </Button>
                 </div>

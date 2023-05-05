@@ -4,6 +4,8 @@ import 'tippy.js/dist/tippy.css';
 
 import { rubik } from '@/app/fonts';
 
+import { Providers } from '@/app/providers';
+
 import { HotToaster } from '@/components/client/toaster';
 import { ClientCommand } from '@/components/client/command';
 
@@ -54,11 +56,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 />
             </head>
 
-            <body className='min-h-screen bg-slate-50'>
-                <HotToaster />
-                <ClientCommand />
+            <body className='min-h-screen bg-slate-50 dark:bg-[#323233] dark:text-[#eee]'>
+                <Providers>
+                    <HotToaster />
+                    <ClientCommand />
 
-                {children}
+                    {children}
+                </Providers>
             </body>
         </html>
     );

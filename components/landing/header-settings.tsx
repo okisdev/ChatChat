@@ -200,7 +200,7 @@ const HeaderSettings = () => {
     return (
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
-                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200'>
+                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'>
                     <TbSettingsFilled />
                     <span className='hidden text-sm md:block'>Conversation Settings</span>
                 </button>

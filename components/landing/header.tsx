@@ -27,18 +27,22 @@ const LandingHeader = () => {
     const currentMode = ModeList.find((mode) => mode.link === pathname) || ModeList.find((mode) => mode.value === 'chat');
 
     return (
-        <div className='m-2 flex flex-grow flex-col rounded-lg  bg-white/90 px-4 py-2 shadow backdrop-blur transition-transform duration-500 dark:bg-gray-800 md:p-3'>
+        <div className='m-2 flex flex-grow flex-col rounded-lg  bg-white/90 px-4 py-2 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327] md:p-3'>
             <div className='flex items-center justify-between'>
                 <div>
                     <div className='hidden md:block'>
-                        <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200' onClick={handleToggleSide} aria-label='Nav'>
+                        <button
+                            className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                            onClick={handleToggleSide}
+                            aria-label='Nav'
+                        >
                             <FiLayout />
                         </button>
                     </div>
                     <div className='block md:hidden'>
                         <Sheet>
                             <SheetTrigger asChild>
-                                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200'>
+                                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'>
                                     <FiLayout />
                                 </button>
                             </SheetTrigger>
@@ -53,7 +57,7 @@ const LandingHeader = () => {
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <button
-                                className='inline-flex items-center space-x-1 rounded px-1 transition duration-200 ease-in-out hover:bg-gray-200 focus:outline-none'
+                                className='inline-flex items-center space-x-1 rounded px-1 transition duration-200 ease-in-out hover:bg-gray-200 focus:outline-none dark:hover:bg-stone-600'
                                 aria-label='Advanced Configuration Settings'
                             >
                                 {currentMode && <currentMode.icon className='block' />}

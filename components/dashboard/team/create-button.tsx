@@ -95,7 +95,7 @@ const CreateButton = () => {
         <div className='flex justify-end'>
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
-                    <Button variant='outline' className='flex items-center space-x-1'>
+                    <Button variant='outline' className='flex items-center space-x-1 dark:border-stone-400'>
                         <MdOutlineAdd className='block text-lg' />
                         <span>Create Team</span>
                     </Button>

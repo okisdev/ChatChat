@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -10,15 +12,16 @@ import { User } from '@prisma/client';
 import store from '@/hooks/store';
 import { useAtom } from 'jotai';
 
+import { useTheme } from 'next-themes';
+
+import { GrGithub } from 'react-icons/gr';
 import { RxAvatar } from 'react-icons/rx';
 import { IoLanguage } from 'react-icons/io5';
 import { HiChatBubbleLeft } from 'react-icons/hi2';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { TbContrast, TbMoonFilled, TbSunFilled } from 'react-icons/tb';
-import { GrGithub, GrValidate, GrNodes, GrMail } from 'react-icons/gr';
 
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
-
 import {
     DropdownMenu,
     DropdownMenuTrigger,
@@ -42,7 +45,9 @@ import SideUserSettings from '@/components/landing/side-user-settings';
 const LandingSide = ({ className, user }: { className?: string; user: User | null }) => {
     const router = useRouter();
 
-    const [theme, setTheme] = useAtom(store.themeAtom);
+    const { theme, setTheme } = useTheme();
+
+    // const [theme, setTheme] = useAtom(store.themeAtom);
     const [language, setLanguage] = useAtom(store.languageAtom);
 
     const isHiddenSide = useAtom(store.isHiddenSideAtom)[0];
@@ -60,7 +65,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                 </div>
                 <div className='flex items-center justify-center'>
                     <button
-                        className='inline-flex items-center space-x-1 rounded p-1 px-2 text-sm font-medium transition duration-200 ease-in-out hover:bg-gray-200'
+                        className='inline-flex items-center space-x-1 rounded p-1 px-2 text-sm font-medium transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
                         onClick={() => (location.href = '')}
                     >
                         <HiChatBubbleLeft />
@@ -73,7 +78,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                 {user && (
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <div className='m-1 flex flex-grow flex-row items-center justify-start space-x-2 rounded-lg bg-white/90 py-1 shadow backdrop-blur transition-transform duration-500 dark:bg-gray-800'>
+                            <div className='m-1 flex flex-grow flex-row items-center justify-start space-x-2 rounded-lg bg-white/90 py-1 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327]'>
                                 <Avatar className='inline-flex items-center justify-center'>{user?.image ? <AvatarImage src={user.image} /> : <RxAvatar className='text-2xl' />}</Avatar>
                                 <p>{user.name}</p>
                             </div>
@@ -107,7 +112,10 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                     <div className='flex'>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200' aria-label='More Config'>
+                                <button
+                                    className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                                    aria-label='More Config'
+                                >
                                     <FiMoreHorizontal />
                                 </button>
                             </DropdownMenuTrigger>

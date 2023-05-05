@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { useRouter } from 'next/navigation';
+
 import { User } from '@prisma/client';
 
 import { toast } from 'react-hot-toast';
@@ -15,11 +17,14 @@ import { Separator } from '@/components/ui/separator';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 import { siteConfig } from '@/config/site.config';
+import { signOut } from 'next-auth/react';
 
 const ProfileInfoForm = ({ user }: any) => {
-    const [name, setName] = useState<string | null>(user.name);
-    const [email, setEmail] = useState<string | null>(user.email);
-    const [image, setImage] = useState<string | null>(user.image);
+    const router = useRouter();
+
+    const [name, setName] = useState<string>(user.name);
+    const [email, setEmail] = useState<string>(user.email);
+    const [image, setImage] = useState<string>(user.image);
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -50,7 +55,25 @@ const ProfileInfoForm = ({ user }: any) => {
         toast.success('Profile updated.');
     };
 
-    const onDelete = async () => {};
+    const onDelete = async () => {
+        const response = await fetch(`/api/user/delete`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response?.ok) {
+            toast.error('Something went wrong.');
+            return;
+        }
+
+        toast.success('Account deleted.');
+
+        await signOut();
+
+        router.push('/');
+    };
 
     return (
         <div className='space-y-10 overflow-auto md:my-36 md:w-6/12 md:space-y-16'>
@@ -58,16 +81,16 @@ const ProfileInfoForm = ({ user }: any) => {
                 <div className='flex w-full justify-between space-x-3'>
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>Full Name</p>
-                        <Input value={name as string} onChange={(e) => setName(e.target.value)} />
+                        <Input value={name as string} onChange={(e) => setName(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
                     </div>
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>Email Address</p>
-                        <Input value={email as string} onChange={(e) => setEmail(e.target.value)} />
+                        <Input value={email as string} onChange={(e) => setEmail(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
                     </div>
                 </div>
                 <div className='flex w-full flex-col items-start space-y-1'>
                     <p className='text-sm'>Avatar</p>
-                    <Input value={image as string} onChange={(e) => setImage(e.target.value)} />
+                    <Input value={image as string} onChange={(e) => setImage(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
                 </div>
                 <div className='flex justify-end'>
                     <Button variant='default' onClick={() => onSave()} disabled={isLoading}>

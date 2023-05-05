@@ -47,7 +47,7 @@ const DashboardSide = () => {
             <div className='hidden p-10 md:block md:w-2/12'>
                 <div className='flex h-full flex-col justify-between'>
                     <div>
-                        <Button variant='outline' className='inline-flex items-center space-x-2' onClick={() => router.push('/')}>
+                        <Button variant='outline' className='inline-flex items-center space-x-2 dark:bg-stone-600' onClick={() => router.push('/')}>
                             <BiArrowBack />
                             <p>Back</p>
                         </Button>

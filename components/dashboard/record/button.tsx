@@ -53,7 +53,7 @@ const RecordButton = ({ records }: { records: Record[] }) => {
 
     return (
         <div className='flex items-center justify-end space-x-3'>
-            <Button variant='outline' onClick={handleExport}>
+            <Button variant='outline' onClick={handleExport} className='dark:border-stone-400'>
                 Export All
             </Button>
             <Button variant='destructive' onClick={handleDelete}>

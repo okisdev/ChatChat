@@ -14,7 +14,7 @@ const AuthHeader = () => {
 
     return (
         <div className='flex h-36 w-full flex-row items-center justify-between'>
-            <Button variant='secondary' className='inline-flex items-center space-x-2' onClick={() => router.push('/')}>
+            <Button variant='secondary' className='inline-flex items-center space-x-2 dark:bg-stone-600' onClick={() => router.push('/')}>
                 <IoArrowBackOutline />
                 <span>Home</span>
             </Button>

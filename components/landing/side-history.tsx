@@ -127,7 +127,10 @@ const SideHistory = () => {
             <div className='h-96 w-full space-y-1 overflow-auto md:h-64'>
                 {pinHistories.map((pinHistory) => {
                     return (
-                        <div key={'pin-' + pinHistory.id} className='flex w-full select-none items-center justify-between rounded bg-blue-100 p-1 hover:bg-gray-200'>
+                        <div
+                            key={'pin-' + pinHistory.id}
+                            className='flex w-full select-none items-center justify-between rounded bg-blue-100 p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:bg-slate-500 dark:hover:bg-stone-600'
+                        >
                             <div className='inline-flex items-center space-x-2'>
                                 <button className='block' onClick={() => onHistoryUnpin(pinHistory.id)}>
                                     <TiPinOutline className='fill-blue-500 text-lg' />
@@ -158,7 +161,10 @@ const SideHistory = () => {
                 })}
                 {searchedHistories.map((history) => {
                     return (
-                        <div key={history.id} className='flex w-full select-none items-center justify-between rounded p-1 hover:bg-gray-200'>
+                        <div
+                            key={history.id}
+                            className='flex w-full select-none items-center justify-between rounded p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                        >
                             <div className='inline-flex items-center space-x-2'>
                                 <button className='block' onClick={() => onHistoryPin(history.id)}>
                                     <TiPinOutline className='text-lg hover:fill-blue-500' />

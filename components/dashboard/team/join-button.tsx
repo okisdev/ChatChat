@@ -66,10 +66,10 @@ const JoinButton = () => {
     };
 
     return (
-        <div className='flex justify-end'>
+        <div className='flex justify-end '>
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
-                    <Button variant='outline' className='flex items-center space-x-1'>
+                    <Button variant='outline' className='flex items-center space-x-1 dark:border-stone-400'>
                         <GrStatusGoodSmall className='block text-lg' />
                         <span>Join Team</span>
                     </Button>
