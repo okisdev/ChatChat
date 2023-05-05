@@ -1,24 +1,28 @@
-name: Manual Docker Build
+name: Create docker images (manual)
 
 on:
-    repository_dispatch:
-        types: [manual-docker-build]
+    workflow_dispatch:
+        inputs:
+            version:
+                type: string
+                description: Version
+                required: true
 
 jobs:
     build:
+        name: Build, push, and deploy
         runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
 
-            - name: Build Docker image
-              run: docker build -t ghcr.io/okisdev/chatchat:${{ github.sha }} .
-            - name: Login to GHCR
-              uses: docker/login-action@v1
+        steps:
+            - uses: actions/checkout@v3
+
+            - uses: mr-smithers-excellent/docker-build-push@v6
+              name: Build & push Docker image for chatchat ${{inputs.version}}
               with:
+                  image: umami
+                  tags: ${{ inputs.version }}, latest
                   registry: ghcr.io
+                  multiPlatform: true
+                  platform: linux/amd64,linux/arm64
                   username: ${{ github.actor }}
-                  password: ${{ secrets.DOCKER_IMAGE_TOKEN }}
-            - name: Push Docker image to GHCR
-              run: |
-                  docker push ghcr.io/okisdev/chatchat:latest
+                  password: ${{ secrets.GITHUB_TOKEN }}
