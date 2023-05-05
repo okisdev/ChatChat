@@ -21,7 +21,7 @@ import { RxAvatar } from 'react-icons/rx';
 import { IoLanguage } from 'react-icons/io5';
 import { HiChatBubbleLeft } from 'react-icons/hi2';
 import { FiMoreHorizontal } from 'react-icons/fi';
-import { TbContrast, TbMoonFilled, TbSunFilled } from 'react-icons/tb';
+import { TbContrast } from 'react-icons/tb';
 
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import {
@@ -39,6 +39,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 import { siteConfig, sidebarMoreMenu } from '@/config/site.config';
+
+import { themeList, languageList } from '@/config/app/app.config';
 
 import SideHistory from '@/components/landing/side/side-history';
 import SideAppSettings from '@/components/landing/side/side-app-settings';
@@ -155,7 +157,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                                             <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
                                                 {themeList.map((theme, index) => (
                                                     <DropdownMenuRadioItem key={index} value={theme.value} className='cursor-pointer space-x-1'>
-                                                        {theme.icon}
+                                                        <theme.icon />
                                                         <span>{theme.name}</span>
                                                     </DropdownMenuRadioItem>
                                                 ))}
@@ -191,36 +193,3 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
 };
 
 export default LandingSide;
-
-const themeList = [
-    {
-        name: 'Light',
-        value: 'light',
-        icon: <TbSunFilled />,
-    },
-    {
-        name: 'Dark',
-        value: 'dark',
-        icon: <TbMoonFilled />,
-    },
-    {
-        name: 'System',
-        value: 'system',
-        icon: <TbContrast />,
-    },
-];
-
-const languageList = [
-    {
-        value: 'zh-CN',
-        name: '简体中文',
-    },
-    {
-        value: 'zh-HK',
-        name: '繁体中文',
-    },
-    {
-        value: 'en',
-        name: 'English',
-    },
-];

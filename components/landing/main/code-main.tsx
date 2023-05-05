@@ -17,6 +17,8 @@ import generateHash from '@/utils/app/generateHash';
 
 import { setLocalStorage } from '@/hooks/setLocalStorage';
 
+import { CodeModeConfig, CodeLanguageList } from '@/config/app/mode.config';
+
 const CodeMain = () => {
     const t = useTranslations('landing.main');
 
@@ -261,37 +263,3 @@ const CodeMain = () => {
 };
 
 export default CodeMain;
-
-const CodeModeConfig = [
-    { name: 'Explain', value: 'explain', hint: 'This mode will explain what the code means.' },
-    { name: 'Convert', value: 'convert', hint: 'This mode will convert the code to a different language.' },
-    { name: 'Custom', value: 'custom', hint: 'This mode will allow you to create your own custom rule.' },
-];
-
-const CodeLanguageList = [
-    { name: 'JavaScript', value: 'javascript' },
-    { name: 'Python', value: 'python' },
-    { name: 'Java', value: 'java' },
-    { name: 'C++', value: 'cpp' },
-    { name: 'C#', value: 'csharp' },
-    { name: 'PHP', value: 'php' },
-    { name: 'Ruby', value: 'ruby' },
-    { name: 'Go', value: 'go' },
-    { name: 'Rust', value: 'rust' },
-    { name: 'Swift', value: 'swift' },
-    { name: 'Kotlin', value: 'kotlin' },
-    { name: 'Dart', value: 'dart' },
-    { name: 'C', value: 'c' },
-    { name: 'Objective-C', value: 'objectivec' },
-    { name: 'Scala', value: 'scala' },
-    { name: 'Perl', value: 'perl' },
-    { name: 'Haskell', value: 'haskell' },
-    { name: 'Lua', value: 'lua' },
-    { name: 'R', value: 'r' },
-    { name: 'SQL', value: 'sql' },
-    { name: 'TypeScript', value: 'typescript' },
-    { name: 'HTML', value: 'html' },
-    { name: 'CSS', value: 'css' },
-    { name: 'JSON', value: 'json' },
-    { name: 'XML', value: 'xml' },
-];
