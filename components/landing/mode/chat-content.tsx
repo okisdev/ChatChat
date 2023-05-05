@@ -71,46 +71,54 @@ const MainContent = ({
                             <div className='flex select-none items-center space-x-2 px-1'>
                                 {isUser ? (
                                     <>
-                                        <button
-                                            className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
-                                            onClick={() => onEdit(index)}
-                                        >
-                                            <TbEdit />
-                                            <span>Edit</span>
-                                        </button>
-                                        <button
-                                            className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
-                                            onClick={() => onCopy(index)}
-                                        >
-                                            <TbCopy />
-                                            <span>Copy</span>
-                                        </button>
+                                        {!waitingSystemResponse && (
+                                            <>
+                                                <button
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
+                                                    onClick={() => onEdit(index)}
+                                                >
+                                                    <TbEdit />
+                                                    <span>Edit</span>
+                                                </button>
+                                                <button
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
+                                                    onClick={() => onCopy(index)}
+                                                >
+                                                    <TbCopy />
+                                                    <span>Copy</span>
+                                                </button>
+                                            </>
+                                        )}
                                         <p className='text-base font-semibold'>You</p>
                                     </>
                                 ) : (
                                     <>
                                         <p className='text-base font-semibold'>AI</p>
-                                        <button
-                                            className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
-                                            onClick={() => onCopy(index)}
-                                        >
-                                            <TbCopy />
-                                            <span>Copy</span>
-                                        </button>
-                                        <button
-                                            className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
-                                            onClick={() => reGenerate(index)}
-                                        >
-                                            <TbAB2 />
-                                            <span>Regenerate</span>
-                                        </button>
-                                        <button
-                                            className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
-                                            onClick={() => onSpeech(index)}
-                                        >
-                                            <TbSpeakerphone />
-                                            <span>Speech</span>
-                                        </button>
+                                        {!waitingSystemResponse && (
+                                            <>
+                                                <button
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
+                                                    onClick={() => onCopy(index)}
+                                                >
+                                                    <TbCopy />
+                                                    <span>Copy</span>
+                                                </button>
+                                                <button
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
+                                                    onClick={() => reGenerate(index)}
+                                                >
+                                                    <TbAB2 />
+                                                    <span>Regenerate</span>
+                                                </button>
+                                                <button
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
+                                                    onClick={() => onSpeech(index)}
+                                                >
+                                                    <TbSpeakerphone />
+                                                    <span>Speech</span>
+                                                </button>
+                                            </>
+                                        )}
                                     </>
                                 )}
                             </div>
