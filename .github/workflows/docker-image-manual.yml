@@ -1,0 +1,24 @@
+name: Docker Image CI Manual
+
+on:
+    repository_dispatch:
+        types: [manual-docker-build]
+
+jobs:
+    build:
+        name: Build Docker image
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Build, tag, and push image
+              uses: mr-smithers-excellent/docker-build-push@v6
+              with:
+                  image: chatchat
+                  tags: ${{inputs.version}}, latest
+                  registry: ghcr.io
+                  multiPlatform: true
+                  platform: linux/amd64,linux/arm64
+                  username: ${{ github.actor }}
+                  password: ${{ secrets.GITHUB_TOKEN }}
