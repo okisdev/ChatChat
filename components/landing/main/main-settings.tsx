@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 
 import Image from 'next/image';
 
+import { useTranslations } from 'next-intl';
+
 import store from '@/hooks/store';
 import { useAtom, useAtomValue } from 'jotai';
 
@@ -18,6 +20,8 @@ import { Separator } from '@/components/ui/separator';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemPromptContent: string; setSystemPromptContent: (content: string) => void }) => {
+    const t = useTranslations('landing.main');
+
     // Global Disabled
     const [globalDisabled, setGlobalDisabled] = useState<boolean>(false);
 
@@ -96,7 +100,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
             CurrentConfig = (
                 <>
                     <p>
-                        Current Model: <span className='font-semibold'>{openAIConfig?.apiModel}</span>
+                        {t('Current Model')}: <span className='font-semibold'>{openAIConfig?.apiModel}</span>
                     </p>
                     <p>
                         Temperature: <span className='font-semibold'>{openAIConfig?.apiTemperature}</span>
@@ -108,7 +112,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
             CurrentConfig = (
                 <>
                     <p>
-                        Current Model: <span className='font-semibold'>{azureConfig?.apiModel}</span>
+                        {t('Current Model')}: <span className='font-semibold'>{azureConfig?.apiModel}</span>
                     </p>
                     <p>
                         Temperature: <span className='font-semibold'>{azureConfig?.apiTemperature}</span>
@@ -120,7 +124,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
             CurrentConfig = (
                 <>
                     <p>
-                        Current Model: <span className='font-semibold'>{huggingFaceConfig?.huggingFaceModel}</span>
+                        {t('Current Model')}: <span className='font-semibold'>{huggingFaceConfig?.huggingFaceModel}</span>
                     </p>
                 </>
             );
@@ -129,7 +133,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
             CurrentConfig = (
                 <>
                     <p>
-                        Current Model: <span className='font-semibold'>{cohereConfig?.model}</span>
+                        {t('Current Model')}: <span className='font-semibold'>{cohereConfig?.model}</span>
                     </p>
                 </>
             );
@@ -138,7 +142,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
             CurrentConfig = (
                 <>
                     <p>
-                        Current Model: <span className='font-semibold'>{claudeConfig?.apiModel}</span>
+                        {t('Current Model')}: <span className='font-semibold'>{claudeConfig?.apiModel}</span>
                     </p>
                 </>
             );
@@ -158,7 +162,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                 <div className='flex items-center space-x-2'>
                     <Checkbox checked={enableStreamMessages} onCheckedChange={handleCheckStreamMessages} disabled={globalDisabled} aria-label='Stream Messages Checkbox' />
                     <div className='inline-flex items-center space-x-1'>
-                        <p>Stream Messages</p>
+                        <p>{t('Stream Messages')}</p>
                         <Tippy content='Server-Sent Events (SSE)'>
                             <button aria-label='Stream Messages Info'>
                                 <MdInfoOutline className='text-lg' />
@@ -169,7 +173,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                 <div className='flex items-center space-x-2'>
                     <Checkbox checked={isNoContextConversation} onCheckedChange={handleIsNoContextModeChange} disabled={globalDisabled} aria-label='No Context Mode Checkbox' />
                     <div className='inline-flex items-center space-x-1'>
-                        <p>No Context Mode</p>
+                        <p>{t('No Context Mode')}</p>
                         <Tippy content='Create new conversation next time.'>
                             <button aria-label='No Context Mode Info'>
                                 <MdInfoOutline className='text-lg' />
@@ -201,14 +205,14 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                 <div className='flex items-center space-x-2'>
                     <Checkbox checked={enablePlugins} onCheckedChange={handleCheckPlugins} aria-label='Plugins Checkbox' />
                     <div className='inline-flex items-center space-x-1'>
-                        <p>Plugins</p>
+                        <p>{t('Plugins')}</p>
                         <Tippy content='Enable plugins for improved AI conversation'>
                             <button aria-label='Plugins Info'>
                                 <MdInfoOutline className='text-lg' />
                             </button>
                         </Tippy>
                         <Badge variant='secondary' className='font-normal'>
-                            Beta
+                            {t('Beta')}
                         </Badge>
                     </div>
                 </div>

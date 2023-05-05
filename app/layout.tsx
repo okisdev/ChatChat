@@ -2,9 +2,9 @@ import '@/styles/globals.css';
 import '@/styles/markdown.css';
 import 'tippy.js/dist/tippy.css';
 
-import { rubik } from '@/app/fonts';
+import { rubik } from '@/app/[locale]/fonts';
 
-import { Providers } from '@/app/providers';
+import { Providers } from '@/app/[locale]/providers';
 
 import { Analytics } from '@vercel/analytics/react';
 
@@ -13,12 +13,12 @@ import { ClientCommand } from '@/components/client/command';
 
 import { siteConfig } from '@/config/site.config';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
     return (
-        <html className={`${rubik.className}`} lang='en'>
+        <html className={`${rubik.className}`} lang={locale}>
             <head>
                 <title>{siteConfig.title}</title>
-                <meta charSet='utf-8' />
+
                 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
                 <meta name='description' content={siteConfig.description} />
 

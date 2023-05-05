@@ -2,12 +2,16 @@
 
 import { useRouter } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import { FiUser } from 'react-icons/fi';
 import { IoLogInOutline } from 'react-icons/io5';
 
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
 
 const SideUserSettings = () => {
+    const t = useTranslations('landing.side');
+
     const router = useRouter();
 
     return (

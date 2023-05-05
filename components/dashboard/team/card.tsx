@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import { Team } from '@prisma/client';
 
 import { toast } from 'react-hot-toast';
@@ -17,6 +19,8 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 
 const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
     const router = useRouter();
+
+    const t = useTranslations('dashboard');
 
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -137,12 +141,14 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
                         </DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
-                                <DialogTitle>Confirm to quit Team {team.name}?</DialogTitle>
-                                <DialogDescription>This action cannot be undone.</DialogDescription>
+                                <DialogTitle>
+                                    {t('Confirm to quit Team')} {team.name}?
+                                </DialogTitle>
+                                <DialogDescription>{t('This action cannot be undone')}</DialogDescription>
                             </DialogHeader>
                             <DialogFooter>
                                 <Button variant='destructive' onClick={onQuit}>
-                                    Confirm
+                                    {t('Confirm')}
                                 </Button>
                             </DialogFooter>
                         </DialogContent>
@@ -158,15 +164,17 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
                         </DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
-                                <DialogTitle>Edit Team: {team.name}</DialogTitle>
+                                <DialogTitle>
+                                    {t('Edit Team')}: {team.name}
+                                </DialogTitle>
                             </DialogHeader>
                             <div className='space-y-3'>
                                 <div className='flex flex-col space-y-2'>
-                                    <Label htmlFor='name'>Name</Label>
+                                    <Label htmlFor='name'>{t('Name')}</Label>
                                     <Input type='text' value={name} onChange={(e) => setName(e.target.value)} />
                                 </div>
                                 <div className='flex flex-col space-y-2'>
-                                    <Label htmlFor='name'>Access Code</Label>
+                                    <Label htmlFor='name'>{t('Access Code')}</Label>
                                     <Input type='text' value={accessCode} onChange={(e) => setAccessCode(e.target.value)} />
                                 </div>
                                 <div className='flex flex-col space-y-2'>
@@ -180,7 +188,7 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
                             </div>
                             <DialogFooter>
                                 <Button variant='outline' onClick={onSave}>
-                                    Save
+                                    {t('Save')}
                                 </Button>
                             </DialogFooter>
                         </DialogContent>
@@ -193,12 +201,16 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
                         </DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
-                                <DialogTitle>Confirm to delete Team {team.name}?</DialogTitle>
-                                <DialogDescription>This action cannot be undone. This will permanently delete your team and remove your data from our database.</DialogDescription>
+                                <DialogTitle>
+                                    {t('Confirm to delete Team')} {team.name}?
+                                </DialogTitle>
+                                <DialogDescription>
+                                    {t('This action cannot be undone')}. {t('This will permanently delete your team and remove your data from our database')}
+                                </DialogDescription>
                             </DialogHeader>
                             <DialogFooter>
                                 <Button variant='destructive' onClick={deleteTeam}>
-                                    Confirm
+                                    {t('Confirm')}
                                 </Button>
                             </DialogFooter>
                         </DialogContent>

@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import { User } from '@prisma/client';
 
 import { toast } from 'react-hot-toast';
@@ -21,6 +23,8 @@ import { signOut } from 'next-auth/react';
 
 const ProfileInfoForm = ({ user }: any) => {
     const router = useRouter();
+
+    const t = useTranslations('dashboard');
 
     const [name, setName] = useState<string>(user.name);
     const [email, setEmail] = useState<string>(user.email);
@@ -80,21 +84,21 @@ const ProfileInfoForm = ({ user }: any) => {
             <form className='space-y-10 rounded-xl md:p-3'>
                 <div className='flex w-full justify-between space-x-3'>
                     <div className='flex w-full flex-col items-start space-y-1'>
-                        <p className='text-sm'>Full Name</p>
+                        <p className='text-sm'>{t('Full Name')}</p>
                         <Input value={name as string} onChange={(e) => setName(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
                     </div>
                     <div className='flex w-full flex-col items-start space-y-1'>
-                        <p className='text-sm'>Email Address</p>
+                        <p className='text-sm'>{t('Email Address')}</p>
                         <Input value={email as string} onChange={(e) => setEmail(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
                     </div>
                 </div>
                 <div className='flex w-full flex-col items-start space-y-1'>
-                    <p className='text-sm'>Avatar</p>
+                    <p className='text-sm'>{t('Avatar')}</p>
                     <Input value={image as string} onChange={(e) => setImage(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
                 </div>
                 <div className='flex justify-end'>
                     <Button variant='default' onClick={() => onSave()} disabled={isLoading}>
-                        {isLoading ? <AiOutlineLoading3Quarters className='animate-spin' /> : 'Save'}
+                        {isLoading ? <AiOutlineLoading3Quarters className='animate-spin' /> : t('Save')}
                     </Button>
                 </div>
             </form>
@@ -102,20 +106,22 @@ const ProfileInfoForm = ({ user }: any) => {
             <Separator />
 
             <div className='space-y-3'>
-                <p className='text-lg font-medium'>Danger Zoom</p>
-                <p className='text-sm text-gray-400'>If you want to permanently remove your account from {siteConfig.title}. Please click the button below, please note, This could not be undone.</p>
+                <p className='text-lg font-medium'>{t('Danger Zoom')}</p>
+                <p className='text-sm text-gray-400'>
+                    {t('If you want to permanently remove your account')}. {t('Please click the button below, please note, This could not be undone')}
+                </p>
                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <DialogTrigger asChild>
                         <button className='text-sm text-red-500'>Delete Account</button>
                     </DialogTrigger>
                     <DialogContent>
                         <DialogHeader>
-                            <DialogTitle>Confirming Deletion</DialogTitle>
-                            <DialogDescription>Please note: This could not be undone.</DialogDescription>
+                            <DialogTitle>{t('Confirming Deletion')}</DialogTitle>
+                            <DialogDescription>{t('Please note: This could not be undone')}</DialogDescription>
                         </DialogHeader>
                         <DialogFooter>
                             <Button variant='destructive' onClick={onDelete}>
-                                Confirm
+                                {t('Confirm')}
                             </Button>
                         </DialogFooter>
                     </DialogContent>

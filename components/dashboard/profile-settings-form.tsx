@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { useTranslations } from 'next-intl';
+
 import { User } from '@prisma/client';
 
 import { toast } from 'react-hot-toast';
@@ -12,10 +14,11 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 
 const ProfileSettingsForm = ({ user }: { user: User }) => {
+    const t = useTranslations('dashboard');
+
     const [openAIKey, setOpenAIKey] = useState<string | null>(user.openAIKey);
     const [allowRecordCloudSync, setAllowRecordCloudSync] = useState<boolean>(user.allowRecordCloudSync);
 
@@ -59,30 +62,16 @@ const ProfileSettingsForm = ({ user }: { user: User }) => {
                     </div>
                 </div>
                 <Separator />
+
                 <div className='flex h-16 items-center justify-between'>
-                    <Label>Language</Label>
-                    <Select defaultValue='zh-CN'>
-                        <SelectTrigger className='w-[180px] dark:border-stone-400 dark:bg-stone-500'>
-                            <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {ProfileLanguageSelectItems.map((item) => (
-                                <SelectItem key={item.value} value={item.value}>
-                                    {item.label}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
-                <div className='flex h-16 items-center justify-between'>
-                    <Label>Auto upload your records to the cloud</Label>
+                    <Label>{t('Auto upload your records to the cloud')}</Label>
                     <Switch checked={allowRecordCloudSync} onCheckedChange={handleAllowRecordCloudSyncChange} />
                 </div>
             </div>
             <div>
                 <div className='flex items-end justify-end'>
                     <Button variant='outline' onClick={() => onSave()} className='dark:bg-stone-500'>
-                        {isLoading ? <AiOutlineLoading3Quarters className='animate-spin' /> : 'Save'}
+                        {isLoading ? <AiOutlineLoading3Quarters className='animate-spin' /> : t('Save')}
                     </Button>
                 </div>
             </div>
@@ -91,18 +80,3 @@ const ProfileSettingsForm = ({ user }: { user: User }) => {
 };
 
 export default ProfileSettingsForm;
-
-const ProfileLanguageSelectItems = [
-    {
-        label: 'English',
-        value: 'en',
-    },
-    {
-        label: '简体中文',
-        value: 'zh-CN',
-    },
-    {
-        label: '繁體中文',
-        value: 'zh-HK',
-    },
-];

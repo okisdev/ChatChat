@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+import { useTranslations } from 'next-intl';
+
 import { toast } from 'react-hot-toast';
 
 import store from '@/hooks/store';
@@ -12,22 +14,21 @@ import Tippy from '@tippyjs/react';
 import { MdInfoOutline } from 'react-icons/md';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { BiImport, BiExport, BiBrush } from 'react-icons/bi';
-import { TbSettingsFilled, TbCircleArrowRightFilled } from 'react-icons/tb';
+import { TbSettingsFilled } from 'react-icons/tb';
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 
 const HeaderSettings = () => {
+    const t = useTranslations('landing.main');
+
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
     // Text To Speech
@@ -202,27 +203,27 @@ const HeaderSettings = () => {
             <DialogTrigger asChild>
                 <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'>
                     <TbSettingsFilled />
-                    <span className='hidden text-sm md:block'>Conversation Settings</span>
+                    <span className='hidden text-sm md:block'>{t('Conversation Settings')}</span>
                 </button>
             </DialogTrigger>
             <DialogContent className='flex flex-col justify-between md:h-[500px] md:w-[500px]'>
                 <DialogHeader>
-                    <DialogTitle>Advanced Conversation Settings</DialogTitle>
+                    <DialogTitle>{t('Advanced Conversation Settings')}</DialogTitle>
                     <DialogDescription>
                         You are using <span className='font-medium'>{serviceProvider}</span>.
                     </DialogDescription>
                 </DialogHeader>
                 <Tabs defaultValue='tts' className='h-full w-full space-y-5'>
                     <TabsList>
-                        <TabsTrigger value='tts'>Text To Speech</TabsTrigger>
-                        <TabsTrigger value='search'>Web Search</TabsTrigger>
-                        <TabsTrigger value='advanced'>Advanced</TabsTrigger>
+                        <TabsTrigger value='tts'>{t('Text To Speech')}</TabsTrigger>
+                        <TabsTrigger value='search'>{t('Web Search')}</TabsTrigger>
+                        <TabsTrigger value='advanced'>{t('Advanced')}</TabsTrigger>
                     </TabsList>
                     <TabsContent value='tts' className='px-2'>
                         {voices && voices.length > 0 ? (
                             <div className='space-y-6'>
                                 <div className='flex flex-row items-center justify-between space-x-1'>
-                                    <Label>Voice</Label>
+                                    <Label>{t('Voice')}</Label>
                                     <Select value={ttsVoice} onValueChange={(value: string) => setTTSVoice(value)}>
                                         <SelectTrigger className='w-[300px]'>
                                             <SelectValue />
@@ -239,14 +240,15 @@ const HeaderSettings = () => {
                                     </Select>
                                 </div>
                                 <div className='flex flex-col space-y-5'>
-                                    <Label>Speaking Speed: {ttsSpeed}</Label>
+                                    <Label>
+                                        {t('Speaking Speed')}: {ttsSpeed}
+                                    </Label>
                                     <Slider min={0.1} max={10} step={0.1} value={[ttsSpeed]} onValueChange={([value]) => setTTSSpeed(value)} />
                                 </div>
                                 <Separator />
                                 <div className='flex flex-col space-y-2'>
-                                    <Label>Sample</Label>
+                                    <Label>{t('Sample')}</Label>
                                     <Input value={ttsSample} onChange={(e) => setTTSSample(e.target.value)} />
-
                                     <div>
                                         <Button
                                             onClick={() => {
@@ -262,21 +264,21 @@ const HeaderSettings = () => {
                                             className='inline-flex items-center justify-center space-x-2'
                                         >
                                             {isSpeaking && <AiOutlineLoading3Quarters className='animate-spin block' />}
-                                            <span>Speak</span>
+                                            <span>{t('Speak')}</span>
                                         </Button>
                                     </div>
                                 </div>
                             </div>
                         ) : (
                             <div>
-                                <p>Text to Speech is not supported in your browser.</p>
+                                <p>{t('Text to Speech is not supported in your browser')}</p>
                             </div>
                         )}
                     </TabsContent>
                     <TabsContent value='search'>
                         <div className='space-y-3'>
                             <div>
-                                <Label>Search Engine</Label>
+                                <Label>{t('Search Engine')}</Label>
                                 <Select value={searchEngine} onValueChange={(value: string) => setSearchEngine(value)}>
                                     <SelectTrigger className='w-full'>
                                         <SelectValue />
@@ -306,7 +308,7 @@ const HeaderSettings = () => {
                         <div className='space-y-3'>
                             <div className='flex items-center space-x-1'>
                                 <Switch checked={isSendKeyEnter} onCheckedChange={handleSwitchSendMessageKey} />
-                                <Label className='px-1 font-normal'>Send Message using Enter Key</Label>
+                                <Label className='px-1 font-normal'>{t('Send Message using Enter Key')}</Label>
                                 <Tippy content={`Current: ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`}>
                                     <button>
                                         <MdInfoOutline className='text-lg' />
@@ -315,19 +317,19 @@ const HeaderSettings = () => {
                             </div>
                             <Separator />
                             <div className='flex flex-col space-y-3'>
-                                <Label>History</Label>
+                                <Label>{t('History')}</Label>
                                 <div className='flex space-x-3'>
                                     <Button variant='secondary' className='flex items-center space-x-0.5' onClick={handleExportHistory}>
                                         <BiExport />
-                                        <span>Export</span>
+                                        <span>{t('Export')}</span>
                                     </Button>
                                     <Button variant='secondary' className='flex items-center space-x-0.5' onClick={handleImportHistory}>
                                         <BiImport />
-                                        <span>Import</span>
+                                        <span>{t('Import')}</span>
                                     </Button>
                                     <Button variant='destructive' className='flex items-center space-x-0.5' onClick={handleClearHistory}>
                                         <BiBrush />
-                                        <span>Clear</span>
+                                        <span>{t('Clear')}</span>
                                     </Button>
                                 </div>
                             </div>
@@ -336,10 +338,10 @@ const HeaderSettings = () => {
                 </Tabs>
                 <DialogFooter>
                     <Button type='submit' variant='destructive' onClick={onCancel}>
-                        Cancel
+                        {t('Cancel')}
                     </Button>
                     <Button type='submit' variant='outline' onClick={onSave}>
-                        Save
+                        {t('Save')}
                     </Button>
                 </DialogFooter>
             </DialogContent>

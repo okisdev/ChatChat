@@ -5,7 +5,6 @@ import { atomWithStorage } from 'jotai/utils';
 
 // Layout
 const isHiddenSideAtom = atom(false);
-const themeAtom = atomWithStorage('theme', 'light');
 const languageAtom = atomWithStorage('language', 'en');
 
 // ------------------ Conversation Config ------------------
@@ -82,7 +81,6 @@ const claudeConfigAtom = atomWithStorage('claudeConfig', {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     isHiddenSideAtom,
-    themeAtom,
     languageAtom,
     isSendKeyEnterAtom,
     enableStreamMessagesAtom,

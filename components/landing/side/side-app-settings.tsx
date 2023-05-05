@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
+import { useTranslations } from 'next-intl';
+
 import { User } from '@prisma/client';
 
 import { toast } from 'react-hot-toast';
@@ -29,6 +31,8 @@ import { cohereModelConfig } from '@/config/provider/cohere.config';
 import { huggingFaceModelConfig } from '@/config/provider/huggingface.config';
 
 const SideAppSettings = ({ user }: { user: User | null }) => {
+    const t = useTranslations('landing.side');
+
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
     const [serviceProvider, setServiceProvider] = useAtom(store.serviceProviderAtom);
@@ -302,12 +306,12 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
             </DialogTrigger>
             <DialogContent className='flex flex-col justify-between space-y-3 overflow-y-auto md:h-[800px] md:w-[500px]'>
                 <DialogHeader>
-                    <DialogTitle>App Settings</DialogTitle>
+                    <DialogTitle>{t('App Settings')}</DialogTitle>
                 </DialogHeader>
                 <div className='flex h-full flex-col justify-start space-y-3'>
                     <div className='space-y-3'>
                         <div className='space-y-2'>
-                            <Label className='font-medium'>AI Service Provider</Label>
+                            <Label className='font-medium'>{t('AI Service Provider')}</Label>
                             <Select value={serviceProvider} onValueChange={(value: string) => setServiceProvider(value as ServiceProviderProps)}>
                                 <SelectTrigger>
                                     <SelectValue />
@@ -322,11 +326,11 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                                                     {service.status !== 1 &&
                                                         (service.status == 0 ? (
                                                             <Badge variant='outline' className='font-normal text-red-500'>
-                                                                Planned
+                                                                {t('Planned')}
                                                             </Badge>
                                                         ) : (
                                                             <Badge variant='outline' className='font-normal text-amber-500'>
-                                                                Beta
+                                                                {t('Beta')}
                                                             </Badge>
                                                         ))}
                                                 </SelectItem>
@@ -340,10 +344,10 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                 </div>
                 <DialogFooter>
                     <Button type='submit' variant='destructive' onClick={onReset}>
-                        Reset
+                        {t('Reset')}
                     </Button>
                     <Button type='submit' variant='outline' onClick={onSave}>
-                        Save
+                        {t('Save')}
                     </Button>
                 </DialogFooter>
             </DialogContent>
@@ -378,6 +382,8 @@ const OpenAICard = ({
     useCloudSettings: boolean;
     setUseCloudSettings: (useCloudSettings: boolean) => void;
 }) => {
+    const t = useTranslations('landing.side');
+
     if (user && useCloudSettings) {
         setApiKey(user?.openAIKey || '');
         setApiEndpoint('https://api.openai.com');
@@ -393,7 +399,7 @@ const OpenAICard = ({
         <>
             <Alert>
                 <FiClipboard />
-                <AlertTitle>Good to know</AlertTitle>
+                <AlertTitle>{t('Goodwill Reminders')}</AlertTitle>
                 <AlertDescription>
                     You need to provide the{' '}
                     <Link href='https://platform.openai.com/account/api-keys' target='_blank' className='underline'>
@@ -408,7 +414,7 @@ const OpenAICard = ({
             </Alert>
             {user && (
                 <div className='flex items-center justify-between'>
-                    <Label>Use Cloud Settings</Label>
+                    <Label>{t('Use Cloud Settings')}</Label>
                     <Switch checked={useCloudSettings} onCheckedChange={() => setUseCloudSettings(!useCloudSettings)} />
                 </div>
             )}
@@ -444,9 +450,9 @@ const OpenAICard = ({
                 <div className='flex flex-col space-y-1'>
                     <Slider max={2} step={0.1} value={[apiTemperature]} onValueChange={([e]) => setApiTemperature(e)} />
                     <div className='flex justify-between text-xs text-gray-500'>
-                        <p>Stable</p>
-                        <p>Standard</p>
-                        <p>Creative</p>
+                        <p>{t('Stable')}</p>
+                        <p>{t('Standard')}</p>
+                        <p>{t('Creative')}</p>
                     </div>
                 </div>
             </div>
@@ -465,11 +471,13 @@ const HuggingFaceCard = ({
     setAccessToken: (accessToken: string) => void;
     setHuggingFaceModel: (huggingFaceModel: string) => void;
 }) => {
+    const t = useTranslations('landing.side');
+
     return (
         <>
             <Alert>
                 <FiClipboard />
-                <AlertTitle>Good to know</AlertTitle>
+                <AlertTitle>{t('Goodwill Reminders')}</AlertTitle>
                 <AlertDescription>
                     You need to provide the{' '}
                     <Link href='https://huggingface.co/settings/tokens' target='_blank' className='underline'>
@@ -518,11 +526,13 @@ const ClaudeCard = ({
     setClaudeAPIModel: (claudeAPIModel: OpenAIModel) => void;
     setClaudeAPITemperature: (claudeAPITemperature: number) => void;
 }) => {
+    const t = useTranslations('landing.side');
+
     return (
         <>
             <Alert>
                 <FiClipboard />
-                <AlertTitle>Good to know</AlertTitle>
+                <AlertTitle>{t('Goodwill Reminders')}</AlertTitle>
                 <AlertDescription>
                     You need to provide the{' '}
                     <Link href='https://console.anthropic.com/account/keys' target='_blank' className='underline'>
@@ -537,7 +547,7 @@ const ClaudeCard = ({
             </Alert>
             <div className='h-full space-y-3'>
                 <div className='space-y-1'>
-                    <Label className='font-normal'>API Model</Label>
+                    <Label className='font-normal'>{t('API Model')}</Label>
                     <Select value={claudeAPIModel} onValueChange={(value) => setClaudeAPIModel(value as OpenAIModel)}>
                         <SelectTrigger>
                             <SelectValue />
@@ -563,9 +573,9 @@ const ClaudeCard = ({
                 <div className='flex flex-col space-y-1'>
                     <Slider max={1} step={0.1} value={[claudeAPITemperature]} onValueChange={([e]) => setClaudeAPITemperature(e)} />
                     <div className='flex justify-between text-xs text-gray-500'>
-                        <p>Stable</p>
-                        <p>Standard</p>
-                        <p>Creative</p>
+                        <p>{t('Stable')}</p>
+                        <p>{t('Standard')}</p>
+                        <p>{t('Creative')}</p>
                     </div>
                 </div>
             </div>
@@ -596,11 +606,13 @@ const AzureCard = ({
     setAzureAPITemperature: (azureAPITemperature: number) => void;
     setAzureAPIDeploymentName: (azureAPIDeploymentName: string) => void;
 }) => {
+    const t = useTranslations('landing.side');
+
     return (
         <>
             <Alert>
                 <FiClipboard />
-                <AlertTitle>Good to know</AlertTitle>
+                <AlertTitle>{t('Goodwill Reminders')}</AlertTitle>
                 <AlertDescription>
                     You need to provide the{' '}
                     <Link href='https://dashboard.cohere.ai/api-keys' target='_blank' className='underline'>
@@ -660,6 +672,8 @@ const AzureCard = ({
 };
 
 const CustomCard = () => {
+    const t = useTranslations('landing.side');
+
     return (
         <>
             <div className='space-y-1'>
@@ -675,11 +689,13 @@ const CustomCard = () => {
 };
 
 const TeamCard = ({ accessCode, setAccessCode }: { accessCode: string; setAccessCode: (accessCode: string) => void }) => {
+    const t = useTranslations('landing.side');
+
     return (
         <>
             <Alert>
                 <FiClipboard />
-                <AlertTitle>Good to know</AlertTitle>
+                <AlertTitle>{t('Goodwill Reminders')}</AlertTitle>
                 <AlertDescription>This is a feature for teams. You can create a team in dashboard. However, this feature is only available for fully setup deployment.</AlertDescription>
             </Alert>
             <div className='space-y-1'>
@@ -701,11 +717,13 @@ const CohereCard = ({
     setCohereAPIKey: (cohereAPIKey: string) => void;
     setCohereModel: (cohereModel: string) => void;
 }) => {
+    const t = useTranslations('landing.side');
+
     return (
         <>
             <Alert>
                 <FiClipboard />
-                <AlertTitle>Good to know</AlertTitle>
+                <AlertTitle>{t('Goodwill Reminders')}</AlertTitle>
                 <AlertDescription>
                     You need to provide the{' '}
                     <Link href='https://dashboard.cohere.ai/api-keys' target='_blank' className='underline'>
@@ -740,10 +758,12 @@ const CohereCard = ({
 };
 
 const ExtensionCard = ({}: {}) => {
+    const t = useTranslations('landing.side');
+
     return (
         <>
             <div className='space-y-1'>
-                <Label>Entry Point</Label>
+                <Label>{t('Entry Point')}</Label>
                 <Input placeholder='http://localhost:9999' />
             </div>
         </>
