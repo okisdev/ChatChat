@@ -6,7 +6,7 @@ import { NextIntlClientProvider } from 'next-intl';
 
 import NotFound from '@/app/not-found';
 
-export default async function RootLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
+export default async function LocaleLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
     let messages;
 
     try {
