@@ -1,4 +1,4 @@
-FROM node:18-alpine as base
+FROM node:20-alpine as base
 
 WORKDIR /app
 COPY package*.json yarn.lock ./
@@ -9,7 +9,7 @@ COPY . .
 RUN yarn prisma generate
 RUN yarn build
 
-FROM node:18-alpine as production
+FROM node:20-alpine as production
 WORKDIR /app
 COPY --from=base /app/package*.json ./
 COPY --from=base /app/.next ./.next
