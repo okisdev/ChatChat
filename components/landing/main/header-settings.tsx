@@ -26,8 +26,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 
-import { searchEnginesList } from '@/config/app/plugin.config';
-
 const HeaderSettings = () => {
     const t = useTranslations('landing.main');
 
@@ -352,3 +350,10 @@ const HeaderSettings = () => {
 };
 
 export default HeaderSettings;
+
+const searchEnginesList = [
+    {
+        name: 'Programmable Search Engine (By Google)',
+        value: 'pse',
+    },
+];

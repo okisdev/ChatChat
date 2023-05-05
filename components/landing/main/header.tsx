@@ -9,15 +9,13 @@ import { useTranslations } from 'next-intl';
 import store from '@/hooks/store';
 import { useAtom } from 'jotai';
 
-import { FiLayout, FiChevronDown } from 'react-icons/fi';
+import { FiLayout, FiCode, FiFile, FiMessageCircle, FiChevronDown } from 'react-icons/fi';
 
 import LandingSide from '@/components/landing/side/side';
 import HeaderSettings from '@/components/landing/main/header-settings';
 
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-
-import { ModeList } from '@/config/app/mode.config';
 
 const LandingHeader = () => {
     const pathname = usePathname();
@@ -89,3 +87,24 @@ const LandingHeader = () => {
 };
 
 export default LandingHeader;
+
+const ModeList = [
+    {
+        title: 'Chat',
+        value: 'chat',
+        icon: FiMessageCircle,
+        link: '/mode/chat',
+    },
+    {
+        title: 'Code',
+        value: 'code',
+        icon: FiCode,
+        link: '/mode/code',
+    },
+    {
+        title: 'File',
+        value: 'file',
+        icon: FiFile,
+        link: '/mode/file',
+    },
+];

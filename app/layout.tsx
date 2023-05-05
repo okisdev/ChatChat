@@ -4,7 +4,7 @@ import 'tippy.js/dist/tippy.css';
 
 import { rubik } from '@/app/[locale]/fonts';
 
-import { Providers } from '@/app/providers';
+import { Providers } from '@/app/[locale]/providers';
 
 import { Analytics } from '@vercel/analytics/react';
 
