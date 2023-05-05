@@ -1,7 +1,9 @@
 'use client';
 
+import { useState } from 'react';
+
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 
 import { useTranslations } from 'next-intl';
 
@@ -45,11 +47,15 @@ import SideUserSettings from '@/components/landing/side/side-user-settings';
 const LandingSide = ({ className, user }: { className?: string; user: User | null }) => {
     const router = useRouter();
 
+    const params = useParams();
+
+    const i18Language = params?.locale as string;
+
+    const [language, setLanguage] = useState(i18Language);
+
     const { theme, setTheme } = useTheme();
 
     const t = useTranslations('landing.side');
-
-    const [language, setLanguage] = useAtom(store.languageAtom);
 
     const isHiddenSide = useAtom(store.isHiddenSideAtom)[0];
 
@@ -61,7 +67,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                 <div className='flex items-center justify-between border-b px-1'>
                     <div className='p-1'>
                         <p className='gradient-flow bg-gradient-to-r bg-clip-text text-lg font-semibold leading-none text-transparent md:text-xl'>{siteConfig.title}</p>
-                        <p className='text-xs font-medium'>{siteConfig.description}</p>
+                        <p className='text-xs font-medium'>{t(siteConfig.description)}</p>
                     </div>
                 </div>
                 <div className='flex items-center justify-center'>
@@ -167,7 +173,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                                         <DropdownMenuSubContent>
                                             <DropdownMenuRadioGroup value={language} onValueChange={setLanguage}>
                                                 {languageList.map((language, index) => (
-                                                    <DropdownMenuRadioItem key={index} value={language.value} className='cursor-pointer space-x-1'>
+                                                    <DropdownMenuRadioItem key={index} value={language.value} className='cursor-pointer space-x-1' onClick={() => router.push(language.value)}>
                                                         <span>{language.name}</span>
                                                     </DropdownMenuRadioItem>
                                                 ))}
@@ -210,7 +216,7 @@ const languageList = [
         name: '简体中文',
     },
     {
-        value: 'zh-TW',
+        value: 'zh-HK',
         name: '繁体中文',
     },
     {

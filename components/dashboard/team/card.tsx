@@ -144,7 +144,7 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
                                 <DialogTitle>
                                     {t('Confirm to quit Team')} {team.name}?
                                 </DialogTitle>
-                                <DialogDescription>{t('This action cannot be undone.')}</DialogDescription>
+                                <DialogDescription>{t('This action cannot be undone')}</DialogDescription>
                             </DialogHeader>
                             <DialogFooter>
                                 <Button variant='destructive' onClick={onQuit}>
@@ -205,7 +205,7 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
                                     {t('Confirm to delete Team')} {team.name}?
                                 </DialogTitle>
                                 <DialogDescription>
-                                    {t('This action cannot be undone')}. {t('This will permanently delete your team and remove your data from our database.')}
+                                    {t('This action cannot be undone')}. {t('This will permanently delete your team and remove your data from our database')}
                                 </DialogDescription>
                             </DialogHeader>
                             <DialogFooter>

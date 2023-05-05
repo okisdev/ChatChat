@@ -12,8 +12,6 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 import { customConfig } from '@/config/custom.config';
 
-import { siteConfig } from '@/config/site.config';
-
 const DashboardSide = () => {
     const router = useRouter();
 
@@ -59,12 +57,12 @@ const DashboardSide = () => {
                     <div className='items-left flex flex-col space-y-10'>
                         {DashboardSideItems.map((item, index) => (
                             <div key={index} className='flex flex-col space-y-2'>
-                                <p className='text-gray-500/70'>{item.name}</p>
+                                <p className='text-gray-500/70'>{t(item.name)}</p>
                                 {item.children && (
                                     <div className='flex w-auto flex-col items-start space-y-1'>
                                         {item.children.map((child, index) => (
                                             <Button variant='ghost' key={index} className='text-gray-500' onClick={() => router.push('profile/' + child.href)}>
-                                                {child.name}
+                                                {t(child.name)}
                                             </Button>
                                         ))}
                                     </div>
@@ -90,17 +88,17 @@ export const DashboardSideItems = [
             {
                 name: 'Overview',
                 href: 'info',
-                description: `Manage personal info for ${siteConfig.title} profile`,
+                description: `Manage personal info for profile`,
             },
             {
                 name: 'Record',
                 href: 'info/record',
-                description: `Your ${siteConfig.title} Account Conversation Record`,
+                description: `Your account Conversation Record`,
             },
             {
                 name: 'Settings',
                 href: 'info/settings',
-                description: `Advanced configuration for your ${siteConfig.title} account`,
+                description: `Advanced configuration for your account`,
             },
         ],
     },

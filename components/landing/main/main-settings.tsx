@@ -103,7 +103,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                         {t('Current Model')}: <span className='font-semibold'>{openAIConfig?.apiModel}</span>
                     </p>
                     <p>
-                        {t('Temperature')}: <span className='font-semibold'>{openAIConfig?.apiTemperature}</span>
+                        Temperature: <span className='font-semibold'>{openAIConfig?.apiTemperature}</span>
                     </p>
                 </>
             );
@@ -115,7 +115,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                         {t('Current Model')}: <span className='font-semibold'>{azureConfig?.apiModel}</span>
                     </p>
                     <p>
-                        {t('Temperature')}: <span className='font-semibold'>{azureConfig?.apiTemperature}</span>
+                        Temperature: <span className='font-semibold'>{azureConfig?.apiTemperature}</span>
                     </p>
                 </>
             );

@@ -20,10 +20,12 @@ const DashboardNav = ({ user }: { user: any }) => {
 
     const t = useTranslations('dashboard');
 
+    const i18n = /^\/[a-z]{2}-[A-Z]{2}\//.test(pathname ?? '');
+
     const breadcrumbs = pathname
         ?.split('/')
         .filter((path) => path !== '')
-        .splice(1);
+        .splice(i18n ? 2 : 1);
 
     const description = DashboardSideItems.find((item) => item.children?.find((child) => child.href === breadcrumbs?.[0]))?.children?.find((child) => child.href === breadcrumbs?.[0])?.description;
 
@@ -33,7 +35,7 @@ const DashboardNav = ({ user }: { user: any }) => {
                 <div className='flex'>
                     {breadcrumbs?.map((breadcrumb, index) => (
                         <div key={index} className='inline-flex items-center text-2xl font-medium uppercase text-gray-500 dark:text-stone-200'>
-                            <span className='tracking-wide'>{breadcrumb}</span>
+                            <span className='tracking-wide'>{t(breadcrumb)}</span>
                             {index !== breadcrumbs.length - 1 && (
                                 <span className='mx-2 inline-block'>
                                     <AiOutlineCaretRight />
@@ -69,7 +71,7 @@ const DashboardNav = ({ user }: { user: any }) => {
                 </DropdownMenu>
             </div>
             <div>
-                <p className='text-sm text-gray-400'>{description}</p>
+                <p className='text-sm text-gray-400'>{t(description)}</p>
             </div>
             <Separator className='my-3' />
         </div>

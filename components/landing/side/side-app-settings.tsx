@@ -487,7 +487,7 @@ const HuggingFaceCard = ({
                 </AlertDescription>
             </Alert>
             <div className='space-y-1'>
-                <Label className='px-1 font-medium'>{t('Model')}</Label>
+                <Label className='px-1 font-medium'>Model</Label>
                 <Select value={huggingFaceModel} onValueChange={(value) => setHuggingFaceModel(value)}>
                     <SelectTrigger>
                         <SelectValue />
@@ -504,7 +504,7 @@ const HuggingFaceCard = ({
                 </Select>
             </div>
             <div className='space-y-1'>
-                <Label className='px-1 font-medium'>{t('Access Token')}</Label>
+                <Label className='px-1 font-medium'>Access Token</Label>
                 <Input placeholder='hf_xxxxxx' value={accessToken} onChange={(e) => setAccessToken(e.target.value)} />
             </div>
         </>
@@ -565,13 +565,11 @@ const ClaudeCard = ({
                 </div>
             </div>
             <div className='space-y-1'>
-                <Label className='font-normal'>{t('API Key')}</Label>
+                <Label className='font-normal'>API Key</Label>
                 <Input placeholder='EXAMPLE' value={claudeAPIKey} onChange={(e) => setClaudeAPIKey(e.target.value)} />
             </div>
             <div className='space-y-3'>
-                <Label className='font-normal'>
-                    {t('Temperature')}: {claudeAPITemperature}
-                </Label>
+                <Label className='font-normal'>Temperature: {claudeAPITemperature}</Label>
                 <div className='flex flex-col space-y-1'>
                     <Slider max={1} step={0.1} value={[claudeAPITemperature]} onValueChange={([e]) => setClaudeAPITemperature(e)} />
                     <div className='flex justify-between text-xs text-gray-500'>
@@ -629,7 +627,7 @@ const AzureCard = ({
             </Alert>
             <div className='h-full space-y-3'>
                 <div className='space-y-1'>
-                    <Label className='font-normal'>{t('GPT Model')}</Label>
+                    <Label className='font-normal'>GPT Model</Label>
                     <Select value={azureAPIModel} onValueChange={(value) => setAzureAPIModel(value as OpenAIModel)}>
                         <SelectTrigger>
                             <SelectValue />
@@ -647,21 +645,19 @@ const AzureCard = ({
                 </div>
             </div>
             <div className='space-y-1'>
-                <Label className='font-normal'>{t('API Key')}</Label>
+                <Label className='font-normal'>API Key</Label>
                 <Input placeholder='EXAMPLE' value={azureAPIKey} onChange={(e) => setAzureAPIKey(e.target.value)} />
             </div>
             <div className='space-y-1'>
-                <Label className='font-normal'>{t('API Endpoint')}</Label>
+                <Label className='font-normal'>API Endpoint</Label>
                 <Input placeholder='https://xxxxxx.openai.azure.com' value={azureAPIEndpoint} onChange={(e) => setAzureAPIEndpoint(e.target.value)} />
             </div>
             <div className='space-y-1'>
-                <Label className='font-normal'>{t('API Deployment Name')}</Label>
+                <Label className='font-normal'>API Deployment Name</Label>
                 <Input placeholder='EXAMPLE' value={azureAPIDeploymentName} onChange={(e) => setAzureAPIDeploymentName(e.target.value)} />
             </div>
             <div className='space-y-3'>
-                <Label className='font-normal'>
-                    {t('Temperature')}: {azureAPITemperature}
-                </Label>
+                <Label className='font-normal'>Temperature: {azureAPITemperature}</Label>
                 <div className='flex flex-col space-y-1'>
                     <Slider max={2} step={0.1} value={[azureAPITemperature]} onValueChange={([e]) => setAzureAPITemperature(e)} />
                     <div className='flex justify-between text-xs text-gray-500'>
@@ -681,11 +677,11 @@ const CustomCard = () => {
     return (
         <>
             <div className='space-y-1'>
-                <Label>{t('API Key')}</Label>
+                <Label>API Key</Label>
                 <Input placeholder='fk...' />
             </div>
             <div className='space-y-1'>
-                <Label>{t('API Endpoint')}</Label>
+                <Label>API Endpoint</Label>
                 <Input placeholder='https://api.example.com' />
             </div>
         </>

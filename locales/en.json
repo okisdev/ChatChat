@@ -1,8 +1,7 @@
 {
   "landing": {
     "side": {
-      "title": "Chat Chat",
-      "description": "Unlock next-level conversations with AI",
+      "Unlock next-level conversations with AI": "Unlock next-level conversations with AI",
       "New Conversation": "New Conversation",
       "Search History": "Search History",
       "App Settings": "App Settings",
@@ -19,7 +18,8 @@
       "Language": "Language",
       "System": "System",
       "Dark": "Dark",
-      "Light": "Light"
+      "Light": "Light",
+      "Use Cloud Settings": "Use Cloud Settings"
     },
     "main": {
       "Edit": "Edit",
@@ -78,25 +78,38 @@
     "Confirm": "Confirm",
     "Confirming Deletion": "Confirming Deletion",
     "Delete Account": "Delete Account",
-    "Please note: This could not be undone.": "Please note: This could not be undone.",
+    "Please note: This could not be undone": "Please note: This could not be undone",
     "Export All": "Export All",
     "Delete All": "Delete All",
     "Share": "Share",
     "Confirm to quit Team": "Confirm to quit Team",
-    "This action cannot be undone.": "This action cannot be undone.",
+    "This action cannot be undone": "This action cannot be undone",
     "Edit Team": "Edit Team",
     "Name": "Name",
     "Access Code": "Access Code",
     "Save": "Save",
     "Confirm to delete Team": "Confirm to delete Team",
-    "This will permanently delete your team and remove your data from our database.": "This will permanently delete your team and remove your data from our database.",
+    "This will permanently delete your team and remove your data from our database": "This will permanently delete your team and remove your data from our database",
     "Create Team": "Create Team",
     "Join Team": "Join Team",
     "Join": "Join",
     "Create": "Create",
     "Sign out": "Sign out",
     "Danger Zoom": "Danger Zoom",
-    "If you want to permanently remove your account from": "If you want to permanently remove your account from",
-    "Please click the button below, please note, This could not be undone.": "Please click the button below, please note, This could not be undone."
+    "If you want to permanently remove your account": "If you want to permanently remove your account",
+    "Please click the button below, please note, This could not be undone": "Please click the button below, please note, This could not be undone",
+    "Profile": "Profile",
+    "Overview": "Overview",
+    "Record": "Record",
+    "Settings": "Settings",
+    "Team": "Team",
+    "info": "info",
+    "record": "record",
+    "settings": "settings",
+    "team": "team",
+    "Manage personal info for profile": "Manage personal info for profile",
+    "Your account Conversation Record": "Your account Conversation Record",
+    "Advanced configuration for your account": "Advanced configuration for your account",
+    "Team Overview": "Team Overview"
   }
 }

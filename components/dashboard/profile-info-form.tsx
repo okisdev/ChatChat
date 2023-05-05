@@ -108,7 +108,7 @@ const ProfileInfoForm = ({ user }: any) => {
             <div className='space-y-3'>
                 <p className='text-lg font-medium'>{t('Danger Zoom')}</p>
                 <p className='text-sm text-gray-400'>
-                    {t('If you want to permanently remove your account from')} {siteConfig.title}. {t('Please click the button below, please note, This could not be undone.')}
+                    {t('If you want to permanently remove your account')}. {t('Please click the button below, please note, This could not be undone')}
                 </p>
                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <DialogTrigger asChild>
@@ -117,7 +117,7 @@ const ProfileInfoForm = ({ user }: any) => {
                     <DialogContent>
                         <DialogHeader>
                             <DialogTitle>{t('Confirming Deletion')}</DialogTitle>
-                            <DialogDescription>{t('Please note: This could not be undone.')}</DialogDescription>
+                            <DialogDescription>{t('Please note: This could not be undone')}</DialogDescription>
                         </DialogHeader>
                         <DialogFooter>
                             <Button variant='destructive' onClick={onDelete}>
