@@ -22,7 +22,7 @@ import generateHash from '@/utils/app/generateHash';
 import { getSearchFromGoogleProgrammableSearchEngine } from '@/utils/plugins/search';
 import { fetchContent } from '@/utils/plugins/fetch_content';
 
-import { User } from '.prisma/client';
+import { User } from '@prisma/client';
 
 interface UserSettingsProps {
     user: User;
