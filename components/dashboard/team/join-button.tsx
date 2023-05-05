@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import { toast } from 'react-hot-toast';
 
 import { GrStatusGoodSmall } from 'react-icons/gr';
@@ -15,6 +17,8 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogT
 
 const JoinButton = () => {
     const router = useRouter();
+
+    const t = useTranslations('dashboard');
 
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -71,22 +75,22 @@ const JoinButton = () => {
                 <DialogTrigger asChild>
                     <Button variant='outline' className='flex items-center space-x-1 dark:border-stone-400'>
                         <GrStatusGoodSmall className='block text-lg' />
-                        <span>Join Team</span>
+                        <span>{t('Join Team')}</span>
                     </Button>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Join a Team</DialogTitle>
+                        <DialogTitle>{t('Join Team')}</DialogTitle>
                     </DialogHeader>
                     <div className='space-y-3'>
                         <div className='space-y-1'>
-                            <Label>Team Access Code</Label>
+                            <Label>{t('Access Code')}</Label>
                             <Input placeholder='' value={accessCode} onChange={(e) => setAccessCode(e.target.value)} />
                         </div>
                     </div>
                     <DialogFooter>
                         <Button type='submit' onClick={handleJoin}>
-                            Join
+                            {t('Join')}
                         </Button>
                     </DialogFooter>
                 </DialogContent>

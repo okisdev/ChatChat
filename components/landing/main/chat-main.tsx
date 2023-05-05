@@ -4,6 +4,8 @@ import { useEffect, useState, useRef } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import { toast } from 'react-hot-toast';
 
 import store from '@/hooks/store';
@@ -11,11 +13,11 @@ import { useAtom, useAtomValue } from 'jotai';
 
 import { setLocalStorage } from '@/hooks/setLocalStorage';
 
-import ContentHead from '@/components/landing/mode/chat-head';
-import InputArea from '@/components/landing/mode/input-area';
-import MainContent from '@/components/landing/mode/chat-content';
+import ContentHead from '@/components/landing/main/chat-head';
+import InputArea from '@/components/landing/main/input-area';
+import MainContent from '@/components/landing/main/chat-content';
 
-import ModeSettings from '@/components/landing/mode/settings';
+import ModeSettings from '@/components/landing/main/main-settings';
 
 import generateHash from '@/utils/app/generateHash';
 
@@ -32,6 +34,8 @@ const ChatMain = () => {
     const searchParams = useSearchParams();
 
     const share = searchParams?.get('share');
+
+    const t = useTranslations('landing.main');
 
     // Conversation Config
     const isNoContextConversation = useAtomValue(store.noContextConversationAtom);

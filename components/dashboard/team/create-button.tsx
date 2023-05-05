@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import { toast } from 'react-hot-toast';
 
 import { MdOutlineAdd } from 'react-icons/md';
@@ -15,6 +17,8 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogT
 
 const CreateButton = () => {
     const router = useRouter();
+
+    const t = useTranslations('dashboard');
 
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -97,20 +101,20 @@ const CreateButton = () => {
                 <DialogTrigger asChild>
                     <Button variant='outline' className='flex items-center space-x-1 dark:border-stone-400'>
                         <MdOutlineAdd className='block text-lg' />
-                        <span>Create Team</span>
+                        <span>{t('Create Team')}</span>
                     </Button>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Create a Team</DialogTitle>
+                        <DialogTitle>{t('Create Team')}</DialogTitle>
                     </DialogHeader>
                     <div className='space-y-3'>
                         <div className='space-y-1'>
-                            <Label>Team Name</Label>
+                            <Label>{t('Name')}</Label>
                             <Input placeholder='' value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className='space-y-1'>
-                            <Label>Team Access Token</Label>
+                            <Label>{t('Access Code')}</Label>
                             <Input placeholder='' value={accessCode} onChange={(e) => setAccessCode(e.target.value)} />
                         </div>
                         <div className='space-y-1'>
@@ -124,7 +128,7 @@ const CreateButton = () => {
                     </div>
                     <DialogFooter>
                         <Button type='submit' onClick={handleCreate}>
-                            Create
+                            {t('Create')}
                         </Button>
                     </DialogFooter>
                 </DialogContent>

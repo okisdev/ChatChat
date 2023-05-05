@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 
+import { useTranslations } from 'next-intl';
+
 import { toast } from 'react-hot-toast';
 
 import store from '@/hooks/store';
@@ -22,6 +24,8 @@ const MainContent = ({
     reGenerate: (index: number) => void;
     onEdit: (index: number) => void;
 }) => {
+    const t = useTranslations('landing.main');
+
     const ttsConfig = useAtomValue(store.textToSpeechConfigAtom);
 
     const endOfMessageRef = useRef<HTMLDivElement>(null);
@@ -78,14 +82,14 @@ const MainContent = ({
                                                     onClick={() => onEdit(index)}
                                                 >
                                                     <TbEdit />
-                                                    <span>Edit</span>
+                                                    <span>{t('Edit')}</span>
                                                 </button>
                                                 <button
                                                     className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
                                                     onClick={() => onCopy(index)}
                                                 >
                                                     <TbCopy />
-                                                    <span>Copy</span>
+                                                    <span>{t('Copy')}</span>
                                                 </button>
                                             </>
                                         )}
@@ -101,21 +105,21 @@ const MainContent = ({
                                                     onClick={() => onCopy(index)}
                                                 >
                                                     <TbCopy />
-                                                    <span>Copy</span>
+                                                    <span>{t('Copy')}</span>
                                                 </button>
                                                 <button
                                                     className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
                                                     onClick={() => reGenerate(index)}
                                                 >
                                                     <TbAB2 />
-                                                    <span>Regenerate</span>
+                                                    <span>{t('Regenerate')}</span>
                                                 </button>
                                                 <button
                                                     className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
                                                     onClick={() => onSpeech(index)}
                                                 >
                                                     <TbSpeakerphone />
-                                                    <span>Speech</span>
+                                                    <span>{t('Speech')}</span>
                                                 </button>
                                             </>
                                         )}

@@ -4,19 +4,23 @@ import Link from 'next/link';
 
 import { usePathname } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import store from '@/hooks/store';
 import { useAtom } from 'jotai';
 
 import { FiLayout, FiCode, FiFile, FiMessageCircle, FiChevronDown } from 'react-icons/fi';
 
-import LandingSide from '@/components/landing/side';
-import HeaderSettings from '@/components/landing/header-settings';
+import LandingSide from '@/components/landing/side/side';
+import HeaderSettings from '@/components/landing/main/header-settings';
 
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
 const LandingHeader = () => {
     const pathname = usePathname();
+
+    const t = useTranslations('landing.main');
 
     const [isHiddenSideAtom, setIsHiddenSideAtom] = useAtom(store.isHiddenSideAtom);
 

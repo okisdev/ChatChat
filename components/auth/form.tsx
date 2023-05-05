@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import Link from 'next/link';
 
+import { useTranslations } from 'next-intl';
+
 import { signIn } from 'next-auth/react';
 
 import { toast } from 'react-hot-toast';
@@ -15,6 +17,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
 const AuthForm = ({ login }: { login: boolean }) => {
+    const t = useTranslations('auth');
+
     const [email, setEmail] = useState<string>('');
 
     const handleEmailSubmit = async () => {
@@ -32,8 +36,6 @@ const AuthForm = ({ login }: { login: boolean }) => {
             callbackUrl: '/profile',
         });
 
-        console.log(emailSignIn);
-
         if (emailSignIn?.error) {
             return toast.error('Failed to send email');
         }
@@ -46,21 +48,21 @@ const AuthForm = ({ login }: { login: boolean }) => {
             <div className='flex flex-col items-center'>
                 {login ? (
                     <>
-                        <p className='text-xl font-bold'>Sign In</p>
+                        <p className='text-xl font-bold'>{t('Sign In')}</p>
                         <p className='text-sm'>
-                            New User?{' '}
+                            {t('New User?')}{' '}
                             <Link href={'/register'} className='font-medium text-blue-800 underline dark:text-sky-400'>
-                                Sign up
+                                {t('Sign up')}
                             </Link>
                         </p>
                     </>
                 ) : (
                     <>
-                        <p className='text-xl font-bold'>Register</p>
+                        <p className='text-xl font-bold'>{t('Register')}</p>
                         <p className='text-sm'>
-                            Already have an account with us?{' '}
+                            {t('Already have an account with us?')}{' '}
                             <Link href={'/login'} className='font-medium text-blue-800 underline'>
-                                Log In
+                                {t('Log In')}
                             </Link>
                         </p>
                     </>
@@ -78,7 +80,7 @@ const AuthForm = ({ login }: { login: boolean }) => {
                     className='dark:bg-stone-600'
                 />
                 <Button variant='default' onClick={handleEmailSubmit}>
-                    Sign In With Email
+                    {t('Sign In With Email')}
                 </Button>
             </div>
             {/* <div className='relative'>

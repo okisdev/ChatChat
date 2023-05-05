@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import { Record } from '@prisma/client';
 
 import { toast } from 'react-hot-toast';
@@ -11,6 +13,8 @@ import { siteConfig } from '@/config/site.config';
 
 const RecordButton = ({ records }: { records: Record[] }) => {
     const router = useRouter();
+
+    const t = useTranslations('dashboard');
 
     const handleExport = async () => {
         const data = records.map((record) => {
@@ -54,10 +58,10 @@ const RecordButton = ({ records }: { records: Record[] }) => {
     return (
         <div className='flex items-center justify-end space-x-3'>
             <Button variant='outline' onClick={handleExport} className='dark:border-stone-400'>
-                Export All
+                {t('Export All')}
             </Button>
             <Button variant='destructive' onClick={handleDelete}>
-                Delete All
+                {t('Delete All')}
             </Button>
         </div>
     );

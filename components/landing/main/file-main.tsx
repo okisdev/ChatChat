@@ -2,6 +2,8 @@
 
 import { useRef, useState } from 'react';
 
+import { useTranslations } from 'next-intl';
+
 import { toast } from 'react-hot-toast';
 
 import store from '@/hooks/store';
@@ -10,8 +12,8 @@ import { useAtom, useAtomValue } from 'jotai';
 import { GrCircleInformation } from 'react-icons/gr';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 
-import InputArea from '@/components/landing/mode/input-area';
-import MainContent from '@/components/landing/mode/chat-content';
+import InputArea from '@/components/landing/main/input-area';
+import MainContent from '@/components/landing/main/chat-content';
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
@@ -21,6 +23,8 @@ import { renderMarkdownMessage, renderUserMessage } from '@/utils/app/renderMess
 import { setLocalStorage } from '@/hooks/setLocalStorage';
 
 const FileMain = () => {
+    const t = useTranslations('landing.main');
+
     const [conversations, setConversations] = useState<OpenAIMessage[]>([]);
     const [conversationID, setConversationID] = useState<string>(generateHash(16));
 

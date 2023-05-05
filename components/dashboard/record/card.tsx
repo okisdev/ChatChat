@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import { Record } from '@prisma/client';
 
 import { toast } from 'react-hot-toast';
@@ -16,6 +18,8 @@ import { Button } from '@/components/ui/button';
 
 const RecordCard = ({ record }: { record: Record }) => {
     const router = useRouter();
+
+    const t = useTranslations('dashboard');
 
     const [enableShare, setEnableShare] = useState<boolean>(false);
 
@@ -96,7 +100,7 @@ const RecordCard = ({ record }: { record: Record }) => {
                 <div className='space-y-2'>
                     <div className='flex items-center space-x-2 text-sm'>
                         <Switch onCheckedChange={onSwitchShare} />
-                        <p>Share</p>
+                        <p>{t('Share')}</p>
                         {enableShare && (
                             <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600' onClick={onCopy}>
                                 <IoCopy />

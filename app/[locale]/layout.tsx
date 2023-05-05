@@ -2,9 +2,13 @@ import '@/styles/globals.css';
 import '@/styles/markdown.css';
 import 'tippy.js/dist/tippy.css';
 
-import { rubik } from '@/app/fonts';
+import { NextIntlClientProvider } from 'next-intl';
 
-import { Providers } from '@/app/providers';
+import NotFound from '@/app/[locale]/not-found';
+
+import { rubik } from '@/app/[locale]/fonts';
+
+import { Providers } from '@/app/[locale]/providers';
 
 import { Analytics } from '@vercel/analytics/react';
 
@@ -13,9 +17,17 @@ import { ClientCommand } from '@/components/client/command';
 
 import { siteConfig } from '@/config/site.config';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
+    let messages;
+
+    try {
+        messages = (await import(`../../locales/${locale}.json`)).default;
+    } catch (error) {
+        NotFound();
+    }
+
     return (
-        <html className={`${rubik.className}`} lang='en'>
+        <html className={`${rubik.className}`} lang={locale}>
             <head>
                 <title>{siteConfig.title}</title>
                 <meta charSet='utf-8' />
@@ -63,7 +75,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <HotToaster />
                     <ClientCommand />
 
-                    {children}
+                    <NextIntlClientProvider locale={locale} messages={messages}>
+                        {children}
+                    </NextIntlClientProvider>
                 </Providers>
                 <Analytics />
             </body>

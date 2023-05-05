@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+
+import { useTranslations } from 'next-intl';
 
 import { signOut } from 'next-auth/react';
 
@@ -38,16 +38,17 @@ import {
 
 import { siteConfig, sidebarMoreMenu } from '@/config/site.config';
 
-import SideHistory from '@/components/landing/side-history';
-import SideAppSettings from '@/components/landing/side-app-settings';
-import SideUserSettings from '@/components/landing/side-user-settings';
+import SideHistory from '@/components/landing/side/side-history';
+import SideAppSettings from '@/components/landing/side/side-app-settings';
+import SideUserSettings from '@/components/landing/side/side-user-settings';
 
 const LandingSide = ({ className, user }: { className?: string; user: User | null }) => {
     const router = useRouter();
 
     const { theme, setTheme } = useTheme();
 
-    // const [theme, setTheme] = useAtom(store.themeAtom);
+    const t = useTranslations('landing.side');
+
     const [language, setLanguage] = useAtom(store.languageAtom);
 
     const isHiddenSide = useAtom(store.isHiddenSideAtom)[0];
@@ -69,7 +70,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                         onClick={() => (location.href = '')}
                     >
                         <HiChatBubbleLeft />
-                        <span>New Conversation</span>
+                        <span>{t('New Conversation')}</span>
                     </button>
                 </div>
                 <SideHistory />

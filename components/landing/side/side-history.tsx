@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import { toast } from 'react-hot-toast';
 
 import { TiPinOutline, TiDeleteOutline, TiBrush } from 'react-icons/ti';
@@ -12,6 +14,8 @@ import { Input } from '@/components/ui/input';
 
 const SideHistory = () => {
     const router = useRouter();
+
+    const t = useTranslations('landing.side');
 
     const [userInput, setUserInput] = useState<string>('');
 
@@ -117,7 +121,7 @@ const SideHistory = () => {
         <div className='space-y-2 px-2'>
             <div>
                 <Input
-                    placeholder='Search History'
+                    placeholder={t('Search History')}
                     value={userInput}
                     onChange={(e) => {
                         setUserInput(e.target.value);

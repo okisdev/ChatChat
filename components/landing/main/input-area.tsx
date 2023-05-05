@@ -1,4 +1,6 @@
-import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { MutableRefObject, useState } from 'react';
+
+import { useTranslations } from 'next-intl';
 
 import { toast } from 'react-hot-toast';
 
@@ -29,6 +31,8 @@ const InputArea = ({
     waitingSystemResponse: boolean;
     stopSystemResponseRef: MutableRefObject<boolean>;
 }) => {
+    const t = useTranslations('landing.main');
+
     const [userInput, setUserInput] = useState<string>('');
 
     // commands
@@ -188,14 +192,14 @@ const InputArea = ({
                     {enablePlugins && (
                         <div className='space-x-1 text-xs font-medium'>
                             <Badge variant='secondary' className='font-normal'>
-                                plugins
+                                {t('plugins')}
                             </Badge>
                         </div>
                     )}
                     {isNoContextConversation && (
                         <div className='space-x-1 text-xs font-medium'>
                             <Badge variant='secondary' className='font-normal'>
-                                no context
+                                {t('no context')}
                             </Badge>
                         </div>
                     )}
@@ -203,7 +207,7 @@ const InputArea = ({
                 {waitingSystemResponse ? (
                     <button className='inline-flex items-center space-x-1 rounded border px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200' onClick={handleStopSystemResponse}>
                         <IoStopCircle />
-                        <span>Stop Generating</span>
+                        <span>{t('Stop Generating')}</span>
                     </button>
                 ) : (
                     conversations.length > 0 && (
@@ -213,8 +217,8 @@ const InputArea = ({
                         >
                             <TbShare2 className='dark:text-white' />
                             <p className='inline-flex space-x-1'>
-                                <span>Share</span>
-                                <span className='hidden md:block'>this conversation</span>
+                                <span>{t('Share')}</span>
+                                <span className='hidden md:block'>{t('this conversation')}</span>
                             </p>
                         </button>
                     )

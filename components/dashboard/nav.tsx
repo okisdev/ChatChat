@@ -2,6 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import { signOut } from 'next-auth/react';
 
 import { RxAvatar } from 'react-icons/rx';
@@ -15,6 +17,8 @@ import { Separator } from '@/components/ui/separator';
 
 const DashboardNav = ({ user }: { user: any }) => {
     const pathname = usePathname();
+
+    const t = useTranslations('dashboard');
 
     const breadcrumbs = pathname
         ?.split('/')
@@ -58,7 +62,7 @@ const DashboardNav = ({ user }: { user: any }) => {
                                     })
                                 }
                             >
-                                Sign out
+                                {t('Sign out')}
                             </button>
                         </DropdownMenuItem>
                     </DropdownMenuContent>

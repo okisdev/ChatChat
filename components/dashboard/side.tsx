@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import { BiArrowBack } from 'react-icons/bi';
 import { CgMenuBoxed } from 'react-icons/cg';
 
@@ -14,6 +16,8 @@ import { siteConfig } from '@/config/site.config';
 
 const DashboardSide = () => {
     const router = useRouter();
+
+    const t = useTranslations('dashboard');
 
     return (
         <>
@@ -49,7 +53,7 @@ const DashboardSide = () => {
                     <div>
                         <Button variant='outline' className='inline-flex items-center space-x-2 dark:bg-stone-600' onClick={() => router.push('/')}>
                             <BiArrowBack />
-                            <p>Back</p>
+                            <p>{t('Back')}</p>
                         </Button>
                     </div>
                     <div className='items-left flex flex-col space-y-10'>

@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { useTranslations } from 'next-intl';
+
 import { toast } from 'react-hot-toast';
 
 import store from '@/hooks/store';
@@ -16,6 +18,8 @@ import generateHash from '@/utils/app/generateHash';
 import { setLocalStorage } from '@/hooks/setLocalStorage';
 
 const CodeMain = () => {
+    const t = useTranslations('landing.main');
+
     const [userMessageInput, setUserMessageInput] = useState<string>('');
 
     const [codeMode, setCodeMode] = useState<string>('Explain');
@@ -247,7 +251,7 @@ const CodeMain = () => {
                         )}
                     </div>
                     <Button variant='secondary' onClick={onProcess}>
-                        Process
+                        {t('Process')}
                     </Button>
                 </div>
                 <div className='h-[300px] max-h-[800px] min-h-[100px] w-full rounded-md border p-3 md:min-h-full md:w-5/12'>{systemResponse}</div>
