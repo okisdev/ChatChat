@@ -6,6 +6,8 @@ import { rubik } from '@/app/fonts';
 
 import { Providers } from '@/app/providers';
 
+import { Analytics } from '@vercel/analytics/react';
+
 import { HotToaster } from '@/components/client/toaster';
 import { ClientCommand } from '@/components/client/command';
 
@@ -63,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                     {children}
                 </Providers>
+                <Analytics />
             </body>
         </html>
     );
