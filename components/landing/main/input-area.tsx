@@ -1,14 +1,17 @@
-import { MutableRefObject, useState } from 'react';
+import { MutableRefObject, useEffect, useState } from 'react';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 import { toast } from 'react-hot-toast';
 
 import store from '@/hooks/store';
 import { useAtomValue } from 'jotai';
 
-import { TbSend, TbShare2 } from 'react-icons/tb';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+
 import { IoStopCircle } from 'react-icons/io5';
+import { TbSend, TbShare2 } from 'react-icons/tb';
+import { MdOutlineKeyboardVoice, MdPause } from 'react-icons/md';
 
 import TextareaAutosize from 'react-textarea-autosize';
 
@@ -33,6 +36,8 @@ const InputArea = ({
 }) => {
     const t = useTranslations('landing.main');
 
+    const locale = useLocale();
+
     const [userInput, setUserInput] = useState<string>('');
 
     // commands
@@ -48,6 +53,30 @@ const InputArea = ({
 
     const isNoContextConversation = useAtomValue(store.noContextConversationAtom);
 
+    const { transcript, listening, resetTranscript } = useSpeechRecognition();
+    const [isListening, setIsListening] = useState<boolean>(false);
+
+    const handleVoiceInput = () => {
+        if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+            toast.error('This browser does not support voice input.');
+            return;
+        }
+
+        if (listening) {
+            SpeechRecognition.stopListening();
+            setIsListening(false);
+        } else {
+            SpeechRecognition.startListening({ language: locale });
+            setIsListening(true);
+        }
+    };
+
+    useEffect(() => {
+        if (transcript) {
+            setUserInput(transcript);
+        }
+    }, [transcript]);
+
     const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         // e.target.style.height = 'inherit';
         // e.target.style.height = e.target.scrollHeight + 'px';
@@ -60,6 +89,8 @@ const InputArea = ({
         } else {
             setShowCommands(false);
         }
+
+        resetTranscript();
     };
 
     const handleSend = () => {
@@ -86,6 +117,7 @@ const InputArea = ({
         sendMessage(currentMessage, null, currentPlugin);
 
         setUserInput('');
+        resetTranscript();
     };
 
     const handleStopSystemResponse = () => {
@@ -171,37 +203,23 @@ const InputArea = ({
         <div className='mx-auto space-y-2 md:w-6/12'>
             <div className='mx-auto flex w-full items-center justify-between px-1'>
                 <div className='flex flex-row items-center space-x-1 overflow-x-auto whitespace-nowrap'>
-                    <div className='text-xs'>
-                        {isSendKeyEnter ? (
-                            <Badge variant='secondary' className='font-normal'>
-                                enter
-                            </Badge>
-                        ) : (
-                            <Badge variant='secondary' className='font-normal'>
-                                shift + enter
-                            </Badge>
-                        )}
-                    </div>
+                    <Badge variant='secondary' className='text-xs font-normal'>
+                        {isSendKeyEnter ? 'enter' : 'shift + enter'}
+                    </Badge>
                     {enableSystemPrompt && (
-                        <div className='space-x-1 text-xs font-medium'>
-                            <Badge variant='secondary' className='font-normal'>
-                                system prompt
-                            </Badge>
-                        </div>
+                        <Badge variant='secondary' className='text-xs font-normal'>
+                            system prompt
+                        </Badge>
                     )}
                     {enablePlugins && (
-                        <div className='space-x-1 text-xs font-medium'>
-                            <Badge variant='secondary' className='font-normal'>
-                                {t('plugins')}
-                            </Badge>
-                        </div>
+                        <Badge variant='secondary' className='text-xs font-normal'>
+                            {t('plugins')}
+                        </Badge>
                     )}
                     {isNoContextConversation && (
-                        <div className='space-x-1 text-xs font-medium'>
-                            <Badge variant='secondary' className='font-normal'>
-                                {t('no context')}
-                            </Badge>
-                        </div>
+                        <Badge variant='secondary' className='text-xs font-normal'>
+                            {t('no context')}
+                        </Badge>
                     )}
                 </div>
                 {waitingSystemResponse ? (
@@ -242,13 +260,20 @@ const InputArea = ({
                     </div>
                 )}
                 <TextareaAutosize
-                    className='flex h-10 max-h-56 min-h-[40px] w-full rounded-md border border-slate-300 bg-transparent px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900'
+                    className='flex h-10 max-h-56 min-h-[40px] w-full rounded-md border border-slate-300 bg-transparent px-3 py-2 pr-16 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900'
                     placeholder={`${isSendKeyEnter ? 'Enter to send.' : 'Shift + Enter to send.'} Change in right top settings. ${enablePlugins ? 'Type / to see available commands.' : ''}`}
                     value={userInput}
                     onChange={handleTextAreaChange}
                     onKeyDown={handleOnKeyDown}
                 />
                 <div className='absolute bottom-2 right-2 flex items-center justify-center'>
+                    <button
+                        onClick={handleVoiceInput}
+                        className='rounded-md bg-transparent p-1 font-bold text-stone-800 transition duration-300 ease-in-out hover:text-stone-400 dark:text-stone-400 dark:hover:text-stone-800'
+                        aria-label='Voice Input Button'
+                    >
+                        {!isListening ? <MdOutlineKeyboardVoice className='text-lg' /> : <MdPause className='text-lg' />}
+                    </button>
                     <button
                         onClick={handleSend}
                         className='rounded-md bg-transparent p-1 font-bold text-stone-800 transition duration-300 ease-in-out hover:text-stone-400 dark:text-stone-400 dark:hover:text-stone-800'
