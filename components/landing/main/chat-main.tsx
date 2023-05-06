@@ -430,9 +430,11 @@ const ChatMain = () => {
                             systemResponse={systemResponse}
                             waitingSystemResponse={waitingSystemResponse}
                             conversations={conversations}
-                            reGenerate={(index: number) => (isSystemPromptEmpty ? handleMessageSend(conversations[index - 1], index, null) : handleMessageSend(conversations[index], index, null))}
+                            reGenerate={(index: number) => (isSystemPromptEmpty ? handleMessageSend(conversations[index - 1], index, null) : handleMessageSend(conversations[index], index + 1, null))}
                             onEdit={(index: number) => {
-                                const newContent = prompt('Edit message:', conversations[index].content);
+                                const promptIndex = isSystemPromptEmpty ? index : index + 1;
+
+                                const newContent = prompt('Edit message:', conversations[promptIndex].content);
 
                                 if (newContent !== null) {
                                     const newMessage: AppMessageProps = {
@@ -440,7 +442,7 @@ const ChatMain = () => {
                                         content: newContent,
                                     };
 
-                                    setConversations(conversations.slice(0, index));
+                                    setConversations(conversations.slice(0, promptIndex));
 
                                     handleMessageSend(newMessage);
                                 }
