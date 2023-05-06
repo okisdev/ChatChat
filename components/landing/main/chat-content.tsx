@@ -17,12 +17,14 @@ const MainContent = ({
     conversations,
     reGenerate,
     onEdit,
+    isSystemPromptEmpty,
 }: {
     systemResponse: string;
     waitingSystemResponse: boolean;
     conversations: AppMessageProps[];
     reGenerate: (index: number) => void;
     onEdit: (index: number) => void;
+    isSystemPromptEmpty: boolean;
 }) => {
     const t = useTranslations('landing.main');
 
@@ -86,7 +88,7 @@ const MainContent = ({
                                                 </button>
                                                 <button
                                                     className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
-                                                    onClick={() => onCopy(index)}
+                                                    onClick={() => onCopy(isSystemPromptEmpty ? index : index + 1)}
                                                 >
                                                     <TbCopy />
                                                     <span>{t('Copy')}</span>
@@ -102,7 +104,7 @@ const MainContent = ({
                                             <>
                                                 <button
                                                     className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
-                                                    onClick={() => onCopy(index)}
+                                                    onClick={() => onCopy(isSystemPromptEmpty ? index : index + 1)}
                                                 >
                                                     <TbCopy />
                                                     <span>{t('Copy')}</span>

@@ -43,6 +43,7 @@ const ChatMain = () => {
     const enablePlugin = useAtomValue(store.enablePluginsAtom);
 
     const [systemPromptContent, setSystemPromptContent] = useAtom(store.systemPromptContentAtom);
+    const isSystemPromptEmpty = !systemPromptContent.trim() && /^\s*$/.test(systemPromptContent);
 
     const [systemResponse, setSystemResponse] = useState<string>('');
     const [waitingSystemResponse, setWaitingSystemResponse] = useState<boolean>(false);
@@ -135,11 +136,11 @@ const ChatMain = () => {
         setWaitingSystemResponse(true);
 
         if (!isNoContextConversation) {
-            systemPromptContent == '' || conversations.find((c) => c.role === 'system')
+            isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
                 ? setConversations((prev) => [...prev, message])
                 : setConversations((prev) => [{ role: 'system', content: systemPromptContent }, ...prev, message]);
         } else {
-            systemPromptContent == '' || conversations.find((c) => c.role === 'system') ? setConversations([message]) : setConversations([{ role: 'system', content: systemPromptContent }, message]);
+            isSystemPromptEmpty || conversations.find((c) => c.role === 'system') ? setConversations([message]) : setConversations([{ role: 'system', content: systemPromptContent }, message]);
         }
 
         let configPayload;
@@ -225,23 +226,21 @@ const ChatMain = () => {
 
         if (plugin && enablePlugin && pluginResponse && pluginPrompt) {
             if (!isNoContextConversation) {
-                systemPromptContent == '' || conversations.find((c) => c.role === 'system')
+                isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
                     ? (messagesPayload = [...conversations, { role: 'system', content: pluginPrompt }, message])
                     : (messagesPayload = [{ role: 'system', content: systemPromptContent }, ...conversations, { role: 'system', content: pluginPrompt }, message]);
             } else {
-                systemPromptContent == '' || conversations.find((c) => c.role === 'system')
+                isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
                     ? (messagesPayload = [{ role: 'system', content: pluginPrompt }, message])
                     : (messagesPayload = [{ role: 'system', content: systemPromptContent }, { role: 'system', content: pluginPrompt }, message]);
             }
         } else {
             if (!isNoContextConversation) {
-                systemPromptContent == '' || conversations.find((c) => c.role === 'system')
+                isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
                     ? (messagesPayload = [...conversations, message])
                     : (messagesPayload = [{ role: 'system', content: systemPromptContent }, ...conversations, message]);
             } else {
-                systemPromptContent == '' || conversations.find((c) => c.role === 'system')
-                    ? (messagesPayload = [message])
-                    : (messagesPayload = [{ role: 'system', content: systemPromptContent }, message]);
+                isSystemPromptEmpty || conversations.find((c) => c.role === 'system') ? (messagesPayload = [message]) : (messagesPayload = [{ role: 'system', content: systemPromptContent }, message]);
             }
         }
 
@@ -431,9 +430,7 @@ const ChatMain = () => {
                             systemResponse={systemResponse}
                             waitingSystemResponse={waitingSystemResponse}
                             conversations={conversations}
-                            reGenerate={(index: number) => {
-                                handleMessageSend(conversations[index - 1], index, null);
-                            }}
+                            reGenerate={(index: number) => (isSystemPromptEmpty ? handleMessageSend(conversations[index - 1], index, null) : handleMessageSend(conversations[index], index, null))}
                             onEdit={(index: number) => {
                                 const newContent = prompt('Edit message:', conversations[index].content);
 
@@ -448,6 +445,7 @@ const ChatMain = () => {
                                     handleMessageSend(newMessage);
                                 }
                             }}
+                            isSystemPromptEmpty={isSystemPromptEmpty}
                         />
                     ) : (
                         <ModeSettings systemPromptContent={systemPromptContent} setSystemPromptContent={setSystemPromptContent} />

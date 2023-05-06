@@ -450,6 +450,7 @@ const FileMain = () => {
                                         handleMessageSend(newMessage);
                                     }
                                 }}
+                                isSystemPromptEmpty={true}
                             />
                         </div>
                     </div>
