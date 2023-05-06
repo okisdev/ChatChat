@@ -66,7 +66,7 @@ const InputArea = ({
             SpeechRecognition.stopListening();
             setIsListening(false);
         } else {
-            SpeechRecognition.startListening({ language: locale });
+            SpeechRecognition.startListening({ language: locale, continuous: true });
             setIsListening(true);
         }
     };
