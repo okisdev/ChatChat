@@ -41,29 +41,29 @@ const RecordCard = ({ record }: { record: Record }) => {
         if (!response.ok) {
             if (response.status === 409) {
                 navigator.clipboard.writeText(window.location.host + `/s/${record.id}`);
-                toast.error(`Share already exists: ${record.id}`);
+                toast.error(`${t('Updated previous share:')} ${record.id}`);
                 return;
             }
-            toast.error('Error: Something went wrong');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 
         const data = await response.json();
 
         if (!data.success) {
-            toast.error('Error: Something went wrong');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 
         navigator.clipboard.writeText(window.location.host + `/s/${record.id}`);
-        toast.success(`Share: ${record.id} link copied`);
+        toast.success(`${t('Copied share link:')} ${record.id}`);
     };
 
     const onCopy = () => {
         const url = `${window.location.origin}/s/${record.id}`;
 
         navigator.clipboard.writeText(url);
-        toast.success(`Share: ${record.id} link copied`);
+        toast.success(`${t('Copied share link:')} ${record.id}`);
     };
 
     const onDelete = async () => {
@@ -72,18 +72,18 @@ const RecordCard = ({ record }: { record: Record }) => {
         });
 
         if (!response.ok) {
-            toast.error('Error: Something went wrong');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 
         const data = await response.json();
 
         if (!data.success) {
-            toast.error('Error: Something went wrong');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 
-        toast.success(`Record: ${record.id} deleted`);
+        toast.success(`${t('Deleted record:')} ${record.id}`);
 
         router.refresh();
     };

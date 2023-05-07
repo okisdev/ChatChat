@@ -128,7 +128,7 @@ const HeaderSettings = () => {
     const handleSwitchSendMessageKey = () => {
         setIsSendKeyEnter(!isSendKeyEnter);
 
-        toast.success(`Send message key changed to ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`);
+        toast.success(`${t('Send message key changed to')} ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`);
     };
 
     const handleExportHistory = () => {
@@ -172,7 +172,7 @@ const HeaderSettings = () => {
                                 localStorage.setItem(`histories-${item.type}-${item.id}`, JSON.stringify(item));
                             });
 
-                            toast.success('Imported history successfully!');
+                            toast.success(t('Imported history successfully!'));
                         }
                     }
                 };
@@ -192,7 +192,7 @@ const HeaderSettings = () => {
 
         setHistories([]);
 
-        toast.success('Cleared history successfully!');
+        toast.success(t('Cleared history successfully!'));
 
         const updateEvent = new CustomEvent('localStorageUpdated');
         window.dispatchEvent(updateEvent);

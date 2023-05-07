@@ -96,8 +96,8 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                                 <p className='text-xs text-slate-700'>{user?.email}</p>
                             </div>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem onClick={() => router.push('/profile/info')}>Profile</DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => router.push('/profile/team')}>Team</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => router.push('/profile/info')}>{t('Profile')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => router.push('/profile/team')}>{t('Team')}</DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem
                                 onClick={() =>
@@ -106,7 +106,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                                     })
                                 }
                             >
-                                Sign Out
+                                {t('Sign Out')}
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -148,7 +148,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                                 <DropdownMenuSub>
                                     <DropdownMenuSubTrigger className='cursor-pointer space-x-1'>
                                         <TbContrast />
-                                        <span>Theme</span>
+                                        <span>{t('Theme')}</span>
                                     </DropdownMenuSubTrigger>
                                     <DropdownMenuPortal>
                                         <DropdownMenuSubContent>
@@ -156,7 +156,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                                                 {themeList.map((theme, index) => (
                                                     <DropdownMenuRadioItem key={index} value={theme.value} className='cursor-pointer space-x-1'>
                                                         {theme.icon}
-                                                        <span>{theme.name}</span>
+                                                        <span>{t(theme.name)}</span>
                                                     </DropdownMenuRadioItem>
                                                 ))}
                                             </DropdownMenuRadioGroup>
@@ -167,7 +167,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                                 <DropdownMenuSub>
                                     <DropdownMenuSubTrigger className='cursor-pointer space-x-1'>
                                         <IoLanguage />
-                                        <span>Language</span>
+                                        <span>{t('Language')}</span>
                                     </DropdownMenuSubTrigger>
                                     <DropdownMenuPortal>
                                         <DropdownMenuSubContent>
@@ -222,5 +222,9 @@ const languageList = [
     {
         value: 'en',
         name: 'English',
+    },
+    {
+        value: 'ja',
+        name: '日本語',
     },
 ];

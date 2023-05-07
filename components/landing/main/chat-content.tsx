@@ -40,7 +40,7 @@ const MainContent = ({
 
     const onCopy = (index: number) => {
         navigator.clipboard.writeText(conversations[index].content);
-        toast.success('Copied to clipboard');
+        toast.success(t('Copied to clipboard'));
     };
 
     const onSpeech = (index: number) => {

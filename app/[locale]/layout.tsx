@@ -4,6 +4,9 @@ import 'tippy.js/dist/tippy.css';
 
 import { NextIntlClientProvider } from 'next-intl';
 
+import { HotToaster } from '@/components/client/toaster';
+import { ClientCommand } from '@/components/client/command';
+
 import NotFound from '@/app/not-found';
 
 export default async function LocaleLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
@@ -17,6 +20,9 @@ export default async function LocaleLayout({ children, params: { locale } }: { c
 
     return (
         <NextIntlClientProvider locale={locale} messages={messages}>
+            <HotToaster />
+            <ClientCommand />
+
             {children}
         </NextIntlClientProvider>
     );
