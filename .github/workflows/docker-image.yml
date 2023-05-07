@@ -15,7 +15,7 @@ jobs:
               with:
                   registry: ghcr.io
                   username: ${{ github.actor }}
-                  password: ${{ secrets.GITHUB_TOKEN }}
+                  password: ${{ secrets.DOCKER_IMAGE_TOKEN }}
             - name: Extract tag name
               id: extract_tag
               run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#refs/tags/})"
