@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import { Share } from '@prisma/client';
 
 import { toast } from 'react-hot-toast';
@@ -21,18 +23,20 @@ interface ShareProps {
 const SharePost = ({ share }: ShareProps) => {
     const router = useRouter();
 
+    const t = useTranslations('share');
+
     const contentString = JSON.stringify(share.content, null, 2);
 
     const content = JSON.parse(contentString);
 
     const onCopyMessage = (index: number) => {
         navigator.clipboard.writeText(content[index].content);
-        toast.success('Copied to clipboard');
+        toast.success(t('Copied to clipboard'));
     };
 
     const onCopyLink = () => {
         navigator.clipboard.writeText(window.location.href);
-        toast.success('Copied to clipboard');
+        toast.success(t('Copied to clipboard'));
     };
 
     const handleContinueConversation = () => {
@@ -71,7 +75,7 @@ const SharePost = ({ share }: ShareProps) => {
                                                     onClick={() => onCopyMessage(index)}
                                                 >
                                                     <TbCopy />
-                                                    <span>Copy</span>
+                                                    <span>{t('Copy')}</span>
                                                 </button>
                                                 <p className='text-base font-semibold'>You</p>
                                             </>
@@ -83,7 +87,7 @@ const SharePost = ({ share }: ShareProps) => {
                                                     onClick={() => onCopyMessage(index)}
                                                 >
                                                     <TbCopy />
-                                                    <span>Copy</span>
+                                                    <span>{t('Copy')}</span>
                                                 </button>
                                             </>
                                         )}
@@ -103,7 +107,7 @@ const SharePost = ({ share }: ShareProps) => {
                 <div>
                     {share.type == 'chat' && (
                         <Button variant='outline' onClick={handleContinueConversation}>
-                            Continue this Conversation
+                            {t('Continue this Conversation')}
                         </Button>
                     )}
                 </div>

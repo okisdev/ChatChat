@@ -198,7 +198,7 @@ const ChatMain = () => {
             switch (plugin) {
                 case 'search':
                     if (searchPluginConfig.searchAPIKey == '' || searchPluginConfig.searchEngineID == '') {
-                        toast.error('Please set up your Google Programmable Search Engine API Key and Search Engine ID in the settings page.');
+                        toast.error(t('Please set up your Google Programmable Search Engine API Key and Search Engine ID in the settings page'));
                         return;
                     }
                     pluginResponse = await getSearchFromGoogleProgrammableSearchEngine(searchPluginConfig.searchAPIKey, searchPluginConfig.searchEngineID, message.content);
@@ -265,7 +265,7 @@ const ChatMain = () => {
         if (!response.ok) {
             setWaitingSystemResponse(false);
             setHasError(true);
-            toast.error('Something went wrong');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 
@@ -274,7 +274,7 @@ const ChatMain = () => {
         if (!data) {
             setWaitingSystemResponse(false);
             setHasError(true);
-            toast.error('Something went wrong');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 
@@ -434,7 +434,7 @@ const ChatMain = () => {
                             onEdit={(index: number) => {
                                 const promptIndex = isSystemPromptEmpty ? index : index + 1;
 
-                                const newContent = prompt('Edit message:', conversations[promptIndex].content);
+                                const newContent = prompt(t('Edit message:'), conversations[promptIndex].content);
 
                                 if (newContent !== null) {
                                     const newMessage: AppMessageProps = {

@@ -9,9 +9,12 @@ import { Settings, User } from 'lucide-react';
 import { FiCode, FiFile, FiMessageCircle } from 'react-icons/fi';
 
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from '@/components/ui/command';
+import { useTranslations } from 'next-intl';
 
 export const ClientCommand = () => {
     const router = useRouter();
+
+    const t = useTranslations('component');
 
     const [open, setOpen] = React.useState(false);
 
@@ -28,10 +31,10 @@ export const ClientCommand = () => {
 
     return (
         <CommandDialog open={open} onOpenChange={setOpen}>
-            <CommandInput placeholder='Type a command or search...' />
+            <CommandInput placeholder={t('Type a command to search')} />
             <CommandList>
-                <CommandEmpty>No results found.</CommandEmpty>
-                <CommandGroup heading='Conversation'>
+                <CommandEmpty>{t('No command found')}</CommandEmpty>
+                <CommandGroup heading={t('Conversation')}>
                     <CommandItem>
                         <button
                             onClick={() => {
@@ -41,7 +44,7 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <FiMessageCircle className='mr-2 h-4 w-4' />
-                            <span>New Chat</span>
+                            <span>{t('New Chat')}</span>
                         </button>
                     </CommandItem>
                     <CommandItem>
@@ -53,7 +56,7 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <FiCode className='mr-2 h-4 w-4' />
-                            <span>New Code</span>
+                            <span>{t('New Code')}</span>
                         </button>
                     </CommandItem>
                     <CommandItem>
@@ -65,12 +68,12 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <FiFile className='mr-2 h-4 w-4' />
-                            <span>New File</span>
+                            <span>{t('New File')}</span>
                         </button>
                     </CommandItem>
                 </CommandGroup>
                 <CommandSeparator />
-                <CommandGroup heading='Profile'>
+                <CommandGroup heading={t('Profile')}>
                     <CommandItem>
                         <button
                             onClick={() => {
@@ -80,7 +83,7 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <User className='mr-2 h-4 w-4' />
-                            <span>Info</span>
+                            <span>{t('Info')}</span>
                         </button>
                     </CommandItem>
                     <CommandItem>
@@ -92,7 +95,7 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <User className='mr-2 h-4 w-4' />
-                            <span>Share</span>
+                            <span>{t('Share')}</span>
                         </button>
                     </CommandItem>
                     <CommandItem>
@@ -104,12 +107,12 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <Settings className='mr-2 h-4 w-4' />
-                            <span>Settings</span>
+                            <span>{t('Settings')}</span>
                         </button>
                     </CommandItem>
                 </CommandGroup>
                 <CommandSeparator />
-                <CommandGroup heading='Team'>
+                <CommandGroup heading={t('Team')}>
                     <CommandItem>
                         <button
                             onClick={() => {
@@ -119,7 +122,7 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <User className='mr-2 h-4 w-4' />
-                            <span>Overview</span>
+                            <span>{t('Overview')}</span>
                         </button>
                     </CommandItem>
                 </CommandGroup>

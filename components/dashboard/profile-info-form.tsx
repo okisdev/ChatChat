@@ -18,7 +18,6 @@ import { Separator } from '@/components/ui/separator';
 
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
-import { siteConfig } from '@/config/site.config';
 import { signOut } from 'next-auth/react';
 
 const ProfileInfoForm = ({ user }: any) => {
@@ -51,12 +50,12 @@ const ProfileInfoForm = ({ user }: any) => {
 
         if (!response?.ok) {
             setIsLoading(false);
-            toast.error('Something went wrong.');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 
         setIsLoading(false);
-        toast.success('Profile updated.');
+        toast.success(t('Profile updated'));
     };
 
     const onDelete = async () => {
@@ -68,11 +67,11 @@ const ProfileInfoForm = ({ user }: any) => {
         });
 
         if (!response?.ok) {
-            toast.error('Something went wrong.');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 
-        toast.success('Account deleted.');
+        toast.success(t('Account deleted'));
 
         await signOut();
 
@@ -112,7 +111,7 @@ const ProfileInfoForm = ({ user }: any) => {
                 </p>
                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <DialogTrigger asChild>
-                        <button className='text-sm text-red-500'>Delete Account</button>
+                        <button className='text-sm text-red-500'>{t('Delete Account')}</button>
                     </DialogTrigger>
                     <DialogContent>
                         <DialogHeader>

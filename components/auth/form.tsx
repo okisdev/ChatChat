@@ -23,11 +23,11 @@ const AuthForm = ({ login }: { login: boolean }) => {
 
     const handleEmailSubmit = async () => {
         if (!email) {
-            return toast.error('Email is required');
+            return toast.error(t('Email is required'));
         }
 
         if (!email.includes('@')) {
-            return toast.error('Invalid email');
+            return toast.error(t('Invalid email'));
         }
 
         const emailSignIn = await signIn('email', {
@@ -37,10 +37,10 @@ const AuthForm = ({ login }: { login: boolean }) => {
         });
 
         if (emailSignIn?.error) {
-            return toast.error('Failed to send email');
+            return toast.error(t('Failed to send email'));
         }
 
-        toast.success('Email sent. Please check your inbox.');
+        toast.success(t('Email sent, please check your inbox'));
     };
 
     return (

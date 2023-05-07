@@ -31,7 +31,7 @@ const JoinButton = () => {
         }
 
         if (accessCode.length === 0) {
-            toast.error('Team access code is required');
+            toast.error(t('Team access code is required'));
             return;
         }
 
@@ -49,7 +49,7 @@ const JoinButton = () => {
 
         if (!response.ok) {
             setIsLoading(false);
-            toast.error('Failed.');
+            toast.error(t('Failed to join team'));
             return;
         }
 
@@ -57,12 +57,12 @@ const JoinButton = () => {
 
         if (!data.success) {
             setIsLoading(false);
-            toast.error(data.error);
+            toast.error(t('Failed to join team'));
             return;
         }
 
         setIsLoading(false);
-        toast.success('Joined.');
+        toast.success(t('Joined team successfully'));
 
         setIsDialogOpen(false);
 

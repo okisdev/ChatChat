@@ -39,7 +39,7 @@ const ContentHead = ({
                 });
 
                 if (!response.ok) {
-                    toast.error('Something went wrong');
+                    toast.error(t('Error: Something went wrong'));
                     return;
                 }
 
@@ -50,7 +50,7 @@ const ContentHead = ({
 
             getTokens();
         }
-    }, [conversations]);
+    }, [conversations, t]);
 
     return (
         <div className='flex w-full items-center justify-center'>

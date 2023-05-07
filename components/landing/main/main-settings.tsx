@@ -103,7 +103,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                         {t('Current Model')}: <span className='font-semibold'>{openAIConfig?.apiModel}</span>
                     </p>
                     <p>
-                        Temperature: <span className='font-semibold'>{openAIConfig?.apiTemperature}</span>
+                        {t('Temperature')}: <span className='font-semibold'>{openAIConfig?.apiTemperature}</span>
                     </p>
                 </>
             );
@@ -115,7 +115,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                         {t('Current Model')}: <span className='font-semibold'>{azureConfig?.apiModel}</span>
                     </p>
                     <p>
-                        Temperature: <span className='font-semibold'>{azureConfig?.apiTemperature}</span>
+                        {t('Temperature')}: <span className='font-semibold'>{azureConfig?.apiTemperature}</span>
                     </p>
                 </>
             );
@@ -163,7 +163,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                     <Checkbox checked={enableStreamMessages} onCheckedChange={handleCheckStreamMessages} disabled={globalDisabled} aria-label='Stream Messages Checkbox' />
                     <div className='inline-flex items-center space-x-1'>
                         <p>{t('Stream Messages')}</p>
-                        <Tippy content='Server-Sent Events (SSE)'>
+                        <Tippy content={t('Server-Sent Events (SSE)')}>
                             <button aria-label='Stream Messages Info'>
                                 <MdInfoOutline className='text-lg' />
                             </button>
@@ -174,7 +174,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                     <Checkbox checked={isNoContextConversation} onCheckedChange={handleIsNoContextModeChange} disabled={globalDisabled} aria-label='No Context Mode Checkbox' />
                     <div className='inline-flex items-center space-x-1'>
                         <p>{t('No Context Mode')}</p>
-                        <Tippy content='Create new conversation next time.'>
+                        <Tippy content={t('Create new conversation next time')}>
                             <button aria-label='No Context Mode Info'>
                                 <MdInfoOutline className='text-lg' />
                             </button>
@@ -184,8 +184,8 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                 <div className='flex items-center space-x-2'>
                     <Checkbox checked={enableSystemPrompt} onCheckedChange={handleCheckSystemPrompt} disabled={globalDisabled} aria-label='System Prompt Checkbox' />
                     <div className='inline-flex items-center space-x-1'>
-                        <p>System Prompt</p>
-                        <Tippy content='Customize the roles of your conversations.'>
+                        <p>{t('System Prompt')}</p>
+                        <Tippy content={t('Customize the roles of your conversations')}>
                             <button aria-label='System Prompt Info'>
                                 <MdInfoOutline className='text-lg' />
                             </button>
@@ -196,7 +196,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                                     <TbCircleArrowRightFilled className='text-lg' />
                                 </PopoverTrigger>
                                 <PopoverContent className='space-y-2'>
-                                    <Textarea placeholder='You are a teacher.' value={systemPromptContent} onChange={(e) => setSystemPromptContent(e.target.value)} className='max-h-36' />
+                                    <Textarea placeholder={t('You are a teacher')} value={systemPromptContent} onChange={(e) => setSystemPromptContent(e.target.value)} className='max-h-36' />
                                 </PopoverContent>
                             </Popover>
                         )}
@@ -206,7 +206,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                     <Checkbox checked={enablePlugins} onCheckedChange={handleCheckPlugins} aria-label='Plugins Checkbox' />
                     <div className='inline-flex items-center space-x-1'>
                         <p>{t('Plugins')}</p>
-                        <Tippy content='Enable plugins for improved AI conversation'>
+                        <Tippy content={t('Enable plugins for improved AI conversation')}>
                             <button aria-label='Plugins Info'>
                                 <MdInfoOutline className='text-lg' />
                             </button>
