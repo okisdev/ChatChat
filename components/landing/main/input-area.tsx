@@ -131,7 +131,7 @@ const InputArea = ({
         const story = localStorage.getItem(`histories-${conversationType}-${conversationID}`) as string;
 
         if (!story) {
-            toast.error('Error: Story not found');
+            toast.error(t('Error: Conversation not found'));
             return;
         }
 
@@ -151,14 +151,14 @@ const InputArea = ({
                 toast.error(`Share already exists: ${conversationID}`);
                 return;
             }
-            toast.error('Error: Something went wrong');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 
         const data = await response.json();
 
         if (!data.success) {
-            toast.error('Error: Something went wrong');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 
@@ -208,7 +208,7 @@ const InputArea = ({
                     </Badge>
                     {enableSystemPrompt && (
                         <Badge variant='secondary' className='text-xs font-normal'>
-                            system prompt
+                            {t('system prompt')}
                         </Badge>
                     )}
                     {enablePlugins && (
@@ -261,7 +261,9 @@ const InputArea = ({
                 )}
                 <TextareaAutosize
                     className='flex h-10 max-h-56 min-h-[40px] w-full rounded-md border border-slate-300 bg-transparent px-3 py-2 pr-16 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900'
-                    placeholder={`${isSendKeyEnter ? 'Enter to send.' : 'Shift + Enter to send.'} Change in right top settings. ${enablePlugins ? 'Type / to see available commands.' : ''}`}
+                    placeholder={`${isSendKeyEnter ? t('Enter to send,') : t('Shift + Enter to send,')} ${t('change in right top settings')}. ${
+                        enablePlugins ? t('Type / to see available commands') : ''
+                    }`}
                     value={userInput}
                     onChange={handleTextAreaChange}
                     onKeyDown={handleOnKeyDown}

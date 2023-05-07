@@ -34,22 +34,22 @@ const CreateButton = () => {
         }
 
         if (name.length === 0) {
-            toast.error('Team name is required');
+            toast.error(t('Team name is required'));
             return;
         }
 
         if (accessCode.length === 0) {
-            toast.error('Team access token is required');
+            toast.error(t('Team access token is required'));
             return;
         }
 
         if (openAIKey.length === 0) {
-            toast.error('OpenAI key is required');
+            toast.error(t('OpenAI Key is required'));
             return;
         }
 
         if (openAIEndpoint.length === 0) {
-            toast.error('OpenAI endpoint is required');
+            toast.error(t('OpenAI Endpoint is required'));
             return;
         }
 
@@ -70,7 +70,7 @@ const CreateButton = () => {
 
         if (!response.ok) {
             setIsLoading(false);
-            toast.error('Failed.');
+            toast.error(t('Failed to create team'));
             return;
         }
 
@@ -78,12 +78,12 @@ const CreateButton = () => {
 
         if (!data.success) {
             setIsLoading(false);
-            toast.error(data.error);
+            toast.error(t('Failed to create team'));
             return;
         }
 
         setIsLoading(false);
-        toast.success('Team created: ' + accessCode);
+        toast.success(t('Team created: ') + accessCode);
 
         setIsDialogOpen(false);
 

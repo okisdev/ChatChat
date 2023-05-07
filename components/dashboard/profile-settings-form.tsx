@@ -40,7 +40,7 @@ const ProfileSettingsForm = ({ user }: { user: User }) => {
 
         if (!response?.ok) {
             setIsLoading(false);
-            toast.error('Something went wrong.');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 

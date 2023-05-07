@@ -52,7 +52,7 @@ const SideHistory = () => {
     };
 
     const onTitleChange = (id: string, type: string) => {
-        const newTitle = prompt('Enter new title');
+        const newTitle = prompt(t('Enter new title'));
 
         if (newTitle) {
             const history = localStorage.getItem(`histories-${type}-${id}`);
@@ -60,14 +60,14 @@ const SideHistory = () => {
                 const historyObj = JSON.parse(history);
                 historyObj.title = newTitle;
                 localStorage.setItem(`histories-${type}-${id}`, JSON.stringify(historyObj));
-                toast.success('Title changed');
+                toast.success(t('Title changed'));
             }
         }
     };
 
     const onHistoryDelete = (id: string, type: string) => {
         localStorage.removeItem(`histories-${type}-${id}`);
-        toast.success('History deleted');
+        toast.success(t('History deleted'));
 
         const updateEvent = new CustomEvent('localStorageUpdated');
         window.dispatchEvent(updateEvent);
@@ -77,7 +77,7 @@ const SideHistory = () => {
         const story = localStorage.getItem(`histories-${type}-${id}`) as string;
 
         if (!story) {
-            toast.error('Error: Story not found');
+            toast.error(t('Error: Conversation not found'));
             return;
         }
 
@@ -94,22 +94,22 @@ const SideHistory = () => {
         if (!response.ok) {
             if (response.status === 409) {
                 navigator.clipboard.writeText(window.location.host + `/s/${id}`);
-                toast.error(`Share already exists: ${id}`);
+                toast.error(`${t('Share already exists:')} ${id}`);
                 return;
             }
-            toast.error('Error: Something went wrong');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 
         const data = await response.json();
 
         if (!data.success) {
-            toast.error('Error: Something went wrong');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 
         navigator.clipboard.writeText(window.location.host + `/s/${id}`);
-        toast.success(`Share: ${id} link copied`);
+        toast.success(`${t('Copied share link:')} ${id}`);
     };
 
     const searchedHistories =

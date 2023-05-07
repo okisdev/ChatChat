@@ -44,18 +44,18 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
         });
 
         if (!response.ok) {
-            toast.error('Failed to delete team');
+            toast.error(t('Failed to delete team'));
             return;
         }
 
         const data = await response.json();
 
         if (!data.success) {
-            toast.error('Failed to delete team');
+            toast.error(t('Failed to delete team'));
             return;
         }
 
-        toast.success('Team deleted');
+        toast.success(t('Team deleted'));
 
         setIsDeleteDialogOpen(false);
 
@@ -74,14 +74,14 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
         });
 
         if (!response.ok) {
-            toast.error('Failed to delete team');
+            toast.error(t('Failed to quit team'));
             return;
         }
 
         const data = await response.json();
 
         if (!data.success) {
-            toast.error('Failed to delete team');
+            toast.error(t('Failed to quit team'));
             return;
         }
 
@@ -107,18 +107,18 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
         });
 
         if (!response.ok) {
-            toast.error('Failed to update team');
+            toast.error(t('Failed to update team'));
             return;
         }
 
         const data = await response.json();
 
         if (!data.success) {
-            toast.error('Failed to update team');
+            toast.error(t('Failed to update team'));
             return;
         }
 
-        toast.success('Team updated');
+        toast.success(t('Team updated'));
 
         setIsEditDialogOpen(false);
 

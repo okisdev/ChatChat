@@ -115,7 +115,6 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     let ProviderConfig = null;
 
     switch (serviceProvider) {
-        default:
         case 'OpenAI':
             ProviderConfig = (
                 <OpenAICard
@@ -175,6 +174,10 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
             break;
         case 'Extension':
             ProviderConfig = <ExtensionCard />;
+            break;
+        default:
+            ProviderConfig = null;
+            break;
     }
 
     const onReset = () => {
@@ -229,13 +232,13 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
         if (serviceProvider == 'OpenAI') {
             if (!useCloudSettings) {
                 if (!apiKey) {
-                    toast.error('Please fill in all the fields');
+                    toast.error(t('Please fill in all required fields'));
                     return;
                 }
 
                 if (apiEndpoint != '') {
                     if (!(apiEndpoint.startsWith('https://') || apiEndpoint.startsWith('http://'))) {
-                        toast.error('Invalid API Endpoint');
+                        toast.error(t('Invalid API Endpoint'));
                         return;
                     }
                 }
@@ -243,7 +246,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
         }
 
         if (!user && serviceProvider == 'Team') {
-            toast.error('Please login to join a team');
+            toast.error(t('Please login to join a team'));
             return;
         }
 
@@ -264,6 +267,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                     apiTemperature: azureAPITemperature,
                     apiDeploymentName: azureAPIDeploymentName,
                 });
+                break;
             case 'Team':
                 setTeamConfig({
                     accessCode,
@@ -292,7 +296,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                 break;
         }
 
-        toast.success('Settings saved');
+        toast.success(t('Settings saved'));
 
         setIsDialogOpen(false);
     };

@@ -24,7 +24,7 @@ const SideUserSettings = () => {
             <DropdownMenuContent side='right' className='transition duration-200 ease-in-out'>
                 <DropdownMenuItem onClick={() => router.push('login')} className='cursor-pointer space-x-1'>
                     <IoLogInOutline />
-                    <span>Login</span>
+                    <span>{t('Login')}</span>
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

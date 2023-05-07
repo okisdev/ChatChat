@@ -154,7 +154,7 @@ const CodeMain = () => {
         if (!response.ok) {
             setResponseLoading(false);
             setHasError(true);
-            toast.error('Something went wrong');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 
@@ -163,7 +163,7 @@ const CodeMain = () => {
         if (!data) {
             setResponseLoading(false);
             setHasError(true);
-            toast.error('Something went wrong');
+            toast.error(t('Error: Something went wrong'));
             return;
         }
 

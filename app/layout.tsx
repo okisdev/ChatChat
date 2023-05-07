@@ -2,14 +2,11 @@ import '@/styles/globals.css';
 import '@/styles/markdown.css';
 import 'tippy.js/dist/tippy.css';
 
-import { rubik } from '@/app/[locale]/fonts';
+import { rubik } from '@/app/fonts';
 
 import { Providers } from '@/app/providers';
 
 import { Analytics } from '@vercel/analytics/react';
-
-import { HotToaster } from '@/components/client/toaster';
-import { ClientCommand } from '@/components/client/command';
 
 import { siteConfig } from '@/config/site.config';
 
@@ -59,12 +56,7 @@ export default async function RootLayout({ children, params: { locale } }: { chi
             </head>
 
             <body className='min-h-screen bg-slate-50 dark:bg-[#323233] dark:text-[#eee]'>
-                <Providers>
-                    <HotToaster />
-                    <ClientCommand />
-
-                    {children}
-                </Providers>
+                <Providers>{children}</Providers>
                 <Analytics />
             </body>
         </html>

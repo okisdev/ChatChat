@@ -37,7 +37,7 @@ const RecordButton = ({ records }: { records: Record[] }) => {
     };
 
     const handleDelete = async () => {
-        const confirm = window.confirm('Are you sure you want to delete all records?');
+        const confirm = window.confirm(t('Are you sure you want to delete all records?'));
 
         if (confirm) {
             const response = await fetch('/api/record/delete', {
@@ -45,11 +45,11 @@ const RecordButton = ({ records }: { records: Record[] }) => {
             });
 
             if (!response.ok) {
-                toast.error('Something went wrong. Please try again later.');
+                toast.error(t('Something went wrong, please try again later'));
                 return;
             }
 
-            toast.success('Successfully deleted all records.');
+            toast.success(t('Successfully deleted all records'));
 
             router.refresh();
         }
