@@ -244,16 +244,18 @@ const InputArea = ({
             </div>
             <div className='relative flex'>
                 {enablePlugins && showCommands && (
-                    <div className='absolute bottom-full left-0 z-10 mb-2 w-full rounded-md border border-gray-200 bg-white shadow-lg'>
+                    <div className='absolute bottom-full left-0 z-10 mb-2 w-full rounded-md border border-gray-200 bg-white shadow-lg dark:border-neutral-700 dark:bg-neutral-800'>
                         <ul className='py-1 text-sm'>
                             {filteredCommands.map((command, index) => (
                                 <li
                                     key={index}
                                     onClick={() => handleCommandClick(`/${command.name}`)}
-                                    className={`cursor-pointer px-3 py-1 hover:bg-gray-100 ${selectedCommandIndex === index ? 'bg-gray-100' : ''}`}
+                                    className={`cursor-pointer rounded-lg px-3 py-1 transition duration-200 ease-in-out hover:bg-gray-100 dark:hover:bg-neutral-700 ${
+                                        selectedCommandIndex === index ? 'bg-gray-100 dark:bg-neutral-600' : ''
+                                    }`}
                                 >
-                                    <p className='font-bold'>/{command.name}</p>
-                                    <p className='text-gray-500'>{command.description}</p>
+                                    <p className='font-medium'>/{command.name}</p>
+                                    <p className='text-gray-500 dark:text-stone-400'>{command.description}</p>
                                 </li>
                             ))}
                         </ul>

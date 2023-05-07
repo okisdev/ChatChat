@@ -71,7 +71,7 @@ const SharePost = ({ share }: ShareProps) => {
                                         {isUser ? (
                                             <>
                                                 <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
                                                     onClick={() => onCopyMessage(index)}
                                                 >
                                                     <TbCopy />
@@ -83,7 +83,7 @@ const SharePost = ({ share }: ShareProps) => {
                                             <>
                                                 <p className='text-base font-semibold'>AI</p>
                                                 <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200'
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
                                                     onClick={() => onCopyMessage(index)}
                                                 >
                                                     <TbCopy />
