@@ -16,23 +16,68 @@ export async function sendTeamStreamMessages(teamPayload: any, accessCode: strin
 
     const response = await fetch(`https://${BASE_URL}/api/team/info?accessCode=${accessCode}`).then((res) => res.json());
 
-    const { apiKey, apiEndpoint } = response;
+    const { defaultServiceProvider, openAIKey, openAIEndpoint, azureAPIKey, azureAPIEndpoint, azureDeploymentName, claudeAPIKey } = response;
 
-    const payload: OpenAIChatPayload = {
-        model: 'gpt-3.5-turbo' as OpenAIModel,
-        messages: teamPayload.messages as OpenAIMessage[],
-        // temperature: 1.0,
-        stream: true as boolean,
-    };
+    let res: Response;
 
-    const res = await fetch(`${apiEndpoint}/v1/chat/completions`, {
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${apiKey}`,
-        },
-        method: 'POST',
-        body: JSON.stringify(payload),
-    });
+    switch (defaultServiceProvider) {
+        case 'OpenAI':
+            const openAIPayload: OpenAIChatPayload = {
+                model: 'gpt-3.5-turbo' as OpenAIModel,
+                messages: teamPayload.messages as OpenAIMessage[],
+                // temperature: 1.0,
+                stream: true as boolean,
+            };
+
+            res = await fetch(`${openAIEndpoint}/v1/chat/completions`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${openAIKey}`,
+                },
+                method: 'POST',
+                body: JSON.stringify(openAIPayload),
+            });
+            break;
+
+        case 'Azure':
+            const azurePayload: OpenAIChatPayload = {
+                model: 'gpt-3.5-turbo' as OpenAIModel,
+                messages: teamPayload.messages as OpenAIMessage[],
+                // temperature: 1.0,
+                stream: true as boolean,
+            };
+
+            res = await fetch(`${azureAPIEndpoint}/openai/deployments/${azureDeploymentName}/chat/completions?api-version=2023-03-15-preview`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'api-key': azureAPIKey,
+                },
+                method: 'POST',
+                body: JSON.stringify(azurePayload),
+            });
+            break;
+
+        case 'Claude':
+            const HUMAN_PROMPT = '\n\nHuman:' + teamPayload.messages.content;
+            const AI_PROMPT = '\n\nAssistant:';
+
+            const claudePayload = {
+                model: 'claude-v1',
+                prompt: `${HUMAN_PROMPT}${AI_PROMPT}`,
+                max_tokens_to_sample: 3000,
+                temperature: 1.0,
+            };
+
+            res = await fetch('https://api.anthropic.com/v1/complete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-Key': claudeAPIKey,
+                },
+                body: JSON.stringify(claudePayload),
+            });
+            break;
+    }
 
     const stream = new ReadableStream({
         async start(controller) {

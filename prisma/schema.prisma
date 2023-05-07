@@ -78,11 +78,17 @@ model Share {
 }
 
 model Team {
-  id             String   @id @default(cuid())
-  name           String
-  accessCode     String   @unique
-  openAIKey      String?  @unique
-  openAIEndpoint String?
+  id                     String  @id @default(cuid())
+  name                   String
+  accessCode             String  @unique
+  defaultServiceProvider String? @default("OpenAI")
+  openAIKey              String? @unique
+  openAIEndpoint         String?
+  azureAPIKey            String? @unique
+  azureAPIEndpoint       String?
+  azureDeploymentName    String?
+  claudeAPIKey           String?
+
   invitationOpen Boolean  @default(false)
   createdAt      DateTime @default(now()) @map(name: "created_at")
   updatedAt      DateTime @default(now()) @map(name: "updated_at")

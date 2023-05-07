@@ -34,6 +34,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 accessCode: body.accessCode,
                 openAIKey: body.openAIKey,
                 openAIEndpoint: body.openAIEndpoint,
+                azureAPIKey: body.azureAPIKey,
+                azureAPIEndpoint: body.azureEndpoint,
+                azureDeploymentName: body.azureDeploymentName,
+                claudeAPIKey: body.claudeAPIKey,
                 authorId: session.user.id,
             },
             select: {

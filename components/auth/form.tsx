@@ -83,6 +83,14 @@ const AuthForm = ({ login }: { login: boolean }) => {
                     {t('Sign In With Email')}
                 </Button>
             </div>
+            <div className='text-center'>
+                <p className='text-sm'>{t('Beta Notice')}</p>
+                <p className='text-xs text-amber-600'>
+                    {t(
+                        'We are continually adding new features to the dashboard which may affect your service and experience, as well as re-impacting the database architecture, and if you are a general user, we do not recommend that you log in or register, as at the moment it is possible to use almost all features without logging in'
+                    )}
+                </p>
+            </div>
             {/* <div className='relative'>
                 <div className='absolute inset-0 flex items-center' aria-hidden='true'>
                     <div className='w-full border-t border-gray-300'></div>

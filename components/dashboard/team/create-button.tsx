@@ -13,6 +13,7 @@ import { MdOutlineAdd } from 'react-icons/md';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const CreateButton = () => {
@@ -25,8 +26,20 @@ const CreateButton = () => {
 
     const [name, setName] = useState<string>('');
     const [accessCode, setAccessCode] = useState<string>('');
+
+    const [serviceProvider, setServiceProvider] = useState<string>('OpenAI');
+
+    // OpenAI
     const [openAIKey, setOpenAIKey] = useState<string>('');
     const [openAIEndpoint, setOpenAIEndpoint] = useState<string>('');
+
+    // Azure
+    const [azureKey, setAzureKey] = useState<string>('');
+    const [azureEndpoint, setAzureEndpoint] = useState<string>('');
+    const [azureDeploymentName, setAzureDeploymentName] = useState<string>('');
+
+    // Claude
+    const [claudeKey, setClaudeKey] = useState<string>('');
 
     const handleCreate = async () => {
         if (isLoading) {
@@ -43,16 +56,6 @@ const CreateButton = () => {
             return;
         }
 
-        if (openAIKey.length === 0) {
-            toast.error(t('OpenAI Key is required'));
-            return;
-        }
-
-        if (openAIEndpoint.length === 0) {
-            toast.error(t('OpenAI Endpoint is required'));
-            return;
-        }
-
         setIsLoading(true);
 
         const response = await fetch('/api/team/create', {
@@ -65,6 +68,10 @@ const CreateButton = () => {
                 accessCode: accessCode,
                 openAIKey: openAIKey,
                 openAIEndpoint: openAIEndpoint,
+                azureKey: azureKey,
+                azureEndpoint: azureEndpoint,
+                azureDeploymentName: azureDeploymentName,
+                claudeKey: claudeKey,
             }),
         });
 
@@ -91,9 +98,60 @@ const CreateButton = () => {
         setName('');
         setOpenAIKey('');
         setOpenAIEndpoint('');
+        setAzureKey('');
+        setAzureEndpoint('');
+        setAzureDeploymentName('');
+        setClaudeKey('');
 
         router.refresh();
     };
+
+    let serviceProviderSelection;
+
+    switch (serviceProvider) {
+        case 'OpenAI':
+            serviceProviderSelection = (
+                <>
+                    <div className='space-y-1'>
+                        <Label>OpenAI Key</Label>
+                        <Input placeholder='sk-' value={openAIKey} onChange={(e) => setOpenAIKey(e.target.value)} />
+                    </div>
+                    <div className='space-y-1'>
+                        <Label>OpenAI Endpoint</Label>
+                        <Input placeholder='https://api.openai.com' value={openAIEndpoint} onChange={(e) => setOpenAIEndpoint(e.target.value)} />
+                    </div>
+                </>
+            );
+            break;
+        case 'Azure':
+            serviceProviderSelection = (
+                <>
+                    <div className='space-y-1'>
+                        <Label>Azure API Key</Label>
+                        <Input placeholder='example' value={azureKey} onChange={(e) => setAzureKey(e.target.value)} />
+                    </div>
+                    <div className='space-y-1'>
+                        <Label>Azure API Endpoint</Label>
+                        <Input placeholder='https://xxxxx.opneai.azure.com' value={azureEndpoint} onChange={(e) => setAzureEndpoint(e.target.value)} />
+                    </div>
+                    <div className='space-y-1'>
+                        <Label>Azure Deployment Name</Label>
+                        <Input placeholder='Example' value={azureDeploymentName} onChange={(e) => setAzureDeploymentName(e.target.value)} />
+                    </div>
+                </>
+            );
+            break;
+        case 'Claude':
+            serviceProviderSelection = (
+                <>
+                    <div className='space-y-1'>
+                        <Label>Claude API Key</Label>
+                        <Input placeholder='Example' value={claudeKey} onChange={(e) => setClaudeKey(e.target.value)} />
+                    </div>
+                </>
+            );
+            break;
+    }
 
     return (
         <div className='flex justify-end'>
@@ -111,20 +169,26 @@ const CreateButton = () => {
                     <div className='space-y-3'>
                         <div className='space-y-1'>
                             <Label>{t('Name')}</Label>
-                            <Input placeholder='' value={name} onChange={(e) => setName(e.target.value)} />
+                            <Input value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className='space-y-1'>
                             <Label>{t('Access Code')}</Label>
-                            <Input placeholder='' value={accessCode} onChange={(e) => setAccessCode(e.target.value)} />
+                            <Input value={accessCode} onChange={(e) => setAccessCode(e.target.value)} />
                         </div>
                         <div className='space-y-1'>
-                            <Label>OpenAI Key</Label>
-                            <Input placeholder='sk-' value={openAIKey} onChange={(e) => setOpenAIKey(e.target.value)} />
+                            <Label>{t('Service Provider')}</Label>
+                            <Select value={serviceProvider} onValueChange={setServiceProvider}>
+                                <SelectTrigger className='w-full'>
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value='OpenAI'>OpenAI</SelectItem>
+                                    <SelectItem value='Azure'>Azure AI</SelectItem>
+                                    <SelectItem value='Claude'>Anthropic Claude</SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
-                        <div className='space-y-1'>
-                            <Label>OpenAI Endpoint</Label>
-                            <Input placeholder='https://api.openai.com' value={openAIEndpoint} onChange={(e) => setOpenAIEndpoint(e.target.value)} />
-                        </div>
+                        {serviceProviderSelection}
                     </div>
                     <DialogFooter>
                         <Button type='submit' onClick={handleCreate}>

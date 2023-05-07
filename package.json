@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
-    "db-pull": "prisma db pull"
+    "db-pull": "prisma db pull",
+    "db-push": "prisma db push",
+    "update-db": "prisma migrate deploy"
   },
   "dependencies": {
     "@dqbd/tiktoken": "^1.0.3",

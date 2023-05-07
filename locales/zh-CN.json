@@ -110,7 +110,9 @@
     "Email is required": "必须填写电子邮件",
     "Invalid email": "无效的电子邮件",
     "Failed to send email": "发送电子邮件失败",
-    "Email sent, please check your inbox": "电子邮件已发送，请查看收件箱"
+    "Email sent, please check your inbox": "电子邮件已发送，请查看收件箱",
+    "Beta Notice": "测试版通知",
+    "We are continually adding new features to the dashboard which may affect your service and experience, as well as re-impacting the database architecture, and if you are a general user, we do not recommend that you log in or register, as at the moment it is possible to use almost all features without logging in": "我们正在不断为仪表板添加新功能，这可能会影响您的服务和体验，以及重新影响数据库架构，如果您是一般用户，我们不建议您登录或注册，因为目前几乎可以使用所有功能而无需登录"
   },
   "dashboard": {
     "Back": "返回",
@@ -177,7 +179,8 @@
     "Failed to join team": "加入团队失败",
     "Joined team successfully": "成功加入团队",
     "Profile updated": "个人资料已更新",
-    "Account deleted": "账户已删除"
+    "Account deleted": "账户已删除",
+    "Service Provider": "服务提供商"
   },
   "component": {
     "No command found": "未找到命令",

@@ -551,7 +551,7 @@ const ClaudeCard = ({
             </Alert>
             <div className='h-full space-y-3'>
                 <div className='space-y-1'>
-                    <Label className='font-normal'>{t('API Model')}</Label>
+                    <Label className='font-normal'>API Model</Label>
                     <Select value={claudeAPIModel} onValueChange={(value) => setClaudeAPIModel(value as OpenAIModel)}>
                         <SelectTrigger>
                             <SelectValue />
@@ -809,7 +809,7 @@ const serviceProviderList: serviceProviderProps[] = [
     {
         name: 'Team',
         value: 'Team',
-        status: 1,
+        status: 2,
     },
     {
         name: 'Custom',

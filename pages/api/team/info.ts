@@ -27,8 +27,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             accessCode: accessCode,
         },
         select: {
+            defaultServiceProvider: true,
             openAIKey: true,
             openAIEndpoint: true,
+            azureAPIKey: true,
+            azureAPIEndpoint: true,
+            azureDeploymentName: true,
+            claudeAPIKey: true,
         },
     });
 
@@ -37,7 +42,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     return res.json({
-        apiKey: team?.openAIKey,
-        apiEndpoint: team?.openAIEndpoint || 'https://api.openai.com',
+        openAIKey: team.openAIKey,
+        openAIEndpoint: team.openAIEndpoint,
+        azureAPIKey: team.azureAPIKey,
+        azureAPIEndpoint: team.azureAPIEndpoint,
+        azureDeploymentName: team.azureDeploymentName,
+        claudeAPIKey: team.claudeAPIKey,
+        defaultServiceProvider: team.defaultServiceProvider,
     });
 }

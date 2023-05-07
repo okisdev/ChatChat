@@ -110,7 +110,9 @@
     "Email is required": "請填寫電子郵件",
     "Invalid email": "電子郵件無效",
     "Failed to send email": "無法發送電子郵件",
-    "Email sent, please check your inbox": "電子郵件已發送，請檢查您的收件箱"
+    "Email sent, please check your inbox": "電子郵件已發送，請檢查您的收件箱",
+    "Beta Notice": "測試版通知",
+    "We are continually adding new features to the dashboard which may affect your service and experience, as well as re-impacting the database architecture, and if you are a general user, we do not recommend that you log in or register, as at the moment it is possible to use almost all features without logging in": "我們正在不斷為儀表板添加新功能，這可能會影響您的服務和體驗，以及重新影響數據庫架構，如果您是一般用戶，我們不建議您登入或註冊，因為目前幾乎可以在不登入的情況下使用所有功能"
   },
   "dashboard": {
     "Back": "返回",
@@ -177,7 +179,8 @@
     "Failed to join team": "無法加入團隊",
     "Joined team successfully": "成功加入團隊",
     "Profile updated": "已更新個人資料",
-    "Account deleted": "已刪除帳號"
+    "Account deleted": "已刪除帳號",
+    "Service Provider": "服務提供商"
   },
   "component": {
     "No command found": "找不到命令",

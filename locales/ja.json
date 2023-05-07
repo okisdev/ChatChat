@@ -110,7 +110,9 @@
     "Email is required": "メールアドレスが必要です",
     "Invalid email": "無効なメールアドレスです",
     "Failed to send email": "メールの送信に失敗しました",
-    "Email sent, please check your inbox": "メールが送信されました、受信トレイを確認してください"
+    "Email sent, please check your inbox": "メールが送信されました、受信トレイを確認してください",
+    "Beta Notice": "ベータ版のお知らせ",
+    "We are continually adding new features to the dashboard which may affect your service and experience, as well as re-impacting the database architecture, and if you are a general user, we do not recommend that you log in or register, as at the moment it is possible to use almost all features without logging in": "私たちは、サービスとエクスペリエンスに影響を与える可能性があるダッシュボードに新しい機能を継続的に追加しています。また、データベースアーキテクチャに再度影響を与えています。一般ユーザーの場合、ログインや登録をお勧めしません。現時点では、ログインせずにほぼすべての機能を使用することができます"
   },
   "dashboard": {
     "Back": "戻る",
@@ -177,7 +179,8 @@
     "Failed to join team": "チームに参加できませんでした",
     "Joined team successfully": "チームに参加しました",
     "Profile updated": "プロフィールが更新されました",
-    "Account deleted": "アカウントが削除されました"
+    "Account deleted": "アカウントが削除されました",
+    "Service Provider": "サービスプロバイダー"
   },
   "component": {
     "No command found": "コマンドが見つかりません",

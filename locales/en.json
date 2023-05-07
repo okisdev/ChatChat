@@ -110,7 +110,9 @@
     "Email is required": "Email is required",
     "Invalid email": "Invalid email",
     "Failed to send email": "Failed to send email",
-    "Email sent, please check your inbox": "Email sent, please check your inbox"
+    "Email sent, please check your inbox": "Email sent, please check your inbox",
+    "Beta Notice": "Beta Notice",
+    "We are continually adding new features to the dashboard which may affect your service and experience, as well as re-impacting the database architecture, and if you are a general user, we do not recommend that you log in or register, as at the moment it is possible to use almost all features without logging in": "We are continually adding new features to the dashboard which may affect your service and experience, as well as re-impacting the database architecture, and if you are a general user, we do not recommend that you log in or register, as at the moment it is possible to use almost all features without logging in"
   },
   "dashboard": {
     "Back": "Back",
@@ -177,7 +179,8 @@
     "Failed to join team": "Failed to join team",
     "Joined team successfully": "Joined team successfully",
     "Profile updated": "Profile updated",
-    "Account deleted": "Account deleted"
+    "Account deleted": "Account deleted",
+    "Service Provider": "Service Provider"
   },
   "component": {
     "No command found": "No command found",
