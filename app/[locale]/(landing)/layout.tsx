@@ -8,7 +8,7 @@ export default async function LandingLayout({ children }: { children: React.Reac
     return (
         <div>
             <LandingSide user={userProfile} className='hidden md:flex' />
-            <div>{children}</div>
+            {children}
         </div>
     );
 }

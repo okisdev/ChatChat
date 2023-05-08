@@ -10,7 +10,7 @@ export default function FileModePage() {
     const isHiddenSide = useAtomValue(store.isHiddenSideAtom);
 
     return (
-        <div className={`h-screen ${!isHiddenSide && 'md:ml-80'}`}>
+        <div className={`h-screen overflow-hidden ${!isHiddenSide && 'md:ml-80'}`}>
             <LandingHeader />
             <FileMain />
         </div>
