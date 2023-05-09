@@ -424,7 +424,7 @@ const ChatMain = () => {
         <main className='m-2 flex h-[calc(100%-65px)] flex-grow flex-col rounded-lg bg-white/90 px-4 py-2 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327] md:h-[calc(100%-80px)] md:p-3'>
             <div className='flex h-full w-full flex-col justify-between space-y-3'>
                 {conversations.length > 0 && <ContentHead chatTitle={chatTitle} chatTitleResponse={chatTitleResponse} waitingSystemResponse={waitingSystemResponse} conversations={conversations} />}
-                <div className='mx-auto h-[calc(100%-200px)] w-full overflow-auto md:w-8/12'>
+                <div className='mx-auto h-[calc(100%-200px)] w-full overflow-auto xl:w-8/12'>
                     {conversations.length > 0 ? (
                         <MainContent
                             systemResponse={systemResponse}
@@ -453,7 +453,7 @@ const ChatMain = () => {
                         <ModeSettings systemPromptContent={systemPromptContent} setSystemPromptContent={setSystemPromptContent} />
                     )}
                 </div>
-                <div>
+                <div className='mx-auto w-full md:w-8/12 xl:w-6/12'>
                     <InputArea
                         conversations={conversations}
                         conversationID={conversationID}

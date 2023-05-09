@@ -95,7 +95,7 @@ const MainContent = ({
                                                 </button>
                                             </>
                                         )}
-                                        <p className='text-base font-semibold'>You</p>
+                                        <p className='text-base font-semibold'>{t('You')}</p>
                                     </>
                                 ) : (
                                     <>

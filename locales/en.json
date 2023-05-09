@@ -104,7 +104,9 @@
       "Your browser does not support voice input": "Your browser does not support voice input",
       "Updated the previous share:": "Updated the previous share:",
       "Copied share link:": "Copied share link:",
-      "Copied": "Copied"
+      "Copied": "Copied",
+      "You": "You",
+      "Please set up the search config first": "Please set up the search config first"
     }
   },
   "auth": {
@@ -209,6 +211,7 @@
   "share": {
     "Copy": "Copy",
     "Copied to clipboard": "Copied to clipboard",
-    "Continue this Conversation": "Continue this Conversation"
+    "Continue this Conversation": "Continue this Conversation",
+    "You": "You"
   }
 }

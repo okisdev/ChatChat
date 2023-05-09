@@ -77,7 +77,7 @@ const SharePost = ({ share }: ShareProps) => {
                                                     <TbCopy />
                                                     <span>{t('Copy')}</span>
                                                 </button>
-                                                <p className='text-base font-semibold'>You</p>
+                                                <p className='text-base font-semibold'>{t('You')}</p>
                                             </>
                                         ) : (
                                             <>

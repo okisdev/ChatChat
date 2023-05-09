@@ -103,7 +103,9 @@
       "Your browser does not support voice input": "您的瀏覽器不支援語音輸入",
       "Updated the previous share:": "已更新先前的分享：",
       "Copied share link:": "已複製分享連結：",
-      "Copied": "已複製"
+      "Copied": "已複製",
+      "You": "您",
+      "Please set up the search config first": "請先設置搜尋配置"
     }
   },
   "auth": {
@@ -208,6 +210,7 @@
   "share": {
     "Copy": "複製",
     "Copied to clipboard": "已複製到剪貼簿",
-    "Continue this Conversation": "繼續此對話"
+    "Continue this Conversation": "繼續此對話",
+    "You": "您"
   }
 }

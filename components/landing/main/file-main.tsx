@@ -388,7 +388,7 @@ const FileMain = () => {
     return (
         <main className='m-2 flex h-[calc(100%-65px)] flex-grow flex-col space-y-3 rounded-lg bg-white/90 px-4 py-2 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327] md:h-[calc(100%-80px)] md:p-3'>
             <div className='flex h-[calc(100%-80px)] justify-center space-x-3 overflow-auto'>
-                {fileAbstract == '' && (
+                {fileAbstract == '' ? (
                     <div className='flex w-96 items-center justify-center'>
                         <label
                             onChange={handleFileUpload}
@@ -415,8 +415,7 @@ const FileMain = () => {
                             <input id='dropzone-file' type='file' className='hidden' draggable />
                         </label>
                     </div>
-                )}
-                {fileAbstract != '' && (
+                ) : (
                     <div className='flex flex-col space-y-3 md:flex-row md:space-x-3'>
                         <div className='overflow-auto text-sm md:w-4/12'>
                             <div className='flex items-center justify-center space-x-2 font-medium'>
@@ -428,7 +427,7 @@ const FileMain = () => {
                                     <PopoverContent className='max-h-96 overflow-auto text-sm'>{renderUserMessage(fileContent)}</PopoverContent>
                                 </Popover>
                             </div>
-                            <div>{renderMarkdownMessage(fileAbstract)}</div>
+                            <div className='h-36'>{renderMarkdownMessage(fileAbstract)}</div>
                         </div>
                         <div className='overflow-auto md:w-8/12'>
                             <MainContent
@@ -458,18 +457,20 @@ const FileMain = () => {
                     </div>
                 )}
             </div>
-            {fileAbstract != '' && (
-                <InputArea
-                    conversations={conversations}
-                    conversationID={conversationID}
-                    conversationType='file'
-                    sendMessage={(message) => {
-                        handleMessageSend(message);
-                    }}
-                    waitingSystemResponse={waitingSystemResponse}
-                    stopSystemResponseRef={stopSystemResponseRef}
-                />
-            )}
+            <div className='mx-auto w-full md:w-8/12 xl:w-6/12'>
+                {fileAbstract != '' && (
+                    <InputArea
+                        conversations={conversations}
+                        conversationID={conversationID}
+                        conversationType='file'
+                        sendMessage={(message) => {
+                            handleMessageSend(message);
+                        }}
+                        waitingSystemResponse={waitingSystemResponse}
+                        stopSystemResponseRef={stopSystemResponseRef}
+                    />
+                )}
+            </div>
         </main>
     );
 };

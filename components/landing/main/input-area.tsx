@@ -56,6 +56,8 @@ const InputArea = ({
     const { transcript, listening, resetTranscript } = useSpeechRecognition();
     const [isListening, setIsListening] = useState<boolean>(false);
 
+    const searchConfig = useAtomValue(store.searchConfigAtom);
+
     const handleVoiceInput = () => {
         if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
             toast.error(t('Your browser does not support voice input'));
@@ -103,6 +105,10 @@ const InputArea = ({
         let clearedUserInput;
 
         if (userInput.startsWith('/search ')) {
+            if (!searchConfig.searchAPIKey) {
+                toast.error(t('Please set up the search config first'));
+                return;
+            }
             currentPlugin = 'search';
             clearedUserInput = userInput.split('/search ')[1].trim();
         } else if (userInput.startsWith('/fetch ')) {
@@ -201,26 +207,30 @@ const InputArea = ({
     };
 
     return (
-        <div className='mx-auto space-y-2 md:w-6/12'>
+        <div className='space-y-2'>
             <div className='mx-auto flex w-full items-center justify-between px-1'>
                 <div className='flex flex-row items-center space-x-1 overflow-x-auto whitespace-nowrap'>
                     <Badge variant='secondary' className='text-xs font-normal'>
                         {isSendKeyEnter ? 'enter' : 'shift + enter'}
                     </Badge>
-                    {enableSystemPrompt && (
-                        <Badge variant='secondary' className='text-xs font-normal'>
-                            {t('system prompt')}
-                        </Badge>
-                    )}
-                    {enablePlugins && (
-                        <Badge variant='secondary' className='text-xs font-normal'>
-                            {t('plugins')}
-                        </Badge>
-                    )}
-                    {isNoContextConversation && (
-                        <Badge variant='secondary' className='text-xs font-normal'>
-                            {t('no context')}
-                        </Badge>
+                    {conversationType === 'chat' && (
+                        <>
+                            {enableSystemPrompt && (
+                                <Badge variant='secondary' className='text-xs font-normal'>
+                                    {t('system prompt')}
+                                </Badge>
+                            )}
+                            {enablePlugins && (
+                                <Badge variant='secondary' className='text-xs font-normal'>
+                                    {t('plugins')}
+                                </Badge>
+                            )}
+                            {isNoContextConversation && (
+                                <Badge variant='secondary' className='text-xs font-normal'>
+                                    {t('no context')}
+                                </Badge>
+                            )}
+                        </>
                     )}
                 </div>
                 {waitingSystemResponse ? (
@@ -237,7 +247,7 @@ const InputArea = ({
                             <TbShare2 className='dark:text-white' />
                             <p className='inline-flex space-x-1'>
                                 <span>{t('Share')}</span>
-                                <span className='hidden md:block'>{t('this conversation')}</span>
+                                <span className='hidden xl:block'>{t('this conversation')}</span>
                             </p>
                         </button>
                     )

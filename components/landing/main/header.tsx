@@ -61,7 +61,7 @@ const LandingHeader = () => {
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <button
-                                className='inline-flex items-center space-x-1 rounded px-1 transition duration-200 ease-in-out hover:bg-gray-200 focus:outline-none dark:hover:bg-stone-600'
+                                className='inline-flex items-center space-x-1 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 focus:outline-none dark:hover:bg-stone-600'
                                 aria-label='Advanced Configuration Settings'
                             >
                                 {currentMode && <currentMode.icon className='block' />}

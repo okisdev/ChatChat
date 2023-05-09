@@ -103,7 +103,9 @@
       "Your browser does not support voice input": "お使いのブラウザは音声入力に対応していません",
       "Updated the previous share:": "前回のシェアを更新しました：",
       "Copied share link:": "共有リンクがコピーされました：",
-      "Copied": "再現された"
+      "Copied": "再現された",
+      "You": "あなた",
+      "Please set up the search config first": "まず検索構成を設定してください"
     }
   },
   "auth": {
@@ -208,6 +210,7 @@
   "share": {
     "Copy": "コピー",
     "Copied to clipboard": "クリップボードにコピーしました",
-    "Continue this Conversation": "この会話を続ける"
+    "Continue this Conversation": "この会話を続ける",
+    "You": "あなた"
   }
 }
