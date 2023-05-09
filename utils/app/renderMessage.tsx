@@ -2,6 +2,8 @@ import { FC, memo } from 'react';
 
 import { toast } from 'react-hot-toast';
 
+import { useTranslations } from 'next-intl';
+
 import ReactMarkdown, { Options } from 'react-markdown';
 
 import remarkGfm from 'remark-gfm';
@@ -128,6 +130,8 @@ const renderUserMessage = (message: string) => {
 const CodeComponent = ({ node, inline, className, children, ...props }: any) => {
     const match = /language-(\w+)/.exec(className || '');
 
+    const t = useTranslations('landing.main');
+
     return !inline ? (
         <div className='markdown-code'>
             <div className='flex justify-end p-1'>
@@ -135,7 +139,7 @@ const CodeComponent = ({ node, inline, className, children, ...props }: any) => 
                     <button
                         onClick={() => {
                             navigator.clipboard.writeText(String(children).replace(/\n$/, ''));
-                            toast.success('Copied');
+                            toast.success(t('Copied'));
                         }}
                     >
                         <FiCopy className='text-lg' />

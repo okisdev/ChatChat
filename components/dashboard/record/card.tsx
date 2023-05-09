@@ -39,11 +39,6 @@ const RecordCard = ({ record }: { record: Record }) => {
         });
 
         if (!response.ok) {
-            if (response.status === 409) {
-                navigator.clipboard.writeText(window.location.host + `/s/${record.id}`);
-                toast.error(`${t('Updated previous share:')} ${record.id}`);
-                return;
-            }
             toast.error(t('Error: Something went wrong'));
             return;
         }
@@ -52,6 +47,12 @@ const RecordCard = ({ record }: { record: Record }) => {
 
         if (!data.success) {
             toast.error(t('Error: Something went wrong'));
+            return;
+        }
+
+        if (data.type == 'update') {
+            navigator.clipboard.writeText(window.location.host + `/s/${record.id}`);
+            toast.success(`${t('Updated the previous share:')} ${record.id}`);
             return;
         }
 

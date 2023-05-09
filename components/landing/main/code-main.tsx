@@ -64,7 +64,7 @@ const CodeMain = () => {
 
     const onProcess = async () => {
         if (!userMessageInput) {
-            toast.error('Please enter a message');
+            toast.error(t('Please enter something'));
             return;
         }
 

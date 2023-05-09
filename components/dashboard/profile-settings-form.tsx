@@ -45,7 +45,7 @@ const ProfileSettingsForm = ({ user }: { user: User }) => {
         }
 
         setIsLoading(false);
-        toast.success('Profile updated.');
+        toast.success(t('Profile updated'));
     };
 
     const handleAllowRecordCloudSyncChange = async () => {

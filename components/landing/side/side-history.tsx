@@ -92,11 +92,6 @@ const SideHistory = () => {
         });
 
         if (!response.ok) {
-            if (response.status === 409) {
-                navigator.clipboard.writeText(window.location.host + `/s/${id}`);
-                toast.error(`${t('Share already exists:')} ${id}`);
-                return;
-            }
             toast.error(t('Error: Something went wrong'));
             return;
         }
@@ -105,6 +100,12 @@ const SideHistory = () => {
 
         if (!data.success) {
             toast.error(t('Error: Something went wrong'));
+            return;
+        }
+
+        if (data.type == 'update') {
+            navigator.clipboard.writeText(window.location.host + `/s/${id}`);
+            toast.success(`${t('Updated the previous share:')} ${id}`);
             return;
         }
 

@@ -58,7 +58,7 @@ const InputArea = ({
 
     const handleVoiceInput = () => {
         if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-            toast.error('This browser does not support voice input.');
+            toast.error(t('Your browser does not support voice input'));
             return;
         }
 
@@ -95,7 +95,7 @@ const InputArea = ({
 
     const handleSend = () => {
         if (userInput.length === 0) {
-            toast.error('Please enter something');
+            toast.error(t('Please enter something'));
             return;
         }
 
@@ -146,11 +146,6 @@ const InputArea = ({
         });
 
         if (!response.ok) {
-            if (response.status === 409) {
-                navigator.clipboard.writeText(window.location.host + `/s/${conversationID}`);
-                toast.error(`Share already exists: ${conversationID}`);
-                return;
-            }
             toast.error(t('Error: Something went wrong'));
             return;
         }
@@ -162,8 +157,14 @@ const InputArea = ({
             return;
         }
 
+        if (data.type == 'update') {
+            navigator.clipboard.writeText(window.location.host + `/s/${conversationID}`);
+            toast.success(`${t('Updated the previous share:')} ${conversationID}`);
+            return;
+        }
+
         navigator.clipboard.writeText(window.location.host + `/s/${conversationID}`);
-        toast.success(`Share: ${conversationID} link copied`);
+        toast.success(`${t('Copied share link:')} ${conversationID}`);
     };
 
     const handleOnKeyDown = (e: any) => {

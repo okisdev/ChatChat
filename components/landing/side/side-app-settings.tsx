@@ -35,6 +35,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
 
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
+    const [currentServiceProvider, setCurrentServiceProvider] = useState<ServiceProviderProps>('OpenAI');
     const [serviceProvider, setServiceProvider] = useAtom(store.serviceProviderAtom);
 
     // OpenAI, Custom
@@ -76,6 +77,12 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     const [claudeAPITemperature, setClaudeAPITemperature] = useState<number>(0.3);
 
     useEffect(() => {
+        if (isDialogOpen && serviceProvider) {
+            setCurrentServiceProvider(serviceProvider);
+        }
+    }, [isDialogOpen, serviceProvider]);
+
+    useEffect(() => {
         if (openAIConfig) {
             setApiKey(openAIConfig.apiKey);
             setApiEndpoint(openAIConfig.apiEndpoint);
@@ -114,7 +121,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
 
     let ProviderConfig = null;
 
-    switch (serviceProvider) {
+    switch (currentServiceProvider) {
         case 'OpenAI':
             ProviderConfig = (
                 <OpenAICard
@@ -181,6 +188,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     }
 
     const onReset = () => {
+        setCurrentServiceProvider('OpenAI');
         setServiceProvider('OpenAI');
 
         setOpenAIConfig({
@@ -223,13 +231,13 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
         setApiKey('');
         setApiEndpoint('');
 
-        toast.success('Settings reset');
+        toast.success(t('Settings reset'));
 
         setIsDialogOpen(false);
     };
 
     const onSave = () => {
-        if (serviceProvider == 'OpenAI') {
+        if (currentServiceProvider == 'OpenAI') {
             if (!useCloudSettings) {
                 if (!apiKey) {
                     toast.error(t('Please fill in all required fields'));
@@ -245,12 +253,12 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
             }
         }
 
-        if (!user && serviceProvider == 'Team') {
+        if (!user && currentServiceProvider == 'Team') {
             toast.error(t('Please login to join a team'));
             return;
         }
 
-        switch (serviceProvider) {
+        switch (currentServiceProvider) {
             case 'OpenAI':
                 setOpenAIConfig({
                     apiKey,
@@ -296,6 +304,8 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                 break;
         }
 
+        setServiceProvider(currentServiceProvider);
+
         toast.success(t('Settings saved'));
 
         setIsDialogOpen(false);
@@ -316,7 +326,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                     <div className='space-y-3'>
                         <div className='space-y-2'>
                             <Label className='font-medium'>{t('AI Service Provider')}</Label>
-                            <Select value={serviceProvider} onValueChange={(value: string) => setServiceProvider(value as ServiceProviderProps)}>
+                            <Select value={currentServiceProvider} onValueChange={(value: string) => setCurrentServiceProvider(value as ServiceProviderProps)}>
                                 <SelectTrigger>
                                     <SelectValue />
                                 </SelectTrigger>

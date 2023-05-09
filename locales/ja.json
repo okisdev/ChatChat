@@ -29,7 +29,7 @@
       "Title changed": "タイトルが変更されました",
       "History deleted": "履歴が削除されました",
       "Error: Conversation not found": "エラー：会話が見つかりません",
-      "Share already exists:": "共有は既に存在します：",
+      "Updated the previous share:": "共有は既に存在します：",
       "Copied share link:": "共有リンクがコピーされました：",
       "Profile": "プロフィール",
       "Team": "チーム",
@@ -95,7 +95,15 @@
       "Create new conversation next time": "次回は新しい会話を作成する",
       "Customize the roles of your conversations": "会話の役割をカスタマイズする",
       "You are a teacher": "あなたは先生です",
-      "Enable plugins for improved AI conversation": "プラグインを有効にしてAI会話を改善する"
+      "Enable plugins for improved AI conversation": "プラグインを有効にしてAI会話を改善する",
+      "Chat": "チャット",
+      "Code": "コード",
+      "File": "ファイル",
+      "Please enter something": "何か入力してください",
+      "Your browser does not support voice input": "お使いのブラウザは音声入力に対応していません",
+      "Updated the previous share:": "前回のシェアを更新しました：",
+      "Copied share link:": "共有リンクがコピーされました：",
+      "Copied": "再現された"
     }
   },
   "auth": {
@@ -161,7 +169,7 @@
     "Something went wrong, please try again later": "何か問題が発生しました。後でもう一度お試しください。",
     "Successfully deleted all records": "すべてのレコードを正常に削除しました",
     "Error: Something went wrong": "エラー：何か問題が発生しました",
-    "Updated previous share:": "以前の共有を更新しました：",
+    "Updated the previous share:": "以前の共有を更新しました：",
     "Copied share link:": "共有リンクをコピーしました：",
     "Deleted record:": "レコードを削除しました：",
     "Failed to delete team": "チームの削除に失敗しました",
@@ -180,7 +188,8 @@
     "Joined team successfully": "チームに参加しました",
     "Profile updated": "プロフィールが更新されました",
     "Account deleted": "アカウントが削除されました",
-    "Service Provider": "サービスプロバイダー"
+    "Service Provider": "サービスプロバイダー",
+    "Quit successfully": "正常に終了しました"
   },
   "component": {
     "No command found": "コマンドが見つかりません",

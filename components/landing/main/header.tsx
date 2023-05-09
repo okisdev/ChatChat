@@ -65,7 +65,7 @@ const LandingHeader = () => {
                                 aria-label='Advanced Configuration Settings'
                             >
                                 {currentMode && <currentMode.icon className='block' />}
-                                <p className='font-medium'>{currentMode?.title}</p>
+                                <p className='font-medium'>{t(currentMode?.title)}</p>
                                 <FiChevronDown />
                             </button>
                         </DropdownMenuTrigger>
@@ -74,7 +74,7 @@ const LandingHeader = () => {
                                 <DropdownMenuItem key={index}>
                                     <Link href={mode.link} className='inline-flex w-full items-center space-x-1'>
                                         <mode.icon className='block' />
-                                        <span>{mode.title}</span>
+                                        <span>{t(mode.title)}</span>
                                     </Link>
                                 </DropdownMenuItem>
                             ))}

@@ -29,7 +29,7 @@
       "Title changed": "標題已更改",
       "History deleted": "歷史已刪除",
       "Error: Conversation not found": "錯誤：找不到對話",
-      "Share already exists:": "分享已存在：",
+      "Updated the previous share:": "分享已存在：",
       "Copied share link:": "已複製分享連結：",
       "Profile": "個人資料",
       "Team": "團隊",
@@ -95,7 +95,15 @@
       "Create new conversation next time": "下次建立新對話",
       "Customize the roles of your conversations": "自訂對話的角色",
       "You are a teacher": "您是一位老師",
-      "Enable plugins for improved AI conversation": "啟用插件以改善 AI 對話"
+      "Enable plugins for improved AI conversation": "啟用插件以改善 AI 對話",
+      "Chat": "聊天",
+      "Code": "程式碼",
+      "File": "檔案",
+      "Please enter something": "請輸入內容",
+      "Your browser does not support voice input": "您的瀏覽器不支援語音輸入",
+      "Updated the previous share:": "已更新先前的分享：",
+      "Copied share link:": "已複製分享連結：",
+      "Copied": "已複製"
     }
   },
   "auth": {
@@ -161,7 +169,7 @@
     "Something went wrong, please try again later": "發生錯誤，請稍後重試",
     "Successfully deleted all records": "已成功刪除所有記錄",
     "Error: Something went wrong": "錯誤：發生錯誤",
-    "Updated previous share:": "更新先前的分享：",
+    "Updated the previous share:": "更新先前的分享：",
     "Copied share link:": "已複製分享連結：",
     "Deleted record:": "已刪除記錄：",
     "Failed to delete team": "無法刪除團隊",
@@ -180,7 +188,8 @@
     "Joined team successfully": "成功加入團隊",
     "Profile updated": "已更新個人資料",
     "Account deleted": "已刪除帳號",
-    "Service Provider": "服務提供商"
+    "Service Provider": "服務提供商",
+    "Quit successfully": "成功退出"
   },
   "component": {
     "No command found": "找不到命令",

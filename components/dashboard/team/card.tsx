@@ -85,7 +85,7 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
             return;
         }
 
-        toast.success('Quit.');
+        toast.success(t('Quit successfully'));
 
         setIsQuitDialogOpen(false);
 

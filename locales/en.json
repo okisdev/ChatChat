@@ -29,12 +29,13 @@
       "Title changed": "Title changed",
       "History deleted": "History deleted",
       "Error: Conversation not found": "Error: Conversation not found",
-      "Share already exists:": "Share already exists:",
+      "Updated the previous share:": "Updated the previous share:",
       "Copied share link:": "Copied share link:",
       "Profile": "Profile",
       "Team": "Team",
       "Sign Out": "Sign Out",
-      "Theme": "Theme"
+      "Theme": "Theme",
+      "Settings reset": "Settings reset"
     },
     "main": {
       "Edit": "Edit",
@@ -95,7 +96,15 @@
       "Create new conversation next time": "Create new conversation next time",
       "Customize the roles of your conversations": "Customize the roles of your conversations",
       "You are a teacher": "You are a teacher",
-      "Enable plugins for improved AI conversation": "Enable plugins for improved AI conversation"
+      "Enable plugins for improved AI conversation": "Enable plugins for improved AI conversation",
+      "Chat": "Chat",
+      "Code": "Code",
+      "File": "File",
+      "Please enter something": "Please enter something",
+      "Your browser does not support voice input": "Your browser does not support voice input",
+      "Updated the previous share:": "Updated the previous share:",
+      "Copied share link:": "Copied share link:",
+      "Copied": "Copied"
     }
   },
   "auth": {
@@ -161,7 +170,7 @@
     "Something went wrong, please try again later": "Something went wrong, please try again later",
     "Successfully deleted all records": "Successfully deleted all records",
     "Error: Something went wrong": "Error: Something went wrong",
-    "Updated previous share:": "Updated previous share:",
+    "Updated the previous share:": "Updated the previous share:",
     "Copied share link:": "Copied share link:",
     "Deleted record:": "Deleted record:",
     "Failed to delete team": "Failed to delete team",
@@ -180,7 +189,8 @@
     "Joined team successfully": "Joined team successfully",
     "Profile updated": "Profile updated",
     "Account deleted": "Account deleted",
-    "Service Provider": "Service Provider"
+    "Service Provider": "Service Provider",
+    "Quit successfully": "Quit successfully"
   },
   "component": {
     "No command found": "No command found",
