@@ -1,5 +1,7 @@
 import { FC, memo } from 'react';
 
+import { jetbrains_mono } from '@/app/fonts';
+
 import { toast } from 'react-hot-toast';
 
 import { useTranslations } from 'next-intl';
@@ -133,7 +135,7 @@ const CodeComponent = ({ node, inline, className, children, ...props }: any) => 
     const t = useTranslations('landing.main');
 
     return !inline ? (
-        <div className='markdown-code'>
+        <div className={`${jetbrains_mono.className} markdown-code`}>
             <div className='flex justify-end p-1'>
                 <div className='space-x-1 text-stone-300'>
                     <button
