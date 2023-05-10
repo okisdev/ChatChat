@@ -172,11 +172,13 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                                     <DropdownMenuPortal>
                                         <DropdownMenuSubContent>
                                             <DropdownMenuRadioGroup value={language} onValueChange={setLanguage}>
-                                                {languageList.map((language, index) => (
-                                                    <DropdownMenuRadioItem key={index} value={language.value} className='cursor-pointer space-x-1' onClick={() => router.push(language.value)}>
-                                                        <span>{language.name}</span>
-                                                    </DropdownMenuRadioItem>
-                                                ))}
+                                                {languageList
+                                                    .sort((a, b) => (a.value > b.value ? 1 : -1))
+                                                    .map((language, index) => (
+                                                        <DropdownMenuRadioItem key={index} value={language.value} className='cursor-pointer space-x-1' onClick={() => router.push(language.value)}>
+                                                            <span>{language.name}</span>
+                                                        </DropdownMenuRadioItem>
+                                                    ))}
                                             </DropdownMenuRadioGroup>
                                         </DropdownMenuSubContent>
                                     </DropdownMenuPortal>
@@ -213,18 +215,38 @@ const themeList = [
 const languageList = [
     {
         value: 'zh-CN',
-        name: '简体中文',
+        name: '🇨🇳 简体中文',
     },
     {
         value: 'zh-HK',
-        name: '繁体中文',
+        name: '🇭🇰 繁体中文',
     },
     {
         value: 'en',
-        name: 'English',
+        name: '🇺🇸 English',
     },
     {
         value: 'ja',
-        name: '日本語',
+        name: '🇯🇵 日本語',
+    },
+    {
+        value: 'kr',
+        name: '🇰🇷 한국어',
+    },
+    {
+        value: 'ru',
+        name: '🇷🇺 Русский',
+    },
+    {
+        value: 'de',
+        name: '🇩🇪 Deutsch',
+    },
+    {
+        value: 'fr',
+        name: '🇫🇷 Français',
+    },
+    {
+        value: 'es',
+        name: '🇪🇸 Español',
     },
 ];

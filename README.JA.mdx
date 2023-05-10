@@ -65,19 +65,19 @@ https://github.com/users/okisdev/projects/7 をご参照ください
 
 ### 環境変数
 
-| 変数名                 | 説明                         | デフォルト                             | 必須                      | プロンプト                                                                                                                |
-| --------------------- | --------------------------- | ------------------------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| `BASE_URL`            | あなたのウェブサイトの URL            | ローカルデフォルト `http://localhost:3000` | (プレフィックス付き) **Yes**    |                                                                                                                   |
-| `DATABASE_URL`        | Postgresql データベースアドレス |                                       | **Yes**                  | `postgresql://` で始まる（不要な場合は `postgresql://user:password@example.com:port/dbname` を記入してください） |
-| `NEXTAUTH_URL`        | あなたのウェブサイトの URL            |                                       | (プレフィックス無し) **Yes** |                                                                                                                   |
-| `NEXTAUTH_SECRET`     | NextAuth Secret             |                                       | **Yes**                  | ランダムハッシュ(16 ビットが最適)                                                                                     |
-| `OPENAI_API_KEY`      | OpenAI API キー              |                                       | No                       |                                                                                                                   |
-| `OPENAI_API_ENDPOINT` | OpenAI API アクセスポイント    |                                       | No                       |                                                                                                                   |
-| `EMAIL_HOST`          | SMTP ホスト                   |                                       | No                       |                                                                                                                   |
-| `EMAIL_PORT`          | SMTP ポート                   |                                       | No                       |                                                                                                                   |
-| `EMAIL_USERNAME`      | SMTP ユーザ名                 |                                       | No                       |                                                                                                                   |
-| `EMAIL_PASSWORD`      | SMTP パスワード               |                                       | No                       |                                                                                                                   |
-| `EMAIL_FORM`          | SMTP 送信アドレス             |                                       | No                       |                                                                                                                   |
+| 変数名                | 説明                            | デフォルト                                 | 必須                         | プロンプト                                                                                                       |
+| --------------------- | ------------------------------- | ------------------------------------------ | ---------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `BASE_URL`            | あなたのウェブサイトの URL      | ローカルデフォルト `http://localhost:3000` | (プレフィックス付き) **Yes** |                                                                                                                  |
+| `DATABASE_URL`        | Postgresql データベースアドレス |                                            | **Yes**                      | `postgresql://` で始まる（不要な場合は `postgresql://user:password@example.com:port/dbname` を記入してください） |
+| `NEXTAUTH_URL`        | あなたのウェブサイトの URL      |                                            | (プレフィックス無し) **Yes** |                                                                                                                  |
+| `NEXTAUTH_SECRET`     | NextAuth Secret                 |                                            | **Yes**                      | ランダムハッシュ(16 ビットが最適)                                                                                |
+| `OPENAI_API_KEY`      | OpenAI API キー                 |                                            | No                           |                                                                                                                  |
+| `OPENAI_API_ENDPOINT` | OpenAI API アクセスポイント     |                                            | No                           |                                                                                                                  |
+| `EMAIL_HOST`          | SMTP ホスト                     |                                            | No                           |                                                                                                                  |
+| `EMAIL_PORT`          | SMTP ポート                     |                                            | No                           |                                                                                                                  |
+| `EMAIL_USERNAME`      | SMTP ユーザ名                   |                                            | No                           |                                                                                                                  |
+| `EMAIL_PASSWORD`      | SMTP パスワード                 |                                            | No                           |                                                                                                                  |
+| `EMAIL_FORM`          | SMTP 送信アドレス               |                                            | No                           |                                                                                                                  |
 
 ### デプロイ
 
@@ -114,7 +114,7 @@ docker run -p 3000:3000 chatchat -e BASE_URL="" -e DATABASE_URL="" -e NEXTAUTH_U
 もしくは
 
 ```bash
-docker run -p 3000:3000 ghcr.io/okisdev/chatchat:latest -e BASE_URL="" -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
+docker run -p 3000:3000 -e BASE_URL="" -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM="" ghcr.io/okisdev/chatchat:latest
 ```
 
 ## ライセンス

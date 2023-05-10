@@ -3,7 +3,25 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { database } from '@/lib/database';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method === 'POST') {
+    if (req.method === 'GET') {
+        const { id } = req.query;
+
+        if (!database) {
+            return res.status(500).json({ error: 'Database not found' });
+        }
+
+        const share = await database.share.findUnique({
+            where: {
+                id: id as string,
+            },
+        });
+
+        if (!share) {
+            return res.status(404).json({ error: 'Share not found' });
+        }
+
+        return res.status(200).json({ success: 'Success', share });
+    } else if (req.method === 'POST') {
         const body = req.body;
 
         const parseStory: HistoryProps = JSON.parse(body.story);

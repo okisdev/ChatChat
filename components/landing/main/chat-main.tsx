@@ -33,6 +33,7 @@ interface UserSettingsProps {
 const ChatMain = () => {
     const searchParams = useSearchParams();
 
+    const history = searchParams?.get('history');
     const share = searchParams?.get('share');
 
     const t = useTranslations('landing.main');
@@ -119,7 +120,33 @@ const ChatMain = () => {
         if (share) {
             setConversationID(share);
 
-            const chatValue = localStorage.getItem('histories-chat-' + share);
+            const getConversation = async () => {
+                const response = await fetch('/api/share?id=' + share, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                const data = await response.json();
+
+                if (!data) {
+                    return;
+                }
+
+                setChatTitle(data.share.title);
+                setConversations(data.share.content);
+            };
+
+            getConversation();
+        }
+    }, [share]);
+
+    useEffect(() => {
+        if (history) {
+            setConversationID(history);
+
+            const chatValue = localStorage.getItem('histories-chat-' + history);
 
             if (!chatValue) {
                 return;
@@ -130,7 +157,7 @@ const ChatMain = () => {
             setChatTitle(chatHistory.title);
             setConversations(chatHistory.messages);
         }
-    }, [share]);
+    }, [history]);
 
     const handleMessageSend = async (message: AppMessageProps, indexNumber?: number | null, plugin?: PluginProps | null) => {
         setWaitingSystemResponse(true);

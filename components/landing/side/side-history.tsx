@@ -141,7 +141,7 @@ const SideHistory = () => {
                                     <TiPinOutline className='fill-blue-500 text-lg' />
                                 </button>
                                 {pinHistory.type == 'chat' ? (
-                                    <button className='max-w-[150px]' onClick={() => router.push(`/mode/${pinHistory.type}?share=${pinHistory.id}`)}>
+                                    <button className='max-w-[150px]' onClick={() => router.push(`/mode/${pinHistory.type}?history=${pinHistory.id}`)}>
                                         <p className='overflow-hidden truncate text-ellipsis text-sm'>{pinHistory.title}</p>
                                     </button>
                                 ) : (
@@ -175,7 +175,7 @@ const SideHistory = () => {
                                     <TiPinOutline className='text-lg hover:fill-blue-500' />
                                 </button>
                                 {history.type == 'chat' ? (
-                                    <button className='max-w-[150px]' onClick={() => router.push(`/mode/${history.type}?share=${history.id}`)}>
+                                    <button className='max-w-[150px]' onClick={() => router.push(`/mode/${history.type}?history=${history.id}`)}>
                                         <p className='overflow-hidden truncate text-ellipsis text-sm'>{history.title}</p>
                                     </button>
                                 ) : (
