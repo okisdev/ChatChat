@@ -11,7 +11,7 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v3
             - name: Login to GitHub Container Registry
-              uses: docker/login-action@v2
+              uses: docker/login-action@v3
               with:
                   registry: ghcr.io
                   username: ${{ github.actor }}
@@ -20,6 +20,8 @@ jobs:
               id: extract_tag
               run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#refs/tags/})"
             - name: Build Docker image
-              run: docker build -t ghcr.io/okisdev/chatchat:${{ steps.extract_tag.outputs.tag }} .
+              run: docker build -t ghcr.io/okisdev/chatchat:${{ steps.extract_tag.outputs.tag }} -t ghcr.io/okisdev/chatchat:latest .
             - name: Push Docker image
-              run: docker push ghcr.io/okisdev/chatchat:${{ steps.extract_tag.outputs.tag }}
+              run: |
+                  docker push ghcr.io/okisdev/chatchat:${{ steps.extract_tag.outputs.tag }}
+                  docker push ghcr.io/okisdev/chatchat:latest
