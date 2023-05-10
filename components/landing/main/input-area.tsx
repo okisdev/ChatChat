@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import { useTranslations, useLocale } from 'next-intl';
 
@@ -57,6 +57,14 @@ const InputArea = ({
     const [isListening, setIsListening] = useState<boolean>(false);
 
     const searchConfig = useAtomValue(store.searchConfigAtom);
+
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+    useEffect(() => {
+        if (textAreaRef.current) {
+            textAreaRef.current.focus();
+        }
+    }, []);
 
     const handleVoiceInput = () => {
         if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
@@ -280,6 +288,7 @@ const InputArea = ({
                     value={userInput}
                     onChange={handleTextAreaChange}
                     onKeyDown={handleOnKeyDown}
+                    ref={textAreaRef}
                 />
                 <div className='absolute bottom-2 right-2 flex items-center justify-center'>
                     <button
