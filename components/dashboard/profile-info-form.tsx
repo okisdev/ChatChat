@@ -10,8 +10,6 @@ import { User } from '@prisma/client';
 
 import { toast } from 'react-hot-toast';
 
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
-
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -97,7 +95,7 @@ const ProfileInfoForm = ({ user }: any) => {
                 </div>
                 <div className='flex justify-end'>
                     <Button variant='default' onClick={() => onSave()} disabled={isLoading}>
-                        {isLoading ? <AiOutlineLoading3Quarters className='animate-spin' /> : t('Save')}
+                        <span>{t('Save')}</span>
                     </Button>
                 </div>
             </form>

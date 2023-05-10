@@ -12,9 +12,8 @@ import { useAtom, useAtomValue } from 'jotai';
 import Tippy from '@tippyjs/react';
 
 import { MdInfoOutline } from 'react-icons/md';
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
-import { BiImport, BiExport, BiBrush } from 'react-icons/bi';
 import { TbSettingsFilled } from 'react-icons/tb';
+import { BiImport, BiExport, BiBrush } from 'react-icons/bi';
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -263,7 +262,6 @@ const HeaderSettings = () => {
                                             disabled={isSpeaking}
                                             className='inline-flex items-center justify-center space-x-2'
                                         >
-                                            {isSpeaking && <AiOutlineLoading3Quarters className='animate-spin block' />}
                                             <span>{t('Speak')}</span>
                                         </Button>
                                     </div>

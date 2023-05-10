@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
 
@@ -32,6 +32,8 @@ const MainContent = ({
 
     const endOfMessageRef = useRef<HTMLDivElement>(null);
 
+    const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
+
     useEffect(() => {
         if (endOfMessageRef.current) {
             endOfMessageRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -53,9 +55,21 @@ const MainContent = ({
             utterance.voice = voices.find((voice) => voice.name === ttsConfig.voice) || voices[0];
             utterance.rate = ttsConfig.speed;
             utterance.pitch = ttsConfig.pitch;
+            utterance.onend = () => {
+                setIsSpeaking(false);
+            };
 
             synth.speak(utterance);
+            setIsSpeaking(true);
         }
+    };
+
+    const onStopSpeech = () => {
+        if (typeof window !== 'undefined') {
+            const synth = window.speechSynthesis;
+            synth.cancel();
+        }
+        setIsSpeaking(false);
     };
 
     return (
@@ -118,10 +132,10 @@ const MainContent = ({
                                                 </button>
                                                 <button
                                                     className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
-                                                    onClick={() => onSpeech(index)}
+                                                    onClick={isSpeaking ? onStopSpeech : () => onSpeech(index)}
                                                 >
                                                     <TbSpeakerphone />
-                                                    <span>{t('Speech')}</span>
+                                                    <span>{isSpeaking ? t('Stop') : t('Speech')}</span>
                                                 </button>
                                             </>
                                         )}
