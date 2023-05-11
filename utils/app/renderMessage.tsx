@@ -13,7 +13,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
 import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 import { FiCopy } from 'react-icons/fi';
 
@@ -118,14 +118,14 @@ const renderUserMessage = (message: string) => {
     const lines = message.replace(/\n/g, '\n').split('\n');
 
     return (
-        <div>
+        <p>
             {lines.map((line, index) => (
-                <p key={index} style={{ wordWrap: 'break-word' }}>
+                <span key={index} style={{ wordWrap: 'break-word' }}>
                     {line}
                     <br />
-                </p>
+                </span>
             ))}
-        </div>
+        </p>
     );
 };
 
@@ -150,7 +150,7 @@ const CodeComponent = ({ node, inline, className, children, ...props }: any) => 
                 </div>
             </div>
             <pre className='p-1 text-sm'>
-                <SyntaxHighlighter language={match?.[1] != null ? match[1] : 'unknown'} style={dracula} {...props}>
+                <SyntaxHighlighter language={match?.[1] != null ? match[1] : 'unknown'} style={atomOneDark} {...props}>
                     {String(children).replace(/\n$/, '')}
                 </SyntaxHighlighter>
             </pre>

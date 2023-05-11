@@ -9,7 +9,7 @@ const isHiddenSideAtom = atom(false);
 // ------------------ Conversation Config ------------------
 
 // Conversation Config
-const isSendKeyEnterAtom = atomWithStorage('enterKeySend', false);
+const isSendKeyEnterAtom = atomWithStorage('enterKeySend', true);
 const enableStreamMessagesAtom = atomWithStorage<boolean>('enableStreamMessages', true);
 const systemPromptContentAtom = atomWithStorage('systemPrompt', '');
 const enableSystemPrompt = atomWithStorage('enableSystemPrompt', false);
