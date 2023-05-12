@@ -4809,13 +4809,13 @@ next-auth@^4.22.0:
     uuid "^8.3.2"
 
 next-intl@^2.13.2:
-  version "2.14.1"
-  resolved "https://registry.yarnpkg.com/next-intl/-/next-intl-2.14.1.tgz#de2d1422d43e8b9d2ae0bc596ecc0b60cdac8059"
-  integrity sha512-Qy90udOy+Km9UqQN6CQQJ+GS6eQN4FB5LO9YwW3aKALrV0gO7LIk5CjFQQEdX3wXB6Xs/1PgZ8if9GPOVghOHQ==
+  version "2.14.2"
+  resolved "https://registry.yarnpkg.com/next-intl/-/next-intl-2.14.2.tgz#48404c1753effbafce23c6e1d0df340a6e96457a"
+  integrity sha512-JZNxNWWuZoF6wITMuwphND3LAW0IkV0U9YE4xftOX0zx+2MgIbBaRgBgGJ5l8S8Rstc7uPEz9Z0IT4lp0rJoNw==
   dependencies:
     "@formatjs/intl-localematcher" "^0.2.32"
     negotiator "^0.6.3"
-    use-intl "^2.14.1"
+    use-intl "^2.14.2"
 
 next-pwa@^5.6.0:
   version "5.6.0"
@@ -6307,10 +6307,10 @@ use-composed-ref@^1.3.0:
   resolved "https://registry.npmjs.org/use-composed-ref/-/use-composed-ref-1.3.0.tgz"
   integrity sha512-GLMG0Jc/jiKov/3Ulid1wbv3r54K9HlMW29IWcDFPEqFkSO2nS0MuefWgMJpeHQ9YJeXDL3ZUF+P3jdXlZX/cQ==
 
-use-intl@^2.14.1:
-  version "2.14.1"
-  resolved "https://registry.yarnpkg.com/use-intl/-/use-intl-2.14.1.tgz#67674399f71caa6ff1addeba92904518ca2fe176"
-  integrity sha512-gvN49ebxV+smTZobLdK3ECqzMGsUQjdrUmEbapm1hdlskQUYriBKz4FaR9lb9VpEVta/KhxRNbPrrc1WvhPp4g==
+use-intl@^2.14.2:
+  version "2.14.2"
+  resolved "https://registry.yarnpkg.com/use-intl/-/use-intl-2.14.2.tgz#aba254188a667fc26eeae58d6b387f542158fd63"
+  integrity sha512-aLwT5sqc9FOPO0wq9XrPykGCyN2FskW7+v1MKqNwBYU7kNVKseWh1QnJD1GZcmvbd6tvyifV1COOzj/TF4OkKA==
   dependencies:
     "@formatjs/ecma402-abstract" "^1.11.4"
     intl-messageformat "^9.3.18"
