@@ -107,7 +107,8 @@
       "Copied share link:": "Lien de partage copié:",
       "Copied": "Copié",
       "You": "Vous",
-      "Please set up the search config first": "Veuillez d'abord configurer la recherche"
+      "Please set up the search config first": "Veuillez d'abord configurer la recherche",
+      "You are using": "Vous utilisez"
     }
   },
   "auth": {
@@ -193,7 +194,11 @@
     "Profile updated": "Profil mis à jour",
     "Account deleted": "Compte supprimé",
     "Service Provider": "Fournisseur de services",
-    "Quit successfully": "Quitter avec succès"
+    "Quit successfully": "Quitter avec succès",
+    "Azure Key is required": "La clé Azure est requise",
+    "Azure Endpoint is required": "Le point de terminaison Azure est requis",
+    "Azure Deployment Name is required": "Le nom du déploiement Azure est requis",
+    "Claude Key is required": "La clé Claude est requise"
   },
   "component": {
     "No command found": "Aucune commande trouvée",

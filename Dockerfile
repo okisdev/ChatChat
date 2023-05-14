@@ -21,7 +21,6 @@ COPY --from=base /app/next.config.js ./next.config.js
 EXPOSE 3000
 
 ENV NODE_ENV=production \
-  BASE_URL=http://localhost:3000 \
   OPENAI_API_KEY="" \
   OPENAI_API_ENDPOINT="" \
   DATABASE_URL="" \

@@ -106,7 +106,8 @@
       "Copied share link:": "已复制分享链接：",
       "Copied": "已复制",
       "You": "您",
-      "Please set up the search config first": "请先设置搜索配置"
+      "Please set up the search config first": "请先设置搜索配置",
+      "You are using": "您正在使用"
     }
   },
   "auth": {
@@ -192,7 +193,11 @@
     "Profile updated": "个人资料已更新",
     "Account deleted": "账户已删除",
     "Service Provider": "服务提供商",
-    "Quit successfully": "成功退出"
+    "Quit successfully": "成功退出",
+    "Azure Key is required": "必须提供 Azure Key",
+    "Azure Endpoint is required": "必须提供 Azure Endpoint",
+    "Azure Deployment Name is required": "必须提供 Azure Deployment Name",
+    "Claude Key is required": "必须提供 Claude Key"
   },
   "component": {
     "No command found": "未找到命令",

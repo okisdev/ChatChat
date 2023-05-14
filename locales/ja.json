@@ -106,7 +106,8 @@
       "Copied share link:": "共有リンクがコピーされました：",
       "Copied": "再現された",
       "You": "あなた",
-      "Please set up the search config first": "まず検索構成を設定してください"
+      "Please set up the search config first": "まず検索構成を設定してください",
+      "You are using": "あなたは使っています"
     }
   },
   "auth": {
@@ -192,7 +193,11 @@
     "Profile updated": "プロフィールが更新されました",
     "Account deleted": "アカウントが削除されました",
     "Service Provider": "サービスプロバイダー",
-    "Quit successfully": "正常に終了しました"
+    "Quit successfully": "正常に終了しました",
+    "Azure Key is required": "Azureキーが必要です",
+    "Azure Endpoint is required": "Azureエンドポイントが必要です",
+    "Azure Deployment Name is required": "Azureデプロイメント名が必要です",
+    "Claude Key is required": "Claudeキーが必要です"
   },
   "component": {
     "No command found": "コマンドが見つかりません",

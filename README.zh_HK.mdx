@@ -65,19 +65,18 @@ https://user-images.githubusercontent.com/66008528/235539163-35f7ee91-e357-453a-
 
 ### 環境變量
 
-| 變量名稱              | 描述                  | 默認                            | 是否強制需要 | 提示                                                                                                |
-| --------------------- | --------------------- | ------------------------------- | ------------ | --------------------------------------------------------------------------------------------------- |
-| `BASE_URL`            | 您的網站 URL          | 本地默認`http://localhost:3000` | **Yes**      | （帶前綴）                                                                                          |
-| `DATABASE_URL`        | Postgresql 數據庫地址 |                                 | **Yes**      | 以 `postgresql://` 開頭 （如果不需要，請填寫 `postgresql://user:password@example.com:port/dbname`） |
-| `NEXTAUTH_URL`        | 您的網站 URL          |                                 | **Yes**      | （不帶前綴）                                                                                        |
-| `NEXTAUTH_SECRET`     | NextAuth Secret       |                                 | **Yes**      | 隨機哈希數值（16 位最佳）                                                                           |
-| `OPENAI_API_KEY`      | OpenAI API 密鑰       |                                 | No           |                                                                                                     |
-| `OPENAI_API_ENDPOINT` | OpenAI API 接入點     |                                 | No           |                                                                                                     |
-| `EMAIL_HOST`          | SMTP Host             |                                 | No           |                                                                                                     |
-| `EMAIL_PORT`          | SMTP Port             |                                 | No           |                                                                                                     |
-| `EMAIL_USERNAME`      | SMTP username         |                                 | No           |                                                                                                     |
-| `EMAIL_PASSWORD`      | SMTP password         |                                 | No           |                                                                                                     |
-| `EMAIL_FORM`          | SMTP 發送地址         |                                 | No           |                                                                                                     |
+| 變量名稱              | 描述                  | 默認 | 是否強制需要 | 提示                                                                                                |
+| --------------------- | --------------------- | ---- | ------------ | --------------------------------------------------------------------------------------------------- |
+| `DATABASE_URL`        | Postgresql 數據庫地址 |      | **Yes**      | 以 `postgresql://` 開頭 （如果不需要，請填寫 `postgresql://user:password@example.com:port/dbname`） |
+| `NEXTAUTH_URL`        | 您的網站 URL          |      | **Yes**      | （帶前綴）                                                                                          |
+| `NEXTAUTH_SECRET`     | NextAuth Secret       |      | **Yes**      | 隨機哈希數值（16 位最佳）                                                                           |
+| `OPENAI_API_KEY`      | OpenAI API 密鑰       |      | No           |                                                                                                     |
+| `OPENAI_API_ENDPOINT` | OpenAI API 接入點     |      | No           |                                                                                                     |
+| `EMAIL_HOST`          | SMTP Host             |      | No           |                                                                                                     |
+| `EMAIL_PORT`          | SMTP Port             |      | No           |                                                                                                     |
+| `EMAIL_USERNAME`      | SMTP username         |      | No           |                                                                                                     |
+| `EMAIL_PASSWORD`      | SMTP password         |      | No           |                                                                                                     |
+| `EMAIL_FORM`          | SMTP 發送地址         |      | No           |                                                                                                     |
 
 ### 部署
 
@@ -108,13 +107,13 @@ yarn dev
 
 ```bash
 docker build -t chatchat .
-docker run -p 3000:3000 chatchat -e BASE_URL="" -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
+docker run -p 3000:3000 chatchat -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
 ```
 
 或者
 
 ```bash
-docker run -p 3000:3000 -e BASE_URL="" -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM="" ghcr.io/okisdev/chatchat:latest
+docker run -p 3000:3000 -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM="" ghcr.io/okisdev/chatchat:latest
 ```
 
 ## LICENSE

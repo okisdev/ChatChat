@@ -8,7 +8,6 @@ services:
             dockerfile: ./Dockerfile
         environment:
             NODE_ENV: production
-                - BASE_URL=
                 - DATABASE_URL=
                 - NEXTAUTH_URL=
                 - NEXTAUTH_SECRET=

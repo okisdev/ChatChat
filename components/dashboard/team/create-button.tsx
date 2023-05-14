@@ -56,6 +56,42 @@ const CreateButton = () => {
             return;
         }
 
+        if (serviceProvider == 'OpenAI') {
+            if (openAIKey.length === 0) {
+                toast.error(t('OpenAI Key is required'));
+                return;
+            }
+
+            if (openAIEndpoint.length === 0) {
+                toast.error(t('OpenAI Endpoint is required'));
+                return;
+            }
+        }
+
+        if (serviceProvider == 'Azure') {
+            if (azureKey.length === 0) {
+                toast.error(t('Azure Key is required'));
+                return;
+            }
+
+            if (azureEndpoint.length === 0) {
+                toast.error(t('Azure Endpoint is required'));
+                return;
+            }
+
+            if (azureDeploymentName.length === 0) {
+                toast.error(t('Azure Deployment Name is required'));
+                return;
+            }
+        }
+
+        if (serviceProvider == 'Claude') {
+            if (claudeKey.length === 0) {
+                toast.error(t('Claude Key is required'));
+                return;
+            }
+        }
+
         setIsLoading(true);
 
         const response = await fetch('/api/team/create', {

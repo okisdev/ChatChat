@@ -209,7 +209,7 @@ const HeaderSettings = () => {
                 <DialogHeader>
                     <DialogTitle>{t('Advanced Conversation Settings')}</DialogTitle>
                     <DialogDescription>
-                        You are using <span className='font-medium'>{serviceProvider}</span>.
+                        {t('You are using')} <span className='font-medium'>{serviceProvider}</span>
                     </DialogDescription>
                 </DialogHeader>
                 <Tabs defaultValue='tts' className='h-full w-full space-y-5'>

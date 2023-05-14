@@ -107,7 +107,8 @@
       "Copied share link:": "Скопирована ссылка на обмен:",
       "Copied": "Скопировано",
       "You": "Вы",
-      "Please set up the search config first": "Сначала настройте конфигурацию поиска"
+      "Please set up the search config first": "Сначала настройте конфигурацию поиска",
+      "You are using": "Вы используете"
     }
   },
   "auth": {
@@ -193,7 +194,11 @@
     "Profile updated": "Профиль обновлен",
     "Account deleted": "Аккаунт удален",
     "Service Provider": "Поставщик услуг",
-    "Quit successfully": "Успешно вышли из команды"
+    "Quit successfully": "Успешно вышли из команды",
+    "Azure Key is required": "Требуется ключ Azure",
+    "Azure Endpoint is required": "Требуется конечная точка Azure",
+    "Azure Deployment Name is required": "Требуется имя развертывания Azure",
+    "Claude Key is required": "Требуется ключ Claude"
   },
   "component": {
     "No command found": "Команда не найдена",

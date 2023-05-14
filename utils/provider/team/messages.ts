@@ -1,20 +1,12 @@
 import { createParser, ParsedEvent, ReconnectInterval } from 'eventsource-parser';
 
-const BASE_URL = () => {
-    if (process.env.NODE_ENV === 'development') {
-        return 'localhost:3000';
-    } else {
-        return process.env.BASE_URL;
-    }
-};
-
 export async function sendTeamStreamMessages(teamPayload: any, accessCode: string) {
     const encoder = new TextEncoder();
     const decoder = new TextDecoder();
 
     let counter = 0;
 
-    const response = await fetch(`https://${BASE_URL}/api/team/info?accessCode=${accessCode}`).then((res) => res.json());
+    const response = await fetch(`${process.env.NEXTAUTH_URL}/api/team/info?accessCode=${accessCode}`).then((res) => res.json());
 
     const { defaultServiceProvider, openAIKey, openAIEndpoint, azureAPIKey, azureAPIEndpoint, azureDeploymentName, claudeAPIKey } = response;
 
