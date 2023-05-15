@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import Link from 'next/link';
 
 import { usePathname } from 'next/navigation';
@@ -30,6 +32,22 @@ const LandingHeader = () => {
 
     const currentMode = ModeList.find((mode) => mode.link === pathname) || ModeList.find((mode) => mode.value === 'chat');
 
+    const [userInfo, setUserInfo] = useState(null);
+
+    useEffect(() => {
+        const getUserInfo = async () => {
+            const response = await fetch('/api/user/info');
+
+            const data = await response.json();
+
+            if (data.user) {
+                setUserInfo(data.user);
+            }
+        };
+
+        getUserInfo();
+    }, []);
+
     return (
         <div className='m-2 flex flex-grow flex-col rounded-lg  bg-white/90 px-4 py-2 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327] md:p-3'>
             <div className='flex items-center justify-between'>
@@ -51,7 +69,7 @@ const LandingHeader = () => {
                                 </button>
                             </SheetTrigger>
                             <SheetContent position='left' size='xl' className='h-full'>
-                                <LandingSide user={null} className='h-full' />
+                                <LandingSide user={userInfo} className='h-full' />
                             </SheetContent>
                         </Sheet>
                     </div>
