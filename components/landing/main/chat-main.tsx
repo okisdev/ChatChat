@@ -114,7 +114,7 @@ const ChatMain = () => {
         }
     }, [userSettings]);
 
-    const enableSync = userSettings?.user.allowRecordCloudSync;
+    const enableSync = userSettings?.user?.allowRecordCloudSync;
 
     useEffect(() => {
         if (share) {
