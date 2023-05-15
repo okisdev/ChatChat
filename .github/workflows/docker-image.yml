@@ -7,21 +7,42 @@ on:
 jobs:
     build-and-publish:
         runs-on: ubuntu-latest
+
         steps:
             - name: Checkout code
               uses: actions/checkout@v3
+
             - name: Login to GitHub Container Registry
               uses: docker/login-action@v2
               with:
                   registry: ghcr.io
                   username: ${{ github.actor }}
-                  password: ${{ secrets.DOCKER_IMAGE_TOKEN }}
+                  password: ${{ secrets.GHCR_TOKEN }}
+
             - name: Extract tag name
               id: extract_tag
               run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#refs/tags/})"
+
             - name: Build Docker image
               run: docker build -t ghcr.io/okisdev/chatchat:${{ steps.extract_tag.outputs.tag }} -t ghcr.io/okisdev/chatchat:latest .
-            - name: Push Docker image
+
+            - name: Push Docker image to GHCR
               run: |
                   docker push ghcr.io/okisdev/chatchat:${{ steps.extract_tag.outputs.tag }}
                   docker push ghcr.io/okisdev/chatchat:latest
+
+            - name: Login to Docker Hub
+              uses: docker/login-action@v1
+              with:
+                  username: ${{ secrets.DOCKERHUB_USERNAME }}
+                  password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+            - name: Tag Docker image for Docker Hub
+              run: |
+                  docker tag ghcr.io/okisdev/chatchat:${{ steps.extract_tag.outputs.tag }} okisdev/chatchat:${{ steps.extract_tag.outputs.tag }}
+                  docker tag ghcr.io/okisdev/chatchat:latest okisdev/chatchat:latest
+
+            - name: Push Docker image to Docker Hub
+              run: |
+                  docker push okisdev/chatchat:${{ steps.extract_tag.outputs.tag }}
+                  docker push okisdev/chatchat:latest
