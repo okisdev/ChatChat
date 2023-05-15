@@ -149,7 +149,7 @@ const CodeComponent = ({ node, inline, className, children, ...props }: any) => 
                     <span className='markdown-code-language'>{(match?.[1] != null ? match[1] : 'unknown').toUpperCase()}</span>
                 </div>
             </div>
-            <pre className='p-1 text-sm'>
+            <pre className='p-1 text-xs'>
                 <SyntaxHighlighter language={match?.[1] != null ? match[1] : 'unknown'} style={atomOneDark} {...props}>
                     {String(children).replace(/\n$/, '')}
                 </SyntaxHighlighter>
