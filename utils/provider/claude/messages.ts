@@ -1,4 +1,8 @@
 export async function sendClaudeMessages(model: string, message: string, apiKey: string, claudeAPITemperature: number) {
+    if (!apiKey) {
+        return 'ERROR: No API key provided';
+    }
+
     const HUMAN_PROMPT = '\n\nHuman:' + message;
     const AI_PROMPT = '\n\nAssistant:';
 

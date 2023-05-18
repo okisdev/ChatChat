@@ -6,8 +6,16 @@ export async function sendOpenAIStreamMessages(payload: OpenAIChatPayload, apiKe
 
     let counter = 0;
 
-    const API_KEY = apiKey != '' ? apiKey : process.env.OPENAI_API_KEY;
-    const API_ENDPOINT = apiEndpoint != '' ? apiEndpoint : process.env.OPENAI_API_ENDPOINT || 'https://api.openai.com';
+    if (!apiKey) {
+        return 'ERROR: No API key provided';
+    }
+
+    if (apiKey.includes(';')) {
+        apiKey = apiKey.split(';')[Math.floor(Math.random() * apiKey.split(';').length)].trim();
+    }
+
+    const API_KEY = apiKey;
+    const API_ENDPOINT = apiEndpoint != '' ? apiEndpoint : 'https://api.openai.com';
 
     const res = await fetch(`${API_ENDPOINT}/v1/chat/completions`, {
         headers: {
@@ -53,8 +61,12 @@ export async function sendOpenAIStreamMessages(payload: OpenAIChatPayload, apiKe
 }
 
 export async function sendOpenAIMessages(payload: OpenAIChatPayload, apiKey: string, apiEndpoint: string) {
-    const API_KEY = apiKey != '' ? apiKey : process.env.OPENAI_API_KEY;
-    const API_ENDPOINT = apiEndpoint != '' ? apiEndpoint : process.env.OPENAI_API_ENDPOINT || 'https://api.openai.com';
+    if (!apiKey) {
+        return 'ERROR: No API key provided';
+    }
+
+    const API_KEY = apiKey;
+    const API_ENDPOINT = apiEndpoint != '' ? apiEndpoint : 'https://api.openai.com';
 
     const res = await fetch(`${API_ENDPOINT}/v1/chat/completions`, {
         headers: {

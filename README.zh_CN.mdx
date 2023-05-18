@@ -66,18 +66,16 @@ https://user-images.githubusercontent.com/66008528/235539163-35f7ee91-e357-453a-
 
 ### 环境变量
 
-| 变量名称              | 描述                  | 默认 | 是否强制需要 | 提示                                                                                                |
-| --------------------- | --------------------- | ---- | ------------ | --------------------------------------------------------------------------------------------------- |
-| `DATABASE_URL`        | Postgresql 数据库地址 |      | **Yes**      | 以 `postgresql://` 开头 （如果不需要，请填写 `postgresql://user:password@example.com:port/dbname`） |
-| `NEXTAUTH_URL`        | 您的网站 URL          |      | **Yes**      | （带前缀）                                                                                          |
-| `NEXTAUTH_SECRET`     | NextAuth Secret       |      | **Yes**      | 随机哈希数值（16 位最佳）                                                                           |
-| `OPENAI_API_KEY`      | OpenAI API 密钥       |      | No           |                                                                                                     |
-| `OPENAI_API_ENDPOINT` | OpenAI API 接入点     |      | No           |                                                                                                     |
-| `EMAIL_HOST`          | SMTP Host             |      | No           |                                                                                                     |
-| `EMAIL_PORT`          | SMTP Port             |      | No           |                                                                                                     |
-| `EMAIL_USERNAME`      | SMTP username         |      | No           |                                                                                                     |
-| `EMAIL_PASSWORD`      | SMTP password         |      | No           |                                                                                                     |
-| `EMAIL_FORM`          | SMTP 发送地址         |      | No           |                                                                                                     |
+| 变量名称          | 描述                  | 默认 | 是否强制需要 | 提示                                                                                                |
+| ----------------- | --------------------- | ---- | ------------ | --------------------------------------------------------------------------------------------------- |
+| `DATABASE_URL`    | Postgresql 数据库地址 |      | **Yes**      | 以 `postgresql://` 开头 （如果不需要，请填写 `postgresql://user:password@example.com:port/dbname`） |
+| `NEXTAUTH_URL`    | 您的网站 URL          |      | **Yes**      | （带前缀）                                                                                          |
+| `NEXTAUTH_SECRET` | NextAuth Secret       |      | **Yes**      | 随机哈希数值（16 位最佳）                                                                           |
+| `EMAIL_HOST`      | SMTP Host             |      | No           |                                                                                                     |
+| `EMAIL_PORT`      | SMTP Port             |      | No           |                                                                                                     |
+| `EMAIL_USERNAME`  | SMTP username         |      | No           |                                                                                                     |
+| `EMAIL_PASSWORD`  | SMTP password         |      | No           |                                                                                                     |
+| `EMAIL_FORM`      | SMTP 发送地址         |      | No           |                                                                                                     |
 
 ### 部署
 
@@ -108,13 +106,13 @@ yarn dev
 
 ```bash
 docker build -t chatchat .
-docker run -p 3000:3000 chatchat -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
+docker run -p 3000:3000 chatchat -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
 ```
 
 或者
 
 ```bash
-docker run -p 3000:3000 -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM="" ghcr.io/okisdev/chatchat:latest
+docker run -p 3000:3000 -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM="" ghcr.io/okisdev/chatchat:latest
 ```
 
 ## LICENSE

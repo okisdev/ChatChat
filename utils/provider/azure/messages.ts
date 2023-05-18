@@ -6,7 +6,19 @@ export async function sendAzureStreamMessages(payload: OpenAIChatPayload, apiKey
 
     let counter = 0;
 
-    const API_ENDPOINT = apiEndpoint != '' ? apiEndpoint : 'https://api.openai.com';
+    if (!apiKey) {
+        return 'ERROR: No API key provided';
+    }
+
+    if (!apiEndpoint) {
+        return 'ERROR: No API endpoint provided';
+    }
+
+    if (!deploymentName) {
+        return 'ERROR: No deployment name provided';
+    }
+
+    const API_ENDPOINT = apiEndpoint;
 
     const res = await fetch(`${API_ENDPOINT}/openai/deployments/${deploymentName}/chat/completions?api-version=2023-03-15-preview`, {
         headers: {
@@ -52,7 +64,19 @@ export async function sendAzureStreamMessages(payload: OpenAIChatPayload, apiKey
 }
 
 export async function sendAzureMessages(payload: OpenAIChatPayload, apiKey: string, apiEndpoint: string, deploymentName: string) {
-    const API_ENDPOINT = apiEndpoint != '' ? apiEndpoint : 'https://openai.azure.com';
+    if (!apiKey) {
+        return 'ERROR: No API key provided';
+    }
+
+    if (!apiEndpoint) {
+        return 'ERROR: No API endpoint provided';
+    }
+
+    if (!deploymentName) {
+        return 'ERROR: No deployment name provided';
+    }
+
+    const API_ENDPOINT = apiEndpoint;
 
     const res = await fetch(`${API_ENDPOINT}/openai/deployments/${deploymentName}/chat/completions?api-version=2023-03-15-preview`, {
         headers: {

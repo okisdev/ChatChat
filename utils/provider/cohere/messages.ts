@@ -1,4 +1,8 @@
 export async function sendCohereMessages(model: string, message: string, apiKey: string) {
+    if (!apiKey) {
+        return 'ERROR: No API key provided';
+    }
+
     const response = await fetch('https://api.cohere.ai/generate', {
         method: 'POST',
         headers: {
