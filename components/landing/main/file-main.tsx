@@ -23,7 +23,7 @@ import { renderMarkdownMessage, renderUserMessage } from '@/utils/app/renderMess
 import { setLocalStorage } from '@/hooks/setLocalStorage';
 
 const FileMain = () => {
-    const t = useTranslations('landing.main');
+    const t = useTranslations('landing');
 
     const [conversations, setConversations] = useState<OpenAIMessage[]>([]);
     const [conversationID, setConversationID] = useState<string>(generateHash(16));

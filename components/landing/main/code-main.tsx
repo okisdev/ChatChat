@@ -18,7 +18,7 @@ import generateHash from '@/utils/app/generateHash';
 import { setLocalStorage } from '@/hooks/setLocalStorage';
 
 const CodeMain = () => {
-    const t = useTranslations('landing.main');
+    const t = useTranslations('landing');
 
     const [userMessageInput, setUserMessageInput] = useState<string>('');
 

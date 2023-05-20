@@ -20,7 +20,7 @@ import { Separator } from '@/components/ui/separator';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemPromptContent: string; setSystemPromptContent: (content: string) => void }) => {
-    const t = useTranslations('landing.main');
+    const t = useTranslations('landing');
 
     // Global Disabled
     const [globalDisabled, setGlobalDisabled] = useState<boolean>(false);

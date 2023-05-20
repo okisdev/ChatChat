@@ -132,7 +132,7 @@ const renderUserMessage = (message: string) => {
 const CodeComponent = ({ node, inline, className, children, ...props }: any) => {
     const match = /language-(\w+)/.exec(className || '');
 
-    const t = useTranslations('landing.main');
+    const t = useTranslations('landing');
 
     return !inline ? (
         <div className={`${jetbrains_mono.className} markdown-code`}>

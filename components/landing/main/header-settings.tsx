@@ -13,7 +13,6 @@ import Tippy from '@tippyjs/react';
 
 import { MdInfoOutline } from 'react-icons/md';
 import { TbSettingsFilled } from 'react-icons/tb';
-import { BiImport, BiExport, BiBrush } from 'react-icons/bi';
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -26,7 +25,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 
 const HeaderSettings = () => {
-    const t = useTranslations('landing.main');
+    const t = useTranslations('landing');
 
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
@@ -47,25 +46,12 @@ const HeaderSettings = () => {
 
     const [isSendKeyEnter, setIsSendKeyEnter] = useAtom(store.isSendKeyEnterAtom);
 
-    const [histories, setHistories] = useState<HistoryProps[]>([]);
-
     // Search
     const [searchEngine, setSearchEngine] = useState<string>(searchEnginesList[0].name);
     const [searchEngineID, setSearchEngineID] = useState<string>('');
     const [searchAPIKey, setSearchAPIKey] = useState<string>('');
 
     const [searchConfig, setSearchConfig] = useAtom(store.searchConfigAtom);
-
-    useEffect(() => {
-        const conversationKeys = Object.keys(localStorage).filter((key) => key.startsWith('histories-'));
-
-        const conversationValues = conversationKeys.map((key) => {
-            const chatValue = localStorage.getItem(key);
-            return JSON.parse(chatValue || '{}');
-        });
-
-        setHistories(conversationValues);
-    }, []);
 
     useEffect(() => {
         if (synth) {
@@ -128,73 +114,6 @@ const HeaderSettings = () => {
         setIsSendKeyEnter(!isSendKeyEnter);
 
         toast.success(`${t('Send message key changed to')} ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`);
-    };
-
-    const handleExportHistory = () => {
-        const data = histories.map((item) => {
-            return item;
-        });
-
-        const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-
-        const download = document.createElement('a');
-
-        download.href = url;
-        download.download = `chatchat-history-${new Date().getTime()}.json`;
-        download.click();
-    };
-
-    const handleImportHistory = () => {
-        const input = document.createElement('input');
-
-        input.type = 'file';
-        input.accept = 'application/json';
-        input.click();
-
-        input.onchange = () => {
-            const file = input.files?.[0];
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.readAsText(file, 'UTF-8');
-
-                reader.onload = (e) => {
-                    const result = e.target?.result;
-
-                    if (result) {
-                        const data = JSON.parse(result as string);
-
-                        if (data) {
-                            data.forEach((item: HistoryProps) => {
-                                localStorage.setItem(`histories-${item.type}-${item.id}`, JSON.stringify(item));
-                            });
-
-                            toast.success(t('Imported history successfully!'));
-                        }
-                    }
-                };
-            }
-
-            const updateEvent = new CustomEvent('localStorageUpdated');
-            window.dispatchEvent(updateEvent);
-        };
-    };
-
-    const handleClearHistory = () => {
-        const chatKeys = Object.keys(localStorage).filter((key) => key.startsWith('histories-'));
-
-        chatKeys.forEach((key) => {
-            localStorage.removeItem(key);
-        });
-
-        setHistories([]);
-
-        toast.success(t('Cleared history successfully!'));
-
-        const updateEvent = new CustomEvent('localStorageUpdated');
-        window.dispatchEvent(updateEvent);
     };
 
     return (
@@ -312,24 +231,6 @@ const HeaderSettings = () => {
                                         <MdInfoOutline className='text-lg' />
                                     </button>
                                 </Tippy>
-                            </div>
-                            <Separator />
-                            <div className='flex flex-col space-y-3'>
-                                <Label>{t('History')}</Label>
-                                <div className='flex space-x-3'>
-                                    <Button variant='secondary' className='flex items-center space-x-0.5' onClick={handleExportHistory}>
-                                        <BiExport />
-                                        <span>{t('Export')}</span>
-                                    </Button>
-                                    <Button variant='secondary' className='flex items-center space-x-0.5' onClick={handleImportHistory}>
-                                        <BiImport />
-                                        <span>{t('Import')}</span>
-                                    </Button>
-                                    <Button variant='destructive' className='flex items-center space-x-0.5' onClick={handleClearHistory}>
-                                        <BiBrush />
-                                        <span>{t('Clear')}</span>
-                                    </Button>
-                                </div>
                             </div>
                         </div>
                     </TabsContent>

@@ -36,7 +36,7 @@ const ChatMain = () => {
     const history = searchParams?.get('history');
     const share = searchParams?.get('share');
 
-    const t = useTranslations('landing.main');
+    const t = useTranslations('landing');
 
     // Conversation Config
     const isNoContextConversation = useAtomValue(store.noContextConversationAtom);

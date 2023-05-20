@@ -55,7 +55,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
 
     const { theme, setTheme } = useTheme();
 
-    const t = useTranslations('landing.side');
+    const t = useTranslations('landing');
 
     const isHiddenSide = useAtom(store.isHiddenSideAtom)[0];
 
@@ -63,7 +63,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
 
     return (
         <aside className={'bottom-1 left-0 top-1 z-10 h-full flex-col justify-between rounded-lg backdrop-blur md:fixed md:w-80 ' + className}>
-            <div className='space-y-2 p-1'>
+            <div className='space-y-2 md:p-1'>
                 <div className='flex items-center justify-between border-b px-1'>
                     <div className='p-1'>
                         <p className='gradient-flow bg-gradient-to-r bg-clip-text text-lg font-semibold leading-none text-transparent md:text-xl'>{siteConfig.title}</p>

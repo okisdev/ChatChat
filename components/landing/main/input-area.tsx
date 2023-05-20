@@ -34,7 +34,7 @@ const InputArea = ({
     waitingSystemResponse: boolean;
     stopSystemResponseRef: MutableRefObject<boolean>;
 }) => {
-    const t = useTranslations('landing.main');
+    const t = useTranslations('landing');
 
     const locale = useLocale();
 
@@ -285,9 +285,7 @@ const InputArea = ({
                 )}
                 <TextareaAutosize
                     className='flex h-10 max-h-56 min-h-[40px] w-full rounded-md border border-slate-300 bg-transparent px-3 py-2 pr-16 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900'
-                    placeholder={`${isSendKeyEnter ? t('Enter to send,') : t('Shift + Enter to send,')} ${t('change in right top settings')}. ${
-                        enablePlugins ? t('Type / to see available commands') : ''
-                    }`}
+                    placeholder={`${t('change send key in settings')} ${enablePlugins ? t('Type / to see available commands') : ''}`}
                     value={userInput}
                     onChange={handleTextAreaChange}
                     onKeyDown={handleOnKeyDown}

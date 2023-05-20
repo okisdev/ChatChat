@@ -22,7 +22,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 const LandingHeader = () => {
     const pathname = usePathname();
 
-    const t = useTranslations('landing.main');
+    const t = useTranslations('landing');
 
     const [isHiddenSideAtom, setIsHiddenSideAtom] = useAtom(store.isHiddenSideAtom);
 

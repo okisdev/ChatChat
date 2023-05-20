@@ -31,7 +31,7 @@ import { cohereModelConfig } from '@/config/provider/cohere.config';
 import { huggingFaceModelConfig } from '@/config/provider/huggingface.config';
 
 const SideAppSettings = ({ user }: { user: User | null }) => {
-    const t = useTranslations('landing.side');
+    const t = useTranslations('landing');
 
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
@@ -396,7 +396,7 @@ const OpenAICard = ({
     useCloudSettings: boolean;
     setUseCloudSettings: (useCloudSettings: boolean) => void;
 }) => {
-    const t = useTranslations('landing.side');
+    const t = useTranslations('landing');
 
     if (user && useCloudSettings) {
         setApiKey(user?.openAIKey || '');
@@ -485,7 +485,7 @@ const HuggingFaceCard = ({
     setAccessToken: (accessToken: string) => void;
     setHuggingFaceModel: (huggingFaceModel: string) => void;
 }) => {
-    const t = useTranslations('landing.side');
+    const t = useTranslations('landing');
 
     return (
         <>
@@ -540,7 +540,7 @@ const ClaudeCard = ({
     setClaudeAPIModel: (claudeAPIModel: OpenAIModel) => void;
     setClaudeAPITemperature: (claudeAPITemperature: number) => void;
 }) => {
-    const t = useTranslations('landing.side');
+    const t = useTranslations('landing');
 
     return (
         <>
@@ -620,7 +620,7 @@ const AzureCard = ({
     setAzureAPITemperature: (azureAPITemperature: number) => void;
     setAzureAPIDeploymentName: (azureAPIDeploymentName: string) => void;
 }) => {
-    const t = useTranslations('landing.side');
+    const t = useTranslations('landing');
 
     return (
         <>
@@ -686,7 +686,7 @@ const AzureCard = ({
 };
 
 const CustomCard = () => {
-    const t = useTranslations('landing.side');
+    const t = useTranslations('landing');
 
     return (
         <>
@@ -703,7 +703,7 @@ const CustomCard = () => {
 };
 
 const TeamCard = ({ accessCode, setAccessCode }: { accessCode: string; setAccessCode: (accessCode: string) => void }) => {
-    const t = useTranslations('landing.side');
+    const t = useTranslations('landing');
 
     return (
         <>
@@ -731,7 +731,7 @@ const CohereCard = ({
     setCohereAPIKey: (cohereAPIKey: string) => void;
     setCohereModel: (cohereModel: string) => void;
 }) => {
-    const t = useTranslations('landing.side');
+    const t = useTranslations('landing');
 
     return (
         <>
@@ -772,7 +772,7 @@ const CohereCard = ({
 };
 
 const ExtensionCard = ({}: {}) => {
-    const t = useTranslations('landing.side');
+    const t = useTranslations('landing');
 
     return (
         <>

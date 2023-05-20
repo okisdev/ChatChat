@@ -26,7 +26,7 @@ const MainContent = ({
     onEdit: (index: number) => void;
     isSystemPromptEmpty: boolean;
 }) => {
-    const t = useTranslations('landing.main');
+    const t = useTranslations('landing');
 
     const ttsConfig = useAtomValue(store.textToSpeechConfigAtom);
 
