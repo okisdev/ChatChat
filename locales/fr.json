@@ -186,7 +186,9 @@
     "Azure Key is required": "La clé Azure est requise",
     "Azure Endpoint is required": "Le point de terminaison Azure est requis",
     "Azure Deployment Name is required": "Le nom du déploiement Azure est requis",
-    "Claude Key is required": "La clé Claude est requise"
+    "Claude Key is required": "La clé Claude est requise",
+    "No teams found": "Aucune équipe trouvée",
+    "No conversation records found": "Aucun enregistrement de conversation trouvé"
   },
   "component": {
     "No command found": "Aucune commande trouvée",

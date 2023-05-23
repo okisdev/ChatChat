@@ -1,5 +1,7 @@
 import { redirect } from 'next/navigation';
 
+import { useTranslations } from 'next-intl';
+
 import { User } from '@prisma/client';
 
 import { database } from '@/lib/database';
@@ -20,6 +22,7 @@ const getRecordsByUser = async (id: User['id']) => {
 };
 
 const ProfileRecordPage = async () => {
+    const t = useTranslations('dashboard');
     const user = await getCurrentUser();
 
     if (!user) {
@@ -37,7 +40,7 @@ const ProfileRecordPage = async () => {
                         return <RecordCard key={index} record={record} />;
                     })
                 ) : (
-                    <p className='flex items-center justify-center text-gray-500'>No conversation records found</p>
+                    <p className='flex items-center justify-center text-gray-500'>{t('No conversation records found')}</p>
                 )}
             </div>
         </div>

@@ -186,7 +186,9 @@
     "Azure Key is required": "Azureキーが必要です",
     "Azure Endpoint is required": "Azureエンドポイントが必要です",
     "Azure Deployment Name is required": "Azureデプロイメント名が必要です",
-    "Claude Key is required": "Claudeキーが必要です"
+    "Claude Key is required": "Claudeキーが必要です",
+    "No teams found": "チームが見つかりません",
+    "No conversation records found": "会話履歴が見つかりません"
   },
   "component": {
     "No command found": "コマンドが見つかりません",

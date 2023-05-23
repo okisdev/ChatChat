@@ -186,7 +186,9 @@
     "Azure Key is required": "需要Azure Key",
     "Azure Endpoint is required": "需要Azure Endpoint",
     "Azure Deployment Name is required": "需要Azure Deployment Name",
-    "Claude Key is required": "需要Claude Key"
+    "Claude Key is required": "需要Claude Key",
+    "No teams found": "找不到團隊",
+    "No conversation records found": "找不到對話記錄"
   },
   "component": {
     "No command found": "找不到命令",

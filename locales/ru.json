@@ -186,7 +186,9 @@
     "Azure Key is required": "Требуется ключ Azure",
     "Azure Endpoint is required": "Требуется конечная точка Azure",
     "Azure Deployment Name is required": "Требуется имя развертывания Azure",
-    "Claude Key is required": "Требуется ключ Claude"
+    "Claude Key is required": "Требуется ключ Claude",
+    "No teams found": "Команды не найдены",
+    "No conversation records found": "Записи разговоров не найдены"
   },
   "component": {
     "No command found": "Команда не найдена",
