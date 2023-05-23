@@ -186,9 +186,7 @@
     "Azure Key is required": "Azure 키는 필수 입력사항입니다",
     "Azure Endpoint is required": "Azure 엔드포인트는 필수 입력사항입니다",
     "Azure Deployment Name is required": "Azure 배포 이름은 필수 입력사항입니다",
-    "Claude Key is required": "Claude 키는 필수 입력사항입니다",
-    "No teams found": "팀을 찾을 수 없습니다",
-    "No conversation records found": "대화 기록을 찾을 수 없습니다"
+    "Claude Key is required": "Claude 키는 필수 입력사항입니다"
   },
   "component": {
     "No command found": "찾을 수 없는 명령입니다",

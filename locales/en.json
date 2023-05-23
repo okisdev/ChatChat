@@ -186,9 +186,7 @@
     "Azure Key is required": "Azure Key is required",
     "Azure Endpoint is required": "Azure Endpoint is required",
     "Azure Deployment Name is required": "Azure Deployment Name is required",
-    "Claude Key is required": "Claude Key is required",
-    "No teams found": "No teams found",
-    "No conversation records found": "No conversation records found"
+    "Claude Key is required": "Claude Key is required"
   },
   "component": {
     "No command found": "No command found",

@@ -1,8 +1,6 @@
 import { database } from '@/lib/database';
 import { getCurrentUser } from '@/lib/auth/session';
 
-import { useTranslations } from 'next-intl';
-
 import { Team } from '@prisma/client';
 
 import TeamCard from '@/components/dashboard/team/card';
@@ -30,8 +28,6 @@ const getTeamsByMemberId = async (memberId: string) => {
 };
 
 const ProfileTeamInfoPage = async () => {
-    const t = useTranslations('dashboard');
-
     const currentUser = await getCurrentUser();
 
     if (!currentUser) {
@@ -55,7 +51,7 @@ const ProfileTeamInfoPage = async () => {
                 <CreateButton />
             </div>
             <div className='space-y-3'>
-                {allTeams.length > 0 ? allTeams.map((team, index) => <TeamCard key={index} team={team} />) : <p className='flex items-center justify-center text-gray-500'>{t('No teams found')}</p>}
+                {allTeams.length > 0 ? allTeams.map((team, index) => <TeamCard key={index} team={team} />) : <p className='flex items-center justify-center text-gray-500'>No teams found</p>}
             </div>
         </div>
     );
