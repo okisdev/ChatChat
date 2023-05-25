@@ -9,12 +9,13 @@ import { Share } from '@prisma/client';
 import { toast } from 'react-hot-toast';
 
 import { TbCopy } from 'react-icons/tb';
-import { BiLink } from 'react-icons/bi';
+import { BiLink, BiChat } from 'react-icons/bi';
+
+import { Separator } from '@/components/ui/separator';
+
+import { renderMarkdownMessage, renderUserMessage } from '@/utils/app/renderMessage';
 
 import { siteConfig } from '@/config/site.config';
-import { renderMarkdownMessage, renderUserMessage } from '@/utils/app/renderMessage';
-import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
 
 interface ShareProps {
     share: Pick<Share, 'id' | 'type' | 'title' | 'content' | 'share' | 'createdAt'>;
@@ -45,23 +46,36 @@ const SharePost = ({ share }: ShareProps) => {
 
     return (
         <div className='m-1 flex w-full flex-grow flex-col space-y-3 rounded-lg bg-white/90 p-3 py-2 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327] md:m-3 md:space-y-10 md:p-6 md:px-4'>
-            <div className='my-3 flex justify-between'>
+            <div className='my-3 flex items-center justify-between'>
                 <div className='space-y-3'>
                     <p className='gradient-flow bg-gradient-to-r bg-clip-text text-2xl font-semibold leading-none text-transparent'>
                         {siteConfig.title} {t('Share')}
                     </p>
                 </div>
-                <div>
-                    <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600' onClick={() => onCopyLink()}>
+                <div className='flex flex-row space-x-3'>
+                    {share.type == 'chat' && (
+                        <button
+                            className='inline-flex items-center space-x-1 rounded p-1 px-1 ring-2 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                            onClick={handleContinueConversation}
+                        >
+                            <BiChat className='text-xl' />
+                            <span className='hidden text-sm md:block'>{t('Continue this Conversation')}</span>
+                        </button>
+                    )}
+                    <button
+                        className='inline-flex items-center space-x-1 rounded p-1 px-1 ring-2 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                        onClick={() => onCopyLink()}
+                    >
                         <BiLink className='text-xl' />
+                        <span className='hidden text-sm md:block'>{t('Copy share link')}</span>
                     </button>
                 </div>
             </div>
             <div className='flex flex-1 flex-col justify-between'>
-                <div className='space-y-6'>
-                    <div>
+                <div className='space-y-2'>
+                    <div className='space-y-2'>
                         <p className='text-center font-medium'>{share.title}</p>
-                        <Separator />
+                        <Separator className='dark:bg-stone-400' />
                     </div>
                     <div>
                         {content?.map((message: OpenAIMessage, index: number) => {
@@ -105,13 +119,6 @@ const SharePost = ({ share }: ShareProps) => {
                             );
                         })}
                     </div>
-                </div>
-                <div>
-                    {share.type == 'chat' && (
-                        <Button variant='outline' onClick={handleContinueConversation}>
-                            {t('Continue this Conversation')}
-                        </Button>
-                    )}
                 </div>
             </div>
         </div>

@@ -31,15 +31,15 @@
 }
 
 .markdown-ul {
-    @apply mx-1 list-inside list-disc pl-3 text-gray-600 dark:text-stone-300 !important;
-}
-
-.markdown-li {
-    @apply mb-1 !important;
+    @apply mx-5 list-outside list-disc pl-3 text-gray-600 dark:text-stone-300 !important;
 }
 
 .markdown-ol {
-    @apply mx-1 list-inside list-decimal pl-3 text-gray-600 dark:text-stone-300 !important;
+    @apply mx-5 list-outside list-decimal pl-3 text-gray-600 dark:text-stone-300 !important;
+}
+
+.markdown-li {
+    @apply mb-1.5 !important;
 }
 
 .markdown-blockquote {
