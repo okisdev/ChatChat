@@ -12,7 +12,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import Tippy from '@tippyjs/react';
 
 import { MdInfoOutline } from 'react-icons/md';
-import { TbSettingsFilled } from 'react-icons/tb';
+import { TbAdjustmentsHorizontal } from 'react-icons/tb';
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -120,7 +120,7 @@ const HeaderSettings = () => {
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
                 <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'>
-                    <TbSettingsFilled />
+                    <TbAdjustmentsHorizontal className='text-xl' />
                     <span className='hidden text-sm md:block'>{t('Conversation Settings')}</span>
                 </button>
             </DialogTrigger>
