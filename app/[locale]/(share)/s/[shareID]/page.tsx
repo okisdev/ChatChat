@@ -22,7 +22,7 @@ export default async function SharePage({ params }: { params: { shareID: string 
     }
 
     return (
-        <div className='container mx-auto flex h-full flex-col items-center'>
+        <div className='mx-1 flex h-full flex-col items-center md:container md:mx-auto'>
             <SharePost
                 share={{
                     id: share.id,
