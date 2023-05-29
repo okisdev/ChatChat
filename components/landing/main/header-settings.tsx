@@ -22,7 +22,7 @@ import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetFooter, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
 const HeaderSettings = () => {
     const t = useTranslations('landing');
@@ -117,134 +117,134 @@ const HeaderSettings = () => {
     };
 
     return (
-        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogTrigger asChild>
+        <Sheet>
+            <SheetTrigger asChild>
                 <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'>
                     <TbAdjustmentsHorizontal className='text-xl' />
                     <span className='hidden text-sm md:block'>{t('Conversation Settings')}</span>
                 </button>
-            </DialogTrigger>
-            <DialogContent className='flex flex-col justify-between md:h-[500px] md:w-[500px]'>
-                <DialogHeader>
-                    <DialogTitle>{t('Advanced Conversation Settings')}</DialogTitle>
-                    <DialogDescription>
+            </SheetTrigger>
+            <SheetContent size='default' className='w-full md:w-1/3'>
+                <SheetHeader>
+                    <SheetTitle>{t('Advanced Conversation Settings')}</SheetTitle>
+                    <SheetDescription>
                         {t('You are using')} <span className='font-medium'>{serviceProvider}</span>
-                    </DialogDescription>
-                </DialogHeader>
-                <Tabs defaultValue='tts' className='h-full w-full space-y-5'>
-                    <TabsList>
-                        <TabsTrigger value='tts'>{t('Text To Speech')}</TabsTrigger>
-                        <TabsTrigger value='search'>{t('Web Search')}</TabsTrigger>
-                        <TabsTrigger value='advanced'>{t('Advanced')}</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value='tts' className='px-2'>
-                        {voices && voices.length > 0 ? (
-                            <div className='space-y-6'>
-                                <div className='flex flex-row items-center justify-between space-x-1'>
-                                    <Label>{t('Voice')}</Label>
-                                    <Select value={ttsVoice} onValueChange={(value: string) => setTTSVoice(value)}>
-                                        <SelectTrigger className='w-[300px]'>
+                    </SheetDescription>
+                </SheetHeader>
+                <div className='my-6 space-y-6'>
+                    <div className='space-y-3'>
+                        <div className='flex items-center space-x-1'>
+                            <Switch checked={isSendKeyEnter} onCheckedChange={handleSwitchSendMessageKey} />
+                            <Label className='px-1 font-normal'>{t('Send Message using Enter Key')}</Label>
+                            <Tippy content={`Current: ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`}>
+                                <button>
+                                    <MdInfoOutline className='text-lg' />
+                                </button>
+                            </Tippy>
+                        </div>
+                    </div>
+                    <Separator />
+                    <Tabs defaultValue='tts' className='h-full w-full space-y-5'>
+                        <TabsList>
+                            <TabsTrigger value='tts'>{t('Text To Speech')}</TabsTrigger>
+                            <TabsTrigger value='search'>{t('Web Search')}</TabsTrigger>
+                        </TabsList>
+                        <TabsContent value='tts' className='px-2'>
+                            {voices && voices.length > 0 ? (
+                                <div className='space-y-6'>
+                                    <div className='flex flex-row items-center justify-between space-x-1'>
+                                        <Label>{t('Voice')}</Label>
+                                        <Select value={ttsVoice} onValueChange={(value: string) => setTTSVoice(value)}>
+                                            <SelectTrigger className='w-[300px]'>
+                                                <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent className='h-[300px] overflow-auto'>
+                                                {voices.map((voice) => {
+                                                    return (
+                                                        <SelectItem key={voice.name} value={voice.name}>
+                                                            {voice.name} ({voice.lang})
+                                                        </SelectItem>
+                                                    );
+                                                })}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div className='flex flex-col space-y-5'>
+                                        <Label>
+                                            {t('Speaking Speed')}: {ttsSpeed}
+                                        </Label>
+                                        <Slider min={0.1} max={10} step={0.1} value={[ttsSpeed]} onValueChange={([value]) => setTTSSpeed(value)} />
+                                    </div>
+                                    <Separator />
+                                    <div className='flex flex-col space-y-2'>
+                                        <Label>{t('Sample')}</Label>
+                                        <Input value={ttsSample} onChange={(e) => setTTSSample(e.target.value)} />
+                                        <div>
+                                            <Button
+                                                onClick={() => {
+                                                    setIsSpeaking(true);
+                                                    const utterance = new SpeechSynthesisUtterance(ttsSample);
+                                                    utterance.voice = voices.find((voice) => voice.name === ttsVoice) || null;
+                                                    utterance.rate = ttsSpeed;
+                                                    utterance.pitch = ttsPitch;
+                                                    synth && synth.speak(utterance);
+                                                    utterance.onend = () => setIsSpeaking(false);
+                                                }}
+                                                disabled={isSpeaking}
+                                                className='inline-flex items-center justify-center space-x-2'
+                                            >
+                                                <span>{t('Speak')}</span>
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div>
+                                    <p>{t('Text to Speech is not supported in your browser')}</p>
+                                </div>
+                            )}
+                        </TabsContent>
+                        <TabsContent value='search'>
+                            <div className='space-y-3'>
+                                <div>
+                                    <Label>{t('Search Engine')}</Label>
+                                    <Select value={searchEngine} onValueChange={(value: string) => setSearchEngine(value)}>
+                                        <SelectTrigger className='w-full'>
                                             <SelectValue />
                                         </SelectTrigger>
-                                        <SelectContent className='h-[300px] overflow-auto'>
-                                            {voices.map((voice) => {
+                                        <SelectContent>
+                                            {searchEnginesList.map((engine) => {
                                                 return (
-                                                    <SelectItem key={voice.name} value={voice.name}>
-                                                        {voice.name} ({voice.lang})
+                                                    <SelectItem key={engine.value} value={engine.value}>
+                                                        {engine.name}
                                                     </SelectItem>
                                                 );
                                             })}
                                         </SelectContent>
                                     </Select>
                                 </div>
-                                <div className='flex flex-col space-y-5'>
-                                    <Label>
-                                        {t('Speaking Speed')}: {ttsSpeed}
-                                    </Label>
-                                    <Slider min={0.1} max={10} step={0.1} value={[ttsSpeed]} onValueChange={([value]) => setTTSSpeed(value)} />
+                                <div>
+                                    <Label>Search Engine ID</Label>
+                                    <Input placeholder='55b885......' value={searchEngineID} onChange={(e) => setSearchEngineID(e.target.value)} />
                                 </div>
-                                <Separator />
-                                <div className='flex flex-col space-y-2'>
-                                    <Label>{t('Sample')}</Label>
-                                    <Input value={ttsSample} onChange={(e) => setTTSSample(e.target.value)} />
-                                    <div>
-                                        <Button
-                                            onClick={() => {
-                                                setIsSpeaking(true);
-                                                const utterance = new SpeechSynthesisUtterance(ttsSample);
-                                                utterance.voice = voices.find((voice) => voice.name === ttsVoice) || null;
-                                                utterance.rate = ttsSpeed;
-                                                utterance.pitch = ttsPitch;
-                                                synth && synth.speak(utterance);
-                                                utterance.onend = () => setIsSpeaking(false);
-                                            }}
-                                            disabled={isSpeaking}
-                                            className='inline-flex items-center justify-center space-x-2'
-                                        >
-                                            <span>{t('Speak')}</span>
-                                        </Button>
-                                    </div>
+                                <div>
+                                    <Label>Search API Key</Label>
+                                    <Input placeholder='AIzaSyB......' value={searchAPIKey} onChange={(e) => setSearchAPIKey(e.target.value)} />
                                 </div>
                             </div>
-                        ) : (
-                            <div>
-                                <p>{t('Text to Speech is not supported in your browser')}</p>
-                            </div>
-                        )}
-                    </TabsContent>
-                    <TabsContent value='search'>
-                        <div className='space-y-3'>
-                            <div>
-                                <Label>{t('Search Engine')}</Label>
-                                <Select value={searchEngine} onValueChange={(value: string) => setSearchEngine(value)}>
-                                    <SelectTrigger className='w-full'>
-                                        <SelectValue />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {searchEnginesList.map((engine) => {
-                                            return (
-                                                <SelectItem key={engine.value} value={engine.value}>
-                                                    {engine.name}
-                                                </SelectItem>
-                                            );
-                                        })}
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                            <div>
-                                <Label>Search Engine ID</Label>
-                                <Input placeholder='55b885......' value={searchEngineID} onChange={(e) => setSearchEngineID(e.target.value)} />
-                            </div>
-                            <div>
-                                <Label>Search API Key</Label>
-                                <Input placeholder='AIzaSyB......' value={searchAPIKey} onChange={(e) => setSearchAPIKey(e.target.value)} />
-                            </div>
-                        </div>
-                    </TabsContent>
-                    <TabsContent value='advanced'>
-                        <div className='space-y-3'>
-                            <div className='flex items-center space-x-1'>
-                                <Switch checked={isSendKeyEnter} onCheckedChange={handleSwitchSendMessageKey} />
-                                <Label className='px-1 font-normal'>{t('Send Message using Enter Key')}</Label>
-                                <Tippy content={`Current: ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`}>
-                                    <button>
-                                        <MdInfoOutline className='text-lg' />
-                                    </button>
-                                </Tippy>
-                            </div>
-                        </div>
-                    </TabsContent>
-                </Tabs>
-                <DialogFooter>
+                        </TabsContent>
+                    </Tabs>
+                </div>
+                <SheetFooter>
                     <Button type='submit' variant='destructive' onClick={onCancel}>
                         {t('Cancel')}
                     </Button>
                     <Button type='submit' variant='outline' onClick={onSave}>
                         {t('Save')}
                     </Button>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog>
+                </SheetFooter>
+            </SheetContent>
+        </Sheet>
     );
 };
 
