@@ -27,7 +27,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetFooter, SheetT
 const HeaderSettings = () => {
     const t = useTranslations('landing');
 
-    const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+    const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
 
     // Text To Speech
     const synth = typeof window !== 'undefined' && window.speechSynthesis;
@@ -91,7 +91,7 @@ const HeaderSettings = () => {
     }, [searchConfig]);
 
     const onCancel = () => {
-        setIsDialogOpen(false);
+        setIsSheetOpen(false);
     };
 
     const onSave = () => {
@@ -107,7 +107,9 @@ const HeaderSettings = () => {
             searchAPIKey: searchAPIKey,
         });
 
-        setIsDialogOpen(false);
+        setIsSheetOpen(false);
+
+        toast.success(t('Settings saved'));
     };
 
     const handleSwitchSendMessageKey = () => {
@@ -117,7 +119,7 @@ const HeaderSettings = () => {
     };
 
     return (
-        <Sheet>
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
                 <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'>
                     <TbAdjustmentsHorizontal className='text-xl' />
