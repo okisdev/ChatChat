@@ -61,7 +61,7 @@
     "Current Model": "Aktuelles Modell",
     "Temperature": "Temperatur",
     "Stream Messages": "Nachrichten streamen",
-    "No Context Mode": "Kein Kontext-Modus",
+    "Context Mode": "Kontext Modus",
     "Plugins": "Plugins",
     "Beta": "Beta",
     "system prompt": "Systemhinweis",
@@ -97,7 +97,9 @@
     "Copied": "Kopiert",
     "You": "Sie",
     "Please set up the search config first": "Bitte richten Sie die Suchkonfiguration zuerst ein",
-    "You are using": "Sie verwenden"
+    "You are using": "Sie verwenden",
+    "contexts": "Kontexte",
+    "Conversation context length": "Länge des Unterhaltungskontexts"
   },
   "auth": {
     "Home": "Startseite",

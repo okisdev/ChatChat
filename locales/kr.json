@@ -61,7 +61,7 @@
     "Current Model": "현재 모델",
     "Temperature": "온도",
     "Stream Messages": "메시지 스트리밍",
-    "No Context Mode": "컨텍스트 없는 모드",
+    "Context Mode": "컨텍스트 모드",
     "Plugins": "플러그인",
     "Beta": "베타",
     "system prompt": "시스템 프롬프트",
@@ -97,7 +97,9 @@
     "Copied": "복사됨",
     "You": "당신",
     "Please set up the search config first": "먼저 검색 구성을 설정해주세요",
-    "You are using": "사용 중인"
+    "You are using": "사용 중인",
+    "contexts": "컨텍스트",
+    "Conversation context length": "대화 컨텍스트 길이"
   },
   "auth": {
     "Home": "홈",

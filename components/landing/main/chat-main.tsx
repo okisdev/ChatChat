@@ -39,7 +39,8 @@ const ChatMain = () => {
     const t = useTranslations('landing');
 
     // Conversation Config
-    const isNoContextConversation = useAtomValue(store.noContextConversationAtom);
+    const contextModeAtom = useAtomValue(store.contextModeAtom);
+    const { enable: enableContextMode, contextCount } = contextModeAtom;
     const enableStreamMessages = useAtomValue(store.enableStreamMessagesAtom);
     const enablePlugin = useAtomValue(store.enablePluginsAtom);
 
@@ -162,12 +163,14 @@ const ChatMain = () => {
     const handleMessageSend = async (message: AppMessageProps, indexNumber?: number | null, plugin?: PluginProps | null) => {
         setWaitingSystemResponse(true);
 
-        if (!isNoContextConversation) {
+        if (!enableContextMode) {
             isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
                 ? setConversations((prev) => [...prev, message])
                 : setConversations((prev) => [{ role: 'system', content: systemPromptContent }, ...prev, message]);
         } else {
-            isSystemPromptEmpty || conversations.find((c) => c.role === 'system') ? setConversations([message]) : setConversations([{ role: 'system', content: systemPromptContent }, message]);
+            isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
+                ? setConversations([...conversations.slice(-contextCount), message])
+                : setConversations([...conversations.slice(-contextCount), { role: 'system', content: systemPromptContent }, message]);
         }
 
         let configPayload;
@@ -252,22 +255,24 @@ const ChatMain = () => {
         let messagesPayload: AppMessageProps[] = [];
 
         if (plugin && enablePlugin && pluginResponse && pluginPrompt) {
-            if (!isNoContextConversation) {
+            if (!enableContextMode) {
                 isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
                     ? (messagesPayload = [...conversations, { role: 'system', content: pluginPrompt }, message])
                     : (messagesPayload = [{ role: 'system', content: systemPromptContent }, ...conversations, { role: 'system', content: pluginPrompt }, message]);
             } else {
                 isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
-                    ? (messagesPayload = [{ role: 'system', content: pluginPrompt }, message])
-                    : (messagesPayload = [{ role: 'system', content: systemPromptContent }, { role: 'system', content: pluginPrompt }, message]);
+                    ? (messagesPayload = [...conversations.slice(-contextCount), { role: 'system', content: pluginPrompt }, message])
+                    : (messagesPayload = [...conversations.slice(-contextCount), { role: 'system', content: systemPromptContent }, { role: 'system', content: pluginPrompt }, message]);
             }
         } else {
-            if (!isNoContextConversation) {
+            if (!enableContextMode) {
                 isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
                     ? (messagesPayload = [...conversations, message])
                     : (messagesPayload = [{ role: 'system', content: systemPromptContent }, ...conversations, message]);
             } else {
-                isSystemPromptEmpty || conversations.find((c) => c.role === 'system') ? (messagesPayload = [message]) : (messagesPayload = [{ role: 'system', content: systemPromptContent }, message]);
+                isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
+                    ? (messagesPayload = [...conversations.slice(-contextCount), message])
+                    : (messagesPayload = [...conversations.slice(-contextCount), { role: 'system', content: systemPromptContent }, message]);
             }
         }
 
@@ -338,7 +343,7 @@ const ChatMain = () => {
 
         setWaitingSystemResponse(false);
 
-        if (!isNoContextConversation) {
+        if (!enableContextMode) {
             if (chatTitle == 'Chat') {
                 let currentChatTitle = '';
                 const chatTitlePayload: AppMessageProps[] = [{ role: 'system', content: `Please suggest a title for "${message.content}".` }];

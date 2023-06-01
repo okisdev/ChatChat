@@ -18,6 +18,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemPromptContent: string; setSystemPromptContent: (content: string) => void }) => {
     const t = useTranslations('landing');
@@ -28,8 +29,20 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
     // Stream Messages
     const [enableStreamMessages, setEnableStreamMessages] = useAtom(store.enableStreamMessagesAtom);
 
-    // No Context Conversation
-    const [isNoContextConversation, setIsNoContextConversation] = useAtom(store.noContextConversationAtom);
+    // Context Mode
+    const [contextModeAtom, setContextModeAtom] = useAtom(store.contextModeAtom);
+
+    const [contextCount, setContextCount] = useState<number>(0);
+    const [isContextMode, setIsContextMode] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (contextModeAtom.enable) {
+            setIsContextMode(true);
+            setContextCount(contextModeAtom.contextCount);
+        } else {
+            setIsContextMode(false);
+        }
+    }, [contextModeAtom]);
 
     // System Prompt
     const [enableSystemPrompt, setEnableSystemPrompt] = useAtom(store.enableSystemPrompt);
@@ -59,8 +72,8 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
         setEnableStreamMessages(value);
     };
 
-    const handleIsNoContextModeChange = (value: boolean) => {
-        setIsNoContextConversation(value);
+    const handleContextModeCheck = (value: boolean) => {
+        setContextModeAtom({ enable: value, contextCount });
     };
 
     const handleCheckSystemPrompt = (value: boolean) => {
@@ -86,11 +99,11 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
             case 'Claude':
                 setGlobalDisabled(true);
                 setEnableSystemPrompt(false);
-                setIsNoContextConversation(true);
+                setIsContextMode(true);
                 setEnableStreamMessages(false);
                 break;
         }
-    }, [serviceProvider, setEnableStreamMessages, setEnableSystemPrompt, setIsNoContextConversation]);
+    }, [serviceProvider, setEnableStreamMessages, setEnableSystemPrompt, setIsContextMode]);
 
     let CurrentConfig;
 
@@ -171,11 +184,32 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                     </div>
                 </div>
                 <div className='flex items-center space-x-2'>
-                    <Checkbox checked={isNoContextConversation} onCheckedChange={handleIsNoContextModeChange} disabled={globalDisabled} aria-label='No Context Mode Checkbox' />
+                    <Checkbox checked={isContextMode} onCheckedChange={handleContextModeCheck} disabled={globalDisabled} aria-label='Context Mode Checkbox' />
                     <div className='inline-flex items-center space-x-1'>
-                        <p>{t('No Context Mode')}</p>
-                        <Tippy content={t('Create new conversation next time')}>
-                            <button aria-label='No Context Mode Info'>
+                        <p>{t('Context Mode')}</p>
+                        {isContextMode ? (
+                            <Select
+                                value={contextCount.toString()}
+                                onValueChange={(value) => {
+                                    setContextCount(parseInt(value));
+                                    setContextModeAtom({ enable: true, contextCount: parseInt(value) });
+                                }}
+                            >
+                                <SelectTrigger className='h-5 w-16'>
+                                    <SelectValue defaultValue={contextCount ? contextCount : 0} />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value='0'>0</SelectItem>
+                                    <SelectItem value='2'>2</SelectItem>
+                                    <SelectItem value='4'>4</SelectItem>
+                                    <SelectItem value='6'>6</SelectItem>
+                                    <SelectItem value='8'>8</SelectItem>
+                                    <SelectItem value='10'>10</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        ) : null}
+                        <Tippy content={t('Conversation context length')}>
+                            <button aria-label='Context Mode Info'>
                                 <MdInfoOutline className='text-lg' />
                             </button>
                         </Tippy>

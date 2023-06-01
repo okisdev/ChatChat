@@ -61,7 +61,7 @@
     "Current Model": "Current Model",
     "Temperature": "Temperature",
     "Stream Messages": "Stream Messages",
-    "No Context Mode": "No Context Mode",
+    "Context Mode": "Context Mode",
     "Plugins": "Plugins",
     "Beta": "Beta",
     "system prompt": "system prompt",
@@ -97,7 +97,9 @@
     "Copied": "Copied",
     "You": "You",
     "Please set up the search config first": "Please set up the search config first",
-    "You are using": "You are using"
+    "You are using": "You are using",
+    "contexts": "contexts",
+    "Conversation context length": "Conversation context length"
   },
   "auth": {
     "Home": "Home",
