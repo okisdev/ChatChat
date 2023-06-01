@@ -61,7 +61,7 @@
     "Current Model": "当前模型",
     "Temperature": "温度",
     "Stream Messages": "实时消息",
-    "No Context Mode": "无上下文模式",
+    "Context Mode": "上下文模式",
     "Plugins": "插件",
     "Beta": "测试版",
     "system prompt": "系统提示",
@@ -97,7 +97,9 @@
     "Copied": "已复制",
     "You": "您",
     "Please set up the search config first": "请先设置搜索配置",
-    "You are using": "您正在使用"
+    "You are using": "您正在使用",
+    "contexts": "上下文",
+    "Conversation context length": "对话上下文长度"
   },
   "auth": {
     "Home": "主页",

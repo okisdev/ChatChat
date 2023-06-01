@@ -61,7 +61,7 @@
     "Current Model": "Текущая модель",
     "Temperature": "Температура",
     "Stream Messages": "Поток сообщений",
-    "No Context Mode": "Режим без контекста",
+    "Context Mode": "Режим контекста",
     "Plugins": "Плагины",
     "Beta": "Бета",
     "system prompt": "системное предложение",
@@ -97,7 +97,9 @@
     "Copied": "Скопировано",
     "You": "Вы",
     "Please set up the search config first": "Сначала настройте конфигурацию поиска",
-    "You are using": "Вы используете"
+    "You are using": "Вы используете",
+    "contexts": "контексты",
+    "Conversation context length": "Длина контекста разговора"
   },
   "auth": {
     "Home": "Главная",

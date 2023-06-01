@@ -51,7 +51,7 @@ const InputArea = ({
 
     const enablePlugins = useAtomValue(store.enablePluginsAtom);
 
-    const isNoContextConversation = useAtomValue(store.noContextConversationAtom);
+    const contextModeAtom = useAtomValue(store.contextModeAtom);
 
     const { transcript, listening, resetTranscript } = useSpeechRecognition();
     const [isListening, setIsListening] = useState<boolean>(false);
@@ -233,9 +233,9 @@ const InputArea = ({
                                     {t('plugins')}
                                 </Badge>
                             )}
-                            {isNoContextConversation && (
+                            {contextModeAtom.enable && (
                                 <Badge variant='secondary' className='text-xs font-normal'>
-                                    {t('no context')}
+                                    {contextModeAtom.contextCount == 0 ? t('no context') : contextModeAtom.contextCount + ' ' + t('contexts')}
                                 </Badge>
                             )}
                         </>

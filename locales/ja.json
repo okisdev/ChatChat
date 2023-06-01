@@ -61,7 +61,7 @@
     "Current Model": "現在のモデル",
     "Temperature": "温度",
     "Stream Messages": "メッセージをストリームで表示する",
-    "No Context Mode": "コンテキストなしモード",
+    "Context Mode": "コンテキストモード",
     "Plugins": "プラグイン",
     "Beta": "ベータ版",
     "system prompt": "システムプロンプト",
@@ -97,7 +97,9 @@
     "Copied": "再現された",
     "You": "あなた",
     "Please set up the search config first": "まず検索構成を設定してください",
-    "You are using": "あなたは使っています"
+    "You are using": "あなたは使っています",
+    "contexts": "コンテキスト",
+    "Conversation context length": "会話コンテキストの長さ"
   },
   "auth": {
     "Home": "ホーム",

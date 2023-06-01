@@ -61,7 +61,7 @@
     "Current Model": "Modèle Actuel",
     "Temperature": "Température",
     "Stream Messages": "Flux de Messages",
-    "No Context Mode": "Mode Sans Contexte",
+    "Context Mode": "Mode Contexte",
     "Plugins": "Plugins",
     "Beta": "Bêta",
     "system prompt": "invite système",
@@ -97,7 +97,9 @@
     "Copied": "Copié",
     "You": "Vous",
     "Please set up the search config first": "Veuillez d'abord configurer la recherche",
-    "You are using": "Vous utilisez"
+    "You are using": "Vous utilisez",
+    "contexts": "contextes",
+    "Conversation context length": "Longueur du contexte de conversation"
   },
   "auth": {
     "Home": "Accueil",
