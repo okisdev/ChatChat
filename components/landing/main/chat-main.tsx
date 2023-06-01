@@ -163,15 +163,9 @@ const ChatMain = () => {
     const handleMessageSend = async (message: AppMessageProps, indexNumber?: number | null, plugin?: PluginProps | null) => {
         setWaitingSystemResponse(true);
 
-        if (!enableContextMode) {
-            isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
-                ? setConversations((prev) => [...prev, message])
-                : setConversations((prev) => [{ role: 'system', content: systemPromptContent }, ...prev, message]);
-        } else {
-            isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
-                ? setConversations([...conversations.slice(-contextCount), message])
-                : setConversations([...conversations.slice(-contextCount), { role: 'system', content: systemPromptContent }, message]);
-        }
+        isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
+            ? setConversations((prev) => [...prev, message])
+            : setConversations((prev) => [{ role: 'system', content: systemPromptContent }, ...prev, message]);
 
         let configPayload;
 
@@ -259,6 +253,10 @@ const ChatMain = () => {
                 isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
                     ? (messagesPayload = [...conversations, { role: 'system', content: pluginPrompt }, message])
                     : (messagesPayload = [{ role: 'system', content: systemPromptContent }, ...conversations, { role: 'system', content: pluginPrompt }, message]);
+            } else if (contextCount == 0) {
+                isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
+                    ? (messagesPayload = [{ role: 'system', content: pluginPrompt }, message])
+                    : (messagesPayload = [{ role: 'system', content: systemPromptContent }, { role: 'system', content: pluginPrompt }, message]);
             } else {
                 isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
                     ? (messagesPayload = [...conversations.slice(-contextCount), { role: 'system', content: pluginPrompt }, message])
@@ -269,6 +267,8 @@ const ChatMain = () => {
                 isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
                     ? (messagesPayload = [...conversations, message])
                     : (messagesPayload = [{ role: 'system', content: systemPromptContent }, ...conversations, message]);
+            } else if (contextCount == 0) {
+                isSystemPromptEmpty || conversations.find((c) => c.role === 'system') ? (messagesPayload = [message]) : (messagesPayload = [{ role: 'system', content: systemPromptContent }, message]);
             } else {
                 isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
                     ? (messagesPayload = [...conversations.slice(-contextCount), message])
@@ -343,7 +343,7 @@ const ChatMain = () => {
 
         setWaitingSystemResponse(false);
 
-        if (!enableContextMode) {
+        if (contextCount > 0) {
             if (chatTitle == 'Chat') {
                 let currentChatTitle = '';
                 const chatTitlePayload: AppMessageProps[] = [{ role: 'system', content: `Please suggest a title for "${message.content}".` }];
