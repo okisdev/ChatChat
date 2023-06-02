@@ -54,7 +54,7 @@ const openAIConfigAtom = atomWithStorage<OpenAIConfigProps>('openAIConfig', {
 const azureConfigAtom = atomWithStorage('azureConfig', {
     apiKey: '',
     apiEndpoint: '',
-    apiModel: 'gpt-3.5-turbo',
+    apiModel: 'gpt-4',
     apiTemperature: 0.3,
     apiDeploymentName: '',
 });
