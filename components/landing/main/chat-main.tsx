@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 import { toast } from 'react-hot-toast';
 
@@ -22,7 +22,6 @@ import ModeSettings from '@/components/landing/main/main-settings';
 import generateHash from '@/utils/app/generateHash';
 
 import { getSearchFromGoogleProgrammableSearchEngine } from '@/utils/plugins/search';
-import { fetchContent } from '@/utils/plugins/fetch_content';
 
 import { User } from '@prisma/client';
 
@@ -37,6 +36,7 @@ const ChatMain = () => {
     const share = searchParams?.get('share');
 
     const t = useTranslations('landing');
+    const locale = useLocale();
 
     // Conversation Config
     const contextModeAtom = useAtomValue(store.contextModeAtom);
@@ -225,7 +225,11 @@ const ChatMain = () => {
                         toast.error(t('Please set up your Google Programmable Search Engine API Key and Search Engine ID in the settings page'));
                         return;
                     }
-                    pluginResponse = await getSearchFromGoogleProgrammableSearchEngine(searchPluginConfig.searchAPIKey, searchPluginConfig.searchEngineID, message.content);
+
+                    const searchContent = await getSearchFromGoogleProgrammableSearchEngine(searchPluginConfig.searchAPIKey, searchPluginConfig.searchEngineID, message.content);
+
+                    pluginResponse = searchContent;
+
                     pluginPrompt =
                         'I search ' +
                         message.content +
@@ -234,11 +238,19 @@ const ChatMain = () => {
                     break;
                 case 'fetch':
                     const fetchContent = await fetch('/api/plugins/fetch?url=' + message.content).then((res) => res.json());
+
+                    if (fetchContent.status != 200) {
+                        toast.error(t('Unable to fetch content from the URL provided'));
+                        return;
+                    }
+
                     pluginResponse = fetchContent.content;
                     pluginPrompt =
-                        'I fetch content from ' +
+                        'Act as a summarizer. Please summarize ' +
                         message.content +
-                        ' for you. Please let me know what is the main content of this link in details. The following is the content: \n\n\n' +
+                        ' in the ' +
+                        locale +
+                        '. Your summary should capture the most important points and ideas of the original text. Please ensure that your summary is clear, concise, and easy to understand. The following is the content: \n\n\n' +
                         pluginResponse;
                     break;
                 default:
@@ -251,16 +263,19 @@ const ChatMain = () => {
         if (plugin && enablePlugin && pluginResponse && pluginPrompt) {
             if (!enableContextMode) {
                 isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
-                    ? (messagesPayload = [...conversations, { role: 'system', content: pluginPrompt }, message])
-                    : (messagesPayload = [{ role: 'system', content: systemPromptContent }, ...conversations, { role: 'system', content: pluginPrompt }, message]);
+                    ? (messagesPayload = [...conversations, { role: 'user', content: pluginPrompt }])
+                    : (messagesPayload = [{ role: 'system', content: systemPromptContent }, ...conversations, { role: 'user', content: pluginPrompt }]);
             } else if (contextCount == 0) {
                 isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
-                    ? (messagesPayload = [{ role: 'system', content: pluginPrompt }, message])
-                    : (messagesPayload = [{ role: 'system', content: systemPromptContent }, { role: 'system', content: pluginPrompt }, message]);
+                    ? (messagesPayload = [{ role: 'user', content: pluginPrompt }])
+                    : (messagesPayload = [
+                          { role: 'system', content: systemPromptContent },
+                          { role: 'user', content: pluginPrompt },
+                      ]);
             } else {
                 isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
-                    ? (messagesPayload = [...conversations.slice(-contextCount), { role: 'system', content: pluginPrompt }, message])
-                    : (messagesPayload = [...conversations.slice(-contextCount), { role: 'system', content: systemPromptContent }, { role: 'system', content: pluginPrompt }, message]);
+                    ? (messagesPayload = [...conversations.slice(-contextCount), { role: 'user', content: pluginPrompt }])
+                    : (messagesPayload = [...conversations.slice(-contextCount), { role: 'system', content: systemPromptContent }, { role: 'user', content: pluginPrompt }]);
             }
         } else {
             if (!enableContextMode) {

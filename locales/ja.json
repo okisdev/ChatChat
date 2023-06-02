@@ -99,7 +99,8 @@
     "Please set up the search config first": "まず検索構成を設定してください",
     "You are using": "あなたは使っています",
     "contexts": "コンテキスト",
-    "Conversation context length": "会話コンテキストの長さ"
+    "Conversation context length": "会話コンテキストの長さ",
+    "Unable to fetch content from the URL provided": "指定されたURLからコンテンツを取得できません"
   },
   "auth": {
     "Home": "ホーム",

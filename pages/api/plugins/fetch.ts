@@ -8,10 +8,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     };
 
     if (!url) {
-        return res.status(400).json({ error: 'Missing URL' });
+        return res.status(400).json({ status: 400, error: 'Missing URL' });
     }
 
     const content = await fetchContent(url);
 
-    return res.status(200).json({ content });
+    if (!content) {
+        return res.status(404).json({ status: 404, error: 'No content found' });
+    }
+
+    return res.status(200).json({ status: 200, content });
 }

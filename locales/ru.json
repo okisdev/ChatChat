@@ -99,7 +99,8 @@
     "Please set up the search config first": "Сначала настройте конфигурацию поиска",
     "You are using": "Вы используете",
     "contexts": "контексты",
-    "Conversation context length": "Длина контекста разговора"
+    "Conversation context length": "Длина контекста разговора",
+    "Unable to fetch content from the URL provided": "Не удалось получить содержимое из предоставленного URL"
   },
   "auth": {
     "Home": "Главная",

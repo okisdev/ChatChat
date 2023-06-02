@@ -30,7 +30,7 @@ const LandingHeader = () => {
         setIsHiddenSideAtom(!isHiddenSideAtom);
     };
 
-    const currentMode = ModeList.find((mode) => mode.link === pathname) || ModeList.find((mode) => mode.value === 'chat');
+    const currentMode = ModeList.find((mode) => pathname?.includes(mode.link)) || ModeList.find((mode) => mode.value === 'chat');
 
     const [userInfo, setUserInfo] = useState(null);
 

@@ -9,6 +9,10 @@ export const fetchContent = async (url: string) => {
 
         const mainContent = $('main').text().trim();
 
+        if (!mainContent) {
+            throw new Error('No content found');
+        }
+
         return mainContent;
     } catch (error) {
         console.error(`Error fetching content from ${url}:`, error);

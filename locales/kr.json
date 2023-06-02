@@ -99,7 +99,8 @@
     "Please set up the search config first": "먼저 검색 구성을 설정해주세요",
     "You are using": "사용 중인",
     "contexts": "컨텍스트",
-    "Conversation context length": "대화 컨텍스트 길이"
+    "Conversation context length": "대화 컨텍스트 길이",
+    "Unable to fetch content from the URL provided": "제공된 URL에서 내용을 가져올 수 없습니다"
   },
   "auth": {
     "Home": "홈",

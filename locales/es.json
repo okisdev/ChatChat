@@ -99,7 +99,8 @@
     "Please set up the search config first": "Por favor, configura la configuración de búsqueda primero",
     "You are using": "Estás usando",
     "contexts": "contextos",
-    "Conversation context length": "Longitud del contexto de la conversación"
+    "Conversation context length": "Longitud del contexto de la conversación",
+    "Unable to fetch content from the URL provided": "No se pudo obtener el contenido de la URL proporcionada"
   },
   "auth": {
     "Home": "Inicio",

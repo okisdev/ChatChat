@@ -99,7 +99,8 @@
     "Please set up the search config first": "请先设置搜索配置",
     "You are using": "您正在使用",
     "contexts": "上下文",
-    "Conversation context length": "对话上下文长度"
+    "Conversation context length": "对话上下文长度",
+    "Unable to fetch content from the URL provided": "无法从提供的 URL 获取内容"
   },
   "auth": {
     "Home": "主页",
