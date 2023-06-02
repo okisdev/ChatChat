@@ -435,6 +435,9 @@ const ChatMain = () => {
                 });
             }
 
+            const updateEvent = new CustomEvent('localStorageUpdated');
+            window.dispatchEvent(updateEvent);
+
             if (enableSync) {
                 const response = await fetch('/api/user/record', {
                     method: 'POST',
@@ -461,9 +464,6 @@ const ChatMain = () => {
                     return;
                 }
             }
-
-            const updateEvent = new CustomEvent('localStorageUpdated');
-            window.dispatchEvent(updateEvent);
         }
     };
 
