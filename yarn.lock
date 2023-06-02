@@ -1106,9 +1106,9 @@
     "@jridgewell/sourcemap-codec" "1.4.14"
 
 "@next-auth/prisma-adapter@^1.0.5":
-  version "1.0.6"
-  resolved "https://registry.npmjs.org/@next-auth/prisma-adapter/-/prisma-adapter-1.0.6.tgz"
-  integrity sha512-Z7agwfSZEeEcqKqrnisBun7VndRPshd6vyDsoRU68MXbkui8storkHgvN2hnNDrqr/hSCF9aRn56a1qpihaB4A==
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@next-auth/prisma-adapter/-/prisma-adapter-1.0.7.tgz#86195e9cc5a23a9e71370c7e8745b630388143b1"
+  integrity sha512-Cdko4KfcmKjsyHFrWwZ//lfLUbcLqlyFqjd/nYE2m3aZ7tjMNUjpks47iw7NTCnXf+5UWz5Ypyt1dSs1EP5QJw==
 
 "@next/env@13.4.4":
   version "13.4.4"
