@@ -100,7 +100,8 @@
     "You are using": "You are using",
     "contexts": "contexts",
     "Conversation context length": "Conversation context length",
-    "Unable to fetch content from the URL provided": "Unable to fetch content from the URL provided"
+    "Unable to fetch content from the URL provided": "Unable to fetch content from the URL provided",
+    "Service Provider": "Service Provider"
   },
   "auth": {
     "Home": "Home",

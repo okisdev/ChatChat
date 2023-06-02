@@ -14,7 +14,6 @@ import { useAtom } from 'jotai';
 import { FiLayout, FiCode, FiFile, FiMessageCircle, FiChevronDown } from 'react-icons/fi';
 
 import LandingSide from '@/components/landing/side/side';
-import HeaderSettings from '@/components/landing/main/header-settings';
 
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -75,7 +74,6 @@ const LandingHeader = () => {
                     </div>
                 </div>
                 <div className='relative flex items-center space-x-3'>
-                    <HeaderSettings />
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <button

@@ -100,7 +100,8 @@
     "You are using": "あなたは使っています",
     "contexts": "コンテキスト",
     "Conversation context length": "会話コンテキストの長さ",
-    "Unable to fetch content from the URL provided": "指定されたURLからコンテンツを取得できません"
+    "Unable to fetch content from the URL provided": "指定されたURLからコンテンツを取得できません",
+    "Service Provider": "サービスプロバイダー"
   },
   "auth": {
     "Home": "ホーム",

@@ -100,7 +100,8 @@
     "You are using": "Вы используете",
     "contexts": "контексты",
     "Conversation context length": "Длина контекста разговора",
-    "Unable to fetch content from the URL provided": "Не удалось получить содержимое из предоставленного URL"
+    "Unable to fetch content from the URL provided": "Не удалось получить содержимое из предоставленного URL",
+    "Service Provider": "Провайдер услуг"
   },
   "auth": {
     "Home": "Главная",

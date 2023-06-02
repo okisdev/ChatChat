@@ -11,13 +11,21 @@ import { toast } from 'react-hot-toast';
 import store from '@/hooks/store';
 import { useAtom } from 'jotai';
 
-import { FiSettings } from 'react-icons/fi';
+import Tippy from '@tippyjs/react';
+
+import { MdInfoOutline } from 'react-icons/md';
+import { TbAdjustmentsHorizontal } from 'react-icons/tb';
 
 import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Slider } from '@/components/ui/slider';
+import { Switch } from '@/components/ui/switch';
+import { Separator } from '@/components/ui/separator';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Select, SelectContent, SelectItem, SelectGroup, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetFooter, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
 import TeamServiceProvider from './service-provider/team';
 import AzureServiceProvider from './service-provider/azure';
@@ -30,6 +38,77 @@ import HuggingFaceServiceProvider from './service-provider/huggingface';
 
 const SideAppSettings = ({ user }: { user: User | null }) => {
     const t = useTranslations('landing');
+
+    const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
+
+    // Text To Speech
+    const synth = typeof window !== 'undefined' && window.speechSynthesis;
+    const voices = synth && synth.getVoices();
+
+    const [ttsVoice, setTTSVoice] = useState<string>('');
+    const [ttsSpeed, setTTSSpeed] = useState<number>(1.0);
+    const [ttsPitch, setTTSPitch] = useState<number>(1.0);
+    const [ttsSample, setTTSSample] = useState<string>('Hello. I am your virtual AI assistant.');
+
+    const [ttsConfig, setTTSConfig] = useAtom(store.textToSpeechConfigAtom);
+
+    const [isSpeaking, setIsSpeaking] = useState(false);
+
+    const [isSendKeyEnter, setIsSendKeyEnter] = useAtom(store.isSendKeyEnterAtom);
+
+    // Search
+    const [searchEngine, setSearchEngine] = useState<string>(searchEnginesList[0].name);
+    const [searchEngineID, setSearchEngineID] = useState<string>('');
+    const [searchAPIKey, setSearchAPIKey] = useState<string>('');
+
+    const [searchConfig, setSearchConfig] = useAtom(store.searchConfigAtom);
+
+    useEffect(() => {
+        if (synth) {
+            const loadVoices = async () => {
+                const voices = await new Promise<SpeechSynthesisVoice[]>((resolve) => {
+                    const voiceList = synth.getVoices();
+                    if (voiceList.length) {
+                        resolve(voiceList);
+                    } else {
+                        synth.addEventListener('voiceschanged', () => {
+                            resolve(synth.getVoices());
+                        });
+                    }
+                });
+
+                setTTSVoice(voices[0]?.name);
+            };
+
+            loadVoices();
+        }
+    }, [synth]);
+
+    useEffect(() => {
+        if (ttsConfig) {
+            setTTSVoice(ttsConfig.voice);
+            setTTSSpeed(ttsConfig.speed);
+            setTTSPitch(ttsConfig.pitch);
+        }
+    }, [ttsConfig]);
+
+    useEffect(() => {
+        if (searchConfig) {
+            setSearchEngine(searchConfig.searchEngine);
+            setSearchEngineID(searchConfig.searchEngineID);
+            setSearchAPIKey(searchConfig.searchAPIKey);
+        }
+    }, [searchConfig]);
+
+    const onCancel = () => {
+        setIsSheetOpen(false);
+    };
+
+    const handleSwitchSendMessageKey = () => {
+        setIsSendKeyEnter(!isSendKeyEnter);
+
+        toast.success(`${t('Send message key changed to')} ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`);
+    };
 
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
@@ -235,6 +314,20 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     };
 
     const onSave = () => {
+        setTTSConfig({
+            voice: ttsVoice,
+            speed: ttsSpeed,
+            pitch: ttsPitch,
+        });
+
+        setSearchConfig({
+            searchEngine: searchEngine,
+            searchEngineID: searchEngineID,
+            searchAPIKey: searchAPIKey,
+        });
+
+        setIsSheetOpen(false);
+
         if (currentServiceProvider == 'OpenAI' && !useCloudSettings) {
             if (!apiKey) {
                 toast.error(t('Please fill in all required fields'));
@@ -311,64 +404,181 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     };
 
     return (
-        <Dialog open={isDialogOpen} onOpenChange={(isOpen) => setIsDialogOpen(isOpen)}>
-            <DialogTrigger asChild>
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+            <SheetTrigger asChild>
                 <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600' aria-label='app-settings'>
-                    <FiSettings />
+                    <TbAdjustmentsHorizontal />
                 </button>
-            </DialogTrigger>
-            <DialogContent className='flex flex-col justify-between space-y-3 overflow-y-auto md:h-[800px] md:w-[500px]'>
-                <DialogHeader>
-                    <DialogTitle>{t('App Settings')}</DialogTitle>
-                </DialogHeader>
-                <div className='flex h-full flex-col justify-start space-y-3'>
+            </SheetTrigger>
+            <SheetContent size='default' className='w-full overflow-auto md:w-5/12 xl:w-1/3'>
+                <SheetHeader>
+                    <SheetTitle>{t('App Settings')}</SheetTitle>
+                    <SheetDescription>
+                        {t('You are using')} <span className='font-medium'>{serviceProvider}</span>
+                    </SheetDescription>
+                </SheetHeader>
+                <div className='my-4 space-y-4'>
                     <div className='space-y-3'>
-                        <div className='space-y-2'>
-                            <Label className='font-medium'>{t('AI Service Provider')}</Label>
-                            <Select value={currentServiceProvider} onValueChange={(value: string) => setCurrentServiceProvider(value as ServiceProviderProps)}>
-                                <SelectTrigger>
-                                    <SelectValue />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {serviceProviderList
-                                        // .sort((a, b) => a.name.localeCompare(b.name))
-                                        .map((service, index) => (
-                                            <SelectGroup key={index}>
-                                                <SelectItem value={service.value} className='text-sm' disabled={service.status == 0}>
-                                                    {service.name}{' '}
-                                                    {service.status !== 1 &&
-                                                        (service.status == 0 ? (
-                                                            <Badge variant='outline' className='font-normal text-red-500'>
-                                                                {t('Planned')}
-                                                            </Badge>
-                                                        ) : (
-                                                            <Badge variant='outline' className='font-normal text-amber-500'>
-                                                                {t('Beta')}
-                                                            </Badge>
-                                                        ))}
-                                                </SelectItem>
-                                            </SelectGroup>
-                                        ))}
-                                </SelectContent>
-                            </Select>
+                        <div className='flex items-center space-x-1'>
+                            <Switch checked={isSendKeyEnter} onCheckedChange={handleSwitchSendMessageKey} />
+                            <Label className='px-1 font-normal'>{t('Send Message using Enter Key')}</Label>
+                            <Tippy content={`Current: ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`}>
+                                <button>
+                                    <MdInfoOutline className='text-lg' />
+                                </button>
+                            </Tippy>
                         </div>
-                        <div className='space-y-3 overflow-y-auto rounded border p-3'>{ProviderConfig}</div>
                     </div>
+                    <Separator />
+                    <Tabs defaultValue='provider' className='h-full w-full space-y-5'>
+                        <TabsList>
+                            <TabsTrigger value='provider'>{t('Service Provider')}</TabsTrigger>
+                            <TabsTrigger value='tts'>{t('Text To Speech')}</TabsTrigger>
+                            <TabsTrigger value='search'>{t('Web Search')}</TabsTrigger>
+                        </TabsList>
+                        <TabsContent value='provider' className='px-2'>
+                            <div className='flex h-full flex-col justify-start space-y-3'>
+                                <div className='space-y-3'>
+                                    <div className='space-y-2'>
+                                        <Label className='font-medium'>{t('AI Service Provider')}</Label>
+                                        <Select value={currentServiceProvider} onValueChange={(value: string) => setCurrentServiceProvider(value as ServiceProviderProps)}>
+                                            <SelectTrigger>
+                                                <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {serviceProviderList
+                                                    // .sort((a, b) => a.name.localeCompare(b.name))
+                                                    .map((service, index) => (
+                                                        <SelectGroup key={index}>
+                                                            <SelectItem value={service.value} className='text-sm' disabled={service.status == 0}>
+                                                                {service.name}{' '}
+                                                                {service.status !== 1 &&
+                                                                    (service.status == 0 ? (
+                                                                        <Badge variant='outline' className='font-normal text-red-500'>
+                                                                            {t('Planned')}
+                                                                        </Badge>
+                                                                    ) : (
+                                                                        <Badge variant='outline' className='font-normal text-amber-500'>
+                                                                            {t('Beta')}
+                                                                        </Badge>
+                                                                    ))}
+                                                            </SelectItem>
+                                                        </SelectGroup>
+                                                    ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div className='space-y-3 overflow-y-auto rounded border p-3'>{ProviderConfig}</div>
+                                </div>
+                            </div>
+                        </TabsContent>
+                        <TabsContent value='tts' className='px-2'>
+                            {voices && voices.length > 0 ? (
+                                <div className='space-y-6'>
+                                    <div className='flex flex-row items-center justify-between space-x-1'>
+                                        <Label>{t('Voice')}</Label>
+                                        <Select value={ttsVoice} onValueChange={(value: string) => setTTSVoice(value)}>
+                                            <SelectTrigger className='w-[300px]'>
+                                                <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent className='h-[300px] overflow-auto'>
+                                                {voices.map((voice) => {
+                                                    return (
+                                                        <SelectItem key={voice.name} value={voice.name}>
+                                                            {voice.name} ({voice.lang})
+                                                        </SelectItem>
+                                                    );
+                                                })}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div className='flex flex-col space-y-5'>
+                                        <Label>
+                                            {t('Speaking Speed')}: {ttsSpeed}
+                                        </Label>
+                                        <Slider min={0.1} max={10} step={0.1} value={[ttsSpeed]} onValueChange={([value]) => setTTSSpeed(value)} />
+                                    </div>
+                                    <Separator />
+                                    <div className='flex flex-col space-y-2'>
+                                        <Label>{t('Sample')}</Label>
+                                        <Input value={ttsSample} onChange={(e) => setTTSSample(e.target.value)} />
+                                        <div>
+                                            <Button
+                                                onClick={() => {
+                                                    setIsSpeaking(true);
+                                                    const utterance = new SpeechSynthesisUtterance(ttsSample);
+                                                    utterance.voice = voices.find((voice) => voice.name === ttsVoice) || null;
+                                                    utterance.rate = ttsSpeed;
+                                                    utterance.pitch = ttsPitch;
+                                                    synth && synth.speak(utterance);
+                                                    utterance.onend = () => setIsSpeaking(false);
+                                                }}
+                                                disabled={isSpeaking}
+                                                className='inline-flex items-center justify-center space-x-2'
+                                            >
+                                                <span>{t('Speak')}</span>
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div>
+                                    <p>{t('Text to Speech is not supported in your browser')}</p>
+                                </div>
+                            )}
+                        </TabsContent>
+                        <TabsContent value='search'>
+                            <div className='space-y-3'>
+                                <div>
+                                    <Label>{t('Search Engine')}</Label>
+                                    <Select value={searchEngine} onValueChange={(value: string) => setSearchEngine(value)}>
+                                        <SelectTrigger className='w-full'>
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {searchEnginesList.map((engine) => {
+                                                return (
+                                                    <SelectItem key={engine.value} value={engine.value}>
+                                                        {engine.name}
+                                                    </SelectItem>
+                                                );
+                                            })}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div>
+                                    <Label>Search Engine ID</Label>
+                                    <Input placeholder='55b885......' value={searchEngineID} onChange={(e) => setSearchEngineID(e.target.value)} />
+                                </div>
+                                <div>
+                                    <Label>Search API Key</Label>
+                                    <Input placeholder='AIzaSyB......' value={searchAPIKey} onChange={(e) => setSearchAPIKey(e.target.value)} />
+                                </div>
+                            </div>
+                        </TabsContent>
+                    </Tabs>
                 </div>
-                <DialogFooter>
-                    <Button type='submit' variant='destructive' onClick={onReset}>
-                        {t('Reset')}
+                <SheetFooter>
+                    <Button type='submit' variant='destructive' onClick={onCancel}>
+                        {t('Cancel')}
                     </Button>
                     <Button type='submit' variant='outline' onClick={onSave}>
                         {t('Save')}
                     </Button>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog>
+                </SheetFooter>
+            </SheetContent>
+        </Sheet>
     );
 };
 
 export default SideAppSettings;
+
+const searchEnginesList = [
+    {
+        name: 'Programmable Search Engine (By Google)',
+        value: 'pse',
+    },
+];
 
 interface serviceProviderProps {
     name: string;
@@ -410,11 +620,6 @@ const serviceProviderList: serviceProviderProps[] = [
     {
         name: 'Custom',
         value: 'Custom',
-        status: 0,
-    },
-    {
-        name: 'Extension',
-        value: 'Extension',
         status: 0,
     },
 ];

@@ -100,7 +100,8 @@
     "You are using": "您正在使用",
     "contexts": "上下文",
     "Conversation context length": "对话上下文长度",
-    "Unable to fetch content from the URL provided": "无法从提供的 URL 获取内容"
+    "Unable to fetch content from the URL provided": "无法从提供的 URL 获取内容",
+    "Service Provider": "服务提供商"
   },
   "auth": {
     "Home": "主页",

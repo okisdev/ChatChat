@@ -201,7 +201,7 @@ const SideHistory = () => {
                 />
                 <Dialog>
                     <DialogTrigger asChild>
-                        <Button variant='outline' className='inline-flex items-center'>
+                        <Button variant='ghost' className='inline-flex items-center'>
                             <TfiMoreAlt />
                         </Button>
                     </DialogTrigger>
