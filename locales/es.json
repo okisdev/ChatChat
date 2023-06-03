@@ -101,7 +101,13 @@
     "contexts": "contextos",
     "Conversation context length": "Longitud del contexto de la conversación",
     "Unable to fetch content from the URL provided": "No se pudo obtener el contenido de la URL proporcionada",
-    "Service Provider": "Proveedor de Servicios"
+    "Service Provider": "Proveedor de Servicios",
+    "Explain": "Explicar",
+    "Convert": "Convertir",
+    "Custom": "Personalizado",
+    "Explain what the code means": "Explicar qué significa el código",
+    "Convert the code to a different language": "Convertir el código a un lenguaje diferente",
+    "Allow you to create your own custom rule": "Permitirte crear tu propia regla personalizada"
   },
   "auth": {
     "Home": "Inicio",

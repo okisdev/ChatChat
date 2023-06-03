@@ -101,7 +101,13 @@
     "contexts": "コンテキスト",
     "Conversation context length": "会話コンテキストの長さ",
     "Unable to fetch content from the URL provided": "指定されたURLからコンテンツを取得できません",
-    "Service Provider": "サービスプロバイダー"
+    "Service Provider": "サービスプロバイダー",
+    "Explain": "説明する",
+    "Convert": "変換する",
+    "Custom": "カスタム",
+    "Explain what the code means": "コードの意味を説明する",
+    "Convert the code to a different language": "コードを別の言語に変換する",
+    "Allow you to create your own custom rule": "独自のカスタムルールを作成できます"
   },
   "auth": {
     "Home": "ホーム",

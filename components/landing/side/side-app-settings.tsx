@@ -406,7 +406,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     return (
         <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
-                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600' aria-label='app-settings'>
+                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700' aria-label='app-settings'>
                     <TbAdjustmentsHorizontal />
                 </button>
             </SheetTrigger>

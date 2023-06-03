@@ -46,7 +46,7 @@ const DashboardNav = ({ user }: { user: any }) => {
                 </div>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Avatar className='inline-flex items-center justify-center space-x-1 rounded-lg p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'>
+                        <Avatar className='inline-flex items-center justify-center space-x-1 rounded-lg p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'>
                             {user.image ? <AvatarImage src={user?.image} /> : <RxAvatar className='text-2xl' />}
                         </Avatar>
                     </DropdownMenuTrigger>

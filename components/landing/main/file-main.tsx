@@ -405,9 +405,9 @@ const FileMain = () => {
                             htmlFor='dropzone-file'
                             className='dark:hover:bg-bray-800 flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 transition duration-200 ease-in-out hover:bg-gray-100 dark:border-gray-600 dark:bg-[#333] dark:hover:border-gray-500 dark:hover:bg-gray-600'
                         >
-                            <div className='flex flex-col items-center justify-center pb-6 pt-5'>
+                            <div className='flex flex-col items-center justify-center space-y-2 pb-6 pt-5'>
                                 <AiOutlineCloudUpload className='text-4xl' />
-                                <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
+                                <p className='mb-2 text-center text-sm text-gray-500 dark:text-gray-400'>
                                     <span className='font-semibold'>{t('Click to upload')}</span> {t('or drag and drop a file')}
                                 </p>
                                 <p className='text-xs text-gray-500 dark:text-gray-400'>{t('Any file but images')}</p>

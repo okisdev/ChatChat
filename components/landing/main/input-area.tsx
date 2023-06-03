@@ -243,7 +243,7 @@ const InputArea = ({
                 </div>
                 {waitingSystemResponse ? (
                     <button
-                        className='inline-flex items-center space-x-1 rounded border px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:border-stone-500 dark:hover:bg-stone-600'
+                        className='inline-flex items-center space-x-1 rounded border px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:border-stone-500 dark:hover:bg-stone-700'
                         onClick={handleStopSystemResponse}
                     >
                         <IoStopCircle />
@@ -252,7 +252,7 @@ const InputArea = ({
                 ) : (
                     conversations.length > 0 && (
                         <button
-                            className='flex items-center space-x-1 rounded border px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:border-stone-500 dark:hover:bg-stone-600'
+                            className='flex items-center space-x-1 rounded border px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:border-stone-500 dark:hover:bg-stone-700'
                             onClick={handleShareConversation}
                         >
                             <TbShare2 className='dark:text-white' />

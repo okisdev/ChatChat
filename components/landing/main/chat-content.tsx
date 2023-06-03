@@ -94,14 +94,14 @@ const MainContent = ({
                                         {!waitingSystemResponse && (
                                             <>
                                                 <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                                                     onClick={() => onEdit(index)}
                                                 >
                                                     <TbEdit />
                                                     <span>{t('Edit')}</span>
                                                 </button>
                                                 <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                                                     onClick={() => onCopy(isSystemPromptEmpty ? index : index + 1)}
                                                 >
                                                     <TbCopy />
@@ -117,21 +117,21 @@ const MainContent = ({
                                         {!waitingSystemResponse && (
                                             <>
                                                 <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                                                     onClick={() => onCopy(isSystemPromptEmpty ? index : index + 1)}
                                                 >
                                                     <TbCopy />
                                                     <span>{t('Copy')}</span>
                                                 </button>
                                                 <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                                                     onClick={() => reGenerate(index)}
                                                 >
                                                     <TbAB2 />
                                                     <span>{t('Regenerate')}</span>
                                                 </button>
                                                 <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                                                     onClick={isSpeaking ? onStopSpeech : () => onSpeech(index)}
                                                 >
                                                     <TbSpeakerphone />

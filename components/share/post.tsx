@@ -55,7 +55,7 @@ const SharePost = ({ share }: ShareProps) => {
                 <div className='flex flex-row space-x-3'>
                     {share.type == 'chat' && (
                         <button
-                            className='inline-flex items-center space-x-1 rounded p-1 px-1 ring-2 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                            className='inline-flex items-center space-x-1 rounded p-1 px-1 ring-2 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                             onClick={handleContinueConversation}
                         >
                             <BiChat className='text-xl' />
@@ -63,7 +63,7 @@ const SharePost = ({ share }: ShareProps) => {
                         </button>
                     )}
                     <button
-                        className='inline-flex items-center space-x-1 rounded p-1 px-1 ring-2 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                        className='inline-flex items-center space-x-1 rounded p-1 px-1 ring-2 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                         onClick={() => onCopyLink()}
                     >
                         <BiLink className='text-xl' />
@@ -87,7 +87,7 @@ const SharePost = ({ share }: ShareProps) => {
                                         {isUser ? (
                                             <>
                                                 <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                                                     onClick={() => onCopyMessage(index)}
                                                 >
                                                     <TbCopy />
@@ -99,7 +99,7 @@ const SharePost = ({ share }: ShareProps) => {
                                             <>
                                                 <p className='text-base font-semibold'>AI</p>
                                                 <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                                                     onClick={() => onCopyMessage(index)}
                                                 >
                                                     <TbCopy />

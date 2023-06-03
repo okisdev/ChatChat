@@ -1,6 +1,7 @@
 // Self Config your site for here
 
-import { GrGithub, GrValidate, GrNodes, GrMail, GrCompass } from 'react-icons/gr';
+import { CgInfo } from 'react-icons/cg';
+import { GrGithub } from 'react-icons/gr';
 
 interface siteConfig {
     title: string;
@@ -14,9 +15,15 @@ export const siteConfig: siteConfig = {
 
 export const sidebarMoreMenu = [
     {
+        title: 'GitHub',
+        value: 'github',
+        url: 'https://github.com/okisdev/ChatChat',
+        icon: GrGithub,
+    },
+    {
         title: 'Harry Yep',
         value: 'harry-yep',
         url: 'https://harryyep.com',
-        icon: GrCompass,
+        icon: CgInfo,
     },
 ];

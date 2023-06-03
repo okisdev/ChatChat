@@ -101,7 +101,13 @@
     "contexts": "上下文",
     "Conversation context length": "对话上下文长度",
     "Unable to fetch content from the URL provided": "无法从提供的 URL 获取内容",
-    "Service Provider": "服务提供商"
+    "Service Provider": "服务提供商",
+    "Explain": "解释",
+    "Convert": "转换",
+    "Custom": "自定义",
+    "Explain what the code means": "解释代码的含义",
+    "Convert the code to a different language": "将代码转换为其他语言",
+    "Allow you to create your own custom rule": "允许您创建自己的自定义规则"
   },
   "auth": {
     "Home": "主页",

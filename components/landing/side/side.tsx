@@ -72,7 +72,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                 </div>
                 <div className='flex items-center justify-center'>
                     <button
-                        className='inline-flex items-center space-x-1 rounded p-1 px-2 text-sm font-medium transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                        className='inline-flex items-center space-x-1 rounded p-1 px-2 text-sm font-medium transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                         onClick={() => (location.href = '/')}
                     >
                         <HiChatBubbleLeft />
@@ -120,7 +120,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <button
-                                    className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                                    className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                                     aria-label='More Config'
                                 >
                                     <FiMoreHorizontal />
@@ -137,13 +137,6 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                                         </DropdownMenuItem>
                                     );
                                 })}
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem>
-                                    <Link href='https://github.com/okisdev/ChatChat' className='flex w-full items-center space-x-2' target='_blank'>
-                                        <GrGithub className='block' />
-                                        <span>Project GitHub</span>
-                                    </Link>
-                                </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuSub>
                                     <DropdownMenuSubTrigger className='cursor-pointer space-x-1'>

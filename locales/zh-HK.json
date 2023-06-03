@@ -101,7 +101,13 @@
     "contexts": "上下文",
     "Conversation context length": "對話上下文長度",
     "Unable to fetch content from the URL provided": "無法從提供的 URL 獲取內容",
-    "Service Provider": "服務提供者"
+    "Service Provider": "服務提供者",
+    "Explain": "解釋",
+    "Convert": "轉換",
+    "Custom": "自訂",
+    "Explain what the code means": "解釋代碼的含義",
+    "Convert the code to a different language": "將代碼轉換為其他語言",
+    "Allow you to create your own custom rule": "允許您創建自己的自定義規則"
   },
   "auth": {
     "Home": "首頁",

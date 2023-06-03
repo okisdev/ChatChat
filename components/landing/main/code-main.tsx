@@ -216,7 +216,7 @@ const CodeMain = () => {
                                 return (
                                     <SelectItem key={index} value={mode.name}>
                                         <div className='flex items-center space-x-2'>
-                                            <span>{mode.name}</span>
+                                            <span>{t(mode.name)}</span>
                                         </div>
                                     </SelectItem>
                                 );
@@ -224,7 +224,7 @@ const CodeMain = () => {
                         </SelectContent>
                     </Select>
                     <div className='space-y-3'>
-                        <p className='px-2 text-sm'>{CodeModeConfig.find((mode) => mode.name === codeMode)?.hint}</p>
+                        <p className='px-2 text-sm'>{t(CodeModeConfig.find((mode) => mode.name === codeMode)?.hint)}</p>
                         {codeMode == 'Custom' && (
                             <div>
                                 <Textarea value={customRule} onChange={(e) => setCustomRule(e.target.value)} />
@@ -264,9 +264,9 @@ const CodeMain = () => {
 export default CodeMain;
 
 const CodeModeConfig = [
-    { name: 'Explain', value: 'explain', hint: 'This mode will explain what the code means.' },
-    { name: 'Convert', value: 'convert', hint: 'This mode will convert the code to a different language.' },
-    { name: 'Custom', value: 'custom', hint: 'This mode will allow you to create your own custom rule.' },
+    { name: 'Explain', value: 'explain', hint: 'Explain what the code means' },
+    { name: 'Convert', value: 'convert', hint: 'Convert the code to a different language' },
+    { name: 'Custom', value: 'custom', hint: 'Allow you to create your own custom rule' },
 ];
 
 const CodeLanguageList = [

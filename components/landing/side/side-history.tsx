@@ -233,7 +233,7 @@ const SideHistory = () => {
                     return (
                         <div
                             key={'pin-' + pinHistory.id}
-                            className='flex w-full select-none items-center justify-between rounded bg-blue-100 p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:bg-slate-500 dark:hover:bg-stone-600'
+                            className='flex w-full select-none items-center justify-between rounded bg-blue-100 p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:bg-slate-500 dark:hover:bg-stone-700'
                         >
                             <div className='inline-flex items-center space-x-2'>
                                 <button className='block' onClick={() => onHistoryUnpin(pinHistory.id)}>
@@ -267,7 +267,7 @@ const SideHistory = () => {
                     return (
                         <div
                             key={history.id}
-                            className='flex w-full select-none items-center justify-between rounded p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600'
+                            className='flex w-full select-none items-center justify-between rounded p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                         >
                             <div className='inline-flex items-center space-x-2'>
                                 <button className='block' onClick={() => onHistoryPin(history.id)}>

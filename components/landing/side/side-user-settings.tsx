@@ -17,7 +17,7 @@ const SideUserSettings = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-600' aria-label='user-portal'>
+                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700' aria-label='user-portal'>
                     <FiUser />
                 </button>
             </DropdownMenuTrigger>
