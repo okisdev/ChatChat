@@ -294,14 +294,14 @@ const InputArea = ({
                 <div className='absolute bottom-2 right-2 flex items-center justify-center'>
                     <button
                         onClick={handleVoiceInput}
-                        className='rounded-md bg-transparent p-1 font-bold text-stone-800 transition duration-300 ease-in-out hover:text-stone-400 dark:text-stone-400 dark:hover:text-stone-800'
+                        className='rounded-md bg-transparent p-1 font-bold text-stone-800 transition duration-300 ease-in-out hover:text-stone-400 dark:text-stone-400 dark:hover:text-stone-500'
                         aria-label='Voice Input Button'
                     >
                         {!isListening ? <MdOutlineKeyboardVoice className='text-lg' /> : <MdPause className='text-lg' />}
                     </button>
                     <button
                         onClick={handleSend}
-                        className='rounded-md bg-transparent p-1 font-bold text-stone-800 transition duration-300 ease-in-out hover:text-stone-400 dark:text-stone-400 dark:hover:text-stone-800'
+                        className='rounded-md bg-transparent p-1 font-bold text-stone-800 transition duration-300 ease-in-out hover:text-stone-400 dark:text-stone-400 dark:hover:text-stone-500'
                         aria-label='Send Message Button'
                     >
                         <TbSend className='text-lg' />
