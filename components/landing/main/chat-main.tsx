@@ -358,7 +358,7 @@ const ChatMain = () => {
 
         setWaitingSystemResponse(false);
 
-        if (contextCount > 0) {
+        if (!enableContextMode || contextCount > 0) {
             if (chatTitle == 'Chat') {
                 let currentChatTitle = '';
                 const chatTitlePayload: AppMessageProps[] = [{ role: 'system', content: `Please suggest a title for "${message.content}".` }];
