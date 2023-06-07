@@ -107,7 +107,8 @@
     "Custom": "사용자 정의",
     "Explain what the code means": "코드의 의미를 설명하세요",
     "Convert the code to a different language": "코드를 다른 언어로 변환하세요",
-    "Allow you to create your own custom rule": "사용자 정의 규칙을 만들 수 있도록 합니다"
+    "Allow you to create your own custom rule": "사용자 정의 규칙을 만들 수 있도록 합니다",
+    "Please wait for the system response": "시스템 응답을 기다려주세요"
   },
   "auth": {
     "Home": "홈",

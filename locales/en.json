@@ -107,7 +107,8 @@
     "Custom": "Custom",
     "Explain what the code means": "Explain what the code means",
     "Convert the code to a different language": "Convert the code to a different language",
-    "Allow you to create your own custom rule": "Allow you to create your own custom rule"
+    "Allow you to create your own custom rule": "Allow you to create your own custom rule",
+    "Please wait for the system response": "Please wait for the system response"
   },
   "auth": {
     "Home": "Home",

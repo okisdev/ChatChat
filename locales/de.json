@@ -107,7 +107,8 @@
     "Custom": "Benutzerdefiniert",
     "Explain what the code means": "Erklären Sie, was der Code bedeutet",
     "Convert the code to a different language": "Konvertieren Sie den Code in eine andere Sprache",
-    "Allow you to create your own custom rule": "Ermöglicht es Ihnen, Ihre eigenen benutzerdefinierten Regeln zu erstellen"
+    "Allow you to create your own custom rule": "Ermöglicht es Ihnen, Ihre eigenen benutzerdefinierten Regeln zu erstellen",
+    "Please wait for the system response": "Bitte warten Sie auf die Systemantwort"
   },
   "auth": {
     "Home": "Startseite",

@@ -107,7 +107,8 @@
     "Custom": "Пользовательский",
     "Explain what the code means": "Объясните, что означает код",
     "Convert the code to a different language": "Преобразовать код на другой язык",
-    "Allow you to create your own custom rule": "Позволяет создавать собственные правила"
+    "Allow you to create your own custom rule": "Позволяет создавать собственные правила",
+    "Please wait for the system response": "Пожалуйста, дождитесь ответа системы"
   },
   "auth": {
     "Home": "Главная",

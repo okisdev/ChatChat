@@ -107,7 +107,8 @@
     "Custom": "自定义",
     "Explain what the code means": "解释代码的含义",
     "Convert the code to a different language": "将代码转换为其他语言",
-    "Allow you to create your own custom rule": "允许您创建自己的自定义规则"
+    "Allow you to create your own custom rule": "允许您创建自己的自定义规则",
+    "Please wait for the system response": "请等待系统响应"
   },
   "auth": {
     "Home": "主页",

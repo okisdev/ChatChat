@@ -107,7 +107,8 @@
     "Custom": "Personnalisé",
     "Explain what the code means": "Expliquer ce que signifie le code",
     "Convert the code to a different language": "Convertir le code dans une autre langue",
-    "Allow you to create your own custom rule": "Vous permet de créer votre propre règle personnalisée"
+    "Allow you to create your own custom rule": "Vous permet de créer votre propre règle personnalisée",
+    "Please wait for the system response": "Veuillez attendre la réponse du système"
   },
   "auth": {
     "Home": "Accueil",

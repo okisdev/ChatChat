@@ -107,7 +107,8 @@
     "Custom": "カスタム",
     "Explain what the code means": "コードの意味を説明する",
     "Convert the code to a different language": "コードを別の言語に変換する",
-    "Allow you to create your own custom rule": "独自のカスタムルールを作成できます"
+    "Allow you to create your own custom rule": "独自のカスタムルールを作成できます",
+    "Please wait for the system response": "システムの応答をお待ちください"
   },
   "auth": {
     "Home": "ホーム",

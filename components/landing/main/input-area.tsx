@@ -104,6 +104,11 @@ const InputArea = ({
     };
 
     const handleSend = () => {
+        if (waitingSystemResponse) {
+            toast.error(t('Please wait for the system response'));
+            return;
+        }
+
         if (userInput.length === 0) {
             toast.error(t('Please enter something'));
             return;
