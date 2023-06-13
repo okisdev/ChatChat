@@ -20,4 +20,9 @@ export const openAIModelConfig: openAIModelConfig[] = [
         maxTokens: 4096,
         price: 0.002 / 1000,
     },
+    {
+        model: 'gpt-3.5-turbo-16k',
+        maxTokens: 16384,
+        price: 0.004 / 1000,
+    },
 ];
