@@ -33,7 +33,7 @@ const AuthForm = ({ login }: { login: boolean }) => {
         const emailSignIn = await signIn('email', {
             email: email,
             redirect: false,
-            callbackUrl: '/profile',
+            callbackUrl: '/dashboard/profile/info',
         });
 
         if (emailSignIn?.error) {
@@ -105,7 +105,7 @@ const AuthForm = ({ login }: { login: boolean }) => {
                     className='space-x-3'
                     onClick={() =>
                         signIn('github', {
-                            callbackUrl: '/profile',
+                            callbackUrl: '/dashboard/profile/info',
                         })
                     }
                 >
@@ -117,7 +117,7 @@ const AuthForm = ({ login }: { login: boolean }) => {
                     className='space-x-3'
                     onClick={() =>
                         signIn('google', {
-                            callbackUrl: '/profile',
+                            callbackUrl: '/dashboard/profile/info',
                         })
                     }
                 >

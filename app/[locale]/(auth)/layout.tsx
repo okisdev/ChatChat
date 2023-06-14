@@ -10,7 +10,7 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
     const user = await getCurrentUser();
 
     if (user) {
-        redirect('/profile');
+        redirect('/dashboard/profile');
     }
 
     return (

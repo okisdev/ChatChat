@@ -96,8 +96,8 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                                 <p className='text-xs text-slate-700'>{user?.email}</p>
                             </div>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem onClick={() => router.push('/profile/info')}>{t('Profile')}</DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => router.push('/profile/team')}>{t('Team')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => router.push('/dashboard/profile/info')}>{t('Profile')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => router.push('/dashboard/team/info')}>{t('Team')}</DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem
                                 onClick={() =>

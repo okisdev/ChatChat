@@ -77,7 +77,7 @@ export const ClientCommand = () => {
                     <CommandItem>
                         <button
                             onClick={() => {
-                                router.push('/profile/info');
+                                router.push('/dashboard/profile/info');
                                 setOpen(false);
                             }}
                             className='flex items-center'
@@ -89,7 +89,7 @@ export const ClientCommand = () => {
                     <CommandItem>
                         <button
                             onClick={() => {
-                                router.push('/profile/info/record');
+                                router.push('/dashboard/profile/info/record');
                                 setOpen(false);
                             }}
                             className='flex items-center'
@@ -101,7 +101,7 @@ export const ClientCommand = () => {
                     <CommandItem>
                         <button
                             onClick={() => {
-                                router.push('/profile/info/settings');
+                                router.push('/dashboard/profile/info/settings');
                                 setOpen(false);
                             }}
                             className='flex items-center'
@@ -116,7 +116,7 @@ export const ClientCommand = () => {
                     <CommandItem>
                         <button
                             onClick={() => {
-                                router.push('/profile/team');
+                                router.push('/dashboard/team');
                                 setOpen(false);
                             }}
                             className='flex items-center'

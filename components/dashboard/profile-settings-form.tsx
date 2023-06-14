@@ -51,7 +51,7 @@ const ProfileSettingsForm = ({ user }: { user: User }) => {
     };
 
     return (
-        <div className='flex h-full w-full flex-col justify-between space-y-16 overflow-auto md:my-36 md:w-6/12'>
+        <div className='flex h-full w-full flex-col justify-between space-y-16 overflow-auto md:my-36 md:w-8/12 xl:w-6/12'>
             <div className='space-y-3 overflow-auto p-1'>
                 <div>
                     <div className='space-y-2'>

@@ -77,7 +77,7 @@ const ProfileInfoForm = ({ user }: any) => {
     };
 
     return (
-        <div className='space-y-10 overflow-auto md:my-36 md:w-6/12 md:space-y-16'>
+        <div className='space-y-10 overflow-auto md:my-36 md:w-10/12 md:space-y-16 xl:w-6/12'>
             <form className='space-y-10 rounded-xl md:p-3'>
                 <div className='flex w-full justify-between space-x-3'>
                     <div className='flex w-full flex-col items-start space-y-1'>

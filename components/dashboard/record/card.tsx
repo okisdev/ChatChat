@@ -91,17 +91,15 @@ const RecordCard = ({ record }: { record: Record }) => {
 
     return (
         <div className='flex justify-between rounded-xl border p-3 dark:border-stone-400'>
-            <div className='space-y-2'>
+            <div className='w-8/12 space-y-2'>
                 <p>{record.title}</p>
                 <p className='text-xs'>{formatDate(record.createdAt)}</p>
             </div>
-
-            {/* <p>{JSON.parse(record.content?.toString()).length}</p> */}
             <div className='flex flex-row items-center space-x-3'>
                 <div className='space-y-2'>
                     <div className='flex items-center space-x-2 text-sm'>
-                        <Switch onCheckedChange={onSwitchShare} />
                         <p>{t('Share')}</p>
+                        <Switch onCheckedChange={onSwitchShare} />
                         {enableShare && (
                             <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700' onClick={onCopy}>
                                 <IoCopy />
