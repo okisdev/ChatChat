@@ -34,7 +34,7 @@ const DashboardSide = () => {
                                     {item.children && (
                                         <div className='flex w-auto flex-col items-start space-y-1'>
                                             {item.children.map((child, index) => (
-                                                <Button variant='ghost' key={index} className='text-gray-500' onClick={() => router.push('profile/' + child.href)}>
+                                                <Button variant='ghost' key={index} className='text-gray-500' onClick={() => router.push('/dashboard/' + item.base + '/' + child.href)}>
                                                     {t(child.name)}
                                                 </Button>
                                             ))}
@@ -61,7 +61,7 @@ const DashboardSide = () => {
                                 {item.children && (
                                     <div className='flex w-auto flex-col items-start space-y-1'>
                                         {item.children.map((child, index) => (
-                                            <Button variant='ghost' key={index} className='text-gray-500' onClick={() => router.push('profile/' + child.href)}>
+                                            <Button variant='ghost' key={index} className='text-gray-500' onClick={() => router.push('/dashboard/' + item.base + '/' + child.href)}>
                                                 {t(child.name)}
                                             </Button>
                                         ))}
@@ -84,6 +84,7 @@ export default DashboardSide;
 export const DashboardSideItems = [
     {
         name: 'Profile',
+        base: 'profile',
         children: [
             {
                 name: 'Overview',
@@ -92,22 +93,23 @@ export const DashboardSideItems = [
             },
             {
                 name: 'Record',
-                href: 'info/record',
+                href: 'record',
                 description: `Your account Conversation Record`,
             },
             {
                 name: 'Settings',
-                href: 'info/settings',
+                href: 'settings',
                 description: `Advanced configuration for your account`,
             },
         ],
     },
     {
         name: 'Team',
+        base: 'team',
         children: [
             {
                 name: 'Overview',
-                href: 'team',
+                href: 'info',
                 description: 'Team Overview',
             },
         ],

@@ -27,7 +27,7 @@ const DashboardNav = ({ user }: { user: any }) => {
         .filter((path) => path !== '')
         .splice(i18n ? 2 : 1);
 
-    const description = DashboardSideItems.find((item) => item.children?.find((child) => child.href === breadcrumbs?.[0]))?.children?.find((child) => child.href === breadcrumbs?.[0])?.description;
+    const description = DashboardSideItems.find((item) => item.base === breadcrumbs?.[0])?.children.find((child) => child.href === breadcrumbs?.[1])?.description;
 
     return (
         <div>
