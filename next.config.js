@@ -16,11 +16,6 @@ const nextConfig = withPWA({
     async redirects() {
         return [
             {
-                source: '/dashboard/:path*',
-                destination: '/login',
-                permanent: true,
-            },
-            {
                 source: '/dashboard/profile',
                 destination: '/dashboard/profile/info',
                 permanent: true,
