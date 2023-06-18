@@ -16,7 +16,6 @@ import { useAtom } from 'jotai';
 
 import { useTheme } from 'next-themes';
 
-import { GrGithub } from 'react-icons/gr';
 import { RxAvatar } from 'react-icons/rx';
 import { IoLanguage } from 'react-icons/io5';
 import { HiChatBubbleLeft } from 'react-icons/hi2';
@@ -168,7 +167,12 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                                                 {languageList
                                                     .sort((a, b) => (a.value > b.value ? 1 : -1))
                                                     .map((language, index) => (
-                                                        <DropdownMenuRadioItem key={index} value={language.value} className='cursor-pointer space-x-1' onClick={() => router.push(language.value)}>
+                                                        <DropdownMenuRadioItem
+                                                            key={index}
+                                                            value={language.value}
+                                                            className='cursor-pointer space-x-1'
+                                                            onClick={() => router.push('/' + language.value)}
+                                                        >
                                                             <span>{language.name}</span>
                                                         </DropdownMenuRadioItem>
                                                     ))}

@@ -89,7 +89,7 @@ const LandingHeader = () => {
                         <DropdownMenuContent className='transition duration-200 ease-in-out'>
                             {ModeList.map((mode, index) => (
                                 <DropdownMenuItem key={index}>
-                                    <Link href={locale + mode.link} className='inline-flex w-full items-center space-x-1'>
+                                    <Link href={mode.link} className='inline-flex w-full items-center space-x-1'>
                                         <mode.icon className='block' />
                                         <span>{t(mode.title)}</span>
                                     </Link>
