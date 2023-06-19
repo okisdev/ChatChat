@@ -4,16 +4,18 @@ import Image from 'next/image';
 
 import { useTranslations } from 'next-intl';
 
+import { toast } from 'react-hot-toast';
+
 import store from '@/hooks/store';
 import { useAtom, useAtomValue } from 'jotai';
 
 import Tippy from '@tippyjs/react';
 
 import { MdInfoOutline } from 'react-icons/md';
-import { TbCircleArrowRightFilled, TbDots } from 'react-icons/tb';
+import { TbCircleArrowRightFilled } from 'react-icons/tb';
+import { RiAddCircleLine, RiCloseCircleLine } from 'react-icons/ri';
 
 import { Badge } from '@/components/ui/badge';
-
 import { Checkbox } from '@/components/ui/checkbox';
 import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
@@ -50,6 +52,19 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
     // Plugins
     const [enablePlugins, setEnablePlugins] = useAtom(store.enablePluginsAtom);
 
+    // File
+    const [fileConfig, setFileConfig] = useAtom(store.fileConfigAtom);
+    const [enableFile, setEnableFile] = useState<boolean>(false);
+    const [fileLink, setFileLink] = useState<string>('');
+    const [files, setFiles] = useState<string[]>([]);
+
+    useEffect(() => {
+        if (fileConfig) {
+            setFiles(fileConfig.files);
+            setEnableFile(fileConfig.enable);
+        }
+    }, [fileConfig, setEnableFile]);
+
     // Service Provider
     const serviceProvider = useAtomValue(store.serviceProviderAtom);
 
@@ -83,6 +98,39 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
 
     const handleCheckPlugins = (value: boolean) => {
         setEnablePlugins(value);
+    };
+
+    const handleCheckFile = (value: boolean) => {
+        setEnableFile(value);
+        setFileConfig({ enable: value, files });
+    };
+
+    const onAdd = () => {
+        if (!fileLink.startsWith('http')) {
+            toast.error(t('Please enter a valid URL'));
+            return;
+        }
+
+        if (files.includes(fileLink)) {
+            toast.error(t('This URL already exists'));
+            return;
+        }
+
+        if (files.length >= 3) {
+            toast.error(t('You can only add 3 files'));
+            return;
+        }
+
+        setFiles([...files, fileLink]);
+        setFileConfig({ enable: true, files: [...files, fileLink] });
+
+        setFileLink('');
+    };
+
+    const onDelete = (index: number) => {
+        const newFiles = files.filter((_, i) => i !== index);
+
+        setFiles(newFiles);
     };
 
     useEffect(() => {
@@ -250,6 +298,59 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                                 <Badge variant='secondary' className='font-normal'>
                                     {t('Beta')}
                                 </Badge>
+                            </div>
+                        </div>
+                        <div className='flex items-center space-x-2'>
+                            <Checkbox checked={enableFile} onCheckedChange={handleCheckFile} aria-label='File Checkbox' />
+                            <div className='inline-flex items-center space-x-1'>
+                                <p>{t('File')}</p>
+                                <Tippy content={t('Conversation with files')}>
+                                    <button aria-label='File Info'>
+                                        <MdInfoOutline className='text-lg' />
+                                    </button>
+                                </Tippy>
+                                <Badge variant='secondary' className='font-normal'>
+                                    {t('Beta')}
+                                </Badge>
+                                {enableFile && (
+                                    <Popover>
+                                        <PopoverTrigger>
+                                            <TbCircleArrowRightFilled className='text-lg' />
+                                        </PopoverTrigger>
+                                        <PopoverContent className='space-y-2'>
+                                            {files.map((file, index) => {
+                                                return (
+                                                    <div key={index} className='flex items-center space-x-2'>
+                                                        <div className='flex w-10/12 cursor-not-allowed overflow-x-auto rounded-lg border-2 p-2'>
+                                                            <p className='truncate text-sm'>{file}</p>
+                                                        </div>
+                                                        <button
+                                                            className='inline-flex w-2/12 items-center justify-center rounded p-3 transition duration-200 ease-in-out hover:bg-red-500 dark:hover:bg-red-400'
+                                                            onClick={() => onDelete(index)}
+                                                        >
+                                                            <RiCloseCircleLine />
+                                                        </button>
+                                                    </div>
+                                                );
+                                            })}
+                                            <div className='flex items-center space-x-2'>
+                                                <input
+                                                    value={fileLink}
+                                                    onChange={(e) => {
+                                                        setFileLink(e.target.value);
+                                                    }}
+                                                    className='flex w-10/12 overflow-x-auto rounded-lg border-2 bg-transparent p-2 text-sm'
+                                                />
+                                                <button
+                                                    className='inline-flex w-2/12 items-center justify-center rounded p-3 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
+                                                    onClick={onAdd}
+                                                >
+                                                    <RiAddCircleLine />
+                                                </button>
+                                            </div>
+                                        </PopoverContent>
+                                    </Popover>
+                                )}
                             </div>
                         </div>
                     </div>

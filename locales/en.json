@@ -108,7 +108,12 @@
     "Explain what the code means": "Explain what the code means",
     "Convert the code to a different language": "Convert the code to a different language",
     "Allow you to create your own custom rule": "Allow you to create your own custom rule",
-    "Please wait for the system response": "Please wait for the system response"
+    "Please wait for the system response": "Please wait for the system response",
+    "file": "file",
+    "Please enter a valid URL": "Please enter a valid URL",
+    "This URL already exists": "This URL already exists",
+    "You can only add 3 files": "You can only add 3 files",
+    "Conversation with files": "Conversation with files"
   },
   "auth": {
     "Home": "Home",

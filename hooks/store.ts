@@ -36,6 +36,18 @@ const searchConfigAtom = atomWithStorage('searchConfig', {
     searchAPIKey: '',
 });
 
+// File Config
+const fileConfigAtom = atomWithStorage<{
+    enable: boolean;
+    files: string[];
+}>('fileConfig', {
+    enable: false,
+    files: [],
+});
+
+const enableFileAtom = atom((get) => get(fileConfigAtom).enable);
+const filesAtom = atom((get) => get(fileConfigAtom).files);
+
 // ------------------ App Config ------------------
 
 const serviceProviderAtom = atomWithStorage<ServiceProviderProps>('serviceProvider', 'OpenAI');
@@ -88,6 +100,9 @@ export default {
     isHiddenSideAtom,
     isSendKeyEnterAtom,
     enableStreamMessagesAtom,
+    fileConfigAtom,
+    enableFileAtom,
+    filesAtom,
     systemPromptContentAtom,
     enableSystemPrompt,
     enablePluginsAtom,

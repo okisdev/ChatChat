@@ -51,6 +51,8 @@ const InputArea = ({
 
     const enablePlugins = useAtomValue(store.enablePluginsAtom);
 
+    const fileConfig = useAtomValue(store.fileConfigAtom);
+
     const contextModeAtom = useAtomValue(store.contextModeAtom);
 
     const { transcript, listening, resetTranscript } = useSpeechRecognition();
@@ -241,6 +243,11 @@ const InputArea = ({
                             {contextModeAtom.enable && (
                                 <Badge variant='secondary' className='text-xs font-normal'>
                                     {contextModeAtom.contextCount == 0 ? t('no context') : contextModeAtom.contextCount + ' ' + t('contexts')}
+                                </Badge>
+                            )}
+                            {fileConfig.enable && (
+                                <Badge variant='secondary' className='text-xs font-normal'>
+                                    {t('file')}
                                 </Badge>
                             )}
                         </>

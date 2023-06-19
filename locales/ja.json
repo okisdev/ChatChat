@@ -108,7 +108,12 @@
     "Explain what the code means": "コードの意味を説明する",
     "Convert the code to a different language": "コードを別の言語に変換する",
     "Allow you to create your own custom rule": "独自のカスタムルールを作成できます",
-    "Please wait for the system response": "システムの応答をお待ちください"
+    "Please wait for the system response": "システムの応答をお待ちください",
+    "file": "ファイル",
+    "Please enter a valid URL": "有効なURLを入力してください",
+    "This URL already exists": "このURLはすでに存在します",
+    "You can only add 3 files": "ファイルは3つしか追加できません",
+    "Conversation with files": "ファイル付きの会話"
   },
   "auth": {
     "Home": "ホーム",
