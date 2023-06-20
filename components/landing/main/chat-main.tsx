@@ -88,6 +88,38 @@ const ChatMain = () => {
     // Search
     const searchPluginConfig = useAtomValue(store.searchConfigAtom);
 
+    // File
+    const fileConfig = useAtomValue(store.fileConfigAtom);
+    const enableFile = fileConfig.enable;
+    const [fileContent, setFileContent] = useState<{ url: string; text: string }[]>([]);
+
+    useEffect(() => {
+        if (enableFile) {
+            for (let i = 0; i < fileConfig.files.length; i++) {
+                const file = fileConfig.files[i];
+
+                const getFile = async () => {
+                    const response = await fetch('/api/message/file?url=' + file, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+
+                    const data = await response.json();
+
+                    if (!data) {
+                        return;
+                    }
+
+                    setFileContent((prev) => [...prev, data]);
+                };
+
+                getFile();
+            }
+        }
+    }, [fileConfig, enableFile]);
+
     useEffect(() => {
         if (!userSettings) {
             const getUserInfo = async () => {
@@ -294,6 +326,17 @@ const ChatMain = () => {
         if (indexNumber && indexNumber >= 0) {
             setConversations((prev) => prev.slice(0, indexNumber));
             messagesPayload = messagesPayload.slice(0, indexNumber);
+        }
+
+
+        if (enableFile) {
+            let filePrompt = '';
+
+            for (let i = 0; i < fileContent.length; i++) {
+                filePrompt += 'The content of file: ' + fileContent[i].url + ' is' + fileContent[i].text + '.\n\n\n';
+            }
+
+            messagesPayload = [{ role: 'system', content: filePrompt }, ...messagesPayload];
         }
 
         const response = await fetch('/api/messages', {
