@@ -108,7 +108,12 @@
     "Explain what the code means": "解释代码的含义",
     "Convert the code to a different language": "将代码转换为其他语言",
     "Allow you to create your own custom rule": "允许您创建自己的自定义规则",
-    "Please wait for the system response": "请等待系统响应"
+    "Please wait for the system response": "请等待系统响应",
+    "file": "文件",
+    "Please enter a valid URL": "请输入有效的 URL",
+    "This URL already exists": "此 URL 已存在",
+    "You can only add 3 files": "您只能添加 3 个文件",
+    "Conversation with files": "带有文件的对话"
   },
   "auth": {
     "Home": "主页",

@@ -108,7 +108,12 @@
     "Explain what the code means": "코드의 의미를 설명하세요",
     "Convert the code to a different language": "코드를 다른 언어로 변환하세요",
     "Allow you to create your own custom rule": "사용자 정의 규칙을 만들 수 있도록 합니다",
-    "Please wait for the system response": "시스템 응답을 기다려주세요"
+    "Please wait for the system response": "시스템 응답을 기다려주세요",
+    "file": "파일",
+    "Please enter a valid URL": "유효한 URL을 입력해주세요",
+    "This URL already exists": "이 URL은 이미 존재합니다",
+    "You can only add 3 files": "파일은 최대 3개까지만 추가할 수 있습니다",
+    "Conversation with files": "파일이 포함된 대화"
   },
   "auth": {
     "Home": "홈",

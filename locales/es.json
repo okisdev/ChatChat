@@ -108,7 +108,12 @@
     "Explain what the code means": "Explicar qué significa el código",
     "Convert the code to a different language": "Convertir el código a un lenguaje diferente",
     "Allow you to create your own custom rule": "Permitirte crear tu propia regla personalizada",
-    "Please wait for the system response": "Por favor, espera la respuesta del sistema"
+    "Please wait for the system response": "Por favor, espera la respuesta del sistema",
+    "file": "archivo",
+    "Please enter a valid URL": "Por favor, ingresa una URL válida",
+    "This URL already exists": "Esta URL ya existe",
+    "You can only add 3 files": "Solo puedes agregar 3 archivos",
+    "Conversation with files": "Conversación con archivos"
   },
   "auth": {
     "Home": "Inicio",
