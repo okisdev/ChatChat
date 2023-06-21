@@ -5,7 +5,7 @@
 [![LICENSE](https://img.shields.io/github/license/okisdev/ChatChat?style=flat-square)](https://github.com/okisdev/ChatChat/blob/master/LICENSE) [![Twitter](https://img.shields.io/twitter/follow/okisdev)](https://twitter.com/okisdev) [![Telegram](https://img.shields.io/badge/Telegram-Chat%20Chat-blue?style=flat-square&logo=telegram)](https://t.me/+uWx9qtafv-BiNGVk)
 
 <p align='center'>
-    <a href='README.mdx'>English</a> | <a href='README.zh_HK.mdx'>繁体中文</a> | <a href='README.zh_CN.mdx'>简体中文</a> | <a>日本語</a>
+    <a href='README.md'>English</a> | <a href='README.zh_HK.md'>繁体中文</a> | <a href='README.zh_CN.md'>简体中文</a> | <a>日本語</a>
 </p>
 
 <p align='center'>
