@@ -350,6 +350,21 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
             return;
         }
 
+        if (currentServiceProvider == 'Hugging Face' && !accessToken) {
+            toast.error(t('Please fill in all required fields'));
+            return;
+        }
+
+        if (currentServiceProvider == 'Cohere' && !cohereAPIKey) {
+            toast.error(t('Please fill in all required fields'));
+            return;
+        }
+
+        if (currentServiceProvider == 'Claude' && !claudeAPIKey) {
+            toast.error(t('Please fill in all required fields'));
+            return;
+        }
+
         switch (currentServiceProvider) {
             case 'OpenAI':
                 setOpenAIConfig({

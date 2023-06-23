@@ -245,7 +245,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
                                             setContextModeAtom({ enable: true, contextCount: parseInt(value) });
                                         }}
                                     >
-                                        <SelectTrigger className='h-5 w-16'>
+                                        <SelectTrigger className='h-5 w-16' disabled={globalDisabled}>
                                             <SelectValue defaultValue={contextCount ? contextCount : 0} />
                                         </SelectTrigger>
                                         <SelectContent>
