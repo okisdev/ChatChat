@@ -100,17 +100,11 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
         }
     }, [searchConfig]);
 
-    const onCancel = () => {
-        setIsSheetOpen(false);
-    };
-
     const handleSwitchSendMessageKey = () => {
         setIsSendKeyEnter(!isSendKeyEnter);
 
         toast.success(`${t('Send message key changed to')} ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`);
     };
-
-    const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
     const [currentServiceProvider, setCurrentServiceProvider] = useState<ServiceProviderProps>('OpenAI');
     const [serviceProvider, setServiceProvider] = useAtom(store.serviceProviderAtom);
@@ -154,10 +148,10 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     const [claudeAPITemperature, setClaudeAPITemperature] = useState<number>(0.3);
 
     useEffect(() => {
-        if (isDialogOpen && serviceProvider) {
+        if (isSheetOpen && serviceProvider) {
             setCurrentServiceProvider(serviceProvider);
         }
-    }, [isDialogOpen, serviceProvider]);
+    }, [isSheetOpen, serviceProvider]);
 
     useEffect(() => {
         if (openAIConfig) {
@@ -264,6 +258,10 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
             break;
     }
 
+    const onCancel = () => {
+        setIsSheetOpen(false);
+    };
+
     const onReset = () => {
         setCurrentServiceProvider('OpenAI');
         setServiceProvider('OpenAI');
@@ -309,8 +307,6 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
         setApiEndpoint('');
 
         toast.success(t('Settings reset'));
-
-        setIsDialogOpen(false);
     };
 
     const onSave = () => {
@@ -325,8 +321,6 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
             searchEngineID: searchEngineID,
             searchAPIKey: searchAPIKey,
         });
-
-        setIsSheetOpen(false);
 
         if (currentServiceProvider == 'OpenAI' && !useCloudSettings) {
             if (!apiKey) {
@@ -415,7 +409,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
 
         toast.success(t('Settings saved'));
 
-        setIsDialogOpen(false);
+        setIsSheetOpen(false);
     };
 
     return (
@@ -574,8 +568,11 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                     </Tabs>
                 </div>
                 <SheetFooter>
-                    <Button type='submit' variant='destructive' onClick={onCancel}>
+                    <Button type='submit' variant='outline' onClick={onCancel}>
                         {t('Cancel')}
+                    </Button>
+                    <Button type='submit' variant='destructive' onClick={onReset}>
+                        {t('Reset')}
                     </Button>
                     <Button type='submit' variant='outline' onClick={onSave}>
                         {t('Save')}
