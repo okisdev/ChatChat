@@ -56,6 +56,13 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
 
     const [isSendKeyEnter, setIsSendKeyEnter] = useAtom(store.isSendKeyEnterAtom);
 
+    const [enableAutoSpeech, setEnableAutoSpeech] = useAtom(store.autoSpeechAtom);
+
+    const handleSwitchAutoSpeech = () => {
+        setEnableAutoSpeech(!enableAutoSpeech);
+        toast.success(`${t('Auto Speech')} ${enableAutoSpeech ? t('disabled') : t('enabled')}`);
+    };
+
     // Search
     const [searchEngine, setSearchEngine] = useState<string>(searchEnginesList[0].name);
     const [searchEngineID, setSearchEngineID] = useState<string>('');
@@ -102,7 +109,6 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
 
     const handleSwitchSendMessageKey = () => {
         setIsSendKeyEnter(!isSendKeyEnter);
-
         toast.success(`${t('Send message key changed to')} ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`);
     };
 
@@ -432,6 +438,15 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                             <Switch checked={isSendKeyEnter} onCheckedChange={handleSwitchSendMessageKey} />
                             <Label className='px-1 font-normal'>{t('Send Message using Enter Key')}</Label>
                             <Tippy content={`Current: ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`}>
+                                <button>
+                                    <MdInfoOutline className='text-lg' />
+                                </button>
+                            </Tippy>
+                        </div>
+                        <div className='flex items-center space-x-1'>
+                            <Switch checked={enableAutoSpeech} onCheckedChange={handleSwitchAutoSpeech} />
+                            <Label className='px-1 font-normal'>{t('Auto Speech')}</Label>
+                            <Tippy content={`${t('Auto read out all replies')}`}>
                                 <button>
                                     <MdInfoOutline className='text-lg' />
                                 </button>

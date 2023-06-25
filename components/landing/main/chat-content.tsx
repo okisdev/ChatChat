@@ -28,6 +28,8 @@ const MainContent = ({
 }) => {
     const t = useTranslations('landing');
 
+    const autoSpeech = useAtomValue(store.autoSpeechAtom);
+
     const ttsConfig = useAtomValue(store.textToSpeechConfigAtom);
 
     const endOfMessageRef = useRef<HTMLDivElement>(null);
@@ -39,6 +41,12 @@ const MainContent = ({
             endOfMessageRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     }, [conversations, systemResponse]);
+
+    useEffect(() => {
+        if (autoSpeech && !isSpeaking && !waitingSystemResponse) {
+            onSpeech(conversations.length - 1);
+        }
+    }, [autoSpeech, conversations]);
 
     const onCopy = (index: number) => {
         navigator.clipboard.writeText(conversations[index].content);
