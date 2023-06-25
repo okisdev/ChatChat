@@ -113,7 +113,11 @@
     "Please enter a valid URL": "請輸入有效的 URL",
     "This URL already exists": "此 URL 已存在",
     "You can only add 3 files": "您只能添加 3 個檔案",
-    "Conversation with files": "帶有檔案的對話"
+    "Conversation with files": "帶有檔案的對話",
+    "Auto Speech": "自動朗讀",
+    "Auto read out all replies": "自動朗讀所有回覆",
+    "disabled": "已停用",
+    "enabled": "已啟用"
   },
   "auth": {
     "Home": "首頁",

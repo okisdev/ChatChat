@@ -113,7 +113,11 @@
     "Please enter a valid URL": "Пожалуйста, введите действительный URL",
     "This URL already exists": "Этот URL уже существует",
     "You can only add 3 files": "Вы можете добавить только 3 файла",
-    "Conversation with files": "Разговор с файлами"
+    "Conversation with files": "Разговор с файлами",
+    "Auto Speech": "Авто речь",
+    "Auto read out all replies": "Автоматически прочитать все ответы",
+    "disabled": "отключено",
+    "enabled": "включено"
   },
   "auth": {
     "Home": "Главная",

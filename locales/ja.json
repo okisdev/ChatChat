@@ -113,7 +113,11 @@
     "Please enter a valid URL": "有効なURLを入力してください",
     "This URL already exists": "このURLはすでに存在します",
     "You can only add 3 files": "ファイルは3つしか追加できません",
-    "Conversation with files": "ファイル付きの会話"
+    "Conversation with files": "ファイル付きの会話",
+    "Auto Speech": "自動音声",
+    "Auto read out all replies": "すべての返信を自動的に読み上げる",
+    "disabled": "無効になっています",
+    "enabled": "有効になっています"
   },
   "auth": {
     "Home": "ホーム",

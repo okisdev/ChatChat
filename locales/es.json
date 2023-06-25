@@ -113,7 +113,11 @@
     "Please enter a valid URL": "Por favor, ingresa una URL válida",
     "This URL already exists": "Esta URL ya existe",
     "You can only add 3 files": "Solo puedes agregar 3 archivos",
-    "Conversation with files": "Conversación con archivos"
+    "Conversation with files": "Conversación con archivos",
+    "Auto Speech": "Auto Habla",
+    "Auto read out all replies": "Leer automáticamente todas las respuestas",
+    "disabled": "deshabilitado",
+    "enabled": "habilitado"
   },
   "auth": {
     "Home": "Inicio",

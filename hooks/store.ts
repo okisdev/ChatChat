@@ -29,6 +29,8 @@ const textToSpeechConfigAtom = atomWithStorage('textToSpeechConfig', {
     pitch: 1.0,
 });
 
+const autoSpeechAtom = atomWithStorage('autoSpeech', false);
+
 // Search Config
 const searchConfigAtom = atomWithStorage('searchConfig', {
     searchEngine: 'pse',
@@ -108,6 +110,7 @@ export default {
     enablePluginsAtom,
     contextModeAtom,
     textToSpeechConfigAtom,
+    autoSpeechAtom,
     searchConfigAtom,
     serviceProviderAtom,
     useCloudSettingsAtom,
