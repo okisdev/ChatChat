@@ -192,6 +192,22 @@ const ChatMain = () => {
         }
     }, [history]);
 
+    const generateMessagesPayload = (conversations: any[], message: OpenAIMessage) => {
+        let messagesPayload;
+        if (!enableContextMode) {
+            isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
+                ? (messagesPayload = [...conversations, message])
+                : (messagesPayload = [{ role: 'system', content: systemPromptContent }, ...conversations, message]);
+        } else if (contextCount == 0) {
+            isSystemPromptEmpty || conversations.find((c) => c.role === 'system') ? (messagesPayload = [message]) : (messagesPayload = [{ role: 'system', content: systemPromptContent }, message]);
+        } else {
+            isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
+                ? (messagesPayload = [...conversations.slice(-contextCount), message])
+                : (messagesPayload = [...conversations.slice(-contextCount), { role: 'system', content: systemPromptContent }, message]);
+        }
+        return messagesPayload;
+    };
+
     const handleMessageSend = async (message: AppMessageProps, indexNumber?: number | null, plugin?: PluginProps | null) => {
         setWaitingSystemResponse(true);
 
@@ -293,41 +309,15 @@ const ChatMain = () => {
         let messagesPayload: AppMessageProps[] = [];
 
         if (plugin && enablePlugin && pluginResponse && pluginPrompt) {
-            if (!enableContextMode) {
-                isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
-                    ? (messagesPayload = [...conversations, { role: 'user', content: pluginPrompt }])
-                    : (messagesPayload = [{ role: 'system', content: systemPromptContent }, ...conversations, { role: 'user', content: pluginPrompt }]);
-            } else if (contextCount == 0) {
-                isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
-                    ? (messagesPayload = [{ role: 'user', content: pluginPrompt }])
-                    : (messagesPayload = [
-                          { role: 'system', content: systemPromptContent },
-                          { role: 'user', content: pluginPrompt },
-                      ]);
-            } else {
-                isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
-                    ? (messagesPayload = [...conversations.slice(-contextCount), { role: 'user', content: pluginPrompt }])
-                    : (messagesPayload = [...conversations.slice(-contextCount), { role: 'system', content: systemPromptContent }, { role: 'user', content: pluginPrompt }]);
-            }
+            messagesPayload = generateMessagesPayload(conversations, { role: 'user', content: pluginPrompt });
         } else {
-            if (!enableContextMode) {
-                isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
-                    ? (messagesPayload = [...conversations, message])
-                    : (messagesPayload = [{ role: 'system', content: systemPromptContent }, ...conversations, message]);
-            } else if (contextCount == 0) {
-                isSystemPromptEmpty || conversations.find((c) => c.role === 'system') ? (messagesPayload = [message]) : (messagesPayload = [{ role: 'system', content: systemPromptContent }, message]);
-            } else {
-                isSystemPromptEmpty || conversations.find((c) => c.role === 'system')
-                    ? (messagesPayload = [...conversations.slice(-contextCount), message])
-                    : (messagesPayload = [...conversations.slice(-contextCount), { role: 'system', content: systemPromptContent }, message]);
-            }
+            messagesPayload = generateMessagesPayload(conversations, message);
         }
 
         if (indexNumber && indexNumber >= 0) {
             setConversations((prev) => prev.slice(0, indexNumber));
             messagesPayload = messagesPayload.slice(0, indexNumber);
         }
-
 
         if (enableFile) {
             let filePrompt = '';
