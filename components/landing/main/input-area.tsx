@@ -45,7 +45,9 @@ const InputArea = ({
     const [filteredCommands, setFilteredCommands] = useState(CommandsList);
     const [selectedCommandIndex, setSelectedCommandIndex] = useState<number>(0);
 
+    // Keyboard
     const isSendKeyEnter = useAtomValue(store.isSendKeyEnterAtom);
+    const [isComposing, setIsComposing] = useState<boolean>(false);
 
     const enableSystemPrompt = useAtomValue(store.enableSystemPrompt);
 
@@ -188,7 +190,19 @@ const InputArea = ({
         toast.success(`${t('Copied share link:')} ${conversationID}`);
     };
 
+    const handleCompositionStart = () => {
+        setIsComposing(true);
+    };
+
+    const handleCompositionEnd = () => {
+        setIsComposing(false);
+    };
+
     const handleOnKeyDown = (e: any) => {
+        if (isComposing) {
+            return;
+        }
+
         const isShiftKey = e.shiftKey;
         const isEnterKey = e.key === 'Enter';
         const isEscapeKey = e.key === 'Escape';
@@ -201,9 +215,6 @@ const InputArea = ({
         if (showCommands && isEnterKey) {
             e.preventDefault();
             handleCommandClick(`/${filteredCommands[selectedCommandIndex].name}`);
-        } else if (isSendOnEnter || isSendOnShiftEnter) {
-            e.preventDefault();
-            handleSend();
         } else if (isEscapeKey) {
             setShowCommands(false);
         } else if (isUpArrow && showCommands) {
@@ -212,6 +223,11 @@ const InputArea = ({
         } else if (isDownArrow && showCommands) {
             e.preventDefault();
             setSelectedCommandIndex((prevIndex) => (prevIndex < filteredCommands.length - 1 ? prevIndex + 1 : prevIndex));
+        }
+
+        if (isSendOnEnter || isSendOnShiftEnter) {
+            e.preventDefault();
+            handleSend();
         }
     };
 
@@ -301,6 +317,8 @@ const InputArea = ({
                     value={userInput}
                     onChange={handleTextAreaChange}
                     onKeyDown={handleOnKeyDown}
+                    onCompositionStart={handleCompositionStart}
+                    onCompositionEnd={handleCompositionEnd}
                     ref={textAreaRef}
                 />
                 <div className='absolute bottom-2 right-2 flex items-center justify-center'>
