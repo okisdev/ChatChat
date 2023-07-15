@@ -78,6 +78,7 @@
     "@types/react-syntax-highlighter": "^15.5.7",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.0",
-    "prisma": "^4.16.2"
+    "prisma": "^4.16.2",
+    "webpack": "^5.88.1"
   }
 }
