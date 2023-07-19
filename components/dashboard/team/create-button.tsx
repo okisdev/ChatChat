@@ -168,7 +168,7 @@ const CreateButton = () => {
                     </div>
                     <div className='space-y-1'>
                         <Label>Azure API Endpoint</Label>
-                        <Input placeholder='https://xxxxx.opneai.azure.com' value={azureEndpoint} onChange={(e) => setAzureEndpoint(e.target.value)} />
+                        <Input placeholder='https://xxxxx.openai.azure.com' value={azureEndpoint} onChange={(e) => setAzureEndpoint(e.target.value)} />
                     </div>
                     <div className='space-y-1'>
                         <Label>Azure Deployment Name</Label>
