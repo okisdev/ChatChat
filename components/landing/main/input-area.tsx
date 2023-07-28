@@ -223,9 +223,7 @@ const InputArea = ({
         } else if (isDownArrow && showCommands) {
             e.preventDefault();
             setSelectedCommandIndex((prevIndex) => (prevIndex < filteredCommands.length - 1 ? prevIndex + 1 : prevIndex));
-        }
-
-        if (isSendOnEnter || isSendOnShiftEnter) {
+        } else if (isSendOnEnter || isSendOnShiftEnter) {
             e.preventDefault();
             handleSend();
         }
