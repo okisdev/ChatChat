@@ -117,7 +117,8 @@
     "Auto Speech": "自動音声",
     "Auto read out all replies": "すべての返信を自動的に読み上げる",
     "disabled": "無効になっています",
-    "enabled": "有効になっています"
+    "enabled": "有効になっています",
+    "New Version Available": "新しいバージョンが利用可能です"
   },
   "auth": {
     "Home": "ホーム",

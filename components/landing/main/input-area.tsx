@@ -336,7 +336,6 @@ const InputArea = ({
                     </button>
                 </div>
             </div>
-            <div className='text-center'>{customConfig.InputArea.banner}</div>
         </div>
     );
 };

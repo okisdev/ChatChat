@@ -117,7 +117,8 @@
     "Auto Speech": "Automatische Sprache",
     "Auto read out all replies": "Alle Antworten automatisch vorlesen",
     "disabled": "deaktiviert",
-    "enabled": "aktiviert"
+    "enabled": "aktiviert",
+    "New Version Available": "Neue Version verfügbar"
   },
   "auth": {
     "Home": "Startseite",

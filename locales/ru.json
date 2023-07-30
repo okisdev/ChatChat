@@ -117,7 +117,8 @@
     "Auto Speech": "Авто речь",
     "Auto read out all replies": "Автоматически прочитать все ответы",
     "disabled": "отключено",
-    "enabled": "включено"
+    "enabled": "включено",
+    "New Version Available": "Доступна новая версия"
   },
   "auth": {
     "Home": "Главная",

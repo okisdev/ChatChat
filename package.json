@@ -1,6 +1,6 @@
 {
   "name": "chat-chat",
-  "version": "0.0.2",
+  "version": "0.0.33",
   "private": true,
   "scripts": {
     "dev": "next dev",

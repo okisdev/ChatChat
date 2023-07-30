@@ -37,11 +37,12 @@ import {
     DropdownMenuRadioGroup,
 } from '@/components/ui/dropdown-menu';
 
-import { siteConfig, sidebarMoreMenu } from '@/config/site.config';
+import { siteConfig } from '@/config/site.config';
 
 import SideHistory from '@/components/landing/side/side-history';
 import SideAppSettings from '@/components/landing/side/side-app-settings';
 import SideUserSettings from '@/components/landing/side/side-user-settings';
+import SideInfo from '@/components/landing/side/side-info';
 
 const LandingSide = ({ className, user }: { className?: string; user: User | null }) => {
     const router = useRouter();
@@ -111,11 +112,12 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                     </DropdownMenu>
                 )}
                 <div className='flex flex-row items-center justify-between p-3'>
-                    <div className='flex space-x-3'>
+                    <div className='flex space-x-2'>
                         <SideAppSettings user={user} />
                         {!user && <SideUserSettings />}
                     </div>
-                    <div className='flex'>
+                    <div className='flex items-center space-x-2'>
+                        <SideInfo />
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <button
@@ -126,17 +128,6 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                                 </button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className='transition duration-200 ease-in-out' side='top'>
-                                {sidebarMoreMenu.map((item, index) => {
-                                    return (
-                                        <DropdownMenuItem key={index}>
-                                            <Link href={item.url} className='flex w-full items-center space-x-2' target='_blank'>
-                                                <item.icon className='block' />
-                                                <span>{item.title}</span>
-                                            </Link>
-                                        </DropdownMenuItem>
-                                    );
-                                })}
-                                <DropdownMenuSeparator />
                                 <DropdownMenuSub>
                                     <DropdownMenuSubTrigger className='cursor-pointer space-x-1'>
                                         <TbContrast />

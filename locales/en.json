@@ -117,7 +117,8 @@
     "Auto Speech": "Auto Speech",
     "Auto read out all replies": "Auto read out all replies",
     "disabled": "disabled",
-    "enabled": "enabled"
+    "enabled": "enabled",
+    "New Version Available": "New Version Available"
   },
   "auth": {
     "Home": "Home",

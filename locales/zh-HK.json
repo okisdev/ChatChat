@@ -117,7 +117,8 @@
     "Auto Speech": "自動朗讀",
     "Auto read out all replies": "自動朗讀所有回覆",
     "disabled": "已停用",
-    "enabled": "已啟用"
+    "enabled": "已啟用",
+    "New Version Available": "有新版本可用"
   },
   "auth": {
     "Home": "首頁",
