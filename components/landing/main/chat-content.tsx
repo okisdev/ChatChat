@@ -60,7 +60,7 @@ const MainContent = ({
 
             const utterance = new SpeechSynthesisUtterance(conversations[index].content);
 
-            utterance.voice = voices.find((voice) => voice.name === ttsConfig.voice) || voices[0];
+            utterance.voice = voices.find((voice) => voice.name === ttsConfig.voice) ?? voices[0];
             utterance.rate = ttsConfig.speed;
             utterance.pitch = ttsConfig.pitch;
             utterance.onend = () => {

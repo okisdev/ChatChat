@@ -607,13 +607,13 @@ const searchEnginesList = [
     },
 ];
 
-interface serviceProviderProps {
+interface ServiceProviderListProps {
     name: string;
     value: ServiceProviderProps;
     status: number;
 }
 
-const serviceProviderList: serviceProviderProps[] = [
+const serviceProviderList: ServiceProviderListProps[] = [
     {
         name: 'Azure',
         value: 'Azure',

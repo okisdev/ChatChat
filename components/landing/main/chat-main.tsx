@@ -95,8 +95,8 @@ const ChatMain = () => {
 
     useEffect(() => {
         if (enableFile) {
-            for (let i = 0; i < fileConfig.files.length; i++) {
-                const file = fileConfig.files[i];
+            for (const element of fileConfig.files) {
+                const file = element;
 
                 const getFile = async () => {
                     const response = await fetch('/api/message/file?url=' + file, {
@@ -322,8 +322,8 @@ const ChatMain = () => {
         if (enableFile) {
             let filePrompt = '';
 
-            for (let i = 0; i < fileContent.length; i++) {
-                filePrompt += 'The content of file: ' + fileContent[i].url + ' is' + fileContent[i].text + '.\n\n\n';
+            for (const element of fileContent) {
+                filePrompt += 'The content of file: ' + element.url + ' is' + element.text + '.\n\n\n';
             }
 
             messagesPayload = [{ role: 'system', content: filePrompt }, ...messagesPayload];
