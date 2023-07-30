@@ -117,14 +117,15 @@
     "Auto Speech": "自动语音",
     "Auto read out all replies": "自动朗读所有回复",
     "disabled": "已禁用",
-    "enabled": "已启用"
+    "enabled": "已启用",
+    "New Version Available": "新版本可用"
   },
   "auth": {
     "Home": "主页",
     "Sign In": "登录",
     "Register": "注册",
     "Sign In With Email": "使用电子邮件登录",
-    "Login In": "登录",
+    "Log In": "登录",
     "New User?": "新用户？",
     "Already have an account with us?": "已经有账户了？",
     "Sign up": "注册",

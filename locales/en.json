@@ -117,14 +117,15 @@
     "Auto Speech": "Auto Speech",
     "Auto read out all replies": "Auto read out all replies",
     "disabled": "disabled",
-    "enabled": "enabled"
+    "enabled": "enabled",
+    "New Version Available": "New Version Available"
   },
   "auth": {
     "Home": "Home",
     "Sign In": "Sign In",
     "Register": "Register",
     "Sign In With Email": "Sign In With Email",
-    "Login In": "Login In",
+    "Log In": "Log In",
     "New User?": "New User?",
     "Already have an account with us?": "Already have an account with us?",
     "Sign up": "Sign up",

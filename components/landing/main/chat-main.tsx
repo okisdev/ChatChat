@@ -516,7 +516,7 @@ const ChatMain = () => {
 
                                 const newContent = prompt(t('Edit message:'), conversations[promptIndex].content);
 
-                                if (newContent !== null) {
+                                if (newContent !== null && newContent !== '') {
                                     const newMessage: AppMessageProps = {
                                         role: 'user',
                                         content: newContent,

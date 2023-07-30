@@ -1,9 +1,6 @@
 import Link from 'next/link';
 
-interface customConfig {
-    InputArea: {
-        banner: JSX.Element;
-    };
+interface customConfigProps {
     Auth: {
         footer: JSX.Element;
     };
@@ -13,18 +10,7 @@ interface customConfig {
     };
 }
 
-export const customConfig: customConfig = {
-    InputArea: {
-        banner: (
-            <p className='text-sm'>
-                Copyright © Chat Chat.{' '}
-                <Link href='https://github.com/okisdev/ChatChat' target='_blank' className='underline'>
-                    Open-Source
-                </Link>
-                . AGPL-3.0 License.
-            </p>
-        ),
-    },
+export const customConfig: customConfigProps = {
     Auth: {
         footer: (
             <p className='text-xs'>

@@ -440,7 +440,7 @@ const FileMain = () => {
                                 onEdit={(index: number) => {
                                     const newContent = prompt('Edit message:', clearedConversation[index].content);
 
-                                    if (newContent !== null) {
+                                    if (newContent !== null && newContent !== '') {
                                         const newMessage: AppMessageProps = {
                                             role: 'user',
                                             content: newContent,

@@ -117,14 +117,15 @@
     "Auto Speech": "Авто речь",
     "Auto read out all replies": "Автоматически прочитать все ответы",
     "disabled": "отключено",
-    "enabled": "включено"
+    "enabled": "включено",
+    "New Version Available": "Доступна новая версия"
   },
   "auth": {
     "Home": "Главная",
     "Sign In": "Войти",
     "Register": "Зарегистрироваться",
     "Sign In With Email": "Войти с помощью электронной почты",
-    "Login In": "Вход",
+    "Log In": "Вход",
     "New User?": "Новый пользователь?",
     "Already have an account with us?": "Уже есть аккаунт?",
     "Sign up": "Зарегистрироваться",

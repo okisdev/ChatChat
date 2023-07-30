@@ -117,14 +117,15 @@
     "Auto Speech": "Auto Habla",
     "Auto read out all replies": "Leer automáticamente todas las respuestas",
     "disabled": "deshabilitado",
-    "enabled": "habilitado"
+    "enabled": "habilitado",
+    "New Version Available": "Nueva Versión Disponible"
   },
   "auth": {
     "Home": "Inicio",
     "Sign In": "Iniciar Sesión",
     "Register": "Registrar",
     "Sign In With Email": "Iniciar Sesión con Correo Electrónico",
-    "Login In": "Iniciar Sesión",
+    "Log In": "Iniciar Sesión",
     "New User?": "¿Nuevo Usuario?",
     "Already have an account with us?": "¿Ya tienes una cuenta con nosotros?",
     "Sign up": "Regístrate",

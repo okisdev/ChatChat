@@ -117,14 +117,15 @@
     "Auto Speech": "自動朗讀",
     "Auto read out all replies": "自動朗讀所有回覆",
     "disabled": "已停用",
-    "enabled": "已啟用"
+    "enabled": "已啟用",
+    "New Version Available": "有新版本可用"
   },
   "auth": {
     "Home": "首頁",
     "Sign In": "登入",
     "Register": "註冊",
     "Sign In With Email": "使用電子郵件登入",
-    "Login In": "登入",
+    "Log In": "登入",
     "New User?": "新用戶？",
     "Already have an account with us?": "已經有帳號了嗎？",
     "Sign up": "註冊",

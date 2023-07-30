@@ -93,7 +93,7 @@ const cohereConfigAtom = atomWithStorage('cohereConfig', {
 // Claude Config
 const claudeConfigAtom = atomWithStorage('claudeConfig', {
     apiKey: '',
-    apiModel: 'claude-v1',
+    apiModel: 'claude-instant-1',
     apiTemperature: 1.0,
 });
 
