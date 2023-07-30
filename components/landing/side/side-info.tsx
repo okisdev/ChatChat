@@ -49,7 +49,7 @@ export default function SideInfo() {
                             <p className='font-medium text-xl'>Chat Chat</p>
                             <p className='text-sm text-neutral-600 dark:text-neutral-200'>v{packageInfo.version}</p>
                             {!isLatestVersion && (
-                                <Link href='https://github.com/okisdev/ChatChat/releases/latest'>
+                                <Link href='https://github.com/okisdev/ChatChat/releases/latest' target='_blank'>
                                     <Badge variant='destructive'>{t('New Version Available')}</Badge>
                                 </Link>
                             )}
