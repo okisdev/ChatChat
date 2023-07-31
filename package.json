@@ -41,7 +41,7 @@
     "eslint-config-next": "13.4.9",
     "eventsource-parser": "^1.0.0",
     "formidable": "^3.5.0",
-    "jotai": "^2.2.2",
+    "jotai": "^2.2.3",
     "lucide-react": "^0.263.1",
     "next": "13.4.9",
     "next-auth": "^4.22.3",
