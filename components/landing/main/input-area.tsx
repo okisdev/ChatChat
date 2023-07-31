@@ -17,8 +17,6 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import { Badge } from '@/components/ui/badge';
 
-import { customConfig } from '@/config/custom.config';
-
 const InputArea = ({
     conversations,
     conversationID,

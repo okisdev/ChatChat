@@ -85,11 +85,9 @@ const CreateButton = () => {
             }
         }
 
-        if (serviceProvider == 'Claude') {
-            if (claudeKey.length === 0) {
-                toast.error(t('Claude Key is required'));
-                return;
-            }
+        if (serviceProvider == 'Claude' && claudeKey.length === 0) {
+            toast.error(t('Claude Key is required'));
+            return;
         }
 
         setIsLoading(true);

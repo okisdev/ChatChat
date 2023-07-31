@@ -16,6 +16,8 @@ import { MdDelete } from 'react-icons/md';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 
+import { formatDate } from '@/utils/app/formatDate';
+
 const RecordCard = ({ record }: { record: Record }) => {
     const router = useRouter();
 
@@ -121,14 +123,3 @@ const RecordCard = ({ record }: { record: Record }) => {
 };
 
 export default RecordCard;
-
-const formatDate = (date: number | Date | undefined) => {
-    return new Intl.DateTimeFormat('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-    }).format(date);
-};
