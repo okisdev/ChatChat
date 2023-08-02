@@ -17,7 +17,7 @@ services:
           - EMAIL_USERNAME=user@example.com
           - EMAIL_PASSWORD=super_secret_smtp_password
           - EMAIL_USE_SSL=true
-          - EMAIL_FORM=FirstName LastName <user@example.com>
+          - EMAIL_FROM=FirstName LastName <user@example.com>
           #- GITHUB_CLIENT_ID=
           #- GITHUB_CLIENT_SECRET=
           #- GOOGLE_CLIENT_ID=
