@@ -15,7 +15,7 @@
   "dependencies": {
     "@dqbd/tiktoken": "^1.0.7",
     "@next-auth/prisma-adapter": "^1.0.7",
-    "@prisma/client": "^5.0.0",
+    "@prisma/client": "^5.1.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-avatar": "^1.0.3",
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -45,7 +45,7 @@
     "lucide-react": "^0.263.1",
     "next": "13.4.9",
     "next-auth": "^4.22.3",
-    "next-intl": "^2.19.0",
+    "next-intl": "^2.19.1",
     "next-pwa": "^5.6.0",
     "next-themes": "^0.2.1",
     "nodemailer": "^6.9.4",
@@ -79,7 +79,7 @@
     "@types/react-syntax-highlighter": "^15.5.7",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",
-    "prisma": "^5.0.0",
+    "prisma": "^5.1.0",
     "webpack": "^5.88.2"
   }
 }
