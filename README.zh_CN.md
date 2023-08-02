@@ -75,7 +75,7 @@ https://user-images.githubusercontent.com/66008528/235539163-35f7ee91-e357-453a-
 | `EMAIL_PORT`      | SMTP Port             |      | No           |                                                                                                     |
 | `EMAIL_USERNAME`  | SMTP username         |      | No           |                                                                                                     |
 | `EMAIL_PASSWORD`  | SMTP password         |      | No           |                                                                                                     |
-| `EMAIL_FORM`      | SMTP 发送地址         |      | No           |                                                                                                     |
+| `EMAIL_FROM`      | SMTP 发送地址         |      | No           |                                                                                                     |
 
 ### 部署
 
@@ -107,13 +107,13 @@ yarn dev
 
 ```bash
 docker build -t chatchat .
-docker run -p 3000:3000 chatchat -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
+docker run -p 3000:3000 chatchat -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FROM=""
 ```
 
 或者
 
 ```bash
-docker run -p 3000:3000 -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM="" ghcr.io/okisdev/chatchat:latest
+docker run -p 3000:3000 -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FROM="" ghcr.io/okisdev/chatchat:latest
 ```
 
 ## LICENSE

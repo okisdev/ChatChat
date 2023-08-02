@@ -7,18 +7,20 @@ services:
             context: .
             dockerfile: ./Dockerfile
         environment:
-            NODE_ENV: production
-                - DATABASE_URL=
-                - NEXTAUTH_URL=
-                - NEXTAUTH_SECRET=
-                - EMAIL_HOST=
-                - EMAIL_PORT=
-                - EMAIL_USERNAME=
-                - EMAIL_PASSWORD=
-                - EMAIL_FROM=
-                - GITHUB_CLIENT_ID=
-                - GITHUB_CLIENT_SECRET=
-                - GOOGLE_CLIENT_ID=
-                - GOOGLE_CLIENT_SECRET=
+          - NODE_ENV=production
+          - DATABASE_URL=postgresql://username:password@database/appdb?sslmode=disable
+          - NEXTAUTH_URL=https://myprivategpt.example.com
+          - NEXTAUTH_URL_INTERNAL=http://localhost:3000
+          - NEXTAUTH_SECRET=supersecrettoken
+          - EMAIL_HOST=smtp.example.com
+          - EMAIL_PORT=465
+          - EMAIL_USERNAME=user@example.com
+          - EMAIL_PASSWORD=super_secret_smtp_password
+          - EMAIL_USE_SSL=true
+          - EMAIL_FROM=FirstName LastName <user@example.com>
+          #- GITHUB_CLIENT_ID=
+          #- GITHUB_CLIENT_SECRET=
+          #- GOOGLE_CLIENT_ID=
+          #- GOOGLE_CLIENT_SECRET=
         ports:
             - 3000:3000

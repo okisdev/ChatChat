@@ -101,12 +101,13 @@ export const authOptions: NextAuthOptions = {
             server: {
                 host: process.env.EMAIL_HOST,
                 port: Number(process.env.EMAIL_PORT) || 587,
+                secure: process.env.EMAIL_USE_SSL,
                 auth: {
                     user: process.env.EMAIL_USERNAME,
                     pass: process.env.EMAIL_PASSWORD,
                 },
             },
-            from: process.env.EMAIL_FORM,
+            from: process.env.EMAIL_FROM,
         }),
         GitHubProvider({
             clientId: process.env.GITHUB_CLIENT_ID || '',
@@ -121,5 +122,5 @@ export const authOptions: NextAuthOptions = {
     session: {
         strategy: 'jwt',
     },
-    debug: false,
+    debug: process.env.NODE_ENV !== 'production',
 };
