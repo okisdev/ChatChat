@@ -107,7 +107,7 @@ export const authOptions: NextAuthOptions = {
                     pass: process.env.EMAIL_PASSWORD,
                 },
             },
-            from: process.env.EMAIL_FORM,
+            from: process.env.EMAIL_FROM,
         }),
         GitHubProvider({
             clientId: process.env.GITHUB_CLIENT_ID || '',
