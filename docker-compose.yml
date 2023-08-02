@@ -9,7 +9,8 @@ services:
         environment:
           - NODE_ENV=production
           - DATABASE_URL=postgresql://username:password@database/appdb?sslmode=disable
-          - NEXTAUTH_URL=http://localhost:3000
+          - NEXTAUTH_URL=https://myprivategpt.example.com
+          - NEXTAUTH_URL_INTERNAL=http://localhost:3000
           - NEXTAUTH_SECRET=supersecrettoken
           - EMAIL_HOST=smtp.example.com
           - EMAIL_PORT=465
