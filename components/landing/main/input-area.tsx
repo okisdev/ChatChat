@@ -197,30 +197,21 @@ const InputArea = ({
     };
 
     const handleOnKeyDown = (e: any) => {
-        if (isComposing) {
-            return;
-        }
+        if (isComposing) return;
 
-        const isShiftKey = e.shiftKey;
-        const isEnterKey = e.key === 'Enter';
-        const isEscapeKey = e.key === 'Escape';
-        const isUpArrow = e.key === 'ArrowUp';
-        const isDownArrow = e.key === 'ArrowDown';
-
-        const isSendOnEnter = isSendKeyEnter && isEnterKey && !isShiftKey;
-        const isSendOnShiftEnter = !isSendKeyEnter && isEnterKey && isShiftKey;
+        const { shiftKey, key } = e;
+        const isEnterKey = key === 'Enter';
+        const isSendOnEnter = isSendKeyEnter && isEnterKey && !shiftKey;
+        const isSendOnShiftEnter = !isSendKeyEnter && isEnterKey && shiftKey;
 
         if (showCommands && isEnterKey) {
             e.preventDefault();
             handleCommandClick(`/${filteredCommands[selectedCommandIndex].name}`);
-        } else if (isEscapeKey) {
+        } else if (key === 'Escape') {
             setShowCommands(false);
-        } else if (isUpArrow && showCommands) {
+        } else if ((key === 'ArrowUp' || key === 'ArrowDown') && showCommands) {
             e.preventDefault();
-            setSelectedCommandIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
-        } else if (isDownArrow && showCommands) {
-            e.preventDefault();
-            setSelectedCommandIndex((prevIndex) => (prevIndex < filteredCommands.length - 1 ? prevIndex + 1 : prevIndex));
+            setSelectedCommandIndex((prevIndex) => (key === 'ArrowUp' ? Math.max(prevIndex - 1, 0) : Math.min(prevIndex + 1, filteredCommands.length - 1)));
         } else if (isSendOnEnter || isSendOnShiftEnter) {
             e.preventDefault();
             handleSend();
