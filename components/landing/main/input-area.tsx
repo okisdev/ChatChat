@@ -17,6 +17,8 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import { Badge } from '@/components/ui/badge';
 
+import SuggestedQuestionsBox from '@/components/landing/main/suggested-questions-box';
+
 const InputArea = ({
     conversations,
     conversationID,
@@ -226,6 +228,7 @@ const InputArea = ({
 
     return (
         <div className='space-y-2 my-3'>
+            {/* {!waitingSystemResponse && conversations.length > 0 && <SuggestedQuestionsBox conversations={conversations} />} */}
             <div className='mx-auto flex w-full items-center justify-between px-1'>
                 <div className='flex flex-row items-center space-x-1 overflow-x-auto whitespace-nowrap'>
                     <Badge variant='secondary' className='text-xs font-normal'>

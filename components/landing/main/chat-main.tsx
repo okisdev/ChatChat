@@ -533,7 +533,7 @@ const ChatMain = () => {
                         <ModeSettings systemPromptContent={systemPromptContent} setSystemPromptContent={setSystemPromptContent} />
                     )}
                 </div>
-                <div className='mx-auto w-full md:w-8/12 xl:w-6/12'>
+                <div className='mx-auto w-full md:w-11/12 xl:w-6/12 '>
                     <InputArea
                         conversations={conversations}
                         conversationID={conversationID}
