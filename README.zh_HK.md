@@ -72,6 +72,7 @@ https://user-images.githubusercontent.com/66008528/235539163-35f7ee91-e357-453a-
 | `NEXTAUTH_SECRET` | NextAuth Secret       |      | **Yes**      | 隨機哈希數值（16 位最佳）                                                                           |
 | `EMAIL_HOST`      | SMTP Host             |      | No           |                                                                                                     |
 | `EMAIL_PORT`      | SMTP Port             |      | No           |                                                                                                     |
+| `EMAIL_USE_SSL`   | SMTP SSL              | true | No           |                                                                                                     |
 | `EMAIL_USERNAME`  | SMTP username         |      | No           |                                                                                                     |
 | `EMAIL_PASSWORD`  | SMTP password         |      | No           |                                                                                                     |
 | `EMAIL_FROM`      | SMTP 發送地址         |      | No           |                                                                                                     |

@@ -65,13 +65,14 @@ Please refer to https://github.com/users/okisdev/projects/7
 
 ### Environment variables
 
-| variable name     | description                 | default | mandatory | prompt                                                                                                            |
+| variable name     | description                 | default | mandatory | tips                                                                                                              |
 | ----------------- | --------------------------- | ------- | --------- | ----------------------------------------------------------------------------------------------------------------- |
 | `DATABASE_URL`    | Postgresql database address |         | **Yes**   | Start with `postgresql://` (if not required, please fill in `postgresql://user:password@example.com:port/dbname`) |
 | `NEXTAUTH_URL`    | Your website URL            |         | **Yes**   | (with prefix)                                                                                                     |
 | `NEXTAUTH_SECRET` | NextAuth Secret             |         | **Yes**   | Random hash (16 bits is best)                                                                                     |
 | `EMAIL_HOST`      | SMTP Host                   |         | No        |                                                                                                                   |
 | `EMAIL_PORT`      | SMTP Port                   |         | No        |                                                                                                                   |
+| `EMAIL_USE_SSL`   | SMTP SSL                    | true    | No        |                                                                                                                   |
 | `EMAIL_USERNAME`  | SMTP username               |         | No        |                                                                                                                   |
 | `EMAIL_PASSWORD`  | SMTP password               |         | No        |                                                                                                                   |
 | `EMAIL_FROM`      | SMTP sending address        |         | No        |                                                                                                                   |
