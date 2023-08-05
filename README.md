@@ -71,8 +71,7 @@ Please refer to https://github.com/users/okisdev/projects/7
 | `NEXTAUTH_URL`    | Your website URL            |         | **Yes**   | (with prefix)                                                                                                     |
 | `NEXTAUTH_SECRET` | NextAuth Secret             |         | **Yes**   | Random hash (16 bits is best)                                                                                     |
 | `EMAIL_HOST`      | SMTP Host                   |         | No        |                                                                                                                   |
-| `EMAIL_PORT`      | SMTP Port                   |         | No        |                                                                                                                   |
-| `EMAIL_USE_SSL`   | SMTP SSL                    | true    | No        |                                                                                                                   |
+| `EMAIL_PORT`      | SMTP Port                   | 587     | No        |                                                                                                                   |
 | `EMAIL_USERNAME`  | SMTP username               |         | No        |                                                                                                                   |
 | `EMAIL_PASSWORD`  | SMTP password               |         | No        |                                                                                                                   |
 | `EMAIL_FROM`      | SMTP sending address        |         | No        |                                                                                                                   |
