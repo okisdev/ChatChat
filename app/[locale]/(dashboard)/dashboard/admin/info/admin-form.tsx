@@ -29,7 +29,7 @@ const AdminForm = () => {
             <div className='space-y-10 rounded-xl md:p-3'>
                 <div className='flex w-full flex-col items-start space-y-1'>
                     <p className='text-sm'>Site Name</p>
-                    <Input className='dark:border-stone-400 dark:bg-stone-500' />
+                    <Input className='dark:border-neutral-500 dark:bg-neutral-700' />
                 </div>
                 <div className='flex flex-col space-y-3'>
                     <div className='flex w-full flex-row items-center space-x-3'>

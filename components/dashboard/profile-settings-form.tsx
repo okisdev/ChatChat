@@ -56,7 +56,7 @@ const ProfileSettingsForm = ({ user }: { user: User }) => {
                 <div>
                     <div className='space-y-2'>
                         <Label>OpenAI API Key</Label>
-                        <Input value={openAIKey as string} onChange={(e) => setOpenAIKey(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
+                        <Input value={openAIKey as string} onChange={(e) => setOpenAIKey(e.target.value)} className='dark:border-neutral-500 dark:bg-neutral-700' />
                     </div>
                 </div>
                 <Separator />
@@ -68,7 +68,7 @@ const ProfileSettingsForm = ({ user }: { user: User }) => {
             </div>
             <div>
                 <div className='flex items-end justify-end'>
-                    <Button variant='outline' onClick={() => onSave()} className='dark:bg-stone-500' disabled={isLoading}>
+                    <Button variant='outline' onClick={() => onSave()} className='dark:bg-neutral-700' disabled={isLoading}>
                         <span>{t('Save')}</span>
                     </Button>
                 </div>

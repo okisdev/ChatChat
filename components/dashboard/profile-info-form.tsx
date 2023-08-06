@@ -82,16 +82,16 @@ const ProfileInfoForm = ({ user }: any) => {
                 <div className='flex w-full justify-between space-x-3'>
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>{t('Full Name')}</p>
-                        <Input value={name} onChange={(e) => setName(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
+                        <Input value={name} onChange={(e) => setName(e.target.value)} className='dark:border-neutral-500 dark:bg-neutral-700' />
                     </div>
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>{t('Email Address')}</p>
-                        <Input value={email} onChange={(e) => setEmail(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
+                        <Input value={email} onChange={(e) => setEmail(e.target.value)} className='dark:border-neutral-500 dark:bg-neutral-700' />
                     </div>
                 </div>
                 <div className='flex w-full flex-col items-start space-y-1'>
                     <p className='text-sm'>{t('Avatar')}</p>
-                    <Input value={image} onChange={(e) => setImage(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
+                    <Input value={image} onChange={(e) => setImage(e.target.value)} className='dark:border-neutral-500 dark:bg-neutral-700' />
                 </div>
                 <div className='flex justify-end'>
                     <Button variant='default' onClick={() => onSave()} disabled={isLoading}>

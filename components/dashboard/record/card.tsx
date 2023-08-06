@@ -92,7 +92,7 @@ const RecordCard = ({ record }: { record: Record }) => {
     };
 
     return (
-        <div className='flex justify-between rounded-xl border p-3 dark:border-stone-400'>
+        <div className='flex justify-between rounded-xl border p-3 dark:border-neutral-500'>
             <div className='w-8/12 space-y-2'>
                 <p>{record.title}</p>
                 <p className='text-xs'>{formatDate(record.createdAt)}</p>

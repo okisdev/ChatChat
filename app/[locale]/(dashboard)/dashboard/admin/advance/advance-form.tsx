@@ -19,6 +19,8 @@ const AdvanceForm = () => {
 
     const [serviceProvider, setServiceProvider] = useState<ServiceProviderProps>('OpenAI');
 
+    const [tokenScope, setTokenScope] = useState<UserScope | 'none'>('none');
+
     // Azure
     const [azureKey, setAzureKey] = useState<string>('');
     const [azureEndpoint, setAzureEndpoint] = useState<string>('');
@@ -80,6 +82,7 @@ const AdvanceForm = () => {
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>Azure API Key</p>
                         <Input
+                            className='dark:bg-neutral-700 dark:border-neutral-500'
                             placeholder='Azure Key'
                             value={azureKey}
                             onChange={(e) => {
@@ -90,6 +93,7 @@ const AdvanceForm = () => {
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>Azure Endpoint</p>
                         <Input
+                            className='dark:bg-neutral-700 dark:border-neutral-500'
                             placeholder='Azure Endpoint'
                             value={azureEndpoint}
                             onChange={(e) => {
@@ -100,6 +104,7 @@ const AdvanceForm = () => {
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>Azure Deployment Name</p>
                         <Input
+                            className='dark:bg-neutral-700 dark:border-neutral-500'
                             placeholder='Azure Deployment Name'
                             value={azureDeploymentName}
                             onChange={(e) => {
@@ -116,6 +121,7 @@ const AdvanceForm = () => {
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>Claude API Key</p>
                         <Input
+                            className='dark:bg-neutral-700 dark:border-neutral-500'
                             placeholder='Claude API Key'
                             value={claudeKey}
                             onChange={(e) => {
@@ -132,6 +138,7 @@ const AdvanceForm = () => {
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>Cohere API Key</p>
                         <Input
+                            className='dark:bg-neutral-700 dark:border-neutral-500'
                             placeholder='Cohere API Key'
                             value={cohereKey}
                             onChange={(e) => {
@@ -148,6 +155,7 @@ const AdvanceForm = () => {
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>Hugging Face Access Token</p>
                         <Input
+                            className='dark:bg-neutral-700 dark:border-neutral-500'
                             placeholder='Hugging Face Access Token'
                             value={huggingFaceKey}
                             onChange={(e) => {
@@ -165,6 +173,7 @@ const AdvanceForm = () => {
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>OpenAI API</p>
                         <Input
+                            className='dark:bg-neutral-700 dark:border-neutral-500'
                             placeholder='OpenAI Key'
                             value={openAIKey}
                             onChange={(e) => {
@@ -175,6 +184,7 @@ const AdvanceForm = () => {
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>OpenAI Endpoint</p>
                         <Input
+                            className='dark:bg-neutral-700 dark:border-neutral-500'
                             placeholder='OpenAI Endpoint'
                             value={openAIEndpoint}
                             onChange={(e) => {
@@ -189,12 +199,35 @@ const AdvanceForm = () => {
 
     return (
         <div className='space-y-10 overflow-auto md:my-36 md:w-10/12 md:space-y-16 xl:w-6/12'>
-            <div className='space-y-5 md:p-3'>
-                <div className='space-y-10'>
+            <div className='space-y-6 md:p-3'>
+                <div className='flex justify-between items-center'>
+                    <Label className='text-sm w-6/12'>Token User Scope</Label>
+                    <Select
+                        value={tokenScope}
+                        onValueChange={(value: string) => {
+                            setTokenScope(value as UserScope | 'none');
+                        }}
+                    >
+                        <SelectTrigger className='dark:bg-neutral-700 dark:border-neutral-500'>
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {userScopeList.map((scope, index) => (
+                                <SelectGroup key={index}>
+                                    <SelectItem value={scope.value} className='text-sm'>
+                                        {scope.name}
+                                    </SelectItem>
+                                </SelectGroup>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <Separator className='bg-neutral-500' />
+                <div className='space-y-6'>
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <Label className='text-sm'>Service Provider</Label>
                         <Select value={serviceProvider} onValueChange={(value: string) => setServiceProvider(value as ServiceProviderProps)}>
-                            <SelectTrigger>
+                            <SelectTrigger className='dark:bg-neutral-700 dark:border-neutral-500'>
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
@@ -208,7 +241,6 @@ const AdvanceForm = () => {
                             </SelectContent>
                         </Select>
                     </div>
-                    <Separator />
                     {serviceProviderForm}
                 </div>
                 <div className='flex justify-end'>
@@ -222,6 +254,21 @@ const AdvanceForm = () => {
 };
 
 export default AdvanceForm;
+
+const userScopeList = [
+    {
+        name: 'None',
+        value: 'none',
+    },
+    {
+        name: 'User',
+        value: 'user',
+    },
+    {
+        name: 'Admin',
+        value: 'admin',
+    },
+];
 
 const serviceProviderList = [
     {

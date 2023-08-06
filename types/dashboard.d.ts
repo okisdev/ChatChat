@@ -1,0 +1,1 @@
+type UserScope = 'admin' | 'user';

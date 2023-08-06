@@ -126,7 +126,7 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
     };
 
     return (
-        <div className='flex items-center justify-between rounded-xl border p-3 dark:border-stone-400'>
+        <div className='flex items-center justify-between rounded-xl border p-3 dark:border-neutral-500'>
             <div>
                 <p className='font-medium'>{team.name}</p>
                 <p>{team.accessCode}</p>
