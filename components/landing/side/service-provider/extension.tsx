@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 
-const ExtensionServiceProvider = ({}: {}) => {
+const ExtensionServiceProvider = () => {
     const t = useTranslations('landing');
 
     return (

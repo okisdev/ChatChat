@@ -28,6 +28,6 @@ ENV NODE_ENV=production \
   EMAIL_PORT="" \
   EMAIL_USERNAME="" \
   EMAIL_PASSWORD="" \
-  EMAIL_FORM=""
+  EMAIL_FROM=""
 
 CMD ["yarn", "start"]

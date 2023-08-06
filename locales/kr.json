@@ -117,14 +117,15 @@
     "Auto Speech": "자동 음성",
     "Auto read out all replies": "모든 응답을 자동으로 읽어줍니다",
     "disabled": "비활성화됨",
-    "enabled": "활성화됨"
+    "enabled": "활성화됨",
+    "New Version Available": "새 버전이 있습니다"
   },
   "auth": {
     "Home": "홈",
     "Sign In": "로그인",
     "Register": "등록",
     "Sign In With Email": "이메일로 로그인",
-    "Login In": "로그인 중",
+    "Log In": "로그인 중",
     "New User?": "새 사용자?",
     "Already have an account with us?": "이미 계정이 있으신가요?",
     "Sign up": "가입하기",
@@ -177,8 +178,6 @@
     "team": "팀",
     "Info": "정보",
     "info": "정보",
-    "Admin": "관리자",
-    "admin": "관리자",
     "Manage personal info for profile": "프로필의 개인정보 관리",
     "Your account Conversation Record": "계정 대화 기록",
     "Advanced configuration for your account": "계정의 고급 설정",
@@ -211,8 +210,7 @@
     "Azure Key is required": "Azure 키는 필수 입력사항입니다",
     "Azure Endpoint is required": "Azure 엔드포인트는 필수 입력사항입니다",
     "Azure Deployment Name is required": "Azure 배포 이름은 필수 입력사항입니다",
-    "Claude Key is required": "Claude 키는 필수 입력사항입니다",
-    "Error: Image must be a valid URL": "오류: 이미지는 유효한 URL이어야 합니다"
+    "Claude Key is required": "Claude 키는 필수 입력사항입니다"
   },
   "component": {
     "No command found": "찾을 수 없는 명령입니다",

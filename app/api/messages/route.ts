@@ -15,17 +15,17 @@ export async function POST(req: Request): Promise<Response> {
         case 'OpenAI':
             const openAIAPIKey = config?.apiKey as string;
             const openAIAPIEndpoint = config?.apiEndpoint as string;
-            const opneAIAPIModel = (config?.apiModel as OpenAIModel) || 'gpt-3.5-turbo';
-            const opneAIAPITemperature = (config?.apiTemperature as number) || 0.3;
+            const openAIAPIModel = (config?.apiModel as OpenAIModel) || 'gpt-3.5-turbo';
+            const openAIAPITemperature = (config?.apiTemperature as number) || 0.3;
 
             if (!messages) {
                 return new Response('No messages in the request', { status: 400 });
             }
 
             const openAIPayload: OpenAIChatPayload = {
-                model: opneAIAPIModel as OpenAIModel,
+                model: openAIAPIModel as OpenAIModel,
                 messages: messages as OpenAIMessage[],
-                temperature: opneAIAPITemperature as number,
+                temperature: openAIAPITemperature as number,
                 stream: stream as boolean,
             };
 

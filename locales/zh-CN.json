@@ -117,14 +117,15 @@
     "Auto Speech": "自动语音",
     "Auto read out all replies": "自动朗读所有回复",
     "disabled": "已禁用",
-    "enabled": "已启用"
+    "enabled": "已启用",
+    "New Version Available": "新版本可用"
   },
   "auth": {
     "Home": "主页",
     "Sign In": "登录",
     "Register": "注册",
     "Sign In With Email": "使用电子邮件登录",
-    "Login In": "登录",
+    "Log In": "登录",
     "New User?": "新用户？",
     "Already have an account with us?": "已经有账户了？",
     "Sign up": "注册",
@@ -177,8 +178,6 @@
     "team": "团队",
     "Info": "信息",
     "info": "信息",
-    "Admin": "管理员",
-    "admin": "管理员",
     "Manage personal info for profile": "管理个人资料信息",
     "Your account Conversation Record": "您的账户对话记录",
     "Advanced configuration for your account": "账户的高级配置",
@@ -211,8 +210,7 @@
     "Azure Key is required": "必须提供 Azure Key",
     "Azure Endpoint is required": "必须提供 Azure Endpoint",
     "Azure Deployment Name is required": "必须提供 Azure Deployment Name",
-    "Claude Key is required": "必须提供 Claude Key",
-    "Error: Image must be a valid URL": "错误：图像必须是有效的 URL"
+    "Claude Key is required": "必须提供 Claude Key"
   },
   "component": {
     "No command found": "未找到命令",

@@ -65,16 +65,16 @@ Please refer to https://github.com/users/okisdev/projects/7
 
 ### Environment variables
 
-| variable name     | description                 | default | mandatory | prompt                                                                                                            |
+| variable name     | description                 | default | mandatory | tips                                                                                                              |
 | ----------------- | --------------------------- | ------- | --------- | ----------------------------------------------------------------------------------------------------------------- |
 | `DATABASE_URL`    | Postgresql database address |         | **Yes**   | Start with `postgresql://` (if not required, please fill in `postgresql://user:password@example.com:port/dbname`) |
 | `NEXTAUTH_URL`    | Your website URL            |         | **Yes**   | (with prefix)                                                                                                     |
 | `NEXTAUTH_SECRET` | NextAuth Secret             |         | **Yes**   | Random hash (16 bits is best)                                                                                     |
 | `EMAIL_HOST`      | SMTP Host                   |         | No        |                                                                                                                   |
-| `EMAIL_PORT`      | SMTP Port                   |         | No        |                                                                                                                   |
+| `EMAIL_PORT`      | SMTP Port                   | 587     | No        |                                                                                                                   |
 | `EMAIL_USERNAME`  | SMTP username               |         | No        |                                                                                                                   |
 | `EMAIL_PASSWORD`  | SMTP password               |         | No        |                                                                                                                   |
-| `EMAIL_FORM`      | SMTP sending address        |         | No        |                                                                                                                   |
+| `EMAIL_FROM`      | SMTP sending address        |         | No        |                                                                                                                   |
 
 ### Deployment
 
@@ -106,13 +106,13 @@ Visit [Zeabur](https://zeabur.com) to deploy
 
 ```bash
 docker build -t chatchat .
-docker run -p 3000:3000 chatchat -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
+docker run -p 3000:3000 chatchat -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FROM=""
 ```
 
 OR
 
 ```bash
-docker run -p 3000:3000 -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM="" ghcr.io/okisdev/chatchat:latest
+docker run -p 3000:3000 -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FROM="" ghcr.io/okisdev/chatchat:latest
 ```
 
 ## LICENSE

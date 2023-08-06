@@ -117,14 +117,15 @@
     "Auto Speech": "Auto Habla",
     "Auto read out all replies": "Leer automáticamente todas las respuestas",
     "disabled": "deshabilitado",
-    "enabled": "habilitado"
+    "enabled": "habilitado",
+    "New Version Available": "Nueva Versión Disponible"
   },
   "auth": {
     "Home": "Inicio",
     "Sign In": "Iniciar Sesión",
     "Register": "Registrar",
     "Sign In With Email": "Iniciar Sesión con Correo Electrónico",
-    "Login In": "Iniciar Sesión",
+    "Log In": "Iniciar Sesión",
     "New User?": "¿Nuevo Usuario?",
     "Already have an account with us?": "¿Ya tienes una cuenta con nosotros?",
     "Sign up": "Regístrate",
@@ -177,8 +178,6 @@
     "team": "equipo",
     "Info": "Información",
     "info": "información",
-    "Admin": "Admin",
-    "admin": "admin",
     "Manage personal info for profile": "Administra la información personal para el perfil",
     "Your account Conversation Record": "Registro de Conversaciones de tu cuenta",
     "Advanced configuration for your account": "Configuración avanzada para tu cuenta",
@@ -211,8 +210,7 @@
     "Azure Key is required": "Se requiere la Clave de Azure",
     "Azure Endpoint is required": "Se requiere el Endpoint de Azure",
     "Azure Deployment Name is required": "Se requiere el Nombre de Implementación de Azure",
-    "Claude Key is required": "Se requiere la Clave de Claude",
-    "Error: Image must be a valid URL": "Error: La imagen debe ser una URL válida"
+    "Claude Key is required": "Se requiere la Clave de Claude"
   },
   "component": {
     "No command found": "No se encontró ningún comando",

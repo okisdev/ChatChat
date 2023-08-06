@@ -117,14 +117,15 @@
     "Auto Speech": "Авто речь",
     "Auto read out all replies": "Автоматически прочитать все ответы",
     "disabled": "отключено",
-    "enabled": "включено"
+    "enabled": "включено",
+    "New Version Available": "Доступна новая версия"
   },
   "auth": {
     "Home": "Главная",
     "Sign In": "Войти",
     "Register": "Зарегистрироваться",
     "Sign In With Email": "Войти с помощью электронной почты",
-    "Login In": "Вход",
+    "Log In": "Вход",
     "New User?": "Новый пользователь?",
     "Already have an account with us?": "Уже есть аккаунт?",
     "Sign up": "Зарегистрироваться",
@@ -177,8 +178,6 @@
     "team": "команда",
     "Info": "Информация",
     "info": "информация",
-    "Admin": "Администратор",
-    "admin": "администратор",
     "Manage personal info for profile": "Управление личной информацией для профиля",
     "Your account Conversation Record": "Записи ваших разговоров",
     "Advanced configuration for your account": "Расширенная конфигурация для вашего аккаунта",
@@ -211,8 +210,7 @@
     "Azure Key is required": "Требуется ключ Azure",
     "Azure Endpoint is required": "Требуется конечная точка Azure",
     "Azure Deployment Name is required": "Требуется имя развертывания Azure",
-    "Claude Key is required": "Требуется ключ Claude",
-    "Error: Image must be a valid URL": "Ошибка: изображение должно быть действительным URL-адресом"
+    "Claude Key is required": "Требуется ключ Claude"
   },
   "component": {
     "No command found": "Команда не найдена",

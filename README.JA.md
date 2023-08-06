@@ -71,10 +71,10 @@ https://github.com/users/okisdev/projects/7 をご参照ください
 | `NEXTAUTH_URL`    | あなたのウェブサイトの URL      |            | **Yes** | (プレフィックス付き)                                                                                             |
 | `NEXTAUTH_SECRET` | NextAuth Secret                 |            | **Yes** | ランダムハッシュ(16 ビットが最適)                                                                                |
 | `EMAIL_HOST`      | SMTP ホスト                     |            | No      |                                                                                                                  |
-| `EMAIL_PORT`      | SMTP ポート                     |            | No      |                                                                                                                  |
+| `EMAIL_PORT`      | SMTP ポート                     | 587        | No      |                                                                                                                  |
 | `EMAIL_USERNAME`  | SMTP ユーザ名                   |            | No      |                                                                                                                  |
 | `EMAIL_PASSWORD`  | SMTP パスワード                 |            | No      |                                                                                                                  |
-| `EMAIL_FORM`      | SMTP 送信アドレス               |            | No      |                                                                                                                  |
+| `EMAIL_FROM`      | SMTP 送信アドレス               |            | No      |                                                                                                                  |
 
 ### デプロイ
 
@@ -106,13 +106,13 @@ yarn dev
 
 ```bash
 docker build -t chatchat .
-docker run -p 3000:3000 chatchat -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
+docker run -p 3000:3000 chatchat -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FROM=""
 ```
 
 もしくは
 
 ```bash
-docker run -p 3000:3000 -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM="" ghcr.io/okisdev/chatchat:latest
+docker run -p 3000:3000 -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FROM="" ghcr.io/okisdev/chatchat:latest
 ```
 
 ## ライセンス

@@ -71,11 +71,11 @@ export async function sendTeamStreamMessages(teamPayload: any, accessCode: strin
             break;
     }
 
-    const stream = new ReadableStream({
+    return new ReadableStream({
         async start(controller) {
             function onParse(event: ParsedEvent | ReconnectInterval) {
                 if (event.type === 'event') {
-                    const data = event.data;
+                    const { data } = event;
                     if (data === '[DONE]') {
                         controller.close();
                         return;
@@ -101,6 +101,4 @@ export async function sendTeamStreamMessages(teamPayload: any, accessCode: strin
             }
         },
     });
-
-    return stream;
 }

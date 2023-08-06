@@ -117,14 +117,15 @@
     "Auto Speech": "自動音声",
     "Auto read out all replies": "すべての返信を自動的に読み上げる",
     "disabled": "無効になっています",
-    "enabled": "有効になっています"
+    "enabled": "有効になっています",
+    "New Version Available": "新しいバージョンが利用可能です"
   },
   "auth": {
     "Home": "ホーム",
     "Sign In": "サインイン",
     "Register": "登録",
     "Sign In With Email": "メールアドレスでサインイン",
-    "Login In": "ログイン",
+    "Log In": "ログイン",
     "New User?": "新しいユーザー？",
     "Already have an account with us?": "既にアカウントをお持ちですか？",
     "Sign up": "サインアップ",
@@ -177,8 +178,6 @@
     "team": "チーム",
     "Info": "情報",
     "info": "情報",
-    "Admin": "管理者",
-    "admin": "管理者",
     "Manage personal info for profile": "プロフィールの個人情報を管理する",
     "Your account Conversation Record": "あなたのアカウントの会話履歴",
     "Advanced configuration for your account": "アカウントの高度な設定",
@@ -211,8 +210,7 @@
     "Azure Key is required": "Azureキーが必要です",
     "Azure Endpoint is required": "Azureエンドポイントが必要です",
     "Azure Deployment Name is required": "Azureデプロイメント名が必要です",
-    "Claude Key is required": "Claudeキーが必要です",
-    "Error: Image must be a valid URL": "エラー：画像は有効なURLである必要があります"
+    "Claude Key is required": "Claudeキーが必要です"
   },
   "component": {
     "No command found": "コマンドが見つかりません",

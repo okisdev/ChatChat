@@ -34,12 +34,6 @@ const ProfileInfoForm = ({ user }: any) => {
     const onSave = async () => {
         setIsLoading(true);
 
-        if (!image.startsWith('http')) {
-            setIsLoading(false);
-            toast.error(t('Error: Image must be a valid URL'));
-            return;
-        }
-
         const response = await fetch(`/api/user/${user.id}`, {
             method: 'PATCH',
             headers: {
@@ -84,27 +78,27 @@ const ProfileInfoForm = ({ user }: any) => {
 
     return (
         <div className='space-y-10 overflow-auto md:my-36 md:w-10/12 md:space-y-16 xl:w-6/12'>
-            <div className='space-y-10 rounded-xl md:p-3'>
+            <form className='space-y-10 rounded-xl md:p-3'>
                 <div className='flex w-full justify-between space-x-3'>
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>{t('Full Name')}</p>
-                        <Input value={name as string} onChange={(e) => setName(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
+                        <Input value={name} onChange={(e) => setName(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
                     </div>
                     <div className='flex w-full flex-col items-start space-y-1'>
                         <p className='text-sm'>{t('Email Address')}</p>
-                        <Input value={email as string} onChange={(e) => setEmail(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
+                        <Input value={email} onChange={(e) => setEmail(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
                     </div>
                 </div>
                 <div className='flex w-full flex-col items-start space-y-1'>
                     <p className='text-sm'>{t('Avatar')}</p>
-                    <Input value={image as string} onChange={(e) => setImage(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
+                    <Input value={image} onChange={(e) => setImage(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
                 </div>
                 <div className='flex justify-end'>
                     <Button variant='default' onClick={() => onSave()} disabled={isLoading}>
-                        {t('Save')}
+                        <span>{t('Save')}</span>
                     </Button>
                 </div>
-            </div>
+            </form>
 
             <Separator />
 
