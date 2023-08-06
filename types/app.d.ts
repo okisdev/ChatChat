@@ -2,7 +2,12 @@ type ServiceProviderProps = 'Azure' | 'Claude' | 'Custom' | 'Hugging Face' | 'Op
 
 type PluginProps = 'search' | 'fetch';
 
-type AppMessageProps = OpenAIMessage;
+type AppMessageRoleProps = 'user' | 'system' | 'assistant';
+
+interface AppMessageProps {
+    role: AppMessageRoleProps;
+    content: string;
+}
 
 interface AppSettings {
     serviceProvider: string;

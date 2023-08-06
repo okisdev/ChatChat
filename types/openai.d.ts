@@ -1,8 +1,5 @@
-type OpenAIModel = 'gpt-4' | 'gpt-4-32k' | 'gpt-3.5-turbo' | 'gpt-3.5-turbo-16k';
-type OpenAIMessageRole = 'user' | 'system' | 'assistant';
-
 interface OpenAIMessage {
-    role: OpenAIMessageRole;
+    role: AppMessageRoleProps;
     content: string;
 }
 

@@ -66,10 +66,8 @@ const AdvanceForm = () => {
 
         if (data.success) {
             toast.success(data.message);
-            return;
         } else {
             toast.error(data.message);
-            return;
         }
     };
 
