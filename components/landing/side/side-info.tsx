@@ -19,15 +19,15 @@ export default function SideInfo() {
 
     const currentYear = new Date().getFullYear();
 
-    const [isLatestVersion, setIsLatestVersion] = useState(false);
+    const [isLatestVersion, setIsLatestVersion] = useState(true);
 
     useEffect(() => {
         const getVersion = async () => {
             const res = await fetch('/api/app/latest');
             const data = await res.json();
 
-            if (data.tag_name == packageInfo.version) {
-                setIsLatestVersion(true);
+            if (data.tag_name != packageInfo.version) {
+                setIsLatestVersion(false);
             }
         };
 
