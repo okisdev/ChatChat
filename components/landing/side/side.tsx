@@ -44,6 +44,8 @@ import SideAppSettings from '@/components/landing/side/side-app-settings';
 import SideUserSettings from '@/components/landing/side/side-user-settings';
 import SideInfo from '@/components/landing/side/side-info';
 
+import generateMD5Hash from '@/utils/app/generateMD5Hash';
+
 const LandingSide = ({ className, user }: { className?: string; user: User | null }) => {
     const router = useRouter();
 
@@ -60,6 +62,8 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
     const isHiddenSide = useAtom(store.isHiddenSideAtom)[0];
 
     if (isHiddenSide) return null;
+
+    const gravatarImage = 'https://www.gravatar.com/avatar/' + generateMD5Hash(user?.email as string);
 
     return (
         <aside className={'bottom-1 left-0 top-1 z-10 h-full flex-col justify-between rounded-lg backdrop-blur md:fixed md:w-80 ' + className}>
@@ -86,7 +90,9 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <div className='m-1 flex flex-grow flex-row items-center justify-start space-x-2 rounded-lg bg-white/90 py-1 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327]'>
-                                <Avatar className='inline-flex items-center justify-center'>{user?.image ? <AvatarImage src={user.image} /> : <RxAvatar className='text-2xl' />}</Avatar>
+                                <Avatar className='inline-flex items-center justify-center'>
+                                    <AvatarImage src={user.image || gravatarImage} />
+                                </Avatar>
                                 <p>{user.name}</p>
                             </div>
                         </DropdownMenuTrigger>
