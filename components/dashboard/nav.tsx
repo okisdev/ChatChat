@@ -15,8 +15,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { DashboardSideItems } from '@/components/dashboard/side';
 import { Separator } from '@/components/ui/separator';
 
-import generateMD5Hash from '@/utils/app/generateMD5Hash';
-
 const DashboardNav = ({ user }: { user: any }) => {
     const pathname = usePathname();
 
@@ -30,8 +28,6 @@ const DashboardNav = ({ user }: { user: any }) => {
         .splice(i18n ? 2 : 1);
 
     const description = DashboardSideItems.find((item) => item.base === breadcrumbs?.[0])?.children.find((child) => child.href === breadcrumbs?.[1])?.description;
-
-    const gravatarImage = 'https://www.gravatar.com/avatar/' + generateMD5Hash(user?.email);
 
     return (
         <div>
@@ -51,7 +47,7 @@ const DashboardNav = ({ user }: { user: any }) => {
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Avatar className='inline-flex items-center justify-center space-x-1 rounded-lg p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'>
-                            <AvatarImage src={user.image || gravatarImage} />
+                            {user.image ? <AvatarImage src={user?.image} /> : <RxAvatar className='text-2xl' />}
                         </Avatar>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
