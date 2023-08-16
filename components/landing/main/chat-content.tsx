@@ -36,6 +36,8 @@ const MainContent = ({
 
     const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
 
+    const enableUserMarkdownRender = useAtomValue(store.enableUserMarkdownRenderAtom);
+
     useEffect(() => {
         if (endOfMessageRef.current) {
             endOfMessageRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -155,7 +157,7 @@ const MainContent = ({
                                     isUser ? 'bg-sky-500 text-white dark:bg-sky-600' : 'bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white'
                                 }`}
                             >
-                                {!isUser ? renderMarkdownMessage(message.content) : renderUserMessage(message.content)}
+                                {isUser && !enableUserMarkdownRender ? renderUserMessage(message.content) : renderMarkdownMessage(message.content)}
                                 {streamResponse}
                             </div>
                         </div>

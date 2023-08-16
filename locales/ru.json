@@ -118,7 +118,8 @@
     "Auto read out all replies": "Автоматически прочитать все ответы",
     "disabled": "отключено",
     "enabled": "включено",
-    "New Version Available": "Доступна новая версия"
+    "New Version Available": "Доступна новая версия",
+    "Render user message using Markdown": "Отображать сообщение пользователя с помощью Markdown"
   },
   "auth": {
     "Home": "Главная",

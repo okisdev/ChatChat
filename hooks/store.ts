@@ -21,6 +21,7 @@ const contextModeAtom = atomWithStorage<{
     enable: false,
     contextCount: 0,
 });
+const enableUserMarkdownRenderAtom = atomWithStorage<boolean>('enableUserMarkdownRender', false);
 
 // Text to Speech Config
 const textToSpeechConfigAtom = atomWithStorage('textToSpeechConfig', {
@@ -109,6 +110,7 @@ export default {
     enableSystemPrompt,
     enablePluginsAtom,
     contextModeAtom,
+    enableUserMarkdownRenderAtom,
     textToSpeechConfigAtom,
     autoSpeechAtom,
     searchConfigAtom,

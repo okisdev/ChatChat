@@ -118,7 +118,8 @@
     "Auto read out all replies": "Lire automatiquement toutes les réponses",
     "disabled": "désactivé",
     "enabled": "activé",
-    "New Version Available": "Nouvelle Version Disponible"
+    "New Version Available": "Nouvelle Version Disponible",
+    "Render user message using Markdown": "Rendre le message de l'utilisateur en utilisant Markdown"
   },
   "auth": {
     "Home": "Accueil",

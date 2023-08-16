@@ -118,7 +118,8 @@
     "Auto read out all replies": "모든 응답을 자동으로 읽어줍니다",
     "disabled": "비활성화됨",
     "enabled": "활성화됨",
-    "New Version Available": "새 버전이 있습니다"
+    "New Version Available": "새 버전이 있습니다",
+    "Render user message using Markdown": "마크다운을 사용하여 사용자 메시지 렌더링"
   },
   "auth": {
     "Home": "홈",
