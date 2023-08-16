@@ -118,7 +118,8 @@
     "Auto read out all replies": "自動朗讀所有回覆",
     "disabled": "已停用",
     "enabled": "已啟用",
-    "New Version Available": "有新版本可用"
+    "New Version Available": "有新版本可用",
+    "Render user message using Markdown": "使用 Markdown 渲染使用者訊息"
   },
   "auth": {
     "Home": "首頁",

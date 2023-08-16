@@ -118,7 +118,8 @@
     "Auto read out all replies": "自动朗读所有回复",
     "disabled": "已禁用",
     "enabled": "已启用",
-    "New Version Available": "新版本可用"
+    "New Version Available": "新版本可用",
+    "Render user message using Markdown": "使用 Markdown 渲染用户消息"
   },
   "auth": {
     "Home": "主页",
