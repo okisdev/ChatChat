@@ -67,7 +67,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
 
     const handleSwitchUserMarkdownRender = () => {
         setEnableUserMarkdownRender(!enableUserMarkdownRender);
-        toast.success(`${t('User Markdown Render')} ${enableUserMarkdownRender ? t('disabled') : t('enabled')}`);
+        toast.success(`${t('Render user message using Markdown')} ${enableUserMarkdownRender ? t('disabled') : t('enabled')}`);
     };
 
     // Search
