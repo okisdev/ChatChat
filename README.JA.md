@@ -86,8 +86,8 @@ https://github.com/users/okisdev/projects/7 をご参照ください
 git clone https://github.com/okisdev/ChatChat.git
 cd ChatChat
 cp .env.example .env
-yarn
-yarn dev
+pnpm i
+pnpm dev
 ```
 
 #### Vercel

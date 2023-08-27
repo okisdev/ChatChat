@@ -86,8 +86,8 @@ https://user-images.githubusercontent.com/66008528/235539163-35f7ee91-e357-453a-
 git clone https://github.com/okisdev/ChatChat.git
 cd ChatChat
 cp .env.example .env
-yarn
-yarn dev
+pnpm i
+pnpm dev
 ```
 
 #### Vercel

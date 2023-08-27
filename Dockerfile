@@ -1,13 +1,13 @@
 FROM node:lts-alpine as base
 
 WORKDIR /app
-COPY package*.json yarn.lock ./
-RUN yarn
+COPY package*.json pnpm-lock.yaml ./
+RUN pnpm i
 
 COPY . .
 
-RUN yarn prisma generate
-RUN yarn build
+RUN pnpm prisma generate
+RUN pnpm build
 
 FROM node:lts-alpine as production
 WORKDIR /app
@@ -30,4 +30,4 @@ ENV NODE_ENV=production \
   EMAIL_PASSWORD="" \
   EMAIL_FROM=""
 
-CMD ["yarn", "start"]
+CMD ["pnpm", "start"]
