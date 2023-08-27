@@ -118,10 +118,10 @@ const ModeList = [
         icon: FiCode,
         link: '/mode/code',
     },
-    {
-        title: 'File',
-        value: 'file',
-        icon: FiFile,
-        link: '/mode/file',
-    },
+    // {
+    //     title: 'File',
+    //     value: 'file',
+    //     icon: FiFile,
+    //     link: '/mode/file',
+    // },
 ];
