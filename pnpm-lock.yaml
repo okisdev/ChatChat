@@ -12,7 +12,7 @@ dependencies:
     specifier: ^1.0.7
     version: 1.0.7(@prisma/client@5.2.0)(next-auth@4.23.1)
   '@prisma/client':
-    specifier: ^5.1.1
+    specifier: ^5.2.0
     version: 5.2.0(prisma@5.2.0)
   '@radix-ui/react-accordion':
     specifier: ^1.1.2
@@ -57,13 +57,13 @@ dependencies:
     specifier: ^4.2.6
     version: 4.2.6(react-dom@18.2.0)(react@18.2.0)
   '@vercel/analytics':
-    specifier: ^1.0.1
+    specifier: ^1.0.2
     version: 1.0.2
   autoprefixer:
     specifier: 10.4.15
     version: 10.4.15(postcss@8.4.26)
   axios:
-    specifier: ^1.4.0
+    specifier: ^1.5.0
     version: 1.5.0
   cheerio:
     specifier: ^1.0.0-rc.12
@@ -87,11 +87,11 @@ dependencies:
     specifier: ^1.0.0
     version: 1.0.0
   formidable:
-    specifier: ^3.5.0
+    specifier: ^3.5.1
     version: 3.5.1
   jotai:
-    specifier: ^2.3.1
-    version: 2.4.0(@types/react@18.2.15)(react@18.2.0)
+    specifier: ^2.4.2
+    version: 2.4.2(@types/react@18.2.15)(react@18.2.0)
   lucide-react:
     specifier: ^0.263.1
     version: 0.263.1(react@18.2.0)
@@ -99,10 +99,10 @@ dependencies:
     specifier: 13.4.9
     version: 13.4.9(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
   next-auth:
-    specifier: ^4.22.4
-    version: 4.23.1(next@13.4.9)(nodemailer@6.9.4)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^4.23.1
+    version: 4.23.1(next@13.4.9)(nodemailer@6.9.5)(react-dom@18.2.0)(react@18.2.0)
   next-intl:
-    specifier: ^2.19.1
+    specifier: ^2.20.0
     version: 2.20.0(next@13.4.9)(react@18.2.0)
   next-pwa:
     specifier: ^5.6.0
@@ -111,8 +111,8 @@ dependencies:
     specifier: ^0.2.1
     version: 0.2.1(next@13.4.9)(react-dom@18.2.0)(react@18.2.0)
   nodemailer:
-    specifier: ^6.9.4
-    version: 6.9.4
+    specifier: ^6.9.5
+    version: 6.9.5
   pdf-parse:
     specifier: ^1.1.1
     version: 1.1.1
@@ -129,8 +129,8 @@ dependencies:
     specifier: ^2.4.1
     version: 2.4.1(csstype@3.1.2)(react-dom@18.2.0)(react@18.2.0)
   react-icons:
-    specifier: ^4.10.1
-    version: 4.10.1(react@18.2.0)
+    specifier: ^4.11.0
+    version: 4.11.0(react@18.2.0)
   react-markdown:
     specifier: ^8.0.7
     version: 8.0.7(@types/react@18.2.15)(react@18.2.0)
@@ -144,7 +144,7 @@ dependencies:
     specifier: ^15.5.0
     version: 15.5.0(react@18.2.0)
   react-textarea-autosize:
-    specifier: ^8.5.2
+    specifier: ^8.5.3
     version: 8.5.3(@types/react@18.2.15)(react@18.2.0)
   rehype-katex:
     specifier: ^6.0.3
@@ -162,16 +162,16 @@ dependencies:
     specifier: 3.3.3
     version: 3.3.3
   tailwindcss-animate:
-    specifier: ^1.0.6
-    version: 1.0.6(tailwindcss@3.3.3)
+    specifier: ^1.0.7
+    version: 1.0.7(tailwindcss@3.3.3)
   typescript:
     specifier: 5.1.6
     version: 5.1.6
 
 devDependencies:
   '@types/formidable':
-    specifier: ^3.4.0
-    version: 3.4.1
+    specifier: ^3.4.2
+    version: 3.4.2
   '@types/node':
     specifier: 18.16.19
     version: 18.16.19
@@ -194,13 +194,13 @@ devDependencies:
     specifier: ^15.5.7
     version: 15.5.7
   prettier:
-    specifier: ^3.0.1
-    version: 3.0.2
+    specifier: ^3.0.3
+    version: 3.0.3
   prettier-plugin-tailwindcss:
     specifier: ^0.4.1
-    version: 0.4.1(prettier@3.0.2)
+    version: 0.4.1(prettier@3.0.3)
   prisma:
-    specifier: ^5.1.1
+    specifier: ^5.2.0
     version: 5.2.0
   webpack:
     specifier: ^5.88.2
@@ -1572,7 +1572,7 @@ packages:
       next-auth: ^4
     dependencies:
       '@prisma/client': 5.2.0(prisma@5.2.0)
-      next-auth: 4.23.1(next@13.4.9)(nodemailer@6.9.4)(react-dom@18.2.0)(react@18.2.0)
+      next-auth: 4.23.1(next@13.4.9)(nodemailer@6.9.5)(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
   /@next/env@13.4.9:
@@ -2870,8 +2870,8 @@ packages:
   /@types/estree@1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
 
-  /@types/formidable@3.4.1:
-    resolution: {integrity: sha512-8G2MI302B0yinarziM10Jx9Y43sPwo4LH059FB1ihA3jf7HSamhC6alLRzB2XDGwrpCxbcd6xaFXeDh+rcE3xQ==}
+  /@types/formidable@3.4.2:
+    resolution: {integrity: sha512-9mQAaTvlEBlBtJKpsfOw5uGEIgEUFxRqqkvzP/6wxDSK9LSHrTu06nFeBM5gphm/ZExuliTgnp9nHVG+KYwXNA==}
     dependencies:
       '@types/node': 18.16.19
     dev: true
@@ -5169,8 +5169,8 @@ packages:
     resolution: {integrity: sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g==}
     dev: false
 
-  /jotai@2.4.0(@types/react@18.2.15)(react@18.2.0):
-    resolution: {integrity: sha512-NUHJdAJe3C8Prf0DD6EzezCATjkNvfCNI7pgkaX7bCPPsqE0oK8L9RzZsEhz/UxFoGRayXwacTvAli0VEYKkqQ==}
+  /jotai@2.4.2(@types/react@18.2.15)(react@18.2.0):
+    resolution: {integrity: sha512-90jXVOd9h6gi5JXk558M+wnJfaaVN2WegcNOCfiFbWboNaDl6DkRgiY/K1oeqTfYJmq8yM7XPsL99LAvcOPqhw==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
       '@types/react': '>=17.0.0'
@@ -5894,7 +5894,7 @@ packages:
   /neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  /next-auth@4.23.1(next@13.4.9)(nodemailer@6.9.4)(react-dom@18.2.0)(react@18.2.0):
+  /next-auth@4.23.1(next@13.4.9)(nodemailer@6.9.5)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-mL083z8KgRtlrIV6CDca2H1kduWJuK/3pTS0Fe2og15KOm4v2kkLGdSDfc2g+019aEBrJUT0pPW2Xx42ImN1WA==}
     peerDependencies:
       next: ^12.2.5 || ^13
@@ -5910,7 +5910,7 @@ packages:
       cookie: 0.5.0
       jose: 4.14.4
       next: 13.4.9(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
-      nodemailer: 6.9.4
+      nodemailer: 6.9.5
       oauth: 0.9.15
       openid-client: 5.4.3
       preact: 10.17.1
@@ -6018,8 +6018,8 @@ packages:
   /node-releases@2.0.13:
     resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
 
-  /nodemailer@6.9.4:
-    resolution: {integrity: sha512-CXjQvrQZV4+6X5wP6ZIgdehJamI63MFoYFGGPtHudWym9qaEHDNdPzaj5bfMCvxG1vhAileSWW90q7nL0N36mA==}
+  /nodemailer@6.9.5:
+    resolution: {integrity: sha512-/dmdWo62XjumuLc5+AYQZeiRj+PRR8y8qKtFCOyuOl1k/hckZd8durUUHs/ucKx6/8kN+wFxqKJlQ/LK/qR5FA==}
     engines: {node: '>=6.0.0'}
     dev: false
 
@@ -6398,7 +6398,7 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: false
 
-  /prettier-plugin-tailwindcss@0.4.1(prettier@3.0.2):
+  /prettier-plugin-tailwindcss@0.4.1(prettier@3.0.3):
     resolution: {integrity: sha512-hwn2EiJmv8M+AW4YDkbjJ6HlZCTzLyz1QlySn9sMuKV/Px0fjwldlB7tol8GzdgqtkdPtzT3iJ4UzdnYXP25Ag==}
     engines: {node: '>=12.17.0'}
     peerDependencies:
@@ -6450,11 +6450,11 @@ packages:
       prettier-plugin-twig-melody:
         optional: true
     dependencies:
-      prettier: 3.0.2
+      prettier: 3.0.3
     dev: true
 
-  /prettier@3.0.2:
-    resolution: {integrity: sha512-o2YR9qtniXvwEZlOKbveKfDQVyqxbEIWn48Z8m3ZJjBjcCmUy3xZGIv+7AkaeuaTr6yPXJjwv07ZWlsWbEy1rQ==}
+  /prettier@3.0.3:
+    resolution: {integrity: sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
@@ -6545,8 +6545,8 @@ packages:
       - csstype
     dev: false
 
-  /react-icons@4.10.1(react@18.2.0):
-    resolution: {integrity: sha512-/ngzDP/77tlCfqthiiGNZeYFACw85fUjZtLbedmJ5DTlNDIwETxhwBzdOJ21zj4iJdvc0J3y7yOsX3PpxAJzrw==}
+  /react-icons@4.11.0(react@18.2.0):
+    resolution: {integrity: sha512-V+4khzYcE5EBk/BvcuYRq6V/osf11ODUM2J8hg2FDSswRrGvqiYUYPRy4OdrWaQOBj4NcpJfmHZLNaD+VH0TyA==}
     peerDependencies:
       react: '*'
     dependencies:
@@ -7201,8 +7201,8 @@ packages:
     resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
     dev: false
 
-  /tailwindcss-animate@1.0.6(tailwindcss@3.3.3):
-    resolution: {integrity: sha512-4WigSGMvbl3gCCact62ZvOngA+PRqhAn7si3TQ3/ZuPuQZcIEtVap+ENSXbzWhpojKB8CpvnIsrwBu8/RnHtuw==}
+  /tailwindcss-animate@1.0.7(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
