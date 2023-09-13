@@ -78,7 +78,7 @@
     "@types/react-speech-recognition": "^3.9.2",
     "@types/react-syntax-highlighter": "^15.5.7",
     "prettier": "^3.0.3",
-    "prettier-plugin-tailwindcss": "^0.4.1",
+    "prettier-plugin-tailwindcss": "^0.5.0",
     "prisma": "^5.2.0",
     "webpack": "^5.88.2"
   }
