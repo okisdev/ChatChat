@@ -218,7 +218,7 @@ const languageList = [
         name: '🇯🇵 日本語',
     },
     {
-        value: 'kr',
+        value: 'ko',
         name: '🇰🇷 한국어',
     },
     {
