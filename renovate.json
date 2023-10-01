@@ -1,8 +1,4 @@
 {
-  "extends": [
-    "config:base"
-  ],
-  "ignoreDeps": [
-    "lucide-react"
-  ]
+    "extends": ["config:base"],
+    "ignoreDeps": ["lucide-react"]
 }
