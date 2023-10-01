@@ -14,7 +14,7 @@ import { siteConfig } from '@/config/site.config';
 const AuthHeader = () => {
     const router = useRouter();
 
-    const t = useTranslations('auth');
+    const t = useTranslations('');
 
     return (
         <div className='flex h-36 w-full flex-row items-center justify-between'>

@@ -13,7 +13,7 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import packageInfo from '@/package.json';
 
 export default function SideInfo() {
-    const t = useTranslations('landing');
+    const t = useTranslations('');
 
     const [isVersionDialogOpen, setIsVersionDialogOpen] = useState(false);
 

@@ -37,7 +37,7 @@ import ExtensionServiceProvider from './service-provider/extension';
 import HuggingFaceServiceProvider from './service-provider/huggingface';
 
 const SideAppSettings = ({ user }: { user: User | null }) => {
-    const t = useTranslations('landing');
+    const t = useTranslations('');
 
     const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
 

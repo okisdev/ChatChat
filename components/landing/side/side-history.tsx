@@ -19,7 +19,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 const SideHistory = () => {
     const router = useRouter();
 
-    const t = useTranslations('landing');
+    const t = useTranslations('');
 
     const [userInput, setUserInput] = useState<string>('');
 

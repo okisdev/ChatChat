@@ -55,7 +55,7 @@ const LandingSide = ({ className, user }: { className?: string; user: User | nul
 
     const { theme, setTheme } = useTheme();
 
-    const t = useTranslations('landing');
+    const t = useTranslations('');
 
     const isHiddenSide = useAtom(store.isHiddenSideAtom)[0];
 
@@ -218,7 +218,7 @@ const languageList = [
         name: '🇯🇵 日本語',
     },
     {
-        value: 'kr',
+        value: 'ko',
         name: '🇰🇷 한국어',
     },
     {

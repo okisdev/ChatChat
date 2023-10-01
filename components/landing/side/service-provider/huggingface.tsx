@@ -22,7 +22,7 @@ const HuggingFaceServiceProvider = ({
     setAccessToken: (accessToken: string) => void;
     setHuggingFaceModel: (huggingFaceModel: string) => void;
 }) => {
-    const t = useTranslations('landing');
+    const t = useTranslations('');
 
     return (
         <>

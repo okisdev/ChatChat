@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const TeamServiceProvider = ({ accessCode, setAccessCode }: { accessCode: string; setAccessCode: (accessCode: string) => void }) => {
-    const t = useTranslations('landing');
+    const t = useTranslations('');
 
     return (
         <>

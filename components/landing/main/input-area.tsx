@@ -32,7 +32,7 @@ const InputArea = ({
     waitingSystemResponse: boolean;
     stopSystemResponseRef: MutableRefObject<boolean>;
 }) => {
-    const t = useTranslations('landing');
+    const t = useTranslations('');
 
     const locale = useLocale();
 

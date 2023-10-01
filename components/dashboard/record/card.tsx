@@ -21,7 +21,7 @@ import { formatDate } from '@/utils/app/formatDate';
 const RecordCard = ({ record }: { record: Record }) => {
     const router = useRouter();
 
-    const t = useTranslations('dashboard');
+    const t = useTranslations('');
 
     const [enableShare, setEnableShare] = useState<boolean>(false);
 

@@ -4,7 +4,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 
 const ExtensionServiceProvider = () => {
-    const t = useTranslations('landing');
+    const t = useTranslations('');
 
     return (
         <>

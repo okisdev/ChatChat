@@ -35,7 +35,7 @@ const AzureServiceProvider = ({
     setAzureAPITemperature: (azureAPITemperature: number) => void;
     setAzureAPIDeploymentName: (azureAPIDeploymentName: string) => void;
 }) => {
-    const t = useTranslations('landing');
+    const t = useTranslations('');
 
     return (
         <>

@@ -23,7 +23,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemPromptContent: string; setSystemPromptContent: (content: string) => void }) => {
-    const t = useTranslations('landing');
+    const t = useTranslations('');
 
     // Global Disabled
     const [globalDisabled, setGlobalDisabled] = useState<boolean>(false);
