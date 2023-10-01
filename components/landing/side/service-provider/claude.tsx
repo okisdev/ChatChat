@@ -28,7 +28,7 @@ const ClaudeServiceProvider = ({
     setClaudeAPIModel: (claudeAPIModel: OpenAIModel) => void;
     setClaudeAPITemperature: (claudeAPITemperature: number) => void;
 }) => {
-    const t = useTranslations('landing');
+    const t = useTranslations('');
 
     return (
         <>

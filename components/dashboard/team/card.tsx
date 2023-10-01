@@ -20,7 +20,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
     const router = useRouter();
 
-    const t = useTranslations('dashboard');
+    const t = useTranslations('');
 
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);

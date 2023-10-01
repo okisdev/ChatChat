@@ -18,7 +18,7 @@ import { Separator } from '@/components/ui/separator';
 const DashboardNav = ({ user }: { user: any }) => {
     const pathname = usePathname();
 
-    const t = useTranslations('dashboard');
+    const t = useTranslations('');
 
     const i18n = /^\/[a-z]{2}-[A-Z]{2}\//.test(pathname ?? '');
 

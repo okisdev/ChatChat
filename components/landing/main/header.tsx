@@ -21,7 +21,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 const LandingHeader = () => {
     const pathname = usePathname();
 
-    const t = useTranslations('landing');
+    const t = useTranslations('');
     const locale = useLocale();
 
     const [isHiddenSideAtom, setIsHiddenSideAtom] = useAtom(store.isHiddenSideAtom);

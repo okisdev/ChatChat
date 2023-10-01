@@ -14,7 +14,7 @@ import { useTranslations } from 'next-intl';
 export const ClientCommand = () => {
     const router = useRouter();
 
-    const t = useTranslations('component');
+    const t = useTranslations('');
 
     const [open, setOpen] = React.useState(false);
 

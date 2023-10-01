@@ -19,7 +19,7 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogT
 const CreateButton = () => {
     const router = useRouter();
 
-    const t = useTranslations('dashboard');
+    const t = useTranslations('');
 
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);

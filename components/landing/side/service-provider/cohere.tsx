@@ -22,7 +22,7 @@ const CohereServiceProvider = ({
     setCohereAPIKey: (cohereAPIKey: string) => void;
     setCohereModel: (cohereModel: string) => void;
 }) => {
-    const t = useTranslations('landing');
+    const t = useTranslations('');
 
     return (
         <>

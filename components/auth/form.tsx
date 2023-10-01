@@ -17,7 +17,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
 const AuthForm = ({ login }: { login: boolean }) => {
-    const t = useTranslations('auth');
+    const t = useTranslations('');
 
     const [email, setEmail] = useState<string>('');
 

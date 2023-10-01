@@ -24,7 +24,7 @@ interface ShareProps {
 const SharePost = ({ share }: ShareProps) => {
     const router = useRouter();
 
-    const t = useTranslations('share');
+    const t = useTranslations('');
 
     const contentString = JSON.stringify(share.content, null, 2);
 
