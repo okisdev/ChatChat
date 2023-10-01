@@ -26,6 +26,11 @@ const SideHistory = () => {
     const [histories, setHistories] = useState<HistoryProps[]>([]);
     const [pinHistories, setPinHistories] = useState<HistoryProps[]>([]);
 
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [tempTitle, setTempTitle] = useState('');
+    const [editingHistoryId, setEditingHistoryId] = useState<string | null>(null);
+    const [editingHistoryType, setEditingHistoryType] = useState<string | null>(null);
+
     useEffect(() => {
         const updateHistories = () => {
             const conversationKeys = Object.keys(localStorage).filter((key) => key.startsWith('histories-'));
@@ -55,18 +60,18 @@ const SideHistory = () => {
         setPinHistories((prev) => prev.filter((history) => history.id != id));
     };
 
-    const onTitleChange = (id: string, type: string) => {
-        const newTitle = prompt(t('Enter new title'));
-
-        if (newTitle) {
-            const history = localStorage.getItem(`histories-${type}-${id}`);
+    const onTitleChange = () => {
+        if (editingHistoryId && editingHistoryType) {
+            console.log(tempTitle);
+            const history = localStorage.getItem(`histories-${editingHistoryType}-${editingHistoryId}`);
             if (history) {
                 const historyObj = JSON.parse(history);
-                historyObj.title = newTitle;
-                localStorage.setItem(`histories-${type}-${id}`, JSON.stringify(historyObj));
+                historyObj.title = tempTitle;
+                localStorage.setItem(`histories-${editingHistoryType}-${editingHistoryId}`, JSON.stringify(historyObj));
                 toast.success(t('Title changed'));
             }
         }
+        setIsDialogOpen(false);
     };
 
     const onHistoryDelete = (id: string, type: string) => {
@@ -253,12 +258,12 @@ const SideHistory = () => {
                                 <button className='rounded border border-blue-300 px-0.5 text-xs' onClick={() => onShareClick(pinHistory.type, pinHistory.id)}>
                                     {pinHistory.type}
                                 </button>
-                                <button className='block' onClick={() => onTitleChange(pinHistory.id, pinHistory.type)}>
+                                {/* <button className='block' onClick={() => onTitleChange(pinHistory.id, pinHistory.type)}>
                                     <TiBrush className='text-lg hover:fill-green-500' />
                                 </button>
                                 <button className='block' onClick={() => onHistoryDelete(pinHistory.id, pinHistory.type)}>
                                     <TiDeleteOutline className='text-lg hover:fill-red-500' />
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     );
@@ -287,9 +292,46 @@ const SideHistory = () => {
                                 <button className='rounded border border-blue-300 px-0.5 text-xs' onClick={() => onShareClick(history.type, history.id)}>
                                     {history.type}
                                 </button>
-                                <button className='block' onClick={() => onTitleChange(history.id, history.type)}>
-                                    <TiBrush className='text-lg hover:fill-green-500' />
-                                </button>
+                                <Dialog
+                                    open={isDialogOpen}
+                                    onOpenChange={(isOpen) => {
+                                        setIsDialogOpen(isOpen);
+                                        if (!isOpen) {
+                                            setEditingHistoryId(null);
+                                            setEditingHistoryType(null);
+                                        }
+                                    }}
+                                >
+                                    <DialogTrigger asChild>
+                                        <button
+                                            className='block'
+                                            onClick={() => {
+                                                setTempTitle(history.title);
+                                                setEditingHistoryId(history.id);
+                                                setEditingHistoryType(history.type);
+                                            }}
+                                        >
+                                            <TiBrush className='text-lg hover:fill-green-500' />
+                                        </button>
+                                    </DialogTrigger>
+                                    <DialogContent>
+                                        <DialogHeader>
+                                            <DialogTitle>{t('New Title')}</DialogTitle>
+                                        </DialogHeader>
+                                        <div className='flex flex-col space-y-3'>
+                                            <div className='flex space-x-3'>
+                                                <Input value={tempTitle} onChange={(e) => setTempTitle(e.target.value)} />
+                                                <Button variant='secondary' className='flex items-center space-x-0.5' onClick={onTitleChange}>
+                                                    <TiBrush />
+                                                    <span>{t('Confirm')}</span>
+                                                </Button>
+                                                <Button variant='default' className='flex items-center space-x-0.5' onClick={() => setIsDialogOpen(false)}>
+                                                    <span>{t('Cancel')}</span>
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </DialogContent>
+                                </Dialog>
                                 <button className='block' onClick={() => onHistoryDelete(history.id, history.type)}>
                                     <TiDeleteOutline className='text-lg hover:fill-red-500' />
                                 </button>
