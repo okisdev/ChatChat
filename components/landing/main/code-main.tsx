@@ -13,6 +13,8 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
+import { TbInfoSquareRounded } from 'react-icons/tb';
+
 import generateHash from '@/utils/app/generateHash';
 
 import { setLocalStorage } from '@/hooks/setLocalStorage';
@@ -205,7 +207,7 @@ const CodeMain = () => {
     return (
         <main className='m-2 flex h-[calc(100%-65px)] flex-grow flex-col rounded-lg bg-white/90 px-4 py-2 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327] md:h-[calc(100%-80px)] md:p-3'>
             <div className='flex h-full flex-col items-center justify-between space-y-3 xl:flex-row xl:space-x-3'>
-                <Textarea className='h-3/6 w-full xl:min-h-full xl:w-5/12' onChange={onMessageChange} />
+                <Textarea className='h-3/6 w-full xl:min-h-full xl:w-5/12 dark:bg-transparent dark:border-neutral-500' onChange={onMessageChange} />
                 <div className='flex h-1/6 w-full flex-col space-y-3 xl:w-2/12'>
                     <Select value={codeMode} onValueChange={setCodeMode}>
                         <SelectTrigger>
@@ -224,7 +226,10 @@ const CodeMain = () => {
                         </SelectContent>
                     </Select>
                     <div className='space-y-3'>
-                        <p className='px-2 text-sm'>{t(CodeModeConfig.find((mode) => mode.name === codeMode)?.hint)}</p>
+                        <div className='inline-flex items-center'>
+                            <TbInfoSquareRounded />
+                            <p className='px-2 text-sm'>{t(CodeModeConfig.find((mode) => mode.name === codeMode)?.hint)}</p>
+                        </div>
                         {codeMode == 'Custom' && (
                             <div>
                                 <Textarea value={customRule} onChange={(e) => setCustomRule(e.target.value)} />
@@ -251,11 +256,11 @@ const CodeMain = () => {
                             </div>
                         )}
                     </div>
-                    <Button variant='secondary' onClick={onProcess}>
+                    <Button variant='default' onClick={onProcess}>
                         {t('Process')}
                     </Button>
                 </div>
-                <div className='h-3/6 w-full rounded-md border p-3 xl:min-h-full xl:w-5/12'>{systemResponse}</div>
+                <div className='h-3/6 w-full rounded-md border p-3 xl:min-h-full xl:w-5/12 dark:border-neutral-500'>{systemResponse}</div>
             </div>
         </main>
     );
