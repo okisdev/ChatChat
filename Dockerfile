@@ -1,16 +1,16 @@
-FROM node:lts-alpine as base
+FROM node:lts-alpine AS base
 
 WORKDIR /app
-COPY package*.json pnpm-lock.yaml ./
-RUN npm i -g pnpm
-RUN pnpm i
+COPY package*.json bun.lockb ./
+RUN npm i -g bun
+RUN bun i
 
 COPY . .
 
-RUN pnpm prisma generate
-RUN pnpm build
+RUN bun prisma generate
+RUN bun build
 
-FROM node:lts-alpine as production
+FROM node:lts-alpine AS production
 WORKDIR /app
 COPY --from=base /app/package*.json ./
 COPY --from=base /app/.next ./.next
@@ -19,7 +19,7 @@ COPY --from=base /app/prisma ./prisma
 COPY --from=base /app/node_modules ./node_modules
 COPY --from=base /app/next.config.js ./next.config.js
 
-RUN npm i -g pnpm
+RUN npm i -g bun
 
 EXPOSE 3000
 
@@ -33,4 +33,4 @@ ENV NODE_ENV=production \
   EMAIL_PASSWORD="" \
   EMAIL_FROM=""
 
-CMD ["pnpm", "start"]
+CMD ["bun", "start"]
