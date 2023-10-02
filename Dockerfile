@@ -8,9 +8,10 @@ RUN bun i
 COPY . .
 
 RUN bun prisma generate
-RUN bun build
+RUN bun run build
 
 FROM node:lts-alpine AS production
+
 WORKDIR /app
 COPY --from=base /app/package*.json ./
 COPY --from=base /app/.next ./.next
