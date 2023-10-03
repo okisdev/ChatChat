@@ -233,7 +233,7 @@ const SideHistory = () => {
                     return (
                         <div
                             key={'pin-' + pinHistory.id}
-                            className='flex w-full select-none items-center justify-between rounded bg-blue-100 p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:bg-slate-500 dark:hover:bg-stone-700'
+                            className='flex w-full select-none items-center justify-between rounded bg-blue-100 p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-stone-700'
                         >
                             <div className='inline-flex items-center space-x-2'>
                                 <button className='block' onClick={() => onHistoryUnpin(pinHistory.id)}>
@@ -254,10 +254,10 @@ const SideHistory = () => {
                                     {pinHistory.type}
                                 </button>
                                 <button className='block' onClick={() => onTitleChange(pinHistory.id, pinHistory.type)}>
-                                    <TiBrush className='text-lg hover:fill-green-500' />
+                                    <TiBrush className='text-lg transition duration-500 ease-in-out hover:fill-green-500' />
                                 </button>
                                 <button className='block' onClick={() => onHistoryDelete(pinHistory.id, pinHistory.type)}>
-                                    <TiDeleteOutline className='text-lg hover:fill-red-500' />
+                                    <TiDeleteOutline className='text-lg transition duration-500 ease-in-out hover:fill-red-500' />
                                 </button>
                             </div>
                         </div>
@@ -288,10 +288,10 @@ const SideHistory = () => {
                                     {history.type}
                                 </button>
                                 <button className='block' onClick={() => onTitleChange(history.id, history.type)}>
-                                    <TiBrush className='text-lg hover:fill-green-500' />
+                                    <TiBrush className='text-lg transition duration-500 ease-in-out hover:fill-green-500' />
                                 </button>
                                 <button className='block' onClick={() => onHistoryDelete(history.id, history.type)}>
-                                    <TiDeleteOutline className='text-lg hover:fill-red-500' />
+                                    <TiDeleteOutline className='text-lg transition duration-500 ease-in-out hover:fill-red-500' />
                                 </button>
                             </div>
                         </div>
