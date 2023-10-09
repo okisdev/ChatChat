@@ -38,7 +38,7 @@
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.0.0",
         "cmdk": "^0.2.0",
-        "eslint": "8.50.0",
+        "eslint": "8.51.0",
         "eslint-config-next": "13.5.3",
         "eventsource-parser": "^1.0.0",
         "formidable": "^3.5.1",
