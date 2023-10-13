@@ -71,7 +71,7 @@
     },
     "devDependencies": {
         "@types/formidable": "^3.4.3",
-        "@types/node": "18.18.1",
+        "@types/node": "18.18.5",
         "@types/nodemailer": "^6.4.10",
         "@types/pdf-parse": "^1.1.1",
         "@types/react": "18.2.24",
