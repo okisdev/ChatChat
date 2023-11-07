@@ -11,29 +11,26 @@ import { toast } from 'react-hot-toast';
 import store from '@/hooks/store';
 import { useAtom } from 'jotai';
 
-import Tippy from '@tippyjs/react';
-
-import { MdInfoOutline } from 'react-icons/md';
 import { TbAdjustmentsHorizontal } from 'react-icons/tb';
 
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { Slider } from '@/components/ui/slider';
-import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectGroup, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetFooter, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
-import TeamServiceProvider from './service-provider/team';
-import OpenAIServiceProvider from './service-provider/openai';
-import ClaudeServiceProvider from './service-provider/claude';
-import CustomServiceProvider from './service-provider/custom';
-import CohereServiceProvider from './service-provider/cohere';
-import ExtensionServiceProvider from './service-provider/extension';
-import HuggingFaceServiceProvider from './service-provider/huggingface';
+import TeamServiceProvider from '../service-provider/team';
+import OpenAIServiceProvider from '../service-provider/openai';
+import ClaudeServiceProvider from '../service-provider/claude';
+import CustomServiceProvider from '../service-provider/custom';
+import CohereServiceProvider from '../service-provider/cohere';
+import ExtensionServiceProvider from '../service-provider/extension';
+import HuggingFaceServiceProvider from '../service-provider/huggingface';
+import AppSettingsHeader from '@/components/landing/side/footer/app-settings/header';
+import TabSearch from '@/components/landing/side/footer/app-settings/tab-search';
+import TabTTS from '@/components/landing/side/footer/app-settings/tab-tts';
 
 const SideAppSettings = ({ user }: { user: User | null }) => {
     const t = useTranslations('');
@@ -41,8 +38,8 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
 
     // Text To Speech
-    const synth = typeof window !== 'undefined' && window.speechSynthesis;
-    const voices = synth && synth.getVoices();
+    const synth = typeof window !== 'undefined' ? window.speechSynthesis : null;
+    const voices = synth ? synth.getVoices() : null;
 
     const [ttsVoice, setTTSVoice] = useState<string>('');
     const [ttsSpeed, setTTSSpeed] = useState<number>(1.0);
@@ -52,22 +49,6 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     const [ttsConfig, setTTSConfig] = useAtom(store.textToSpeechConfigAtom);
 
     const [isSpeaking, setIsSpeaking] = useState(false);
-
-    const [isSendKeyEnter, setIsSendKeyEnter] = useAtom(store.isSendKeyEnterAtom);
-
-    const [enableAutoSpeech, setEnableAutoSpeech] = useAtom(store.autoSpeechAtom);
-
-    const [enableUserMarkdownRender, setEnableUserMarkdownRender] = useAtom(store.enableUserMarkdownRenderAtom);
-
-    const handleSwitchAutoSpeech = () => {
-        setEnableAutoSpeech(!enableAutoSpeech);
-        toast.success(`${t('Auto Speech')} ${enableAutoSpeech ? t('disabled') : t('enabled')}`);
-    };
-
-    const handleSwitchUserMarkdownRender = () => {
-        setEnableUserMarkdownRender(!enableUserMarkdownRender);
-        toast.success(`${t('Render user message using Markdown')} ${enableUserMarkdownRender ? t('disabled') : t('enabled')}`);
-    };
 
     // Search
     const [searchEngine, setSearchEngine] = useState<string>(searchEnginesList[0].name);
@@ -112,11 +93,6 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
             setSearchAPIKey(searchConfig.searchAPIKey);
         }
     }, [searchConfig]);
-
-    const handleSwitchSendMessageKey = () => {
-        setIsSendKeyEnter(!isSendKeyEnter);
-        toast.success(`${t('Send message key changed to')} ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`);
-    };
 
     const [currentServiceProvider, setCurrentServiceProvider] = useState<ServiceProviderProps>('OpenAI');
     const [serviceProvider, setServiceProvider] = useAtom(store.serviceProviderAtom);
@@ -429,30 +405,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                     </SheetDescription>
                 </SheetHeader>
                 <div className='my-4 space-y-4'>
-                    <div className='space-y-3'>
-                        <div className='flex items-center space-x-1'>
-                            <Switch checked={isSendKeyEnter} onCheckedChange={handleSwitchSendMessageKey} />
-                            <Label className='px-1 font-normal'>{t('Send Message using Enter Key')}</Label>
-                            <Tippy content={`Current: ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`}>
-                                <button>
-                                    <MdInfoOutline className='text-lg' />
-                                </button>
-                            </Tippy>
-                        </div>
-                        <div className='flex items-center space-x-1'>
-                            <Switch checked={enableAutoSpeech} onCheckedChange={handleSwitchAutoSpeech} />
-                            <Label className='px-1 font-normal'>{t('Auto Speech')}</Label>
-                            <Tippy content={`${t('Auto read out all replies')}`}>
-                                <button>
-                                    <MdInfoOutline className='text-lg' />
-                                </button>
-                            </Tippy>
-                        </div>
-                        <div className='flex items-center space-x-1'>
-                            <Switch checked={enableUserMarkdownRender} onCheckedChange={handleSwitchUserMarkdownRender} />
-                            <Label className='px-1 font-normal'>{t('Render user message using Markdown')}</Label>
-                        </div>
-                    </div>
+                    <AppSettingsHeader />
                     <Separator />
                     <Tabs defaultValue='provider' className='h-full w-full space-y-5'>
                         <TabsList>
@@ -497,88 +450,30 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                             </div>
                         </TabsContent>
                         <TabsContent value='tts' className='px-2'>
-                            {voices && voices.length > 0 ? (
-                                <div className='space-y-6'>
-                                    <div className='flex flex-row items-center justify-between space-x-1'>
-                                        <Label>{t('Voice')}</Label>
-                                        <Select value={ttsVoice} onValueChange={(value: string) => setTTSVoice(value)}>
-                                            <SelectTrigger className='w-[300px]'>
-                                                <SelectValue />
-                                            </SelectTrigger>
-                                            <SelectContent className='h-[300px] overflow-auto'>
-                                                {voices.map((voice) => {
-                                                    return (
-                                                        <SelectItem key={voice.name} value={voice.name}>
-                                                            {voice.name} ({voice.lang})
-                                                        </SelectItem>
-                                                    );
-                                                })}
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <div className='flex flex-col space-y-5'>
-                                        <Label>
-                                            {t('Speaking Speed')}: {ttsSpeed}
-                                        </Label>
-                                        <Slider min={0.1} max={10} step={0.1} value={[ttsSpeed]} onValueChange={([value]) => setTTSSpeed(value)} />
-                                    </div>
-                                    <Separator />
-                                    <div className='flex flex-col space-y-2'>
-                                        <Label>{t('Sample')}</Label>
-                                        <Input value={ttsSample} onChange={(e) => setTTSSample(e.target.value)} />
-                                        <div>
-                                            <Button
-                                                onClick={() => {
-                                                    setIsSpeaking(true);
-                                                    const utterance = new SpeechSynthesisUtterance(ttsSample);
-                                                    utterance.voice = voices.find((voice) => voice.name === ttsVoice) || null;
-                                                    utterance.rate = ttsSpeed;
-                                                    utterance.pitch = ttsPitch;
-                                                    synth && synth.speak(utterance);
-                                                    utterance.onend = () => setIsSpeaking(false);
-                                                }}
-                                                disabled={isSpeaking}
-                                                className='inline-flex items-center justify-center space-x-2'
-                                            >
-                                                <span>{t('Speak')}</span>
-                                            </Button>
-                                        </div>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div>
-                                    <p>{t('Text to Speech is not supported in your browser')}</p>
-                                </div>
-                            )}
+                            <TabTTS
+                                voices={voices}
+                                synth={synth}
+                                ttsVoice={ttsVoice}
+                                ttsSpeed={ttsSpeed}
+                                ttsPitch={ttsPitch}
+                                ttsSample={ttsSample}
+                                setTTSVoice={setTTSVoice}
+                                setTTSSpeed={setTTSSpeed}
+                                setTTSPitch={setTTSPitch}
+                                setTTSSample={setTTSSample}
+                                isSpeaking={isSpeaking}
+                                setIsSpeaking={setIsSpeaking}
+                            />
                         </TabsContent>
                         <TabsContent value='search'>
-                            <div className='space-y-3'>
-                                <div>
-                                    <Label>{t('Search Engine')}</Label>
-                                    <Select value={searchEngine} onValueChange={(value: string) => setSearchEngine(value)}>
-                                        <SelectTrigger className='w-full'>
-                                            <SelectValue />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {searchEnginesList.map((engine) => {
-                                                return (
-                                                    <SelectItem key={engine.value} value={engine.value}>
-                                                        {engine.name}
-                                                    </SelectItem>
-                                                );
-                                            })}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                                <div>
-                                    <Label>Search Engine ID</Label>
-                                    <Input placeholder='55b885......' value={searchEngineID} onChange={(e) => setSearchEngineID(e.target.value)} />
-                                </div>
-                                <div>
-                                    <Label>Search API Key</Label>
-                                    <Input placeholder='AIzaSyB......' value={searchAPIKey} onChange={(e) => setSearchAPIKey(e.target.value)} />
-                                </div>
-                            </div>
+                            <TabSearch
+                                searchEngine={searchEngine}
+                                searchEngineID={searchEngineID}
+                                searchAPIKey={searchAPIKey}
+                                setSearchEngine={setSearchEngine}
+                                setSearchEngineID={setSearchEngineID}
+                                setSearchAPIKey={setSearchAPIKey}
+                            />
                         </TabsContent>
                     </Tabs>
                 </div>

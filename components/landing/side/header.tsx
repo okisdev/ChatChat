@@ -2,9 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 
-import store from '@/hooks/store';
-import { useAtom } from 'jotai';
-
 import { siteConfig } from '@/config/site.config';
 
 const SideHeader = () => {
