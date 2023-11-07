@@ -45,7 +45,7 @@ export default function AppInfo() {
                 <DialogContent>
                     <div className='flex w-full flex-col items-center justify-center space-y-10'>
                         <div className='flex flex-col items-center'>
-                            <Image src='/icons/android-chrome-512x512.png' alt='logo' width={50} height={50} />
+                            <Image src='/OpenAI.svg' alt='logo' width={50} height={50} className='fill-black dark:fill-white' />
                             <p className='text-xl font-medium'>Chat Chat</p>
                             <p className='text-sm text-neutral-600 dark:text-neutral-200'>v{packageInfo.version}</p>
                             {!isLatestVersion && (
