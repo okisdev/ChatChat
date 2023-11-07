@@ -21,13 +21,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectGroup, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetFooter, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
-import TeamServiceProvider from '../service-provider/team';
-import OpenAIServiceProvider from '../service-provider/openai';
-import ClaudeServiceProvider from '../service-provider/claude';
-import CustomServiceProvider from '../service-provider/custom';
-import CohereServiceProvider from '../service-provider/cohere';
-import ExtensionServiceProvider from '../service-provider/extension';
-import HuggingFaceServiceProvider from '../service-provider/huggingface';
+import TeamServiceProvider from './service-provider/team';
+import AzureServiceProvider from './service-provider/azure';
+import OpenAIServiceProvider from './service-provider/openai';
+import ClaudeServiceProvider from './service-provider/claude';
+import CustomServiceProvider from './service-provider/custom';
+import CohereServiceProvider from './service-provider/cohere';
+import ExtensionServiceProvider from './service-provider/extension';
+import HuggingFaceServiceProvider from './service-provider/huggingface';
 import AppSettingsHeader from '@/components/landing/side/footer/app-settings/header';
 import TabSearch from '@/components/landing/side/footer/app-settings/tab-search';
 import TabTTS from '@/components/landing/side/footer/app-settings/tab-tts';
@@ -201,6 +202,22 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                     setAzureAPIDeploymentName={setAzureAPIDeploymentName}
                     isAzure={isAzure}
                     setIsAzure={setIsAzure}
+                />
+            );
+            break;
+        case 'Azure':
+            ProviderConfig = (
+                <AzureServiceProvider
+                    azureAPIKey={azureAPIKey}
+                    azureAPIModel={azureAPIModel}
+                    azureAPIEndpoint={azureAPIEndpoint}
+                    azureAPITemperature={azureAPITemperature}
+                    azureAPIDeploymentName={azureAPIDeploymentName}
+                    setAzureAPIKey={setAzureAPIKey}
+                    setAzureAPIModel={setAzureAPIModel}
+                    setAzureAPIEndpoint={setAzureAPIEndpoint}
+                    setAzureAPITemperature={setAzureAPITemperature}
+                    setAzureAPIDeploymentName={setAzureAPIDeploymentName}
                 />
             );
             break;
@@ -509,9 +526,19 @@ interface ServiceProviderListProps {
 }
 
 const serviceProviderList: ServiceProviderListProps[] = [
+    // {
+    //     name: 'OpenAI / Azure OpenAI',
+    //     value: 'OpenAI',
+    //     status: 1,
+    // },
     {
-        name: 'OpenAI / Azure OpenAI',
+        name: 'OpenAI',
         value: 'OpenAI',
+        status: 1,
+    },
+    {
+        name: 'Azure OpenAI',
+        value: 'Azure',
         status: 1,
     },
     {

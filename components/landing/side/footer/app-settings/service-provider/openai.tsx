@@ -72,7 +72,7 @@ const OpenAIServiceProvider = ({
 
     return (
         <>
-            <div className='space-y-1'>
+            {/* <div className='space-y-1'>
                 <Label className='font-normal'>OpenAI Provider</Label>
                 <Select value={openaiProvider} onValueChange={(value) => setOpenaiProvider(value as OpenAIProvider)}>
                     <SelectTrigger>
@@ -87,7 +87,7 @@ const OpenAIServiceProvider = ({
                         </SelectItem>
                     </SelectContent>
                 </Select>
-            </div>
+            </div> */}
             {user && (
                 <div className='flex items-center justify-between'>
                     <Label>{t('Use Cloud Settings')}</Label>
@@ -121,7 +121,7 @@ const OpenAIServiceProvider = ({
                 <Label className='font-normal'>API Endpoint</Label>
                 <Input placeholder='https://api.openai.com' disabled={useCloudSettings} value={apiEndpoint} onChange={(e) => setApiEndpoint(e.target.value)} />
             </div>
-            {isAzure && (
+            {/* {isAzure && (
                 <>
                     <div className='space-y-1'>
                         <Label className='font-normal'>API Deployment Name</Label>
@@ -132,7 +132,7 @@ const OpenAIServiceProvider = ({
                         <Input placeholder='2023-03-15-preview' disabled />
                     </div>
                 </>
-            )}
+            )} */}
             <div className='space-y-3'>
                 <Label className='font-normal'>Temperature: {apiTemperature}</Label>
                 <div className='flex flex-col space-y-1'>
