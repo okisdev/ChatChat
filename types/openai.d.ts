@@ -1,3 +1,5 @@
+type OpenAIProvider = 'Azure' | 'OpenAI';
+
 type OpenAIModel =
     | 'gpt-4'
     | 'gpt-4-0613'
@@ -48,3 +50,13 @@ interface OpenAIGPTModel {
     maxTokens: integer;
     price: integer;
 }
+
+type AzureOpenAiApiVersion =
+    | '2020-10-01-preview'
+    | '2022-12-01 Swagger'
+    | '2023-03-15-preview'
+    | '2023-05-15'
+    | '2023-06-01-preview'
+    | '2023-07-01-preview'
+    | '2023-08-01-preview'
+    | '2023-09-01-preview';

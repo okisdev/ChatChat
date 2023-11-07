@@ -9,7 +9,7 @@ import { IoLogInOutline } from 'react-icons/io5';
 
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
 
-const SideUserSettings = () => {
+const UserLogin = () => {
     const t = useTranslations('');
 
     const router = useRouter();
@@ -31,4 +31,4 @@ const SideUserSettings = () => {
     );
 };
 
-export default SideUserSettings;
+export default UserLogin;
