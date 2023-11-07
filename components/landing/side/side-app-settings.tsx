@@ -28,7 +28,6 @@ import { Select, SelectContent, SelectItem, SelectGroup, SelectTrigger, SelectVa
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetFooter, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
 import TeamServiceProvider from './service-provider/team';
-import AzureServiceProvider from './service-provider/azure';
 import OpenAIServiceProvider from './service-provider/openai';
 import ClaudeServiceProvider from './service-provider/claude';
 import CustomServiceProvider from './service-provider/custom';
@@ -132,6 +131,8 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     const [openAIConfig, setOpenAIConfig] = useAtom(store.openAIConfigAtom);
     const [useCloudSettings, setUseCloudSettings] = useAtom<boolean>(store.useCloudSettingsAtom);
 
+    const [isAzure, setIsAzure] = useState<boolean>(false);
+
     // Azure
     const [azureConfig, setAzureConfig] = useAtom(store.azureConfigAtom);
     const [azureAPIKey, setAzureAPIKey] = useState<string>('');
@@ -220,6 +221,10 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                     user={user}
                     useCloudSettings={useCloudSettings}
                     setUseCloudSettings={setUseCloudSettings}
+                    azureAPIDeploymentName={azureAPIDeploymentName}
+                    setAzureAPIDeploymentName={setAzureAPIDeploymentName}
+                    isAzure={isAzure}
+                    setIsAzure={setIsAzure}
                 />
             );
             break;
@@ -235,22 +240,6 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                     setClaudeAPIKey={setClaudeAPIKey}
                     setClaudeAPIModel={setClaudeAPIModel}
                     setClaudeAPITemperature={setClaudeAPITemperature}
-                />
-            );
-            break;
-        case 'Azure':
-            ProviderConfig = (
-                <AzureServiceProvider
-                    azureAPIKey={azureAPIKey}
-                    azureAPIModel={azureAPIModel}
-                    azureAPIEndpoint={azureAPIEndpoint}
-                    azureAPITemperature={azureAPITemperature}
-                    azureAPIDeploymentName={azureAPIDeploymentName}
-                    setAzureAPIKey={setAzureAPIKey}
-                    setAzureAPIModel={setAzureAPIModel}
-                    setAzureAPIEndpoint={setAzureAPIEndpoint}
-                    setAzureAPITemperature={setAzureAPITemperature}
-                    setAzureAPIDeploymentName={setAzureAPIDeploymentName}
                 />
             );
             break;
@@ -626,8 +615,8 @@ interface ServiceProviderListProps {
 
 const serviceProviderList: ServiceProviderListProps[] = [
     {
-        name: 'Azure',
-        value: 'Azure',
+        name: 'OpenAI / Azure OpenAI',
+        value: 'OpenAI',
         status: 1,
     },
     {
@@ -643,11 +632,6 @@ const serviceProviderList: ServiceProviderListProps[] = [
     {
         name: 'Hugging Face',
         value: 'Hugging Face',
-        status: 1,
-    },
-    {
-        name: 'OpenAI',
-        value: 'OpenAI',
         status: 1,
     },
     {
