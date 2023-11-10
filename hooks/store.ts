@@ -4,7 +4,7 @@ import { atomWithStorage } from 'jotai/utils';
 // ------------------ Layout Config ------------------
 
 // Layout
-const isHiddenSideAtom = atom(false);
+const isHiddenSideAtom = atomWithStorage('isHiddenSide', false);
 
 // ------------------ Conversation Config ------------------
 

@@ -7,9 +7,12 @@ import { toast } from 'react-hot-toast';
 import store from '@/hooks/store';
 import { useAtomValue } from 'jotai';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
 import { TbCopy, TbAB2, TbSpeakerphone, TbEdit } from 'react-icons/tb';
 
 import { renderUserMessage, renderMarkdownMessage } from '@/utils/app/renderMessage';
+import GlobalButton from '@/components/global/button';
 
 const MainContent = ({
     systemResponse,
@@ -37,6 +40,10 @@ const MainContent = ({
     const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
 
     const enableUserMarkdownRender = useAtomValue(store.enableUserMarkdownRenderAtom);
+
+    const serviceProvider = useAtomValue(store.serviceProviderAtom);
+
+    const [isHovered, setIsHovered] = useState<boolean[]>(new Array(conversations.length).fill(false));
 
     useEffect(() => {
         if (endOfMessageRef.current) {
@@ -97,66 +104,59 @@ const MainContent = ({
                     }
 
                     return (
-                        <div className={`flex flex-col space-y-3 p-1 ${isUser ? 'items-end justify-end' : 'items-start justify-start'}`} key={index}>
-                            <div className='flex select-none items-center space-x-2 px-1'>
-                                {isUser ? (
-                                    <>
-                                        {!waitingSystemResponse && (
-                                            <>
-                                                <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
-                                                    onClick={() => onEdit(index)}
-                                                >
-                                                    <TbEdit />
-                                                    <span>{t('Edit')}</span>
-                                                </button>
-                                                <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
-                                                    onClick={() => onCopy(isSystemPromptEmpty ? index : index + 1)}
-                                                >
-                                                    <TbCopy />
-                                                    <span>{t('Copy')}</span>
-                                                </button>
-                                            </>
+                        <div
+                            className='flex flex-col space-y-3 p-1'
+                            key={index}
+                            onMouseOver={() => {
+                                const newIsHovered = [...isHovered];
+                                newIsHovered[index] = true;
+                                setIsHovered(newIsHovered);
+                            }}
+                            onMouseOut={() => {
+                                const newIsHovered = [...isHovered];
+                                newIsHovered[index] = false;
+                                setIsHovered(newIsHovered);
+                            }}
+                            onFocus={() => {
+                                const newIsHovered = [...isHovered];
+                                newIsHovered[index] = true;
+                                setIsHovered(newIsHovered);
+                            }}
+                            onBlur={() => {
+                                const newIsHovered = [...isHovered];
+                                newIsHovered[index] = false;
+                                setIsHovered(newIsHovered);
+                            }}
+                        >
+                            <div className='flex select-none items-center space-x-2'>
+                                <div className='flex items-center justify-center space-x-2'>
+                                    <Avatar className='h-6 w-6'>
+                                        {!isUser && <AvatarImage src={`/img/${serviceProvider}.png`} alt={serviceProvider} />}
+                                        <AvatarFallback>{isUser ? 'Y' : serviceProvider}</AvatarFallback>
+                                    </Avatar>
+                                    <p className='text-base font-semibold'>{isUser ? t('You') : serviceProvider}</p>
+                                </div>
+                                {!waitingSystemResponse && isHovered[index] && (
+                                    <div className='text-neutral-600 dark:text-neutral-400'>
+                                        <GlobalButton className='text-xs' icon={<TbCopy />} text={t('Copy')} onClick={() => onCopy(isSystemPromptEmpty ? index : index + 1)} />
+                                        <GlobalButton
+                                            className='text-xs'
+                                            icon={isUser ? <TbEdit /> : <TbAB2 />}
+                                            text={isUser ? t('Edit') : t('Regenerate')}
+                                            onClick={isUser ? () => onEdit(index) : () => reGenerate(index)}
+                                        />
+                                        {!isUser && (
+                                            <GlobalButton
+                                                className='text-xs'
+                                                icon={<TbSpeakerphone />}
+                                                text={isSpeaking ? t('Stop') : t('Speech')}
+                                                onClick={isSpeaking ? onStopSpeech : () => onSpeech(index)}
+                                            />
                                         )}
-                                        <p className='text-base font-semibold'>{t('You')}</p>
-                                    </>
-                                ) : (
-                                    <>
-                                        <p className='text-base font-semibold'>AI</p>
-                                        {!waitingSystemResponse && (
-                                            <>
-                                                <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
-                                                    onClick={() => onCopy(isSystemPromptEmpty ? index : index + 1)}
-                                                >
-                                                    <TbCopy />
-                                                    <span>{t('Copy')}</span>
-                                                </button>
-                                                <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
-                                                    onClick={() => reGenerate(index)}
-                                                >
-                                                    <TbAB2 />
-                                                    <span>{t('Regenerate')}</span>
-                                                </button>
-                                                <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
-                                                    onClick={isSpeaking ? onStopSpeech : () => onSpeech(index)}
-                                                >
-                                                    <TbSpeakerphone />
-                                                    <span>{isSpeaking ? t('Stop') : t('Speech')}</span>
-                                                </button>
-                                            </>
-                                        )}
-                                    </>
+                                    </div>
                                 )}
                             </div>
-                            <div
-                                className={`w-10/12 max-w-7xl space-y-3 rounded-xl p-3 text-sm ${
-                                    isUser ? 'bg-sky-500 text-white dark:bg-sky-600' : 'bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white'
-                                }`}
-                            >
+                            <div className='max-w-7xl space-y-3 rounded-xl py-3 text-sm text-black dark:text-stone-200'>
                                 {isUser && !enableUserMarkdownRender ? renderUserMessage(message.content) : renderMarkdownMessage(message.content)}
                                 {streamResponse}
                             </div>
