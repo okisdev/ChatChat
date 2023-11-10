@@ -1,5 +1,5 @@
 .markdown-inline-code {
-    @apply rounded-sm bg-gray-100 px-1 py-0.5 text-xs text-black dark:bg-stone-500 dark:text-stone-300 !important;
+    @apply rounded-sm bg-gray-100 px-1 py-0.5 text-xs text-black dark:bg-neutral-700 dark:text-neutral-300 !important;
 }
 
 .markdown-code {
