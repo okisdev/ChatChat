@@ -42,6 +42,8 @@ const MainContent = ({
 
     const serviceProvider = useAtomValue(store.serviceProviderAtom);
 
+    const [isHovered, setIsHovered] = useState<boolean>(false);
+
     useEffect(() => {
         if (endOfMessageRef.current) {
             endOfMessageRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -101,10 +103,10 @@ const MainContent = ({
                     }
 
                     return (
-                        <div className={`flex flex-col space-y-3 p-1`} key={index}>
+                        <div className={`flex flex-col space-y-3 p-1`} key={index} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
                             <div className='flex select-none items-center space-x-2 px-1'>
                                 <p className='text-base font-semibold'>{isUser ? t('You') : <Image src={`/img/${serviceProvider}.png`} height={25} width={25} alt={serviceProvider} />}</p>
-                                {!waitingSystemResponse && (
+                                {!waitingSystemResponse && isHovered && (
                                     <>
                                         <Button icon={<TbCopy />} text={t('Copy')} onClick={() => onCopy(isSystemPromptEmpty ? index : index + 1)} />
                                         <Button icon={isUser ? <TbEdit /> : <TbAB2 />} text={isUser ? t('Edit') : t('Regenerate')} onClick={isUser ? () => onEdit(index) : () => reGenerate(index)} />
@@ -127,7 +129,7 @@ const MainContent = ({
 export default MainContent;
 
 const Button = ({ icon, text, onClick }: { icon: JSX.Element; text: string; onClick: () => void }) => (
-    <button className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700' onClick={onClick}>
+    <button className='inline-flex items-center space-x-0.5 rounded px-1 text-xs font-medium transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700' onClick={onClick}>
         {icon}
         <span>{text}</span>
     </button>
