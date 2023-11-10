@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import Image from 'next/image';
+
 import { useTranslations } from 'next-intl';
 
 import { toast } from 'react-hot-toast';
@@ -37,6 +39,8 @@ const MainContent = ({
     const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
 
     const enableUserMarkdownRender = useAtomValue(store.enableUserMarkdownRenderAtom);
+
+    const serviceProvider = useAtomValue(store.serviceProviderAtom);
 
     useEffect(() => {
         if (endOfMessageRef.current) {
@@ -97,66 +101,18 @@ const MainContent = ({
                     }
 
                     return (
-                        <div className={`flex flex-col space-y-3 p-1 ${isUser ? 'items-end justify-end' : 'items-start justify-start'}`} key={index}>
+                        <div className={`flex flex-col space-y-3 p-1`} key={index}>
                             <div className='flex select-none items-center space-x-2 px-1'>
-                                {isUser ? (
+                                <p className='text-base font-semibold'>{isUser ? t('You') : <Image src={`/img/${serviceProvider}.png`} height={25} width={25} alt={serviceProvider} />}</p>
+                                {!waitingSystemResponse && (
                                     <>
-                                        {!waitingSystemResponse && (
-                                            <>
-                                                <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
-                                                    onClick={() => onEdit(index)}
-                                                >
-                                                    <TbEdit />
-                                                    <span>{t('Edit')}</span>
-                                                </button>
-                                                <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
-                                                    onClick={() => onCopy(isSystemPromptEmpty ? index : index + 1)}
-                                                >
-                                                    <TbCopy />
-                                                    <span>{t('Copy')}</span>
-                                                </button>
-                                            </>
-                                        )}
-                                        <p className='text-base font-semibold'>{t('You')}</p>
-                                    </>
-                                ) : (
-                                    <>
-                                        <p className='text-base font-semibold'>AI</p>
-                                        {!waitingSystemResponse && (
-                                            <>
-                                                <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
-                                                    onClick={() => onCopy(isSystemPromptEmpty ? index : index + 1)}
-                                                >
-                                                    <TbCopy />
-                                                    <span>{t('Copy')}</span>
-                                                </button>
-                                                <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
-                                                    onClick={() => reGenerate(index)}
-                                                >
-                                                    <TbAB2 />
-                                                    <span>{t('Regenerate')}</span>
-                                                </button>
-                                                <button
-                                                    className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
-                                                    onClick={isSpeaking ? onStopSpeech : () => onSpeech(index)}
-                                                >
-                                                    <TbSpeakerphone />
-                                                    <span>{isSpeaking ? t('Stop') : t('Speech')}</span>
-                                                </button>
-                                            </>
-                                        )}
+                                        <Button icon={<TbCopy />} text={t('Copy')} onClick={() => onCopy(isSystemPromptEmpty ? index : index + 1)} />
+                                        <Button icon={isUser ? <TbEdit /> : <TbAB2 />} text={isUser ? t('Edit') : t('Regenerate')} onClick={isUser ? () => onEdit(index) : () => reGenerate(index)} />
+                                        {!isUser && <Button icon={<TbSpeakerphone />} text={isSpeaking ? t('Stop') : t('Speech')} onClick={isSpeaking ? onStopSpeech : () => onSpeech(index)} />}
                                     </>
                                 )}
                             </div>
-                            <div
-                                className={`w-10/12 max-w-7xl space-y-3 rounded-xl p-3 text-sm ${
-                                    isUser ? 'bg-sky-500 text-white dark:bg-sky-600' : 'bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white'
-                                }`}
-                            >
+                            <div className={`w-10/12 max-w-7xl space-y-3 rounded-xl p-3 text-sm text-black`}>
                                 {isUser && !enableUserMarkdownRender ? renderUserMessage(message.content) : renderMarkdownMessage(message.content)}
                                 {streamResponse}
                             </div>
@@ -169,3 +125,10 @@ const MainContent = ({
 };
 
 export default MainContent;
+
+const Button = ({ icon, text, onClick }: { icon: JSX.Element; text: string; onClick: () => void }) => (
+    <button className='inline-flex items-center space-x-0.5 rounded px-1 text-sm transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700' onClick={onClick}>
+        {icon}
+        <span>{text}</span>
+    </button>
+);
