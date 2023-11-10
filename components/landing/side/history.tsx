@@ -8,13 +8,9 @@ import { useTranslations } from 'next-intl';
 
 import { toast } from 'react-hot-toast';
 
-import { TfiMoreAlt } from 'react-icons/tfi';
-import { BiImport, BiExport, BiBrush } from 'react-icons/bi';
 import { TiPinOutline, TiDeleteOutline, TiBrush } from 'react-icons/ti';
 
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const SideHistory = () => {
     const router = useRouter();
@@ -117,73 +113,6 @@ const SideHistory = () => {
         toast.success(`${t('Copied share link:')} ${id}`);
     };
 
-    const handleExportHistory = () => {
-        const data = histories.map((item) => {
-            return item;
-        });
-
-        const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-
-        const download = document.createElement('a');
-
-        download.href = url;
-        download.download = `chatchat-history-${new Date().getTime()}.json`;
-        download.click();
-    };
-
-    const handleImportHistory = () => {
-        const input = document.createElement('input');
-
-        input.type = 'file';
-        input.accept = 'application/json';
-        input.click();
-
-        input.onchange = () => {
-            const file = input.files?.[0];
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.readAsText(file, 'UTF-8');
-
-                reader.onload = (e) => {
-                    const result = e.target?.result;
-
-                    if (result) {
-                        const data = JSON.parse(result as string);
-
-                        if (data) {
-                            data.forEach((item: HistoryProps) => {
-                                localStorage.setItem(`histories-${item.type}-${item.id}`, JSON.stringify(item));
-                            });
-
-                            toast.success(t('Imported history successfully!'));
-                        }
-                    }
-                };
-            }
-
-            const updateEvent = new CustomEvent('localStorageUpdated');
-            window.dispatchEvent(updateEvent);
-        };
-    };
-
-    const handleClearHistory = () => {
-        const chatKeys = Object.keys(localStorage).filter((key) => key.startsWith('histories-'));
-
-        chatKeys.forEach((key) => {
-            localStorage.removeItem(key);
-        });
-
-        setHistories([]);
-
-        toast.success(t('Cleared history successfully!'));
-
-        const updateEvent = new CustomEvent('localStorageUpdated');
-        window.dispatchEvent(updateEvent);
-    };
-
     const searchedHistories =
         userInput !== ''
             ? histories.filter((history) => history.title.toLowerCase().includes(userInput.toLowerCase())).sort((a, b) => b.timestamp - a.timestamp)
@@ -191,43 +120,13 @@ const SideHistory = () => {
 
     return (
         <div className='space-y-2 px-2'>
-            <div className='flex flex-row space-x-2'>
-                <Input
-                    placeholder={t('Search History')}
-                    value={userInput}
-                    onChange={(e) => {
-                        setUserInput(e.target.value);
-                    }}
-                />
-                <Dialog>
-                    <DialogTrigger asChild>
-                        <Button variant='ghost' className='inline-flex items-center'>
-                            <TfiMoreAlt />
-                        </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                        <DialogHeader>
-                            <DialogTitle>{t('History')}</DialogTitle>
-                        </DialogHeader>
-                        <div className='flex flex-col space-y-3'>
-                            <div className='flex space-x-3'>
-                                <Button variant='secondary' className='flex items-center space-x-0.5' onClick={handleExportHistory}>
-                                    <BiExport />
-                                    <span>{t('Export')}</span>
-                                </Button>
-                                <Button variant='secondary' className='flex items-center space-x-0.5' onClick={handleImportHistory}>
-                                    <BiImport />
-                                    <span>{t('Import')}</span>
-                                </Button>
-                                <Button variant='destructive' className='flex items-center space-x-0.5' onClick={handleClearHistory}>
-                                    <BiBrush />
-                                    <span>{t('Clear')}</span>
-                                </Button>
-                            </div>
-                        </div>
-                    </DialogContent>
-                </Dialog>
-            </div>
+            <Input
+                placeholder={t('Search History')}
+                value={userInput}
+                onChange={(e) => {
+                    setUserInput(e.target.value);
+                }}
+            />
             <div className='h-96 w-full space-y-1 overflow-auto md:h-64'>
                 {pinHistories.map((pinHistory) => {
                     return (
