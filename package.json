@@ -72,7 +72,7 @@
     "devDependencies": {
         "@tailwindcss/typography": "^0.5.10",
         "@types/formidable": "^3.4.3",
-        "@types/node": "20.8.9",
+        "@types/node": "20.9.3",
         "@types/nodemailer": "^6.4.10",
         "@types/pdf-parse": "^1.1.1",
         "@types/react": "18.2.33",
