@@ -206,5 +206,7 @@
   "settings": "設定",
   "system prompt": "システムプロンプト",
   "team": "チーム",
-  "History Record": "歴史の記録"
+  "History Record": "歴史の記録",
+  "AutoScroll to end of message": "メッセージの最後まで自動スクロール",
+  "AutoScroll": "自動スクロール"
 }

@@ -206,5 +206,7 @@
   "settings": "configuración",
   "system prompt": "promt de sistema",
   "team": "equipo",
-  "History Record": "Registro histórico"
+  "History Record": "Registro histórico",
+  "AutoScroll to end of message": "Desplazamiento automático hasta el final del mensaje",
+  "AutoScroll": "Desplazamiento automático"
 }

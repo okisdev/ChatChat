@@ -206,5 +206,7 @@
   "settings": "設定",
   "system prompt": "系統提示",
   "team": "團隊",
-  "History Record": "歷史記錄"
+  "History Record": "歷史記錄",
+  "AutoScroll to end of message": "自動滾動到訊息末尾",
+  "AutoScroll": "自動滾螢幕"
 }

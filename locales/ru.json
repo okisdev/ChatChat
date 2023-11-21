@@ -206,5 +206,7 @@
   "settings": "настройки",
   "system prompt": "системное предложение",
   "team": "команда",
-  "History Record": "Запись истории"
+  "History Record": "Запись истории",
+  "AutoScroll to end of message": "Автопрокрутка до конца сообщения",
+  "AutoScroll": "Автопрокрутка"
 }

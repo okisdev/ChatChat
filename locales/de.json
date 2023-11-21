@@ -206,5 +206,7 @@
   "settings": "einstellungen",
   "system prompt": "Systemhinweis",
   "team": "team",
-  "History Record": "Geschichtsaufzeichnung"
+  "History Record": "Geschichtsaufzeichnung",
+  "AutoScroll to end of message": "AutoScroll bis zum Ende der Nachricht",
+  "AutoScroll": "Auto Scroll"
 }
