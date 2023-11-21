@@ -206,5 +206,7 @@
   "settings": "settings",
   "system prompt": "system prompt",
   "team": "team",
-  "History Record": "History Record"
+  "History Record": "History Record",
+  "AutoScroll to end of message": "AutoScroll to end of message",
+  "AutoScroll": "AutoScroll"
 }

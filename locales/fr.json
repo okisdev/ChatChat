@@ -206,5 +206,7 @@
   "settings": "paramètres",
   "system prompt": "invite système",
   "team": "équipe",
-  "History Record": "Enregistrement historique"
+  "History Record": "Enregistrement historique",
+  "AutoScroll to end of message": "Défilement automatique jusqu'à la fin du message",
+  "AutoScroll": "Défilement automatique"
 }

@@ -30,6 +30,8 @@ const AppSettingsHeader = () => {
 
     const [enableUserMarkdownRender, setEnableUserMarkdownRender] = useAtom(store.enableUserMarkdownRenderAtom);
 
+    const [enableAutoScroll, setEnableAutoScroll] = useAtom(store.isAutoScrollAtom);
+
     const [histories, setHistories] = useState<HistoryProps[]>([]);
 
     const handleSwitchAutoSpeech = () => {
@@ -45,6 +47,11 @@ const AppSettingsHeader = () => {
     const handleSwitchSendMessageKey = () => {
         setIsSendKeyEnter(!isSendKeyEnter);
         toast.success(`${t('Send message key changed to')} ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`);
+    };
+
+    const handleSwitchAutoScroll = () => {
+        setEnableAutoScroll(!enableAutoScroll);
+        toast.success(`${t('AutoScroll')} ${enableAutoScroll ? t('disabled') : t('enabled')}`);
     };
 
     useEffect(() => {
@@ -158,6 +165,10 @@ const AppSettingsHeader = () => {
             <div className='flex items-center space-x-1'>
                 <Switch checked={enableUserMarkdownRender} onCheckedChange={handleSwitchUserMarkdownRender} />
                 <Label className='px-1 font-normal'>{t('Render user message using Markdown')}</Label>
+            </div>
+            <div className='flex items-center space-x-1'>
+                <Switch checked={enableAutoScroll} onCheckedChange={handleSwitchAutoScroll} />
+                <Label className='px-1 font-normal'>{t('AutoScroll to end of message')}</Label>
             </div>
             <Separator />
             <div className='flex flex-row items-center space-x-3'>

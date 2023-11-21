@@ -35,6 +35,8 @@ const MainContent = ({
 
     const ttsConfig = useAtomValue(store.textToSpeechConfigAtom);
 
+    const autoScroll = useAtomValue(store.isAutoScrollAtom);
+
     const endOfMessageRef = useRef<HTMLDivElement>(null);
 
     const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
@@ -46,10 +48,10 @@ const MainContent = ({
     const [isHovered, setIsHovered] = useState<boolean[]>(new Array(conversations.length).fill(false));
 
     useEffect(() => {
-        if (endOfMessageRef.current) {
+        if (autoScroll && endOfMessageRef.current) {
             endOfMessageRef.current.scrollIntoView({ behavior: 'smooth' });
         }
-    }, [conversations, systemResponse]);
+    }, [autoScroll, conversations, systemResponse]);
 
     useEffect(() => {
         if (autoSpeech && !isSpeaking && !waitingSystemResponse) {
