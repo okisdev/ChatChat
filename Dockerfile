@@ -1,28 +1,14 @@
-FROM node:lts-alpine AS base
+FROM oven/bun:1 AS base
 
 WORKDIR /app
+
+FROM base AS install
 COPY package*.json bun.lockb ./
-RUN npm i -g bun
-RUN bun i
+RUN bun install
+
+FROM install AS prerelease
 
 COPY . .
-
-RUN bun prisma generate
-RUN bun run build
-
-FROM node:lts-alpine AS production
-
-WORKDIR /app
-COPY --from=base /app/package*.json ./
-COPY --from=base /app/.next ./.next
-COPY --from=base /app/public ./public
-COPY --from=base /app/prisma ./prisma
-COPY --from=base /app/node_modules ./node_modules
-COPY --from=base /app/next.config.js ./next.config.js
-
-RUN npm i -g bun
-
-EXPOSE 3000
 
 ENV NODE_ENV=production \
   DATABASE_URL="" \
@@ -33,5 +19,17 @@ ENV NODE_ENV=production \
   EMAIL_USERNAME="" \
   EMAIL_PASSWORD="" \
   EMAIL_FROM=""
+RUN bun run build
 
-CMD ["bun", "start"]
+FROM base AS release
+COPY --from=install /app/package*.json ./
+COPY --from=install /app/.next ./.next
+COPY --from=install /app/public ./public
+COPY --from=install /app/prisma ./prisma
+COPY --from=install /app/node_modules ./node_modules
+COPY --from=install /app/next.config.js ./next.config.js
+
+USER bun
+EXPOSE 3000/tcp
+
+CMD ["bun", "run"]
