@@ -7,19 +7,19 @@ import { NextIntlClientProvider } from 'next-intl';
 import { HotToaster } from '@/components/client/toaster';
 import { ClientCommand } from '@/components/client/command';
 
-import NotFound from '@/app/not-found';
+import { notFound } from 'next/navigation';
 
 export default async function LocaleLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
-    let messages;
+    let locales;
 
     try {
-        messages = (await import(`../../locales/${locale}.json`)).default;
+        locales = (await import(`../../locales/${locale}.json`)).default;
     } catch (error) {
-        return <NotFound />;
+        notFound();
     }
 
     return (
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={locales}>
             <HotToaster />
             <ClientCommand />
 
