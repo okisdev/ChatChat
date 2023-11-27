@@ -11,6 +11,8 @@ import { toast } from 'react-hot-toast';
 import { TiPinOutline, TiDeleteOutline, TiBrush } from 'react-icons/ti';
 
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const SideHistory = () => {
     const router = useRouter();
@@ -51,17 +53,25 @@ const SideHistory = () => {
         setPinHistories((prev) => prev.filter((history) => history.id != id));
     };
 
-    const onTitleChange = (id: string, type: string) => {
-        const newTitle = prompt(t('Enter new title'));
+    const [newTitle, setNewTitle] = useState<string | null>(null);
+    const [titleDialogOpen, setTitleDialogOpen] = useState<boolean>(false);
 
-        if (newTitle) {
+    const onSaveTitleChange = (id: string, type: string, title: string) => {
+        if (newTitle !== title) {
             const history = localStorage.getItem(`histories-${type}-${id}`);
+
             if (history) {
                 const historyObj = JSON.parse(history);
                 historyObj.title = newTitle;
                 localStorage.setItem(`histories-${type}-${id}`, JSON.stringify(historyObj));
                 toast.success(t('Title changed'));
+
+                const updateEvent = new CustomEvent('localStorageUpdated');
+                window.dispatchEvent(updateEvent);
             }
+
+            setTitleDialogOpen(false);
+            setNewTitle(null);
         }
     };
 
@@ -152,9 +162,26 @@ const SideHistory = () => {
                                 <button className='rounded border border-blue-300 px-0.5 text-xs' onClick={() => onShareClick(pinHistory.type, pinHistory.id)}>
                                     {pinHistory.type}
                                 </button>
-                                <button className='block' onClick={() => onTitleChange(pinHistory.id, pinHistory.type)}>
-                                    <TiBrush className='text-lg transition duration-500 ease-in-out hover:fill-green-500' />
-                                </button>
+                                <Dialog open={titleDialogOpen} onOpenChange={setTitleDialogOpen}>
+                                    <DialogTrigger asChild>
+                                        <button className='block'>
+                                            <TiBrush className='text-lg transition duration-500 ease-in-out hover:fill-green-500' />
+                                        </button>
+                                    </DialogTrigger>
+                                    <DialogContent className='sm:max-w-[425px]'>
+                                        <DialogHeader>
+                                            <DialogTitle>Edit Title</DialogTitle>
+                                        </DialogHeader>
+                                        <div className='flex items-center'>
+                                            <Input type='text' defaultValue={pinHistory.title} onChange={(e) => setNewTitle(e.target.value)} />
+                                        </div>
+                                        <DialogFooter>
+                                            <Button type='submit' onClick={() => onSaveTitleChange(pinHistory.id, pinHistory.type, pinHistory.title)}>
+                                                Save
+                                            </Button>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
                                 <button className='block' onClick={() => onHistoryDelete(pinHistory.id, pinHistory.type)}>
                                     <TiDeleteOutline className='text-lg transition duration-500 ease-in-out hover:fill-red-500' />
                                 </button>
@@ -186,9 +213,26 @@ const SideHistory = () => {
                                 <button className='rounded border border-blue-300 px-0.5 text-xs' onClick={() => onShareClick(history.type, history.id)}>
                                     {history.type}
                                 </button>
-                                <button className='block' onClick={() => onTitleChange(history.id, history.type)}>
-                                    <TiBrush className='text-lg transition duration-500 ease-in-out hover:fill-green-500' />
-                                </button>
+                                <Dialog open={titleDialogOpen} onOpenChange={setTitleDialogOpen}>
+                                    <DialogTrigger asChild>
+                                        <button className='block'>
+                                            <TiBrush className='text-lg transition duration-500 ease-in-out hover:fill-green-500' />
+                                        </button>
+                                    </DialogTrigger>
+                                    <DialogContent className='sm:max-w-[425px]'>
+                                        <DialogHeader>
+                                            <DialogTitle>Edit Title</DialogTitle>
+                                        </DialogHeader>
+                                        <div className='flex items-center'>
+                                            <Input type='text' defaultValue={history.title} onChange={(e) => setNewTitle(e.target.value)} />
+                                        </div>
+                                        <DialogFooter>
+                                            <Button type='submit' onClick={() => onSaveTitleChange(history.id, history.type, history.title)}>
+                                                Save
+                                            </Button>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
                                 <button className='block' onClick={() => onHistoryDelete(history.id, history.type)}>
                                     <TiDeleteOutline className='text-lg transition duration-500 ease-in-out hover:fill-red-500' />
                                 </button>
