@@ -2,6 +2,10 @@ import '@/styles/globals.css';
 import '@/styles/markdown.css';
 import 'tippy.js/dist/tippy.css';
 
+import Script from 'next/script';
+import { Viewport } from 'next';
+import type { Metadata } from 'next';
+
 import { rubik } from '@/app/fonts';
 
 import { Providers } from '@/app/providers';
@@ -10,15 +14,25 @@ import { Analytics } from '@vercel/analytics/react';
 
 import { siteConfig } from '@/config/site.config';
 
+export const metadata: Metadata = {
+    title: siteConfig.title,
+    description: siteConfig.title + ' - ' + siteConfig.description,
+};
+
+export const viewport: Viewport = {
+    width: 'device-width',
+    height: 'device-height',
+    initialScale: 1,
+    minimumScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+    themeColor: '#eee',
+};
+
 export default async function RootLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
     return (
         <html className={`${rubik.className}`} lang={locale}>
             <head>
-                <title>{siteConfig.title}</title>
-
-                <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
-                <meta name='description' content={siteConfig.description} />
-
                 <meta name='application-name' content={siteConfig.title} />
                 <meta name='apple-mobile-web-app-capable' content='yes' />
                 <meta name='apple-mobile-web-app-status-bar-style' content='default' />
@@ -29,7 +43,6 @@ export default async function RootLayout({ children, params: { locale } }: { chi
                 <meta name='msapplication-config' content='/icons/browserconfig.xml' />
                 <meta name='msapplication-TileColor' content='#2B5797' />
                 <meta name='msapplication-tap-highlight' content='no' />
-                <meta name='theme-color' content='#eee' />
 
                 <link rel='manifest' href='/manifest.json' />
                 <link rel='icon' type='image/png' href='/favicon.ico' />
