@@ -24,7 +24,7 @@ const UserLogin = () => {
             <DropdownMenuContent side='right' className='transition duration-200 ease-in-out'>
                 <DropdownMenuItem onClick={() => router.push('/login')} className='cursor-pointer space-x-1'>
                     <IoLogInOutline />
-                    <span>{t('Login')}</span>
+                    <span>{t('login')}</span>
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

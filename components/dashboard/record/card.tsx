@@ -41,32 +41,32 @@ const RecordCard = ({ record }: { record: Record }) => {
         });
 
         if (!response.ok) {
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
         const data = await response.json();
 
         if (!data.success) {
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
         if (data.type == 'update') {
             navigator.clipboard.writeText(window.location.host + `/s/${record.id}`);
-            toast.success(`${t('Updated the previous share:')} ${record.id}`);
+            toast.success(`${t('update_previous_share')} ${record.id}`);
             return;
         }
 
         navigator.clipboard.writeText(window.location.host + `/s/${record.id}`);
-        toast.success(`${t('Copied share link:')} ${record.id}`);
+        toast.success(`${t('copied_share_link')} ${record.id}`);
     };
 
     const onCopy = () => {
         const url = `${window.location.origin}/s/${record.id}`;
 
         navigator.clipboard.writeText(url);
-        toast.success(`${t('Copied share link:')} ${record.id}`);
+        toast.success(`${t('copied_share_link')} ${record.id}`);
     };
 
     const onDelete = async () => {
@@ -75,18 +75,18 @@ const RecordCard = ({ record }: { record: Record }) => {
         });
 
         if (!response.ok) {
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
         const data = await response.json();
 
         if (!data.success) {
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
-        toast.success(`${t('Deleted record:')} ${record.id}`);
+        toast.success(`${t('delete_record')} ${record.id}`);
 
         router.refresh();
     };
@@ -100,7 +100,7 @@ const RecordCard = ({ record }: { record: Record }) => {
             <div className='flex flex-row items-center space-x-3'>
                 <div className='space-y-2'>
                     <div className='flex items-center space-x-2 text-sm'>
-                        <p>{t('Share')}</p>
+                        <p>{t('share')}</p>
                         <Switch onCheckedChange={onSwitchShare} />
                         {enableShare && (
                             <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700' onClick={onCopy}>

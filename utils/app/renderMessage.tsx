@@ -139,7 +139,7 @@ const CodeComponent = ({ node, inline, className, children, ...props }: any) => 
                     <button
                         onClick={() => {
                             navigator.clipboard.writeText(String(children).replace(/\n$/, ''));
-                            toast.success(t('Copied'));
+                            toast.success(t('copied'));
                         }}
                     >
                         <FiCopy className='text-lg' />

@@ -49,7 +49,7 @@ export default function AppInfo() {
                         <p className='text-sm text-neutral-600 dark:text-neutral-200'>v{packageInfo.version}</p>
                         {!isLatestVersion && (
                             <Link href='https://github.com/okisdev/ChatChat/releases/latest' target='_blank'>
-                                <Badge variant='destructive'>{t('New Version Available')}</Badge>
+                                <Badge variant='destructive'>{t('new_version')}</Badge>
                             </Link>
                         )}
                     </div>

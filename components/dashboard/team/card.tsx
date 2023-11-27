@@ -44,18 +44,18 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
         });
 
         if (!response.ok) {
-            toast.error(t('Failed to delete team'));
+            toast.error(t('fail_delete_team'));
             return;
         }
 
         const data = await response.json();
 
         if (!data.success) {
-            toast.error(t('Failed to delete team'));
+            toast.error(t('fail_delete_team'));
             return;
         }
 
-        toast.success(t('Team deleted'));
+        toast.success(t('team_delete'));
 
         setIsDeleteDialogOpen(false);
 
@@ -74,18 +74,18 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
         });
 
         if (!response.ok) {
-            toast.error(t('Failed to quit team'));
+            toast.error(t('fail_quit_team'));
             return;
         }
 
         const data = await response.json();
 
         if (!data.success) {
-            toast.error(t('Failed to quit team'));
+            toast.error(t('fail_quit_team'));
             return;
         }
 
-        toast.success(t('Quit successfully'));
+        toast.success(t('quit_success'));
 
         setIsQuitDialogOpen(false);
 
@@ -107,18 +107,18 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
         });
 
         if (!response.ok) {
-            toast.error(t('Failed to update team'));
+            toast.error(t('fail_update_team'));
             return;
         }
 
         const data = await response.json();
 
         if (!data.success) {
-            toast.error(t('Failed to update team'));
+            toast.error(t('fail_update_team'));
             return;
         }
 
-        toast.success(t('Team updated'));
+        toast.success(t('team_update'));
 
         setIsEditDialogOpen(false);
 
@@ -142,13 +142,13 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
                         <DialogContent>
                             <DialogHeader>
                                 <DialogTitle>
-                                    {t('Confirm to quit Team')} {team.name}?
+                                    {t('confirm_quit_team')} {team.name}?
                                 </DialogTitle>
-                                <DialogDescription>{t('This action cannot be undone')}</DialogDescription>
+                                <DialogDescription>{t('action_can_not_undone')}</DialogDescription>
                             </DialogHeader>
                             <DialogFooter>
                                 <Button variant='destructive' onClick={onQuit}>
-                                    {t('Confirm')}
+                                    {t('confirm')}
                                 </Button>
                             </DialogFooter>
                         </DialogContent>
@@ -165,16 +165,16 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
                         <DialogContent>
                             <DialogHeader>
                                 <DialogTitle>
-                                    {t('Edit Team')}: {team.name}
+                                    {t('edit_team')}: {team.name}
                                 </DialogTitle>
                             </DialogHeader>
                             <div className='space-y-3'>
                                 <div className='flex flex-col space-y-2'>
-                                    <Label htmlFor='name'>{t('Name')}</Label>
+                                    <Label htmlFor='name'>{t('name')}</Label>
                                     <Input type='text' value={name} onChange={(e) => setName(e.target.value)} />
                                 </div>
                                 <div className='flex flex-col space-y-2'>
-                                    <Label htmlFor='name'>{t('Access Code')}</Label>
+                                    <Label htmlFor='name'>{t('access_code')}</Label>
                                     <Input type='text' value={accessCode} onChange={(e) => setAccessCode(e.target.value)} />
                                 </div>
                                 <div className='flex flex-col space-y-2'>
@@ -188,7 +188,7 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
                             </div>
                             <DialogFooter>
                                 <Button variant='outline' onClick={onSave}>
-                                    {t('Save')}
+                                    {t('save')}
                                 </Button>
                             </DialogFooter>
                         </DialogContent>
@@ -202,15 +202,13 @@ const TeamCard = ({ team }: { team: Team & { isAuthor: boolean } }) => {
                         <DialogContent>
                             <DialogHeader>
                                 <DialogTitle>
-                                    {t('Confirm to delete Team')} {team.name}?
+                                    {t('confirm_delete_team')} {team.name}?
                                 </DialogTitle>
-                                <DialogDescription>
-                                    {t('This action cannot be undone')}. {t('This will permanently delete your team and remove your data from our database')}
-                                </DialogDescription>
+                                <DialogDescription>{t('action_can_not_undone')} </DialogDescription>
                             </DialogHeader>
                             <DialogFooter>
                                 <Button variant='destructive' onClick={deleteTeam}>
-                                    {t('Confirm')}
+                                    {t('confirm')}
                                 </Button>
                             </DialogFooter>
                         </DialogContent>

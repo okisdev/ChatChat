@@ -90,7 +90,7 @@ const OpenAIServiceProvider = ({
             </div> */}
             {user && (
                 <div className='flex items-center justify-between'>
-                    <Label>{t('Use Cloud Settings')}</Label>
+                    <Label>{t('use_cloud_settings')}</Label>
                     <Switch checked={useCloudSettings} onCheckedChange={() => setUseCloudSettings(!useCloudSettings)} />
                 </div>
             )}
@@ -138,9 +138,9 @@ const OpenAIServiceProvider = ({
                 <div className='flex flex-col space-y-1'>
                     <Slider max={2} step={0.1} value={[apiTemperature]} onValueChange={([e]) => setApiTemperature(e)} />
                     <div className='flex justify-between text-xs text-gray-500'>
-                        <p>{t('Stable')}</p>
-                        <p>{t('Standard')}</p>
-                        <p>{t('Creative')}</p>
+                        <p>{t('stable')}</p>
+                        <p>{t('standard')}</p>
+                        <p>{t('creative')}</p>
                     </div>
                 </div>
             </div>

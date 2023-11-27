@@ -48,12 +48,12 @@ const ProfileInfoForm = ({ user }: any) => {
 
         if (!response?.ok) {
             setIsLoading(false);
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
         setIsLoading(false);
-        toast.success(t('Profile updated'));
+        toast.success(t('profile_update'));
     };
 
     const onDelete = async () => {
@@ -65,11 +65,11 @@ const ProfileInfoForm = ({ user }: any) => {
         });
 
         if (!response?.ok) {
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
-        toast.success(t('Account deleted'));
+        toast.success(t('account_deleted'));
 
         await signOut();
 
@@ -81,21 +81,21 @@ const ProfileInfoForm = ({ user }: any) => {
             <form className='space-y-10 rounded-xl md:p-3'>
                 <div className='flex w-full justify-between space-x-3'>
                     <div className='flex w-full flex-col items-start space-y-1'>
-                        <p className='text-sm'>{t('Full Name')}</p>
+                        <p className='text-sm'>{t('full_name')}</p>
                         <Input value={name} onChange={(e) => setName(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
                     </div>
                     <div className='flex w-full flex-col items-start space-y-1'>
-                        <p className='text-sm'>{t('Email Address')}</p>
+                        <p className='text-sm'>{t('email_address')}</p>
                         <Input value={email} onChange={(e) => setEmail(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
                     </div>
                 </div>
                 <div className='flex w-full flex-col items-start space-y-1'>
-                    <p className='text-sm'>{t('Avatar')}</p>
+                    <p className='text-sm'>{t('avatar')}</p>
                     <Input value={image} onChange={(e) => setImage(e.target.value)} className='dark:border-stone-400 dark:bg-stone-500' />
                 </div>
                 <div className='flex justify-end'>
                     <Button variant='default' onClick={() => onSave()} disabled={isLoading}>
-                        <span>{t('Save')}</span>
+                        <span>{t('save')}</span>
                     </Button>
                 </div>
             </form>
@@ -103,22 +103,22 @@ const ProfileInfoForm = ({ user }: any) => {
             <Separator />
 
             <div className='space-y-3'>
-                <p className='text-lg font-medium'>{t('Danger Zoom')}</p>
+                <p className='text-lg font-medium'>{t('danger_zoom')}</p>
                 <p className='text-sm text-gray-400'>
-                    {t('If you want to permanently remove your account')}. {t('Please click the button below, please note, This could not be undone')}
+                    {t('remove_account')}. {t('Please click the button below, please note, This could not be undone')}
                 </p>
                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <DialogTrigger asChild>
-                        <button className='text-sm text-red-500'>{t('Delete Account')}</button>
+                        <button className='text-sm text-red-500'>{t('delete_account')}</button>
                     </DialogTrigger>
                     <DialogContent>
                         <DialogHeader>
-                            <DialogTitle>{t('Confirming Deletion')}</DialogTitle>
-                            <DialogDescription>{t('Please note: This could not be undone')}</DialogDescription>
+                            <DialogTitle>{t('confirm_delete')}</DialogTitle>
+                            <DialogDescription>{t('note_can_not_undone')}</DialogDescription>
                         </DialogHeader>
                         <DialogFooter>
                             <Button variant='destructive' onClick={onDelete}>
-                                {t('Confirm')}
+                                {t('confirm')}
                             </Button>
                         </DialogFooter>
                     </DialogContent>

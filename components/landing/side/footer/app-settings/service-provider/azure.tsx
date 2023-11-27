@@ -41,7 +41,7 @@ const AzureServiceProvider = ({
         <>
             <Alert>
                 <FiClipboard />
-                <AlertTitle>{t('Goodwill Reminders')}</AlertTitle>
+                <AlertTitle>{t('reminder')}</AlertTitle>
                 <AlertDescription>
                     You need to provide the{' '}
                     <Link href='https://dashboard.cohere.ai/api-keys' target='_blank' className='underline'>

@@ -32,12 +32,12 @@ const SharePost = ({ share }: ShareProps) => {
 
     const onCopyMessage = (index: number) => {
         navigator.clipboard.writeText(content[index].content);
-        toast.success(t('Copied to clipboard'));
+        toast.success(t('copied_to_clipboard'));
     };
 
     const onCopyLink = () => {
         navigator.clipboard.writeText(window.location.href);
-        toast.success(t('Copied to clipboard'));
+        toast.success(t('copied_to_clipboard'));
     };
 
     const handleContinueConversation = () => {
@@ -49,7 +49,7 @@ const SharePost = ({ share }: ShareProps) => {
             <div className='my-3 flex items-center justify-between'>
                 <div className='space-y-3'>
                     <p className='gradient-flow bg-gradient-to-r bg-clip-text text-2xl font-semibold leading-none text-transparent'>
-                        {siteConfig.title} {t('Share')}
+                        {siteConfig.title} {t('share')}
                     </p>
                 </div>
                 <div className='flex flex-row space-x-3'>
@@ -59,7 +59,7 @@ const SharePost = ({ share }: ShareProps) => {
                             onClick={handleContinueConversation}
                         >
                             <BiChat className='text-xl' />
-                            <span className='hidden text-sm md:block'>{t('Continue this Conversation')}</span>
+                            <span className='hidden text-sm md:block'>{t('continue_conversation')}</span>
                         </button>
                     )}
                     <button
@@ -67,7 +67,7 @@ const SharePost = ({ share }: ShareProps) => {
                         onClick={() => onCopyLink()}
                     >
                         <BiLink className='text-xl' />
-                        <span className='hidden text-sm md:block'>{t('Copy share link')}</span>
+                        <span className='hidden text-sm md:block'>{t('copy_share_link')}</span>
                     </button>
                 </div>
             </div>
@@ -91,9 +91,9 @@ const SharePost = ({ share }: ShareProps) => {
                                                     onClick={() => onCopyMessage(index)}
                                                 >
                                                     <TbCopy />
-                                                    <span>{t('Copy')}</span>
+                                                    <span>{t('copy')}</span>
                                                 </button>
-                                                <p className='text-base font-semibold'>{t('You')}</p>
+                                                <p className='text-base font-semibold'>{t('you')}</p>
                                             </>
                                         ) : (
                                             <>
@@ -103,7 +103,7 @@ const SharePost = ({ share }: ShareProps) => {
                                                     onClick={() => onCopyMessage(index)}
                                                 >
                                                     <TbCopy />
-                                                    <span>{t('Copy')}</span>
+                                                    <span>{t('copy')}</span>
                                                 </button>
                                             </>
                                         )}

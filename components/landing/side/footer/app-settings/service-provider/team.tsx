@@ -13,7 +13,7 @@ const TeamServiceProvider = ({ accessCode, setAccessCode }: { accessCode: string
         <>
             <Alert>
                 <FiClipboard />
-                <AlertTitle>{t('Goodwill Reminders')}</AlertTitle>
+                <AlertTitle>{t('reminder')}</AlertTitle>
                 <AlertDescription>This is a feature for teams. You can create a team in dashboard. However, this feature is only available for fully setup deployment.</AlertDescription>
             </Alert>
             <div className='space-y-1'>

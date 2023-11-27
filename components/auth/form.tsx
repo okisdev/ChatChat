@@ -23,11 +23,11 @@ const AuthForm = ({ login }: { login: boolean }) => {
 
     const handleEmailSubmit = async () => {
         if (!email) {
-            return toast.error(t('Email is required'));
+            return toast.error(t('email_required'));
         }
 
         if (!email.includes('@')) {
-            return toast.error(t('Invalid email'));
+            return toast.error(t('invalid_email'));
         }
 
         const emailSignIn = await signIn('email', {
@@ -37,7 +37,7 @@ const AuthForm = ({ login }: { login: boolean }) => {
         });
 
         if (emailSignIn?.error) {
-            return toast.error(t('Failed to send email'));
+            return toast.error(t('fail_send_email'));
         }
 
         toast.success(t('Email sent, please check your inbox'));
@@ -48,21 +48,21 @@ const AuthForm = ({ login }: { login: boolean }) => {
             <div className='flex flex-col items-center'>
                 {login ? (
                     <>
-                        <p className='text-xl font-bold'>{t('Sign In')}</p>
+                        <p className='text-xl font-bold'>{t('sign_in')}</p>
                         <p className='text-sm'>
                             {t('New User?')}{' '}
                             <Link href={'/register'} className='font-medium text-blue-800 underline dark:text-sky-400'>
-                                {t('Sign up')}
+                                {t('sign_up')}
                             </Link>
                         </p>
                     </>
                 ) : (
                     <>
-                        <p className='text-xl font-bold'>{t('Register')}</p>
+                        <p className='text-xl font-bold'>{t('register')}</p>
                         <p className='text-sm'>
                             {t('Already have an account with us?')}{' '}
                             <Link href={'/login'} className='font-medium text-blue-800 underline'>
-                                {t('Log In')}
+                                {t('login')}
                             </Link>
                         </p>
                     </>
@@ -80,11 +80,11 @@ const AuthForm = ({ login }: { login: boolean }) => {
                     className='dark:bg-stone-600'
                 />
                 <Button variant='default' onClick={handleEmailSubmit}>
-                    {t('Sign In With Email')}
+                    {t('sign_in_email')}
                 </Button>
             </div>
             <div className='text-center'>
-                <p className='text-sm'>{t('Beta Notice')}</p>
+                <p className='text-sm'>{t('beta_notice')}</p>
                 <p className='text-xs text-amber-600'>
                     {t(
                         'We are continually adding new features to the dashboard which may affect your service and experience, as well as re-impacting the database architecture, and if you are a general user, we do not recommend that you log in or register, as at the moment it is possible to use almost all features without logging in'

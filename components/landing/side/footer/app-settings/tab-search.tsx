@@ -27,7 +27,7 @@ const TabSearch = ({
     return (
         <div className='space-y-3'>
             <div>
-                <Label>{t('Search Engine')}</Label>
+                <Label>{t('search_engine')}</Label>
                 <Select value={searchEngine} onValueChange={(value: string) => setSearchEngine(value)}>
                     <SelectTrigger className='w-full'>
                         <SelectValue />

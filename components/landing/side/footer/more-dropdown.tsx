@@ -49,7 +49,7 @@ const MoreDropdown = () => {
                 <DropdownMenuSub>
                     <DropdownMenuSubTrigger className='cursor-pointer space-x-1'>
                         <TbContrast />
-                        <span>{t('Theme')}</span>
+                        <span>{t('theme')}</span>
                     </DropdownMenuSubTrigger>
                     <DropdownMenuPortal>
                         <DropdownMenuSubContent>
@@ -68,7 +68,7 @@ const MoreDropdown = () => {
                 <DropdownMenuSub>
                     <DropdownMenuSubTrigger className='cursor-pointer space-x-1'>
                         <IoLanguage />
-                        <span>{t('Language')}</span>
+                        <span>{t('language')}</span>
                     </DropdownMenuSubTrigger>
                     <DropdownMenuPortal>
                         <DropdownMenuSubContent>

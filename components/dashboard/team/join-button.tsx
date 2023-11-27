@@ -31,7 +31,7 @@ const JoinButton = () => {
         }
 
         if (accessCode.length === 0) {
-            toast.error(t('Team access code is required'));
+            toast.error(t('team_access_code_required'));
             return;
         }
 
@@ -49,7 +49,7 @@ const JoinButton = () => {
 
         if (!response.ok) {
             setIsLoading(false);
-            toast.error(t('Failed to join team'));
+            toast.error(t('fail_join_team'));
             return;
         }
 
@@ -57,12 +57,12 @@ const JoinButton = () => {
 
         if (!data.success) {
             setIsLoading(false);
-            toast.error(t('Failed to join team'));
+            toast.error(t('fail_join_team'));
             return;
         }
 
         setIsLoading(false);
-        toast.success(t('Joined team successfully'));
+        toast.success(t('join_team_success'));
 
         setIsDialogOpen(false);
 
@@ -75,22 +75,22 @@ const JoinButton = () => {
                 <DialogTrigger asChild>
                     <Button variant='outline' className='flex items-center space-x-1 dark:border-stone-400'>
                         <GrStatusGoodSmall className='block text-lg' />
-                        <span>{t('Join Team')}</span>
+                        <span>{t('join_team')}</span>
                     </Button>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>{t('Join Team')}</DialogTitle>
+                        <DialogTitle>{t('join_team')}</DialogTitle>
                     </DialogHeader>
                     <div className='space-y-3'>
                         <div className='space-y-1'>
-                            <Label>{t('Access Code')}</Label>
+                            <Label>{t('access_code')}</Label>
                             <Input placeholder='' value={accessCode} onChange={(e) => setAccessCode(e.target.value)} />
                         </div>
                     </div>
                     <DialogFooter>
                         <Button type='submit' onClick={handleJoin}>
-                            {t('Join')}
+                            {t('join')}
                         </Button>
                     </DialogFooter>
                 </DialogContent>

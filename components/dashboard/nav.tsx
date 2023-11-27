@@ -64,7 +64,7 @@ const DashboardNav = ({ user }: { user: any }) => {
                                     })
                                 }
                             >
-                                {t('Sign out')}
+                                {t('sign_out')}
                             </button>
                         </DropdownMenuItem>
                     </DropdownMenuContent>

@@ -82,7 +82,7 @@ const FileMain = () => {
         }
 
         if (fileSize > 524288) {
-            toast.error(t('File size must be less than 512KB'));
+            toast.error(t('file_size_exceed_512kb'));
             return;
         }
 
@@ -90,7 +90,7 @@ const FileMain = () => {
         const fileExtension = file.name.split('.').pop();
 
         if (!allowedFileExtensions.includes(fileExtension)) {
-            toast.error(t('File extension is not allowed'));
+            toast.error(t('file_extension_not_allow'));
             return;
         }
 
@@ -108,7 +108,7 @@ const FileMain = () => {
             const data = await response.json();
 
             if (!response.ok) {
-                toast.error(t('Error when uploading file: ') + data.error);
+                toast.error(t('error_when_upload') + data.error);
                 return;
             }
 
@@ -190,7 +190,7 @@ const FileMain = () => {
 
             if (!AIResponse.ok) {
                 setHasError(true);
-                toast.error(t('Error: Something went wrong'));
+                toast.error(t('error_something_wrong'));
                 return;
             }
 
@@ -198,7 +198,7 @@ const FileMain = () => {
 
             if (!AIData) {
                 setHasError(true);
-                toast.error(t('Error: Something went wrong'));
+                toast.error(t('error_something_wrong'));
                 return;
             }
 
@@ -320,7 +320,7 @@ const FileMain = () => {
         if (!response.ok) {
             setWaitingSystemResponse(false);
             setHasError(true);
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
@@ -329,7 +329,7 @@ const FileMain = () => {
         if (!data) {
             setWaitingSystemResponse(false);
             setHasError(true);
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
@@ -408,9 +408,9 @@ const FileMain = () => {
                             <div className='flex flex-col items-center justify-center space-y-2 pb-6 pt-5'>
                                 <AiOutlineCloudUpload className='text-4xl' />
                                 <p className='mb-2 text-center text-sm text-gray-500 dark:text-gray-400'>
-                                    <span className='font-semibold'>{t('Click to upload')}</span> {t('or drag and drop a file')}
+                                    <span className='font-semibold'>{t('click_to_upload')}</span> {t('or drag and drop a file')}
                                 </p>
-                                <p className='text-xs text-gray-500 dark:text-gray-400'>{t('Any file but images')}</p>
+                                <p className='text-xs text-gray-500 dark:text-gray-400'>{t('any_files_but_images')}</p>
                             </div>
                             <input id='dropzone-file' type='file' className='hidden' draggable />
                         </label>

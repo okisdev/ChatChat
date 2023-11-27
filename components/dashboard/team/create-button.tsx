@@ -47,46 +47,46 @@ const CreateButton = () => {
         }
 
         if (name.length === 0) {
-            toast.error(t('Team name is required'));
+            toast.error(t('team_name_required'));
             return;
         }
 
         if (accessCode.length === 0) {
-            toast.error(t('Team access token is required'));
+            toast.error(t('team_access_token_required'));
             return;
         }
 
         if (serviceProvider == 'OpenAI') {
             if (openAIKey.length === 0) {
-                toast.error(t('OpenAI Key is required'));
+                toast.error(t('opneai_key_required'));
                 return;
             }
 
             if (openAIEndpoint.length === 0) {
-                toast.error(t('OpenAI Endpoint is required'));
+                toast.error(t('openai_endpoint_required'));
                 return;
             }
         }
 
         if (serviceProvider == 'Azure') {
             if (azureKey.length === 0) {
-                toast.error(t('Azure Key is required'));
+                toast.error(t('azure_key_required'));
                 return;
             }
 
             if (azureEndpoint.length === 0) {
-                toast.error(t('Azure Endpoint is required'));
+                toast.error(t('azure_endpoint_required'));
                 return;
             }
 
             if (azureDeploymentName.length === 0) {
-                toast.error(t('Azure Deployment Name is required'));
+                toast.error(t('azure_deployment_name_required'));
                 return;
             }
         }
 
         if (serviceProvider == 'Claude' && claudeKey.length === 0) {
-            toast.error(t('Claude Key is required'));
+            toast.error(t('claude_key_required'));
             return;
         }
 
@@ -111,7 +111,7 @@ const CreateButton = () => {
 
         if (!response.ok) {
             setIsLoading(false);
-            toast.error(t('Failed to create team'));
+            toast.error(t('fail_create_team'));
             return;
         }
 
@@ -119,12 +119,12 @@ const CreateButton = () => {
 
         if (!data.success) {
             setIsLoading(false);
-            toast.error(t('Failed to create team'));
+            toast.error(t('fail_create_team'));
             return;
         }
 
         setIsLoading(false);
-        toast.success(t('Team created: ') + accessCode);
+        toast.success(t('team_create'));
 
         setIsDialogOpen(false);
 
@@ -177,12 +177,10 @@ const CreateButton = () => {
             break;
         case 'Claude':
             serviceProviderSelection = (
-                <>
-                    <div className='space-y-1'>
-                        <Label>Claude API Key</Label>
-                        <Input placeholder='Example' value={claudeKey} onChange={(e) => setClaudeKey(e.target.value)} />
-                    </div>
-                </>
+                <div className='space-y-1'>
+                    <Label>Claude API Key</Label>
+                    <Input placeholder='Example' value={claudeKey} onChange={(e) => setClaudeKey(e.target.value)} />
+                </div>
             );
             break;
     }
@@ -193,24 +191,24 @@ const CreateButton = () => {
                 <DialogTrigger asChild>
                     <Button variant='outline' className='flex items-center space-x-1 dark:border-stone-400'>
                         <MdOutlineAdd className='block text-lg' />
-                        <span>{t('Create Team')}</span>
+                        <span>{t('create_team')}</span>
                     </Button>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>{t('Create Team')}</DialogTitle>
+                        <DialogTitle>{t('create_team')} </DialogTitle>
                     </DialogHeader>
                     <div className='space-y-3'>
                         <div className='space-y-1'>
-                            <Label>{t('Name')}</Label>
+                            <Label>{t('name')}</Label>
                             <Input value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className='space-y-1'>
-                            <Label>{t('Access Code')}</Label>
+                            <Label>{t('access_code')}</Label>
                             <Input value={accessCode} onChange={(e) => setAccessCode(e.target.value)} />
                         </div>
                         <div className='space-y-1'>
-                            <Label>{t('Service Provider')}</Label>
+                            <Label>{t('service_provider')}</Label>
                             <Select value={serviceProvider} onValueChange={setServiceProvider}>
                                 <SelectTrigger className='w-full'>
                                     <SelectValue />
@@ -226,7 +224,7 @@ const CreateButton = () => {
                     </div>
                     <DialogFooter>
                         <Button type='submit' onClick={handleCreate}>
-                            {t('Create')}
+                            {t('create')}
                         </Button>
                     </DialogFooter>
                 </DialogContent>

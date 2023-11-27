@@ -20,7 +20,7 @@ const AuthHeader = () => {
         <div className='flex h-36 w-full flex-row items-center justify-between'>
             <Button variant='secondary' className='inline-flex items-center space-x-2 dark:bg-stone-600' onClick={() => router.push('/')}>
                 <IoArrowBackOutline />
-                <span>{t('Home')}</span>
+                <span>{t('home')}</span>
             </Button>
             <div className='flex flex-row items-center md:hidden'>
                 <Image src='/hero.png' alt={siteConfig.title} width={60} height={60} priority />

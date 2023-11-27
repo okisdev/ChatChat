@@ -66,7 +66,7 @@ const CodeMain = () => {
 
     const onProcess = async () => {
         if (!userMessageInput) {
-            toast.error(t('Please enter something'));
+            toast.error(t('enter_something'));
             return;
         }
 
@@ -156,7 +156,7 @@ const CodeMain = () => {
         if (!response.ok) {
             setResponseLoading(false);
             setHasError(true);
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
@@ -165,7 +165,7 @@ const CodeMain = () => {
         if (!data) {
             setResponseLoading(false);
             setHasError(true);
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
@@ -257,7 +257,7 @@ const CodeMain = () => {
                         )}
                     </div>
                     <Button variant='default' onClick={onProcess}>
-                        {t('Process')}
+                        {t('process')}
                     </Button>
                 </div>
                 <div className='h-3/6 w-full rounded-md border p-3 dark:border-neutral-500 xl:min-h-full xl:w-5/12'>{systemResponse}</div>

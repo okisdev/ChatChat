@@ -28,7 +28,7 @@ const HuggingFaceServiceProvider = ({
         <>
             <Alert>
                 <FiClipboard />
-                <AlertTitle>{t('Goodwill Reminders')}</AlertTitle>
+                <AlertTitle>{t('reminder')}</AlertTitle>
                 <AlertDescription>
                     You need to provide the{' '}
                     <Link href='https://huggingface.co/settings/tokens' target='_blank' className='underline'>

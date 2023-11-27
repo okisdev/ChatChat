@@ -31,10 +31,10 @@ export const ClientCommand = () => {
 
     return (
         <CommandDialog open={open} onOpenChange={setOpen}>
-            <CommandInput placeholder={t('Type a command to search')} />
+            <CommandInput placeholder={t('type_command_to_search')} />
             <CommandList>
-                <CommandEmpty>{t('No command found')}</CommandEmpty>
-                <CommandGroup heading={t('Conversation')}>
+                <CommandEmpty>{t('no_command_found')}</CommandEmpty>
+                <CommandGroup heading={t('conversation')}>
                     <CommandItem>
                         <button
                             onClick={() => {
@@ -44,7 +44,7 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <FiMessageCircle className='mr-2 h-4 w-4' />
-                            <span>{t('New Chat')}</span>
+                            <span>{t('new_chat')}</span>
                         </button>
                     </CommandItem>
                     <CommandItem>
@@ -56,7 +56,7 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <FiCode className='mr-2 h-4 w-4' />
-                            <span>{t('New Code')}</span>
+                            <span>{t('new_code')}</span>
                         </button>
                     </CommandItem>
                     <CommandItem>
@@ -68,12 +68,12 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <FiFile className='mr-2 h-4 w-4' />
-                            <span>{t('New File')}</span>
+                            <span>{t('new_file')}</span>
                         </button>
                     </CommandItem>
                 </CommandGroup>
                 <CommandSeparator />
-                <CommandGroup heading={t('Profile')}>
+                <CommandGroup heading={t('profile')}>
                     <CommandItem>
                         <button
                             onClick={() => {
@@ -83,7 +83,7 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <User className='mr-2 h-4 w-4' />
-                            <span>{t('Info')}</span>
+                            <span>{t('info')}</span>
                         </button>
                     </CommandItem>
                     <CommandItem>
@@ -95,7 +95,7 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <User className='mr-2 h-4 w-4' />
-                            <span>{t('Share')}</span>
+                            <span>{t('share')}</span>
                         </button>
                     </CommandItem>
                     <CommandItem>
@@ -107,12 +107,12 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <Settings className='mr-2 h-4 w-4' />
-                            <span>{t('Settings')}</span>
+                            <span>{t('settings')}</span>
                         </button>
                     </CommandItem>
                 </CommandGroup>
                 <CommandSeparator />
-                <CommandGroup heading={t('Team')}>
+                <CommandGroup heading={t('team')}>
                     <CommandItem>
                         <button
                             onClick={() => {
@@ -122,7 +122,7 @@ export const ClientCommand = () => {
                             className='flex items-center'
                         >
                             <User className='mr-2 h-4 w-4' />
-                            <span>{t('Overview')}</span>
+                            <span>{t('overview')}</span>
                         </button>
                     </CommandItem>
                 </CommandGroup>

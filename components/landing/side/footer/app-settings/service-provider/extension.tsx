@@ -9,7 +9,7 @@ const ExtensionServiceProvider = () => {
     return (
         <>
             <div className='space-y-1'>
-                <Label>{t('Entry Point')}</Label>
+                <Label>{t('entry_point')}</Label>
                 <Input placeholder='http://localhost:9999' />
             </div>
         </>

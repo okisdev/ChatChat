@@ -36,22 +36,22 @@ const AppSettingsHeader = () => {
 
     const handleSwitchAutoSpeech = () => {
         setEnableAutoSpeech(!enableAutoSpeech);
-        toast.success(`${t('Auto Speech')} ${enableAutoSpeech ? t('disabled') : t('enabled')}`);
+        toast.success(`${t('auto_speech')} ${enableAutoSpeech ? t('disabled') : t('enabled')}`);
     };
 
     const handleSwitchUserMarkdownRender = () => {
         setEnableUserMarkdownRender(!enableUserMarkdownRender);
-        toast.success(`${t('Render user message using Markdown')} ${enableUserMarkdownRender ? t('disabled') : t('enabled')}`);
+        toast.success(`${t('render_message_markdown')} ${enableUserMarkdownRender ? t('disabled') : t('enabled')}`);
     };
 
     const handleSwitchSendMessageKey = () => {
         setIsSendKeyEnter(!isSendKeyEnter);
-        toast.success(`${t('Send message key changed to')} ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`);
+        toast.success(`${t('send_key_change_to' ? 'Enter' : 'Shift + Enter')}`);
     };
 
     const handleSwitchAutoScroll = () => {
         setEnableAutoScroll(!enableAutoScroll);
-        toast.success(`${t('AutoScroll')} ${enableAutoScroll ? t('disabled') : t('enabled')}`);
+        toast.success(`${t('auto_scroll')} ${enableAutoScroll ? t('disabled') : t('enabled')}`);
     };
 
     useEffect(() => {
@@ -146,7 +146,7 @@ const AppSettingsHeader = () => {
         <div className='space-y-3'>
             <div className='flex items-center space-x-1'>
                 <Switch checked={isSendKeyEnter} onCheckedChange={handleSwitchSendMessageKey} />
-                <Label className='px-1 font-normal'>{t('Send Message using Enter Key')}</Label>
+                <Label className='px-1 font-normal'>{t('send_message_enter')}</Label>
                 <Tippy content={`Current: ${isSendKeyEnter ? 'Enter' : 'Shift + Enter'}`}>
                     <button>
                         <MdInfoOutline className='text-lg' />
@@ -155,8 +155,8 @@ const AppSettingsHeader = () => {
             </div>
             <div className='flex items-center space-x-1'>
                 <Switch checked={enableAutoSpeech} onCheckedChange={handleSwitchAutoSpeech} />
-                <Label className='px-1 font-normal'>{t('Auto Speech')}</Label>
-                <Tippy content={`${t('Auto read out all replies')}`}>
+                <Label className='px-1 font-normal'>{t('auto_speech')}</Label>
+                <Tippy content={`${t('auto_read_out')}`}>
                     <button>
                         <MdInfoOutline className='text-lg' />
                     </button>
@@ -164,19 +164,19 @@ const AppSettingsHeader = () => {
             </div>
             <div className='flex items-center space-x-1'>
                 <Switch checked={enableUserMarkdownRender} onCheckedChange={handleSwitchUserMarkdownRender} />
-                <Label className='px-1 font-normal'>{t('Render user message using Markdown')}</Label>
+                <Label className='px-1 font-normal'>{t('render_message_markdown')}</Label>
             </div>
             <div className='flex items-center space-x-1'>
                 <Switch checked={enableAutoScroll} onCheckedChange={handleSwitchAutoScroll} />
-                <Label className='px-1 font-normal'>{t('AutoScroll to end of message')}</Label>
+                <Label className='px-1 font-normal'>{t('auto_scroll_to_end')}</Label>
             </div>
             <Separator />
             <div className='flex flex-row items-center space-x-3'>
-                <p>{t('History Record')}</p>
+                <p>{t('history_record')}</p>
                 <div className='flex space-x-3'>
-                    <GlobalButton icon={<BiExport />} text={t('Export')} onClick={handleExportHistory} />
-                    <GlobalButton icon={<BiImport />} text={t('Import')} onClick={handleImportHistory} />
-                    <GlobalButton icon={<BiBrush />} text={t('Clear')} onClick={handleClearHistory} />
+                    <GlobalButton icon={<BiExport />} text={t('export')} onClick={handleExportHistory} />
+                    <GlobalButton icon={<BiImport />} text={t('import')} onClick={handleImportHistory} />
+                    <GlobalButton icon={<BiBrush />} text={t('clear')} onClick={handleClearHistory} />
                 </div>
             </div>
         </div>

@@ -40,7 +40,7 @@ const TabTTS = ({
     return voices && voices.length > 0 ? (
         <div className='space-y-6'>
             <div className='flex flex-row items-center justify-between space-x-1'>
-                <Label>{t('Voice')}</Label>
+                <Label>{t('voice')}</Label>
                 <Select value={ttsVoice} onValueChange={(value: string) => setTTSVoice(value)}>
                     <SelectTrigger className='w-[300px]'>
                         <SelectValue />
@@ -58,13 +58,13 @@ const TabTTS = ({
             </div>
             <div className='flex flex-col space-y-5'>
                 <Label>
-                    {t('Speaking Speed')}: {ttsSpeed}
+                    {t('speaking_speed')}: {ttsSpeed}
                 </Label>
                 <Slider min={0.1} max={10} step={0.1} value={[ttsSpeed]} onValueChange={([value]) => setTTSSpeed(value)} />
             </div>
             <Separator />
             <div className='flex flex-col space-y-2'>
-                <Label>{t('Sample')}</Label>
+                <Label>{t('sample')}</Label>
                 <Input value={ttsSample} onChange={(e) => setTTSSample(e.target.value)} />
                 <div>
                     <Button
@@ -80,14 +80,14 @@ const TabTTS = ({
                         disabled={isSpeaking}
                         className='inline-flex items-center justify-center space-x-2'
                     >
-                        <span>{t('Speak')}</span>
+                        <span>{t('speak')}</span>
                     </Button>
                 </div>
             </div>
         </div>
     ) : (
         <div>
-            <p>{t('Text to Speech is not supported in your browser')}</p>
+            <p>{t('tts_not_support')}</p>
         </div>
     );
 };

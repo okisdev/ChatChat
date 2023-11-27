@@ -270,7 +270,7 @@ const ChatMain = () => {
             switch (plugin) {
                 case 'search':
                     if (searchPluginConfig.searchAPIKey == '' || searchPluginConfig.searchEngineID == '') {
-                        toast.error(t('Please set up your Google Programmable Search Engine API Key and Search Engine ID in the settings page'));
+                        toast.error(t('set_up_google_search_config_first'));
                         return;
                     }
 
@@ -288,7 +288,7 @@ const ChatMain = () => {
                     const fetchContent = await fetch('/api/plugins/fetch?url=' + message.content).then((res) => res.json());
 
                     if (fetchContent.status != 200) {
-                        toast.error(t('Unable to fetch content from the URL provided'));
+                        toast.error(t('unable_to_fetch'));
                         return;
                     }
 
@@ -345,7 +345,7 @@ const ChatMain = () => {
         if (!response.ok) {
             setWaitingSystemResponse(false);
             setHasError(true);
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
@@ -354,7 +354,7 @@ const ChatMain = () => {
         if (!data) {
             setWaitingSystemResponse(false);
             setHasError(true);
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
@@ -514,7 +514,7 @@ const ChatMain = () => {
                             onEdit={(index: number) => {
                                 const promptIndex = isSystemPromptEmpty ? index : index + 1;
 
-                                const newContent = prompt(t('Edit message:'), conversations[promptIndex].content);
+                                const newContent = prompt(t('edit_message'), conversations[promptIndex].content);
 
                                 if (newContent !== null && newContent !== '') {
                                     const newMessage: AppMessageProps = {

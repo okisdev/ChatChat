@@ -34,7 +34,7 @@ const ClaudeServiceProvider = ({
         <>
             <Alert>
                 <FiClipboard />
-                <AlertTitle>{t('Goodwill Reminders')}</AlertTitle>
+                <AlertTitle>{t('reminder')}</AlertTitle>
                 <AlertDescription>
                     You need to provide the{' '}
                     <Link href='https://console.anthropic.com/account/keys' target='_blank' className='underline'>
@@ -75,9 +75,9 @@ const ClaudeServiceProvider = ({
                 <div className='flex flex-col space-y-1'>
                     <Slider max={1} step={0.1} value={[claudeAPITemperature]} onValueChange={([e]) => setClaudeAPITemperature(e)} />
                     <div className='flex justify-between text-xs text-gray-500'>
-                        <p>{t('Stable')}</p>
-                        <p>{t('Standard')}</p>
-                        <p>{t('Creative')}</p>
+                        <p>{t('stable')}</p>
+                        <p>{t('standard')}</p>
+                        <p>{t('creative')}</p>
                     </div>
                 </div>
             </div>

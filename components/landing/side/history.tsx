@@ -64,7 +64,7 @@ const SideHistory = () => {
                 const historyObj = JSON.parse(history);
                 historyObj.title = newTitle;
                 localStorage.setItem(`histories-${type}-${id}`, JSON.stringify(historyObj));
-                toast.success(t('Title changed'));
+                toast.success(t('title_changed'));
 
                 const updateEvent = new CustomEvent('localStorageUpdated');
                 window.dispatchEvent(updateEvent);
@@ -77,7 +77,7 @@ const SideHistory = () => {
 
     const onHistoryDelete = (id: string, type: string) => {
         localStorage.removeItem(`histories-${type}-${id}`);
-        toast.success(t('History deleted'));
+        toast.success(t('history_delete'));
 
         const updateEvent = new CustomEvent('localStorageUpdated');
         window.dispatchEvent(updateEvent);
@@ -87,7 +87,7 @@ const SideHistory = () => {
         const story = localStorage.getItem(`histories-${type}-${id}`) as string;
 
         if (!story) {
-            toast.error(t('Error: Conversation not found'));
+            toast.error(t('error_no_conversation'));
             return;
         }
 
@@ -102,25 +102,25 @@ const SideHistory = () => {
         });
 
         if (!response.ok) {
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
         const data = await response.json();
 
         if (!data.success) {
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
         if (data.type == 'update') {
             navigator.clipboard.writeText(window.location.host + `/s/${id}`);
-            toast.success(`${t('Updated the previous share:')} ${id}`);
+            toast.success(`${t('update_previous_share')} ${id}`);
             return;
         }
 
         navigator.clipboard.writeText(window.location.host + `/s/${id}`);
-        toast.success(`${t('Copied share link:')} ${id}`);
+        toast.success(`${t('copied_share_link')} ${id}`);
     };
 
     const searchedHistories =
@@ -131,7 +131,7 @@ const SideHistory = () => {
     return (
         <div className='space-y-2 px-2'>
             <Input
-                placeholder={t('Search History')}
+                placeholder={t('search_history')}
                 value={userInput}
                 onChange={(e) => {
                     setUserInput(e.target.value);

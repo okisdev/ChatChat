@@ -38,12 +38,12 @@ const ProfileSettingsForm = ({ user }: { user: User }) => {
 
         if (!response?.ok) {
             setIsLoading(false);
-            toast.error(t('Error: Something went wrong'));
+            toast.error(t('error_something_wrong'));
             return;
         }
 
         setIsLoading(false);
-        toast.success(t('Profile updated'));
+        toast.success(t('profile_update'));
     };
 
     const handleAllowRecordCloudSyncChange = async () => {
@@ -62,14 +62,14 @@ const ProfileSettingsForm = ({ user }: { user: User }) => {
                 <Separator />
 
                 <div className='flex h-16 items-center justify-between'>
-                    <Label>{t('Auto upload your records to the cloud')}</Label>
+                    <Label>{t('auto_upload__to_cloud')}</Label>
                     <Switch checked={allowRecordCloudSync} onCheckedChange={handleAllowRecordCloudSyncChange} />
                 </div>
             </div>
             <div>
                 <div className='flex items-end justify-end'>
                     <Button variant='outline' onClick={() => onSave()} className='dark:bg-stone-500' disabled={isLoading}>
-                        <span>{t('Save')}</span>
+                        <span>{t('save')}</span>
                     </Button>
                 </div>
             </div>

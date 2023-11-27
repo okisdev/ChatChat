@@ -46,7 +46,7 @@ const ContentHead = ({
                 });
 
                 if (!response.ok) {
-                    toast.error(t('Error: Something went wrong'));
+                    toast.error(t('error_something_wrong'));
                     return;
                 }
 

@@ -61,7 +61,7 @@ const MainContent = ({
 
     const onCopy = (index: number) => {
         navigator.clipboard.writeText(conversations[index].content);
-        toast.success(t('Copied to clipboard'));
+        toast.success(t('copied_to_clipboard'));
     };
 
     const onSpeech = (index: number) => {
@@ -136,22 +136,22 @@ const MainContent = ({
                                         {!isUser && <AvatarImage src={`/img/${serviceProvider}.png`} alt={serviceProvider} />}
                                         <AvatarFallback>{isUser ? 'Y' : serviceProvider}</AvatarFallback>
                                     </Avatar>
-                                    <p className='text-base font-semibold'>{isUser ? t('You') : serviceProvider}</p>
+                                    <p className='text-base font-semibold'>{isUser ? t('you') : serviceProvider}</p>
                                 </div>
                                 {!waitingSystemResponse && isHovered[index] && (
                                     <div className='text-neutral-600 dark:text-neutral-400'>
-                                        <GlobalButton className='text-xs' icon={<TbCopy />} text={t('Copy')} onClick={() => onCopy(isSystemPromptEmpty ? index : index + 1)} />
+                                        <GlobalButton className='text-xs' icon={<TbCopy />} text={t('copy')} onClick={() => onCopy(isSystemPromptEmpty ? index : index + 1)} />
                                         <GlobalButton
                                             className='text-xs'
                                             icon={isUser ? <TbEdit /> : <TbAB2 />}
-                                            text={isUser ? t('Edit') : t('Regenerate')}
+                                            text={isUser ? t('edit') : t('regenerate')}
                                             onClick={isUser ? () => onEdit(index) : () => reGenerate(index)}
                                         />
                                         {!isUser && (
                                             <GlobalButton
                                                 className='text-xs'
                                                 icon={<TbSpeakerphone />}
-                                                text={isSpeaking ? t('Stop') : t('Speech')}
+                                                text={isSpeaking ? t('stop') : t('speech')}
                                                 onClick={isSpeaking ? onStopSpeech : () => onSpeech(index)}
                                             />
                                         )}

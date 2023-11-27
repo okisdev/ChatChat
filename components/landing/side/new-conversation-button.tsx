@@ -14,7 +14,7 @@ const NewConversationButton = () => {
                 onClick={() => (location.href = '/')}
             >
                 <HiChatBubbleLeft />
-                <span>{t('New Conversation')}</span>
+                <span>{t('new_conversation')}</span>
             </button>
         </div>
     );

@@ -49,7 +49,7 @@ const RecordButton = ({ records }: { records: Record[] }) => {
                 return;
             }
 
-            toast.success(t('Successfully deleted all records'));
+            toast.success(t('delete_all_records_success'));
 
             router.refresh();
         }
@@ -58,10 +58,10 @@ const RecordButton = ({ records }: { records: Record[] }) => {
     return (
         <div className='flex items-center justify-end space-x-3'>
             <Button variant='outline' onClick={handleExport} className='dark:border-stone-400'>
-                {t('Export All')}
+                {t('export_all')}
             </Button>
             <Button variant='destructive' onClick={handleDelete}>
-                {t('Delete All')}
+                {t('delete_all')}
             </Button>
         </div>
     );
