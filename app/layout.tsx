@@ -2,6 +2,8 @@ import '@/styles/globals.css';
 import '@/styles/markdown.css';
 import 'tippy.js/dist/tippy.css';
 
+import Script from 'next/script';
+
 import { rubik } from '@/app/fonts';
 
 import { Providers } from '@/app/providers';
@@ -46,19 +48,19 @@ export default async function RootLayout({ children, params: { locale } }: { chi
                 <link rel='apple-touch-startup-image' href='/images/apple_splash_1242.png' sizes='1242x2208' />
                 <link rel='apple-touch-startup-image' href='/images/apple_splash_750.png' sizes='750x1334' />
                 <link rel='apple-touch-startup-image' href='/images/apple_splash_640.png' sizes='640x1136' />
-
-                <script
-                    defer
-                    src='https://cdn.jsdelivr.net/npm/katex@0.15.0/dist/katex.min.js'
-                    integrity='sha384-JRVVAdBKoQa7uhd8heKqlQyzByQCC57fpvrCw9iSahjP5bLB5b+hX0klEdjZmsH6'
-                    crossOrigin='anonymous'
-                />
             </head>
 
             <body className='min-h-screen bg-slate-50 dark:bg-[#323233] dark:text-[#eee]'>
                 <Providers>{children}</Providers>
                 <Analytics />
             </body>
+
+            <Script
+                defer
+                src='https://cdn.jsdelivr.net/npm/katex@0.15.0/dist/katex.min.js'
+                integrity='sha384-JRVVAdBKoQa7uhd8heKqlQyzByQCC57fpvrCw9iSahjP5bLB5b+hX0klEdjZmsH6'
+                crossOrigin='anonymous'
+            />
         </html>
     );
 }
