@@ -45,7 +45,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     const [ttsVoice, setTTSVoice] = useState<string>('');
     const [ttsSpeed, setTTSSpeed] = useState<number>(1.0);
     const [ttsPitch, setTTSPitch] = useState<number>(1.0);
-    const [ttsSample, setTTSSample] = useState<string>('Hello. I am your virtual AI assistant.');
+    const [ttsSample, setTTSSample] = useState<string>(t('Hello. I am your virtual AI assistant'));
 
     const [ttsConfig, setTTSConfig] = useAtom(store.textToSpeechConfigAtom);
 
@@ -318,7 +318,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
         });
 
         if (currentServiceProvider == 'OpenAI' && !useCloudSettings) {
-            if (!apiKey) {
+            if (apiKey !== '' && apiKey.length < 5) {
                 toast.error(t('Please fill in all required fields'));
                 return;
             }
