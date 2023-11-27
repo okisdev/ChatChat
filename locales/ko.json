@@ -208,5 +208,8 @@
   "team": "팀",
   "History Record": "연혁기록",
   "AutoScroll to end of message": "메시지 끝으로 자동스크롤",
-  "AutoScroll": "자동 스크롤"
+  "AutoScroll": "자동 스크롤",
+  "Hello": {
+    " I am your virtual AI assistant": "안녕하세요, 저는 여러분의 가상 AI 비서입니다."
+  }
 }

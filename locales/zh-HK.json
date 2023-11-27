@@ -208,5 +208,8 @@
   "team": "團隊",
   "History Record": "歷史記錄",
   "AutoScroll to end of message": "自動滾動到訊息末尾",
-  "AutoScroll": "自動滾螢幕"
+  "AutoScroll": "自動滾螢幕",
+  "Hello": {
+    " I am your virtual AI assistant": "你好，我是你的虛擬AI助手"
+  }
 }

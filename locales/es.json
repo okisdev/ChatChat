@@ -208,5 +208,8 @@
   "team": "equipo",
   "History Record": "Registro histórico",
   "AutoScroll to end of message": "Desplazamiento automático hasta el final del mensaje",
-  "AutoScroll": "Desplazamiento automático"
+  "AutoScroll": "Desplazamiento automático",
+  "Hello": {
+    " I am your virtual AI assistant": "Hola, soy tu asistente virtual de IA."
+  }
 }

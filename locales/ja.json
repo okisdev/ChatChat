@@ -208,5 +208,8 @@
   "team": "チーム",
   "History Record": "歴史の記録",
   "AutoScroll to end of message": "メッセージの最後まで自動スクロール",
-  "AutoScroll": "自動スクロール"
+  "AutoScroll": "自動スクロール",
+  "Hello": {
+    " I am your virtual AI assistant": "こんにちは、私はあなたの仮想 AI アシスタントです"
+  }
 }

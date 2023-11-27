@@ -208,5 +208,8 @@
   "team": "team",
   "History Record": "History Record",
   "AutoScroll to end of message": "AutoScroll to end of message",
-  "AutoScroll": "AutoScroll"
+  "AutoScroll": "AutoScroll",
+  "Hello": {
+    " I am your virtual AI assistant": "Hello, I am your virtual AI assistant"
+  }
 }

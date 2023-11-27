@@ -136,6 +136,7 @@ const SideHistory = () => {
                 onChange={(e) => {
                     setUserInput(e.target.value);
                 }}
+                className='bg-neural-100 dark:bg-neural-700'
             />
             <div className='h-96 w-full space-y-1 overflow-auto md:h-64'>
                 {pinHistories.map((pinHistory) => {

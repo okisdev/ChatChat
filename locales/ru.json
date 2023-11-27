@@ -208,5 +208,8 @@
   "team": "команда",
   "History Record": "Запись истории",
   "AutoScroll to end of message": "Автопрокрутка до конца сообщения",
-  "AutoScroll": "Автопрокрутка"
+  "AutoScroll": "Автопрокрутка",
+  "Hello": {
+    " I am your virtual AI assistant": "Здравствуйте, я ваш виртуальный ИИ-помощник"
+  }
 }
