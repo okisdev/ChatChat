@@ -13,7 +13,7 @@ import { useAtom } from 'jotai';
 
 import { FiLayout, FiCode, FiFile, FiMessageCircle, FiChevronDown } from 'react-icons/fi';
 
-import LandingSide from '@/components/landing/side/side';
+import LandingSide from '@/components/landing/side';
 
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';

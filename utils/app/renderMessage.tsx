@@ -115,17 +115,15 @@ const renderMarkdownMessage = (message: string) => {
 };
 
 const renderUserMessage = (message: string) => {
-    const lines = message.replace(/\n/g, '\n').split('\n');
-
     return (
-        <p>
-            {lines.map((line, index) => (
-                <span key={index} style={{ wordWrap: 'break-word' }}>
-                    {line}
-                    <br />
-                </span>
-            ))}
-        </p>
+        <div
+            className='prose dark:prose-invert'
+            style={{
+                whiteSpace: 'pre-wrap',
+            }}
+        >
+            {message}
+        </div>
     );
 };
 
@@ -156,7 +154,7 @@ const CodeComponent = ({ node, inline, className, children, ...props }: any) => 
             </pre>
         </div>
     ) : (
-        <code className={className + ' markdown-inline-code'} {...props}>
+        <code className={className ? className + ' markdown-inline-code' : 'markdown-inline-code'} {...props}>
             {children}
         </code>
     );

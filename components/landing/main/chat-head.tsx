@@ -64,16 +64,16 @@ const ContentHead = ({
             <div className='space-y-1'>
                 <p className='text-center'>{chatTitle ?? chatTitleResponse}</p>
                 {(serviceProvider == 'OpenAI' || serviceProvider == 'Team' || serviceProvider == 'Azure') && (
-                    <>
-                        <div className='flex items-center justify-center space-x-2 text-center text-sm'>
+                    <div className='flex items-center justify-center space-x-6 text-center text-sm'>
+                        <div className='flex items-center justify-center space-x-1'>
                             <BiCoin />
                             <span>{tokens}</span>
                         </div>
-                        <div className='flex items-center justify-center space-x-2 text-center text-sm'>
+                        <div className='flex items-center justify-center space-x-1'>
                             <BiMoney />
                             <span>{calculateModelPrice(openAIConfig.apiModel as OpenAIModel, tokens).toFixed(5)}</span>
                         </div>
-                    </>
+                    </div>
                 )}
                 <div className='flex flex-col items-center'>
                     <BarLoader loading={waitingSystemResponse} width={150} />

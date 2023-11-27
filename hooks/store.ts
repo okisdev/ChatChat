@@ -4,12 +4,13 @@ import { atomWithStorage } from 'jotai/utils';
 // ------------------ Layout Config ------------------
 
 // Layout
-const isHiddenSideAtom = atom(false);
+const isHiddenSideAtom = atomWithStorage('isHiddenSide', false);
 
 // ------------------ Conversation Config ------------------
 
 // Conversation Config
 const isSendKeyEnterAtom = atomWithStorage('enterKeySend', true);
+const isAutoScrollAtom = atomWithStorage('autoScroll', false);
 const enableStreamMessagesAtom = atomWithStorage<boolean>('enableStreamMessages', true);
 const systemPromptContentAtom = atomWithStorage('systemPrompt', '');
 const enableSystemPrompt = atomWithStorage('enableSystemPrompt', false);
@@ -102,6 +103,7 @@ const claudeConfigAtom = atomWithStorage('claudeConfig', {
 export default {
     isHiddenSideAtom,
     isSendKeyEnterAtom,
+    isAutoScrollAtom,
     enableStreamMessagesAtom,
     fileConfigAtom,
     enableFileAtom,

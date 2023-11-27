@@ -8,13 +8,11 @@ import { useTranslations } from 'next-intl';
 
 import { toast } from 'react-hot-toast';
 
-import { TfiMoreAlt } from 'react-icons/tfi';
-import { BiImport, BiExport, BiBrush } from 'react-icons/bi';
 import { TiPinOutline, TiDeleteOutline, TiBrush } from 'react-icons/ti';
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const SideHistory = () => {
     const router = useRouter();
@@ -55,17 +53,25 @@ const SideHistory = () => {
         setPinHistories((prev) => prev.filter((history) => history.id != id));
     };
 
-    const onTitleChange = (id: string, type: string) => {
-        const newTitle = prompt(t('Enter new title'));
+    const [newTitle, setNewTitle] = useState<string | null>(null);
+    const [titleDialogOpen, setTitleDialogOpen] = useState<boolean>(false);
 
-        if (newTitle) {
+    const onSaveTitleChange = (id: string, type: string, title: string) => {
+        if (newTitle !== title) {
             const history = localStorage.getItem(`histories-${type}-${id}`);
+
             if (history) {
                 const historyObj = JSON.parse(history);
                 historyObj.title = newTitle;
                 localStorage.setItem(`histories-${type}-${id}`, JSON.stringify(historyObj));
                 toast.success(t('Title changed'));
+
+                const updateEvent = new CustomEvent('localStorageUpdated');
+                window.dispatchEvent(updateEvent);
             }
+
+            setTitleDialogOpen(false);
+            setNewTitle(null);
         }
     };
 
@@ -117,73 +123,6 @@ const SideHistory = () => {
         toast.success(`${t('Copied share link:')} ${id}`);
     };
 
-    const handleExportHistory = () => {
-        const data = histories.map((item) => {
-            return item;
-        });
-
-        const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-
-        const download = document.createElement('a');
-
-        download.href = url;
-        download.download = `chatchat-history-${new Date().getTime()}.json`;
-        download.click();
-    };
-
-    const handleImportHistory = () => {
-        const input = document.createElement('input');
-
-        input.type = 'file';
-        input.accept = 'application/json';
-        input.click();
-
-        input.onchange = () => {
-            const file = input.files?.[0];
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.readAsText(file, 'UTF-8');
-
-                reader.onload = (e) => {
-                    const result = e.target?.result;
-
-                    if (result) {
-                        const data = JSON.parse(result as string);
-
-                        if (data) {
-                            data.forEach((item: HistoryProps) => {
-                                localStorage.setItem(`histories-${item.type}-${item.id}`, JSON.stringify(item));
-                            });
-
-                            toast.success(t('Imported history successfully!'));
-                        }
-                    }
-                };
-            }
-
-            const updateEvent = new CustomEvent('localStorageUpdated');
-            window.dispatchEvent(updateEvent);
-        };
-    };
-
-    const handleClearHistory = () => {
-        const chatKeys = Object.keys(localStorage).filter((key) => key.startsWith('histories-'));
-
-        chatKeys.forEach((key) => {
-            localStorage.removeItem(key);
-        });
-
-        setHistories([]);
-
-        toast.success(t('Cleared history successfully!'));
-
-        const updateEvent = new CustomEvent('localStorageUpdated');
-        window.dispatchEvent(updateEvent);
-    };
-
     const searchedHistories =
         userInput !== ''
             ? histories.filter((history) => history.title.toLowerCase().includes(userInput.toLowerCase())).sort((a, b) => b.timestamp - a.timestamp)
@@ -191,49 +130,19 @@ const SideHistory = () => {
 
     return (
         <div className='space-y-2 px-2'>
-            <div className='flex flex-row space-x-2'>
-                <Input
-                    placeholder={t('Search History')}
-                    value={userInput}
-                    onChange={(e) => {
-                        setUserInput(e.target.value);
-                    }}
-                />
-                <Dialog>
-                    <DialogTrigger asChild>
-                        <Button variant='ghost' className='inline-flex items-center'>
-                            <TfiMoreAlt />
-                        </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                        <DialogHeader>
-                            <DialogTitle>{t('History')}</DialogTitle>
-                        </DialogHeader>
-                        <div className='flex flex-col space-y-3'>
-                            <div className='flex space-x-3'>
-                                <Button variant='secondary' className='flex items-center space-x-0.5' onClick={handleExportHistory}>
-                                    <BiExport />
-                                    <span>{t('Export')}</span>
-                                </Button>
-                                <Button variant='secondary' className='flex items-center space-x-0.5' onClick={handleImportHistory}>
-                                    <BiImport />
-                                    <span>{t('Import')}</span>
-                                </Button>
-                                <Button variant='destructive' className='flex items-center space-x-0.5' onClick={handleClearHistory}>
-                                    <BiBrush />
-                                    <span>{t('Clear')}</span>
-                                </Button>
-                            </div>
-                        </div>
-                    </DialogContent>
-                </Dialog>
-            </div>
+            <Input
+                placeholder={t('Search History')}
+                value={userInput}
+                onChange={(e) => {
+                    setUserInput(e.target.value);
+                }}
+            />
             <div className='h-96 w-full space-y-1 overflow-auto md:h-64'>
                 {pinHistories.map((pinHistory) => {
                     return (
                         <div
                             key={'pin-' + pinHistory.id}
-                            className='flex w-full select-none items-center justify-between rounded bg-blue-100 p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:bg-slate-500 dark:hover:bg-stone-700'
+                            className='flex w-full select-none items-center justify-between rounded bg-blue-100 p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-stone-700'
                         >
                             <div className='inline-flex items-center space-x-2'>
                                 <button className='block' onClick={() => onHistoryUnpin(pinHistory.id)}>
@@ -253,11 +162,28 @@ const SideHistory = () => {
                                 <button className='rounded border border-blue-300 px-0.5 text-xs' onClick={() => onShareClick(pinHistory.type, pinHistory.id)}>
                                     {pinHistory.type}
                                 </button>
-                                <button className='block' onClick={() => onTitleChange(pinHistory.id, pinHistory.type)}>
-                                    <TiBrush className='text-lg hover:fill-green-500' />
-                                </button>
+                                <Dialog open={titleDialogOpen} onOpenChange={setTitleDialogOpen}>
+                                    <DialogTrigger asChild>
+                                        <button className='block'>
+                                            <TiBrush className='text-lg transition duration-500 ease-in-out hover:fill-green-500' />
+                                        </button>
+                                    </DialogTrigger>
+                                    <DialogContent className='sm:max-w-[425px]'>
+                                        <DialogHeader>
+                                            <DialogTitle>Edit Title</DialogTitle>
+                                        </DialogHeader>
+                                        <div className='flex items-center'>
+                                            <Input type='text' defaultValue={pinHistory.title} onChange={(e) => setNewTitle(e.target.value)} />
+                                        </div>
+                                        <DialogFooter>
+                                            <Button type='submit' onClick={() => onSaveTitleChange(pinHistory.id, pinHistory.type, pinHistory.title)}>
+                                                Save
+                                            </Button>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
                                 <button className='block' onClick={() => onHistoryDelete(pinHistory.id, pinHistory.type)}>
-                                    <TiDeleteOutline className='text-lg hover:fill-red-500' />
+                                    <TiDeleteOutline className='text-lg transition duration-500 ease-in-out hover:fill-red-500' />
                                 </button>
                             </div>
                         </div>
@@ -287,11 +213,28 @@ const SideHistory = () => {
                                 <button className='rounded border border-blue-300 px-0.5 text-xs' onClick={() => onShareClick(history.type, history.id)}>
                                     {history.type}
                                 </button>
-                                <button className='block' onClick={() => onTitleChange(history.id, history.type)}>
-                                    <TiBrush className='text-lg hover:fill-green-500' />
-                                </button>
+                                <Dialog open={titleDialogOpen} onOpenChange={setTitleDialogOpen}>
+                                    <DialogTrigger asChild>
+                                        <button className='block'>
+                                            <TiBrush className='text-lg transition duration-500 ease-in-out hover:fill-green-500' />
+                                        </button>
+                                    </DialogTrigger>
+                                    <DialogContent className='sm:max-w-[425px]'>
+                                        <DialogHeader>
+                                            <DialogTitle>Edit Title</DialogTitle>
+                                        </DialogHeader>
+                                        <div className='flex items-center'>
+                                            <Input type='text' defaultValue={history.title} onChange={(e) => setNewTitle(e.target.value)} />
+                                        </div>
+                                        <DialogFooter>
+                                            <Button type='submit' onClick={() => onSaveTitleChange(history.id, history.type, history.title)}>
+                                                Save
+                                            </Button>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
                                 <button className='block' onClick={() => onHistoryDelete(history.id, history.type)}>
-                                    <TiDeleteOutline className='text-lg hover:fill-red-500' />
+                                    <TiDeleteOutline className='text-lg transition duration-500 ease-in-out hover:fill-red-500' />
                                 </button>
                             </div>
                         </div>

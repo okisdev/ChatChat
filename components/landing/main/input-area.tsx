@@ -273,7 +273,6 @@ const InputArea = ({
                             <TbShare2 className='dark:text-white' />
                             <p className='inline-flex space-x-1'>
                                 <span>{t('Share')}</span>
-                                <span className='hidden xl:block'>{t('this conversation')}</span>
                             </p>
                         </button>
                     )
