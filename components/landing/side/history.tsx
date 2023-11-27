@@ -56,16 +56,20 @@ const SideHistory = () => {
     const [newTitle, setNewTitle] = useState<string | null>(null);
     const [titleDialogOpen, setTitleDialogOpen] = useState<boolean>(false);
 
-    const onTitleChange = (id: string, type: string) => {
-        if (newTitle) {
-            console.log(newTitle);
+    const onSaveTitleChange = (id: string, type: string, title: string) => {
+        if (newTitle !== title) {
             const history = localStorage.getItem(`histories-${type}-${id}`);
+
             if (history) {
                 const historyObj = JSON.parse(history);
                 historyObj.title = newTitle;
                 localStorage.setItem(`histories-${type}-${id}`, JSON.stringify(historyObj));
                 toast.success(t('Title changed'));
+
+                const updateEvent = new CustomEvent('localStorageUpdated');
+                window.dispatchEvent(updateEvent);
             }
+
             setTitleDialogOpen(false);
             setNewTitle(null);
         }
@@ -158,15 +162,7 @@ const SideHistory = () => {
                                 <button className='rounded border border-blue-300 px-0.5 text-xs' onClick={() => onShareClick(pinHistory.type, pinHistory.id)}>
                                     {pinHistory.type}
                                 </button>
-                                <Dialog
-                                    open={titleDialogOpen}
-                                    onOpenChange={(open) => {
-                                        if (!open) {
-                                            setTitleDialogOpen(false);
-                                            setNewTitle(null);
-                                        }
-                                    }}
-                                >
+                                <Dialog open={titleDialogOpen} onOpenChange={setTitleDialogOpen}>
                                     <DialogTrigger asChild>
                                         <button className='block'>
                                             <TiBrush className='text-lg transition duration-500 ease-in-out hover:fill-green-500' />
@@ -177,10 +173,10 @@ const SideHistory = () => {
                                             <DialogTitle>Edit Title</DialogTitle>
                                         </DialogHeader>
                                         <div className='flex items-center'>
-                                            <Input id='title' defaultValue={pinHistory.title} onChange={(e) => setNewTitle(e.target.value)} />
+                                            <Input type='text' defaultValue={pinHistory.title} onChange={(e) => setNewTitle(e.target.value)} />
                                         </div>
                                         <DialogFooter>
-                                            <Button type='submit' onClick={() => onTitleChange(pinHistory.id, pinHistory.type)}>
+                                            <Button type='submit' onClick={() => onSaveTitleChange(pinHistory.id, pinHistory.type, pinHistory.title)}>
                                                 Save
                                             </Button>
                                         </DialogFooter>
@@ -217,7 +213,7 @@ const SideHistory = () => {
                                 <button className='rounded border border-blue-300 px-0.5 text-xs' onClick={() => onShareClick(history.type, history.id)}>
                                     {history.type}
                                 </button>
-                                <Dialog open={titleDialogOpen}>
+                                <Dialog open={titleDialogOpen} onOpenChange={setTitleDialogOpen}>
                                     <DialogTrigger asChild>
                                         <button className='block'>
                                             <TiBrush className='text-lg transition duration-500 ease-in-out hover:fill-green-500' />
@@ -228,10 +224,10 @@ const SideHistory = () => {
                                             <DialogTitle>Edit Title</DialogTitle>
                                         </DialogHeader>
                                         <div className='flex items-center'>
-                                            <Input id='title' defaultValue={history.title} onChange={(e) => setNewTitle(e.target.value)} />
+                                            <Input type='text' defaultValue={history.title} onChange={(e) => setNewTitle(e.target.value)} />
                                         </div>
                                         <DialogFooter>
-                                            <Button type='submit' onClick={() => onTitleChange(history.id, history.type)}>
+                                            <Button type='submit' onClick={() => onSaveTitleChange(history.id, history.type, history.title)}>
                                                 Save
                                             </Button>
                                         </DialogFooter>
