@@ -11,6 +11,7 @@ import { rubik } from '@/app/fonts';
 import { Providers } from '@/app/providers';
 
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { siteConfig } from '@/config/site.config';
 
@@ -64,6 +65,7 @@ export default async function RootLayout({ children, params: { locale } }: { chi
             <body className='min-h-screen bg-slate-50 dark:bg-[#323233] dark:text-[#eee]'>
                 <Providers>{children}</Providers>
                 <Analytics />
+                <SpeedInsights />
             </body>
 
             <Script
