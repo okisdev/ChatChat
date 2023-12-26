@@ -414,7 +414,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                     <TbAdjustmentsHorizontal />
                 </button>
             </SheetTrigger>
-            <SheetContent size='default' className='w-full overflow-auto md:w-5/12 xl:w-1/3'>
+            <SheetContent className='overflow-y-auto'>
                 <SheetHeader>
                     <SheetTitle>{t('App Settings')}</SheetTitle>
                     <SheetDescription>

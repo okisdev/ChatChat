@@ -26,23 +26,21 @@ const DashboardSide = () => {
                             <CgMenuBoxed />
                         </button>
                     </SheetTrigger>
-                    <SheetContent position='right' size='xl'>
-                        <div className='items-left flex flex-col space-y-10'>
-                            {DashboardSideItems.map((item, index) => (
-                                <div key={index} className='flex flex-col space-y-2'>
-                                    <p className='text-gray-500/70'>{t(item.name)}</p>
-                                    {item.children && (
-                                        <div className='flex w-auto flex-col items-start space-y-1'>
-                                            {item.children.map((child, index) => (
-                                                <Button variant='ghost' key={index} className='text-gray-500' onClick={() => router.push('/dashboard/' + item.base + '/' + child.href)}>
-                                                    {t(child.name)}
-                                                </Button>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
+                    <SheetContent side='right' className='items-left flex flex-col space-y-10 md:w-5/12'>
+                        {DashboardSideItems.map((item, index) => (
+                            <div key={index} className='flex flex-col space-y-2'>
+                                <p className='text-gray-500/70'>{t(item.name)}</p>
+                                {item.children && (
+                                    <div className='flex w-auto flex-col items-start space-y-1'>
+                                        {item.children.map((child, index) => (
+                                            <Button variant='ghost' key={index} className='text-gray-500' onClick={() => router.push('/dashboard/' + item.base + '/' + child.href)}>
+                                                {t(child.name)}
+                                            </Button>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
                     </SheetContent>
                 </Sheet>
             </div>
