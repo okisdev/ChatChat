@@ -136,7 +136,7 @@ const SideHistory = () => {
                 onChange={(e) => {
                     setUserInput(e.target.value);
                 }}
-                className='bg-neural-100 dark:bg-neural-700'
+                className='bg-neutral-100 dark:bg-neutral-700'
             />
             <div className='h-96 w-full space-y-1 overflow-auto md:h-64'>
                 {pinHistories.map((pinHistory) => {
@@ -151,11 +151,11 @@ const SideHistory = () => {
                                 </button>
                                 {pinHistory.type == 'chat' ? (
                                     <button className='max-w-[150px]' onClick={() => router.push(`/mode/${pinHistory.type}?history=${pinHistory.id}`)}>
-                                        <p className='overflow-hidden truncate text-ellipsis text-sm'>{pinHistory.title}</p>
+                                        <p className='overflow-hidden truncate text-sm'>{pinHistory.title}</p>
                                     </button>
                                 ) : (
                                     <div className='max-w-[150px]'>
-                                        <p className='overflow-hidden truncate text-ellipsis text-sm'>{pinHistory.title}</p>
+                                        <p className='overflow-hidden truncate text-sm'>{pinHistory.title}</p>
                                     </div>
                                 )}
                             </div>
@@ -202,11 +202,11 @@ const SideHistory = () => {
                                 </button>
                                 {history.type == 'chat' ? (
                                     <button className='max-w-[150px]' onClick={() => router.push(`/mode/${history.type}?history=${history.id}`)}>
-                                        <p className='overflow-hidden truncate text-ellipsis text-sm'>{history.title}</p>
+                                        <p className='overflow-hidden truncate text-sm'>{history.title}</p>
                                     </button>
                                 ) : (
                                     <div className='max-w-[150px]'>
-                                        <p className='overflow-hidden truncate text-ellipsis text-sm'>{history.title}</p>
+                                        <p className='overflow-hidden truncate text-sm'>{history.title}</p>
                                     </div>
                                 )}
                             </div>
