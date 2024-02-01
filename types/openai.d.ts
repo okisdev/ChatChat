@@ -3,6 +3,7 @@ type OpenAIProvider = 'Azure' | 'OpenAI';
 type OpenAIModel =
     | 'gpt-4'
     | 'gpt-4-0613'
+    | 'gpt-4-0125-preview'
     | 'gpt-4-1106-preview'
     | 'gpt-4-vision-preview'
     | 'gpt-4-32k'
