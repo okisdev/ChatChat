@@ -13,6 +13,9 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v3
+
             - name: Login to GitHub Container Registry
               uses: docker/login-action@v3
               with:
@@ -24,13 +27,16 @@ jobs:
               id: extract_tag
               run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#refs/tags/})"
 
-            - name: Build Docker image
-              run: docker build -t ghcr.io/okisdev/chatchat:${{ steps.extract_tag.outputs.tag }} -t ghcr.io/okisdev/chatchat:latest .
-
-            - name: Push Docker image to GHCR
-              run: |
-                  docker push ghcr.io/okisdev/chatchat:${{ steps.extract_tag.outputs.tag }}
-                  docker push ghcr.io/okisdev/chatchat:latest
+            - name: Build and Push Docker image to GHCR
+              uses: docker/build-push-action@v3
+              with:
+                  context: .
+                  file: ./Dockerfile
+                  push: true
+                  tags: |
+                      ghcr.io/okisdev/chatchat:${{ steps.extract_tag.outputs.tag }}
+                      ghcr.io/okisdev/chatchat:latest
+                  platforms: linux/amd64,linux/arm64
 
             - name: Login to Docker Hub
               uses: docker/login-action@v3
@@ -38,12 +44,13 @@ jobs:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-            - name: Tag Docker image for Docker Hub
-              run: |
-                  docker tag ghcr.io/okisdev/chatchat:${{ steps.extract_tag.outputs.tag }} okisdev/chatchat:${{ steps.extract_tag.outputs.tag }}
-                  docker tag ghcr.io/okisdev/chatchat:latest okisdev/chatchat:latest
-
-            - name: Push Docker image to Docker Hub
-              run: |
-                  docker push okisdev/chatchat:${{ steps.extract_tag.outputs.tag }}
-                  docker push okisdev/chatchat:latest
+            - name: Tag and Push Docker image to Docker Hub
+              uses: docker/build-push-action@v3
+              with:
+                  context: .
+                  file: ./Dockerfile
+                  push: true
+                  tags: |
+                      okisdev/chatchat:${{ steps.extract_tag.outputs.tag }}
+                      okisdev/chatchat:latest
+                  platforms: linux/amd64,linux/arm64

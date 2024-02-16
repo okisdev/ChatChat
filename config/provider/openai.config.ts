@@ -16,14 +16,19 @@ export const openAIModelConfig: openAIModelConfig[] = [
         price: 0.06 / 1000,
     },
     {
+        model: 'gpt-4-0125-preview',
+        maxTokens: 128000,
+        price: 0.03 / 1000,
+    },
+    {
         model: 'gpt-4-1106-preview',
         maxTokens: 128000,
-        price: 0.04 / 1000,
+        price: 0.03 / 1000,
     },
     {
         model: 'gpt-4-vision-preview',
         maxTokens: 128000,
-        price: 0.04 / 1000,
+        price: 0.03 / 1000,
     },
     {
         model: 'gpt-4-32k',
