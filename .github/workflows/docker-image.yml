@@ -28,7 +28,7 @@ jobs:
               run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#refs/tags/})"
 
             - name: Build and Push Docker image to GHCR
-              uses: docker/build-push-action@v3
+              uses: docker/build-push-action@v5
               with:
                   context: .
                   file: ./Dockerfile
@@ -45,7 +45,7 @@ jobs:
                   password: ${{ secrets.DOCKERHUB_TOKEN }}
 
             - name: Tag and Push Docker image to Docker Hub
-              uses: docker/build-push-action@v3
+              uses: docker/build-push-action@v5
               with:
                   context: .
                   file: ./Dockerfile
