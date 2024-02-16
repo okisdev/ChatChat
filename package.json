@@ -7,16 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "postinstall": "prisma generate",
     "db-pull": "prisma db pull",
     "db-push": "prisma db push",
     "update-db": "prisma migrate deploy",
     "prettier": "prettier ./app",
     "prettier:check": "prettier --check ./app",
-    "prettier:write": "prettier --write ./app",
-    "eslint": "eslint ./app",
-    "eslint:debug": "eslint ./app --debug",
-    "eslint:fix": "eslint ./app --fix"
+    "prettier:write": "prettier --write ./app"
   },
   "dependencies": {
     "@dqbd/tiktoken": "^1.0.7",

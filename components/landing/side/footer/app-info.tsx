@@ -37,7 +37,7 @@ export default function AppInfo() {
     return (
         <Dialog open={isVersionDialogOpen} onOpenChange={setIsVersionDialogOpen}>
             <DialogTrigger asChild>
-                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 text-xs transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700' aria-label='Version'>
+                <button className='inline-flex items-center space-x-1 rounded p-1 text-xs transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700' aria-label='Version'>
                     v{packageInfo.version}
                 </button>
             </DialogTrigger>
@@ -65,28 +65,28 @@ export default function AppInfo() {
                             <Link
                                 href='https://www.harrly.com/privacy-policy'
                                 target='_blank'
-                                className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
+                                className='inline-flex items-center space-x-1 rounded p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                             >
                                 <span>Privacy Policy</span>
                             </Link>
                             <Link
                                 href='https://www.harrly.com/cookies'
                                 target='_blank'
-                                className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
+                                className='inline-flex items-center space-x-1 rounded p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                             >
                                 <span>Cookies</span>
                             </Link>
                             <Link
                                 href='https://github.com/okisdev/ChatChat'
                                 target='_blank'
-                                className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
+                                className='inline-flex items-center space-x-1 rounded p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                             >
                                 <span>GitHub</span>
                             </Link>
                             <Link
                                 href='https://www.harrly.com/'
                                 target='_blank'
-                                className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
+                                className='inline-flex items-center space-x-1 rounded p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                             >
                                 <span>Harry Yep</span>
                             </Link>

@@ -21,7 +21,7 @@ const UserDropdown = ({ user }: { user: User }) => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <div className='m-1 flex flex-grow flex-row items-center justify-start space-x-2 rounded-lg bg-white/90 py-1 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327]'>
+                <div className='m-1 flex grow flex-row items-center justify-start space-x-2 rounded-lg bg-white/90 py-1 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327]'>
                     <Avatar className='inline-flex items-center justify-center'>{user?.image ? <AvatarImage src={user.image} /> : <RxAvatar className='text-2xl' />}</Avatar>
                     <p>{user.name}</p>
                 </div>

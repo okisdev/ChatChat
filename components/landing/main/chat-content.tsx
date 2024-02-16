@@ -132,7 +132,7 @@ const MainContent = ({
                         >
                             <div className='flex select-none items-center space-x-2'>
                                 <div className='flex items-center justify-center space-x-2'>
-                                    <Avatar className='h-6 w-6'>
+                                    <Avatar className='size-6'>
                                         {!isUser && <AvatarImage src={`/img/${serviceProvider}.png`} alt={serviceProvider} />}
                                         <AvatarFallback>{isUser ? 'Y' : serviceProvider}</AvatarFallback>
                                     </Avatar>

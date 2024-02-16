@@ -19,14 +19,14 @@ const DashboardSide = () => {
 
     return (
         <>
-            <div className='fixed bottom-4 left-4 z-10 flex h-10 w-10 items-center justify-center rounded-xl bg-stone-500 text-white md:hidden'>
+            <div className='fixed bottom-4 left-4 z-10 flex size-10 items-center justify-center rounded-xl bg-stone-500 text-white md:hidden'>
                 <Sheet>
                     <SheetTrigger asChild>
                         <button>
                             <CgMenuBoxed />
                         </button>
                     </SheetTrigger>
-                    <SheetContent side='right' className='items-left flex flex-col space-y-10 md:w-5/12'>
+                    <SheetContent side='right' className='flex flex-col space-y-10 md:w-5/12'>
                         {DashboardSideItems.map((item, index) => (
                             <div key={index} className='flex flex-col space-y-2'>
                                 <p className='text-gray-500/70'>{t(item.name)}</p>
@@ -52,7 +52,7 @@ const DashboardSide = () => {
                             <p>{t('Back')}</p>
                         </Button>
                     </div>
-                    <div className='items-left flex flex-col space-y-10'>
+                    <div className='flex flex-col space-y-10'>
                         {DashboardSideItems.map((item, index) => (
                             <div key={index} className='flex flex-col space-y-2'>
                                 <p className='text-gray-500/70'>{t(item.name)}</p>

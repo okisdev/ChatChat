@@ -41,7 +41,7 @@ const MoreDropdown = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700' aria-label='More Config'>
+                <button className='inline-flex items-center space-x-1 rounded p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700' aria-label='More Config'>
                     <FiMoreHorizontal />
                 </button>
             </DropdownMenuTrigger>
