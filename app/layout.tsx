@@ -70,8 +70,8 @@ export default async function RootLayout({ children, params: { locale } }: { chi
 
             <Script
                 defer
-                src='https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js'
-                integrity='sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8'
+                src='https://cdn.jsdelivr.net/npm/katex@0.15.0/dist/katex.min.js'
+                integrity='sha384-JRVVAdBKoQa7uhd8heKqlQyzByQCC57fpvrCw9iSahjP5bLB5b+hX0klEdjZmsH6'
                 crossOrigin='anonymous'
             />
         </html>
