@@ -83,15 +83,7 @@ const InputArea = ({
         }
     };
 
-    useEffect(() => {
-        if (transcript) {
-            setUserInput(transcript);
-        }
-    }, [transcript]);
-
     const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        // e.target.style.height = 'inherit';
-        // e.target.style.height = e.target.scrollHeight + 'px';
         setUserInput(e.target.value);
 
         if (e.target.value.startsWith('/')) {
@@ -104,6 +96,12 @@ const InputArea = ({
 
         resetTranscript();
     };
+
+    useEffect(() => {
+        if (transcript) {
+            setUserInput(transcript);
+        }
+    }, [transcript]);
 
     const handleSend = () => {
         if (waitingSystemResponse) {
@@ -192,8 +190,10 @@ const InputArea = ({
         setIsComposing(true);
     };
 
-    const handleCompositionEnd = () => {
+    const handleCompositionEnd = (e: React.CompositionEvent<HTMLTextAreaElement>) => {
         setIsComposing(false);
+
+        setUserInput(e.currentTarget.value);
     };
 
     const handleOnKeyDown = (e: any) => {
