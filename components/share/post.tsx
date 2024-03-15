@@ -45,7 +45,7 @@ const SharePost = ({ share }: ShareProps) => {
     };
 
     return (
-        <div className='m-1 flex w-full flex-grow flex-col space-y-3 rounded-lg bg-white/90 p-3 py-2 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327] md:m-3 md:space-y-10 md:p-6 md:px-4'>
+        <div className='m-1 flex w-full grow flex-col space-y-3 rounded-lg bg-white/90 p-3 py-2 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327] md:m-3 md:space-y-10 md:p-6 md:px-4'>
             <div className='my-3 flex items-center justify-between'>
                 <div className='space-y-3'>
                     <p className='gradient-flow bg-gradient-to-r bg-clip-text text-2xl font-semibold leading-none text-transparent'>
@@ -55,7 +55,7 @@ const SharePost = ({ share }: ShareProps) => {
                 <div className='flex flex-row space-x-3'>
                     {share.type == 'chat' && (
                         <button
-                            className='inline-flex items-center space-x-1 rounded p-1 px-1 ring-2 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
+                            className='inline-flex items-center space-x-1 rounded p-1 ring-2 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                             onClick={handleContinueConversation}
                         >
                             <BiChat className='text-xl' />
@@ -63,7 +63,7 @@ const SharePost = ({ share }: ShareProps) => {
                         </button>
                     )}
                     <button
-                        className='inline-flex items-center space-x-1 rounded p-1 px-1 ring-2 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
+                        className='inline-flex items-center space-x-1 rounded p-1 ring-2 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700'
                         onClick={() => onCopyLink()}
                     >
                         <BiLink className='text-xl' />

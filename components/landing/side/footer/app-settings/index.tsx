@@ -410,7 +410,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
     return (
         <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
-                <button className='inline-flex items-center space-x-1 rounded p-1 px-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700' aria-label='app-settings'>
+                <button className='inline-flex items-center space-x-1 rounded p-1 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-stone-700' aria-label='app-settings'>
                     <TbAdjustmentsHorizontal />
                 </button>
             </SheetTrigger>
@@ -424,7 +424,7 @@ const SideAppSettings = ({ user }: { user: User | null }) => {
                 <div className='my-4 space-y-4'>
                     <AppSettingsHeader />
                     <Separator />
-                    <Tabs defaultValue='provider' className='h-full w-full space-y-5'>
+                    <Tabs defaultValue='provider' className='size-full space-y-5'>
                         <TabsList>
                             <TabsTrigger value='provider'>{t('Service Provider')}</TabsTrigger>
                             <TabsTrigger value='tts'>{t('Text To Speech')}</TabsTrigger>

@@ -205,7 +205,7 @@ const CodeMain = () => {
     };
 
     return (
-        <main className='m-2 flex h-[calc(100%-65px)] flex-grow flex-col rounded-lg bg-white/90 px-4 py-2 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327] md:h-[calc(100%-80px)] md:p-3'>
+        <main className='m-2 flex h-[calc(100%-65px)] grow flex-col rounded-lg bg-white/90 px-4 py-2 shadow backdrop-blur transition-transform duration-500 dark:bg-[#202327] md:h-[calc(100%-80px)] md:p-3'>
             <div className='flex h-full flex-col items-center justify-between space-y-3 xl:flex-row xl:space-x-3'>
                 <Textarea className='h-3/6 w-full dark:border-neutral-500 dark:bg-transparent xl:min-h-full xl:w-5/12' onChange={onMessageChange} />
                 <div className='flex h-1/6 w-full flex-col space-y-3 xl:w-2/12'>

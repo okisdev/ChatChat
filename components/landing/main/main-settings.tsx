@@ -213,7 +213,7 @@ const ModeSettings = ({ systemPromptContent, setSystemPromptContent }: { systemP
     }
 
     return (
-        <div className='mx-auto flex h-full w-full flex-col items-center justify-center space-y-3'>
+        <div className='mx-auto flex size-full flex-col items-center justify-center space-y-3'>
             <div className='w-11/12 space-y-2 rounded-lg border p-3 text-sm dark:bg-neutral-700 md:w-96'>
                 <div className='flex flex-row items-center justify-between'>
                     <div>{CurrentConfig}</div>

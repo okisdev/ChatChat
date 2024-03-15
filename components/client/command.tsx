@@ -43,7 +43,7 @@ export const ClientCommand = () => {
                             }}
                             className='flex items-center'
                         >
-                            <FiMessageCircle className='mr-2 h-4 w-4' />
+                            <FiMessageCircle className='mr-2 size-4' />
                             <span>{t('New Chat')}</span>
                         </button>
                     </CommandItem>
@@ -55,7 +55,7 @@ export const ClientCommand = () => {
                             }}
                             className='flex items-center'
                         >
-                            <FiCode className='mr-2 h-4 w-4' />
+                            <FiCode className='mr-2 size-4' />
                             <span>{t('New Code')}</span>
                         </button>
                     </CommandItem>
@@ -67,7 +67,7 @@ export const ClientCommand = () => {
                             }}
                             className='flex items-center'
                         >
-                            <FiFile className='mr-2 h-4 w-4' />
+                            <FiFile className='mr-2 size-4' />
                             <span>{t('New File')}</span>
                         </button>
                     </CommandItem>
@@ -82,7 +82,7 @@ export const ClientCommand = () => {
                             }}
                             className='flex items-center'
                         >
-                            <User className='mr-2 h-4 w-4' />
+                            <User className='mr-2 size-4' />
                             <span>{t('Info')}</span>
                         </button>
                     </CommandItem>
@@ -94,7 +94,7 @@ export const ClientCommand = () => {
                             }}
                             className='flex items-center'
                         >
-                            <User className='mr-2 h-4 w-4' />
+                            <User className='mr-2 size-4' />
                             <span>{t('Share')}</span>
                         </button>
                     </CommandItem>
@@ -106,7 +106,7 @@ export const ClientCommand = () => {
                             }}
                             className='flex items-center'
                         >
-                            <Settings className='mr-2 h-4 w-4' />
+                            <Settings className='mr-2 size-4' />
                             <span>{t('Settings')}</span>
                         </button>
                     </CommandItem>
@@ -121,7 +121,7 @@ export const ClientCommand = () => {
                             }}
                             className='flex items-center'
                         >
-                            <User className='mr-2 h-4 w-4' />
+                            <User className='mr-2 size-4' />
                             <span>{t('Overview')}</span>
                         </button>
                     </CommandItem>
