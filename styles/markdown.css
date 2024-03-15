@@ -73,3 +73,7 @@
 .markdown-td {
     @apply border border-gray-200 px-2 py-1 !important;
 }
+
+.katex-html {
+    @apply hidden !important;
+}
