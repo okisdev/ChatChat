@@ -14,7 +14,7 @@ export async function POST(req: Request): Promise<Response> {
         default:
         case 'OpenAI':
             const openAIAPIKey = (config?.apiKey || process.env.OPENAI_API_KEY) as string;
-            const openAIAPIEndpoint = config?.apiEndpoint as string;
+            const openAIAPIEndpoint = (config?.apiEndpoint || process.env.OPENAI_API_ENDPOINT) as string;
             const openAIAPIModel = (config?.apiModel as OpenAIModel) || 'gpt-3.5-turbo';
             const openAIAPITemperature = (config?.apiTemperature as number) || 0.3;
 
