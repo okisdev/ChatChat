@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import { Onest } from 'next/font/google';
+import { Source_Sans_3 } from 'next/font/google';
 import '@/styles/globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const source_sans_3 = Source_Sans_3({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
     title: 'Chat Chat',
@@ -11,12 +11,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
     children,
+    params: { locale },
 }: Readonly<{
     children: React.ReactNode;
+    params: { locale: string };
 }>) {
     return (
-        <html lang='en'>
-            <body className={inter.className}>{children}</body>
+        <html lang={locale} className={source_sans_3.className}>
+            <body>{children}</body>
         </html>
     );
 }
