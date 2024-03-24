@@ -10,12 +10,11 @@ import { useAtomValue } from 'jotai';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 import { IoStopCircle } from 'react-icons/io5';
-import { TbSend, TbShare2 } from 'react-icons/tb';
-import { MdOutlineKeyboardVoice, MdPause } from 'react-icons/md';
-
-import TextareaAutosize from 'react-textarea-autosize';
+import { TbShare2 } from 'react-icons/tb';
 
 import { Badge } from '@/components/ui/badge';
+import { Textarea } from '@/components/ui/textarea';
+import { FaArrowUp } from 'react-icons/fa';
 
 const InputArea = ({
     conversations,
@@ -278,12 +277,12 @@ const InputArea = ({
                     )
                 )}
             </div>
-            <div className='relative flex'>
+            <form className='relative flex'>
                 {enablePlugins && showCommands && (
                     <div className='absolute bottom-full left-0 z-10 mb-2 w-full rounded-md border border-gray-200 bg-white shadow-lg dark:border-neutral-700 dark:bg-neutral-800'>
                         <ul className='py-1 text-sm'>
                             {filteredCommands.map((command, index) => (
-                                <li
+                                <button
                                     key={index}
                                     onClick={() => handleCommandClick(`/${command.name}`)}
                                     className={`cursor-pointer rounded-lg px-3 py-1 transition duration-200 ease-in-out hover:bg-gray-100 dark:hover:bg-neutral-700 ${
@@ -292,38 +291,22 @@ const InputArea = ({
                                 >
                                     <p className='font-medium'>/{command.name}</p>
                                     <p className='text-gray-500 dark:text-stone-400'>{command.description}</p>
-                                </li>
+                                </button>
                             ))}
                         </ul>
                     </div>
                 )}
-                <TextareaAutosize
-                    className='flex h-10 max-h-56 min-h-[40px] w-full rounded-md border border-slate-300 bg-transparent px-3 py-2 pr-16 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900'
-                    placeholder={`${t('change send key in settings')} ${enablePlugins ? t('Type / to see available commands') : ''}`}
-                    value={userInput}
-                    onChange={handleTextAreaChange}
-                    onKeyDown={handleOnKeyDown}
-                    onCompositionStart={handleCompositionStart}
-                    onCompositionEnd={handleCompositionEnd}
-                    ref={textAreaRef}
+                <Textarea
+                    // value={input}
+                    // onChange={handleInput}
+                    // onKeyDown={handleKeyDown}
+                    placeholder='Type your message here'
+                    className='resize-none rounded-xl border border-stone-400/40 outline-none transition duration-200 ease-in-out hover:border-stone-500/50 focus-visible:border-stone-800/80 focus-visible:ring-0 focus-visible:ring-offset-0'
                 />
-                <div className='absolute bottom-2 right-2 flex items-center justify-center'>
-                    <button
-                        onClick={handleVoiceInput}
-                        className='rounded-md bg-transparent p-1 font-bold text-stone-800 transition duration-300 ease-in-out hover:text-stone-400 dark:text-stone-400 dark:hover:text-stone-500'
-                        aria-label='Voice Input Button'
-                    >
-                        {!isListening ? <MdOutlineKeyboardVoice className='text-lg' /> : <MdPause className='text-lg' />}
-                    </button>
-                    <button
-                        onClick={handleSend}
-                        className='rounded-md bg-transparent p-1 font-bold text-stone-800 transition duration-300 ease-in-out hover:text-stone-400 dark:text-stone-400 dark:hover:text-stone-500'
-                        aria-label='Send Message Button'
-                    >
-                        <TbSend className='text-lg' />
-                    </button>
-                </div>
-            </div>
+                <button className='absolute bottom-2 right-2 flex cursor-pointer items-center justify-center rounded-xl border p-2 transition duration-300 ease-in-out hover:bg-stone-300/30'>
+                    <FaArrowUp />
+                </button>
+            </form>
         </div>
     );
 };

@@ -29,9 +29,9 @@ import CustomServiceProvider from './service-provider/custom';
 import CohereServiceProvider from './service-provider/cohere';
 import ExtensionServiceProvider from './service-provider/extension';
 import HuggingFaceServiceProvider from './service-provider/huggingface';
-import AppSettingsHeader from '@/components/landing/side/footer/app-settings/header';
-import TabSearch from '@/components/landing/side/footer/app-settings/tab-search';
-import TabTTS from '@/components/landing/side/footer/app-settings/tab-tts';
+import AppSettingsHeader from '@/components/home/side/footer/app-settings/header';
+import TabSearch from '@/components/home/side/footer/app-settings/tab-search';
+import TabTTS from '@/components/home/side/footer/app-settings/tab-tts';
 
 const SideAppSettings = ({ user }: { user: User | null }) => {
     const t = useTranslations('');

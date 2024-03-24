@@ -1,4 +1,4 @@
-import { Rubik, JetBrains_Mono } from 'next/font/google';
+import { Rubik, JetBrains_Mono, Onest } from 'next/font/google';
 
 export const rubik = Rubik({
     subsets: ['latin'],
@@ -9,5 +9,11 @@ export const rubik = Rubik({
 export const jetbrains_mono = JetBrains_Mono({
     subsets: ['latin'],
     variable: '--font-jetbrains-mono',
+    display: 'swap',
+});
+
+export const onest = Onest({
+    subsets: ['latin'],
+    variable: '--font-onest',
     display: 'swap',
 });

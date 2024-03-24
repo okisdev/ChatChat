@@ -6,7 +6,7 @@ import Script from 'next/script';
 import { Viewport } from 'next';
 import type { Metadata } from 'next';
 
-import { rubik } from '@/app/fonts';
+import { rubik, onest } from '@/app/fonts';
 
 import { Providers } from '@/app/providers';
 
@@ -32,7 +32,7 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
     return (
-        <html className={`${rubik.className}`} lang={locale}>
+        <html className={`${onest.className}`} lang={locale}>
             <head>
                 <meta name='application-name' content={siteConfig.title} />
                 <meta name='apple-mobile-web-app-capable' content='yes' />

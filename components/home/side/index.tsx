@@ -5,11 +5,11 @@ import { User } from '@prisma/client';
 import store from '@/hooks/store';
 import { useAtom } from 'jotai';
 
-import SideHistory from '@/components/landing/side/history';
+import SideHistory from '@/components/home/side/history';
 
-import SideFooter from '@/components/landing/side/footer';
-import SideHeader from '@/components/landing/side/header';
-import NewConversationButton from '@/components/landing/side/new-conversation-button';
+import SideFooter from '@/components/home/side/footer';
+import SideHeader from '@/components/home/side/header';
+import NewConversationButton from '@/components/home/side/new-conversation-button';
 
 const LandingSide = ({ className, user }: { className?: string; user: User | null }) => {
     const isHiddenSide = useAtom(store.isHiddenSideAtom)[0];

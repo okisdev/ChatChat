@@ -2,11 +2,11 @@
 
 import { User } from '@prisma/client';
 
-import SideAppSettings from '@/components/landing/side/footer/app-settings';
-import UserLogin from '@/components/landing/side/footer/user-login';
-import AppInfo from '@/components/landing/side/footer/app-info';
-import UserDropdown from '@/components/landing/side/footer/user-dropdown';
-import MoreDropdown from '@/components/landing/side/footer/more-dropdown';
+import SideAppSettings from '@/components/home/side/footer/app-settings';
+import UserLogin from '@/components/home/side/footer/user-login';
+import AppInfo from '@/components/home/side/footer/app-info';
+import UserDropdown from '@/components/home/side/footer/user-dropdown';
+import MoreDropdown from '@/components/home/side/footer/more-dropdown';
 
 const SideFooter = ({ user }: { user: User | null }) => {
     return (

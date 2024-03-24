@@ -13,11 +13,11 @@ import { useAtom, useAtomValue } from 'jotai';
 
 import { setLocalStorage } from '@/hooks/setLocalStorage';
 
-import ContentHead from '@/components/landing/main/chat-head';
-import InputArea from '@/components/landing/main/input-area';
-import MainContent from '@/components/landing/main/chat-content';
+import ContentHead from '@/components/home/main/chat-head';
+import InputArea from '@/components/home/main/input-area';
+import MainContent from '@/components/home/main/chat-content';
 
-import ModeSettings from '@/components/landing/main/main-settings';
+import ModeSettings from '@/components/home/main/main-settings';
 
 import generateHash from '@/utils/app/generateHash';
 
@@ -329,7 +329,7 @@ const ChatMain = () => {
             messagesPayload = [{ role: 'system', content: filePrompt }, ...messagesPayload];
         }
 
-        const response = await fetch('/api/messages', {
+        const response = await fetch('/api/chat/messages', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -396,7 +396,7 @@ const ChatMain = () => {
                 let currentChatTitle = '';
                 const chatTitlePayload: AppMessageProps[] = [{ role: 'system', content: `Please suggest a title for "${message.content}".` }];
 
-                const response = await fetch('/api/messages', {
+                const response = await fetch('/api/chat/messages', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

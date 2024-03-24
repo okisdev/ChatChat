@@ -38,6 +38,7 @@
     "@tippyjs/react": "^4.2.6",
     "@vercel/analytics": "^1.1.1",
     "@vercel/speed-insights": "^1.0.1",
+    "ai": "^3.0.13",
     "autoprefixer": "10.4.16",
     "axios": "^1.6.2",
     "cheerio": "^1.0.0-rc.12",

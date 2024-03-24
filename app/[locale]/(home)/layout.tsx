@@ -1,4 +1,4 @@
-import LandingSide from '@/components/landing/side';
+import LandingSide from '@/components/home/side';
 
 import { getCurrentUserProfile } from '@/lib/auth/session';
 

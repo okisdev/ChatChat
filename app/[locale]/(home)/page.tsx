@@ -3,16 +3,16 @@
 import store from '@/hooks/store';
 import { useAtomValue } from 'jotai';
 
-import LandingHeader from '@/components/landing/main/header';
-import CodeMain from '@/components/landing/main/code-main';
+import LandingHeader from '@/components/home/main/header';
+import ChatMain from '@/components/home/main/chat-main';
 
-export default function CodeModePage() {
+export default function HomePage() {
     const isHiddenSide = useAtomValue(store.isHiddenSideAtom);
 
     return (
         <div className={`h-screen overflow-hidden ${!isHiddenSide && 'md:ml-80'}`}>
             <LandingHeader />
-            <CodeMain />
+            <ChatMain />
         </div>
     );
 }
