@@ -39,12 +39,12 @@ const ChatMain = () => {
     const locale = useLocale();
 
     // Conversation Config
-    const contextModeAtom = useAtomValue(store.contextModeAtom);
-    const { enable: enableContextMode, contextCount } = contextModeAtom;
-    const enableStreamMessages = useAtomValue(store.enableStreamMessagesAtom);
-    const enablePlugin = useAtomValue(store.enablePluginsAtom);
+    // const contextModeAtom = useAtomValue(store.contextModeAtom);
+    // const { enable: enableContextMode, contextCount } = contextModeAtom;
+    // const enableStreamMessages = useAtomValue(store.enableStreamMessagesAtom);
+    // const enablePlugin = useAtomValue(store.enablePluginsAtom);
 
-    const [systemPromptContent, setSystemPromptContent] = useAtom(store.systemPromptContentAtom);
+    // const [systemPromptContent, setSystemPromptContent] = useAtom(store.systemPromptContentAtom);
     const isSystemPromptEmpty = !systemPromptContent.trim() && /^\s*$/.test(systemPromptContent);
 
     const [systemResponse, setSystemResponse] = useState<string>('');

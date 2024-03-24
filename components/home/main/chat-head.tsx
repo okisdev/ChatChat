@@ -71,7 +71,7 @@ const ContentHead = ({
                         </div>
                         <div className='flex items-center justify-center space-x-1'>
                             <BiMoney />
-                            <span>{calculateModelPrice(openAIConfig.apiModel as OpenAIModel, tokens).toFixed(5)}</span>
+                            {/* <span>{calculateModelPrice(openAIConfig.apiModel as OpenAIModel, tokens).toFixed(5)}</span> */}
                         </div>
                     </div>
                 )}

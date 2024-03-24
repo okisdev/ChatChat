@@ -1,11 +1,15 @@
-const withNextIntl = require('next-intl/plugin')('./i18n.ts');
+import createNextIntlPlugin from 'next-intl/plugin';
 
-const withPWA = require('next-pwa')({
+import nextPWA from 'next-pwa';
+
+const withNextIntl = createNextIntlPlugin('./i18n.ts');
+
+const withPWA = nextPWA({
     dest: 'public',
     disable: process.env.NODE_ENV === 'development',
 });
 
-module.exports = withNextIntl(
+export default withNextIntl(
     withPWA({
         experimental: {
             serverComponentsExternalPackages: ['prisma'],

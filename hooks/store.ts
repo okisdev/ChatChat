@@ -1,127 +1,57 @@
 import { atom } from 'jotai';
-import { atomWithStorage } from 'jotai/utils';
+import { atomWithStorage, createJSONStorage } from 'jotai/utils';
 
-// ------------------ Layout Config ------------------
+// import types
+import { GeneralPreferences, GeneralProviderSettings, SearchEngine, Theme } from '@/types/settings';
+import { Provider } from '@/config/provider';
+import { GeneralModel, Model } from '@/types/model';
+import { OpenAIModelId, OpenAIModelName } from '@/config/provider/openai';
+import { Conversation } from '@/types/conversation';
 
-// Layout
-const isHiddenSideAtom = atomWithStorage('isHiddenSide', false);
+// setup storage
+const storage = createJSONStorage(() => sessionStorage);
 
-// ------------------ Conversation Config ------------------
+// provider management
+const generalProviderSettingsAtom = atomWithStorage<GeneralProviderSettings | null>('currentProviderSettings', null);
 
-// Conversation Config
-const isSendKeyEnterAtom = atomWithStorage('enterKeySend', true);
-const isAutoScrollAtom = atomWithStorage('autoScroll', false);
-const enableStreamMessagesAtom = atomWithStorage<boolean>('enableStreamMessages', true);
-const systemPromptContentAtom = atomWithStorage('systemPrompt', '');
-const enableSystemPrompt = atomWithStorage('enableSystemPrompt', false);
-const enablePluginsAtom = atomWithStorage('enablePlugins', false);
-const contextModeAtom = atomWithStorage<{
-    enable: boolean;
-    contextCount: number;
-}>('context-mode', {
-    enable: false,
-    contextCount: 0,
-});
-const enableUserMarkdownRenderAtom = atomWithStorage<boolean>('enableUserMarkdownRender', false);
-
-// Text to Speech Config
-const textToSpeechConfigAtom = atomWithStorage('textToSpeechConfig', {
-    voice: '',
-    speed: 1.0,
-    pitch: 1.0,
+// model management
+const currentUseModelAtom = atomWithStorage<GeneralModel>('currentUseModel', {
+    provider: Provider.OpenAI,
+    model_id: 'gpt-4-0125-preview' as OpenAIModelId,
+    model_name: 'GPT-4 0125 Preview' as OpenAIModelName,
 });
 
-const autoSpeechAtom = atomWithStorage('autoSpeech', false);
+const recentUsedModelsAtom = atomWithStorage<GeneralModel[] | null>('recentUsedModels', null);
 
-// Search Config
-const searchConfigAtom = atomWithStorage('searchConfig', {
-    searchEngine: 'pse',
-    searchEngineID: '',
-    searchAPIKey: '',
+// search engine management
+const currentSearchEngineAtom = atomWithStorage<SearchEngine>('searchEngine', SearchEngine.Google);
+
+// settings management
+const themeAtom = atom<Theme>(Theme.System);
+
+const useUnifiedEndpointAtom = atomWithStorage<boolean>('useUnifiedEndpoint', false);
+
+const generalPreferencesAtom = atomWithStorage<GeneralPreferences>('generalPreferences', {
+    theme: Theme.System,
+    // sendKey: 'enter',
+    enterSend: true,
+    autoRead: false,
+    // renderMode: 'markdown',
+    useMarkdown: false,
+    autoScroll: false,
 });
 
-// File Config
-const fileConfigAtom = atomWithStorage<{
-    enable: boolean;
-    files: string[];
-}>('fileConfig', {
-    enable: false,
-    files: [],
-});
+// conversation management
+const conversations = atomWithStorage<Conversation[] | null>('conversations', null);
 
-const enableFileAtom = atom((get) => get(fileConfigAtom).enable);
-const filesAtom = atom((get) => get(fileConfigAtom).files);
-
-// ------------------ App Config ------------------
-
-const serviceProviderAtom = atomWithStorage<ServiceProviderProps>('serviceProvider', 'OpenAI');
-
-// OpenAI Config
-const useCloudSettingsAtom = atomWithStorage('useCloudSettings', false);
-
-const openAIConfigAtom = atomWithStorage<OpenAIConfigProps>('openAIConfig', {
-    apiKey: '',
-    apiEndpoint: '',
-    apiModel: 'gpt-3.5-turbo',
-    apiTemperature: 0.3,
-});
-
-// Azure Config
-const azureConfigAtom = atomWithStorage('azureConfig', {
-    apiKey: '',
-    apiEndpoint: '',
-    apiModel: 'gpt-4',
-    apiTemperature: 0.3,
-    apiDeploymentName: '',
-});
-
-// Team Config
-const teamConfigAtom = atomWithStorage('teamConfig', {
-    accessCode: '',
-});
-
-// Hugging Face Config
-const huggingFaceConfigAtom = atomWithStorage('huggingFaceConfig', {
-    huggingFaceModel: 'OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5',
-    accessToken: '',
-});
-
-// Cohere Config
-const cohereConfigAtom = atomWithStorage('cohereConfig', {
-    model: 'command-nightly',
-    apiKey: '',
-});
-
-// Claude Config
-const claudeConfigAtom = atomWithStorage('claudeConfig', {
-    apiKey: '',
-    apiModel: 'claude-instant-1',
-    apiTemperature: 1.0,
-});
-
-// eslint-disable-next-line import/no-anonymous-default-export
+// export atoms
 export default {
-    isHiddenSideAtom,
-    isSendKeyEnterAtom,
-    isAutoScrollAtom,
-    enableStreamMessagesAtom,
-    fileConfigAtom,
-    enableFileAtom,
-    filesAtom,
-    systemPromptContentAtom,
-    enableSystemPrompt,
-    enablePluginsAtom,
-    contextModeAtom,
-    enableUserMarkdownRenderAtom,
-    textToSpeechConfigAtom,
-    autoSpeechAtom,
-    searchConfigAtom,
-    serviceProviderAtom,
-    useCloudSettingsAtom,
-    openAIConfigAtom,
-    azureConfigAtom,
-    teamConfigAtom,
-    huggingFaceConfigAtom,
-    cohereConfigAtom,
-    claudeConfigAtom,
+    currentUseModelAtom,
+    recentUsedModelsAtom,
+    currentSearchEngineAtom,
+    generalProviderSettingsAtom,
+    themeAtom,
+    generalPreferencesAtom,
+    useUnifiedEndpointAtom,
+    conversations,
 };
