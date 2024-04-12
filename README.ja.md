@@ -7,7 +7,7 @@
 </p>
 
 <p align='center'>
-    <a href='https://docs.okis.dev/chat' target='_blank'>
+    <a href='https://docs.okis.dev/chat/intro' target='_blank'>
         ドキュメント
     </a>
 </p>
@@ -25,7 +25,7 @@
 
 ## 使用方法
 
-[ドキュメント](https://docs.okis.dev/chat)
+[ドキュメント](https://docs.okis.dev/chat/intro)
 
 ## デプロイメント
 
@@ -33,7 +33,7 @@
 
 [![Railwayでデプロイ](https://railway.app/button.svg)](https://railway.app/template/-WWW5r)
 
-詳細なデプロイ方法は[ドキュメント](https://docs.okis.dev/chat)にて
+詳細なデプロイ方法は[ドキュメント](https://docs.okis.dev/chat/intro)にて
 
 ## ライセンス
 
