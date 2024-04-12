@@ -1,29 +1,15 @@
+import LocaleProvider from '@/app/[locale]/provider';
+
 import '@/styles/globals.css';
-import '@/styles/markdown.css';
-import 'tippy.js/dist/tippy.css';
 
-import { NextIntlClientProvider } from 'next-intl';
-
-import { HotToaster } from '@/components/client/toaster';
-import { ClientCommand } from '@/components/client/command';
-
-import { notFound } from 'next/navigation';
-
-export default async function LocaleLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: string } }) {
-    let locales;
-
-    try {
-        locales = (await import(`../../locales/${locale}.json`)).default;
-    } catch (error) {
-        notFound();
-    }
-
+export default function LocaleLayout({
+    children,
+}: Readonly<{
+    children: React.ReactNode;
+}>) {
     return (
-        <NextIntlClientProvider locale={locale} messages={locales}>
-            <HotToaster />
-            <ClientCommand />
-
-            {children}
-        </NextIntlClientProvider>
+        <LocaleProvider>
+            <body className='relative z-0 flex size-full min-h-screen overflow-hidden bg-slate-50 dark:bg-[#222] dark:text-[#eee]'>{children}</body>
+        </LocaleProvider>
     );
 }
