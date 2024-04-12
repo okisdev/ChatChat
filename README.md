@@ -7,7 +7,7 @@
 </p>
 
 <p align='center'>
-    <a href='https://docs.okis.dev/chat' target='_blank'>
+    <a href='https://docs.okis.dev/chat/intro' target='_blank'>
         Documentation
     </a>
 </p>
@@ -25,7 +25,7 @@
 
 ## Usage
 
-[docs](https://docs.okis.dev/chat)
+[docs](https://docs.okis.dev/chat/intro)
 
 ## Deployment
 
@@ -33,7 +33,7 @@
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/-WWW5r)
 
-more deployment methods in [docs](https://docs.okis.dev/chat)
+more deployment methods in [docs](https://docs.okis.dev/chat/intro)
 
 ## LICENSE
 

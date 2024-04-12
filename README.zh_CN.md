@@ -7,7 +7,7 @@
 </p>
 
 <p align='center'>
-    <a href='https://docs.okis.dev/chat' target='_blank'>
+    <a href='https://docs.okis.dev/chat/intro' target='_blank'>
         文档
     </a>
 </p>
@@ -25,7 +25,7 @@
 
 ## 使用方式
 
-[文档](https://docs.okis.dev/chat)
+[文档](https://docs.okis.dev/chat/intro)
 
 ## 部署
 
@@ -33,7 +33,7 @@
 
 [![在Railway上部署](https://railway.app/button.svg)](https://railway.app/template/-WWW5r)
 
-更多部署方法见[文档](https://docs.okis.dev/chat)
+更多部署方法见[文档](https://docs.okis.dev/chat/intro)
 
 ## 许可证
 

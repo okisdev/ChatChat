@@ -19,7 +19,7 @@ export const VersionBadge = () => {
         const res = await fetch('/api/app/latest');
         const data = await res.json();
 
-        if (data.tag_name != packageInfo.version) {
+        if (data.short.version != packageInfo.version) {
             setIsLatestVersion(false);
         }
     };
