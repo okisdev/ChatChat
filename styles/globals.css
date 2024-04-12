@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 @layer base {
     :root {
         --background: 0 0% 100%;
@@ -73,66 +77,4 @@
     body {
         @apply bg-background text-foreground;
     }
-}
-
-:root {
-    scroll-behavior: smooth;
-}
-
-::-webkit-scrollbar {
-    width: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-}
-
-@keyframes left-bounce {
-    0%,
-    100% {
-        transform: translateX(-25%);
-        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-    }
-    50% {
-        transform: none;
-        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    }
-}
-
-@keyframes right-bounce {
-    0%,
-    100% {
-        transform: translateX(25%);
-        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-    }
-    50% {
-        transform: none;
-        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    }
-}
-
-.animate-left-bounce {
-    animation: left-bounce 1s infinite;
-}
-
-.animate-right-bounce {
-    animation: right-bounce 1s infinite;
-}
-
-@keyframes gradient-flow {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.gradient-flow {
-    background-image: linear-gradient(to right, #38b2ac, #3b82f6, #9333ea);
-    background-size: 200% 100%;
-    animation: gradient-flow 2s ease infinite;
 }

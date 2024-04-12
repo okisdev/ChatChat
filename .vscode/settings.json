@@ -1,0 +1,27 @@
+{
+  "cSpell.words": [
+    "buildx",
+    "DOCKERHUB",
+    "fastapi",
+    "Groq",
+    "huggingface",
+    "langchain",
+    "langsmith",
+    "Lightbox",
+    "lucide",
+    "markdownit",
+    "mistralai",
+    "mixtral",
+    "onest",
+    "rehype",
+    "sonner",
+    "Tavily",
+    "tippyjs"
+  ],
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "i18n-ally.localesPaths": [
+    "locales",
+  ],
+  "i18n-ally.keystyle": "flat"
+}
