@@ -14,9 +14,13 @@
 
 ## Interface
 
-![Search](https://cdn.harrly.com/project/GitHub/Chat-Chat/img/chat.png)
+![Search](https://cdn.harrly.com/project/GitHub/Chat-Chat/img/search.png)
 
-![Chat](https://cdn.harrly.com/project/GitHub/Chat-Chat/img/search.png)
+![Chat](https://cdn.harrly.com/project/GitHub/Chat-Chat/img/chat.png)
+
+https://github.com/okisdev/ChatChat/assets/66008528/388023d5-b21a-40ee-a856-aab31de3d580
+
+https://github.com/okisdev/ChatChat/assets/66008528/f8d943d5-77c9-479b-9d5f-1e77eabd47b0
 
 ## Features
 
