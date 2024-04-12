@@ -40,7 +40,7 @@ export interface GoogleSettings {
 }
 
 export interface AmazonSettings {
-    apiKey: string;
+    apiKey?: string;
     endpoint?: string;
     secretKey?: string;
     region?: string;
