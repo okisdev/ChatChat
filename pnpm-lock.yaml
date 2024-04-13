@@ -79,10 +79,10 @@ dependencies:
     version: 1.2.2(next@14.2.1)(react@18.2.0)
   '@vercel/speed-insights':
     specifier: ^1.0.10
-    version: 1.0.10(next@14.2.1)(react@18.2.0)(svelte@4.2.12)(vue@3.4.21)
+    version: 1.0.10(next@14.2.1)(react@18.2.0)(svelte@4.2.14)(vue@3.4.21)
   ai:
     specifier: ^3.0.22
-    version: 3.0.22(react@18.2.0)(solid-js@1.8.16)(svelte@4.2.12)(vue@3.4.21)(zod@3.22.4)
+    version: 3.0.22(react@18.2.0)(solid-js@1.8.16)(svelte@4.2.14)(vue@3.4.21)(zod@3.22.4)
   bcrypt-ts:
     specifier: ^5.0.2
     version: 5.0.2
@@ -127,7 +127,7 @@ dependencies:
     version: 4.33.0
   pnpm:
     specifier: ^8.15.6
-    version: 8.15.6
+    version: 8.15.7
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -2739,7 +2739,7 @@ packages:
       server-only: 0.0.1
     dev: false
 
-  /@vercel/speed-insights@1.0.10(next@14.2.1)(react@18.2.0)(svelte@4.2.12)(vue@3.4.21):
+  /@vercel/speed-insights@1.0.10(next@14.2.1)(react@18.2.0)(svelte@4.2.14)(vue@3.4.21):
     resolution: {integrity: sha512-4uzdKB0RW6Ff2FkzshzjZ+RlJfLPxgm/00i0XXgxfMPhwnnsk92YgtqsxT9OcPLdJUyVU1DqFlSWWjIQMPkh0g==}
     requiresBuild: true
     peerDependencies:
@@ -2765,7 +2765,7 @@ packages:
     dependencies:
       next: 14.2.1(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
-      svelte: 4.2.12
+      svelte: 4.2.14
       vue: 3.4.21(typescript@5.4.4)
     dev: false
 
@@ -2878,7 +2878,7 @@ packages:
       humanize-ms: 1.2.1
     dev: false
 
-  /ai@3.0.22(react@18.2.0)(solid-js@1.8.16)(svelte@4.2.12)(vue@3.4.21)(zod@3.22.4):
+  /ai@3.0.22(react@18.2.0)(solid-js@1.8.16)(svelte@4.2.14)(vue@3.4.21)(zod@3.22.4):
     resolution: {integrity: sha512-VkObPBejjUA9mSJBurVtMpwdqDqzrzjKvsrrj1SsKsUOH/pbmzL6U2ym61Sz8pQXuPYJqcm3SpYOfqrIMRUH0Q==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -2909,8 +2909,8 @@ packages:
       secure-json-parse: 2.7.0
       solid-js: 1.8.16
       solid-swr-store: 0.10.7(solid-js@1.8.16)(swr-store@0.10.6)
-      sswr: 2.0.0(svelte@4.2.12)
-      svelte: 4.2.12
+      sswr: 2.0.0(svelte@4.2.14)
+      svelte: 4.2.14
       swr: 2.2.0(react@18.2.0)
       swr-store: 0.10.6
       swrv: 1.0.4(vue@3.4.21)
@@ -5920,8 +5920,8 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
 
-  /pnpm@8.15.6:
-    resolution: {integrity: sha512-d7iem+d6Kwatj0A6Gcrl4il29hAj+YrTI9XDAZSVjrwC7gpq5dE+5FT2E05OjK8poF8LGg4dKxe8prah8RWfhg==}
+  /pnpm@8.15.7:
+    resolution: {integrity: sha512-yFzSG22hAzIVaxyiqnnAph7nrS6wRTuIqymSienoypPmCRIyslwHy/YfbfdxKNnISeXJrG5EhU29IRxJ86Z63A==}
     engines: {node: '>=16.14'}
     hasBin: true
     dev: false
@@ -6544,12 +6544,12 @@ packages:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
     dev: false
 
-  /sswr@2.0.0(svelte@4.2.12):
+  /sswr@2.0.0(svelte@4.2.14):
     resolution: {integrity: sha512-mV0kkeBHcjcb0M5NqKtKVg/uTIYNlIIniyDfSGrSfxpEdM9C365jK0z55pl9K0xAkNTJi2OAOVFQpgMPUk+V0w==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:
-      svelte: 4.2.12
+      svelte: 4.2.14
       swrev: 4.0.0
     dev: false
 
@@ -6723,8 +6723,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  /svelte@4.2.12:
-    resolution: {integrity: sha512-d8+wsh5TfPwqVzbm4/HCXC783/KPHV60NvwitJnyTA5lWn1elhXMNWhXGCJ7PwPa8qFUnyJNIyuIRt2mT0WMug==}
+  /svelte@4.2.14:
+    resolution: {integrity: sha512-ry3+YlWqZpHxLy45MW4MZIxNdvB+Wl7p2nnstWKbOAewaJyNJuOtivSbRChcfIej6wFBjWqyKmf/NgK1uW2JAA==}
     engines: {node: '>=16'}
     dependencies:
       '@ampproject/remapping': 2.3.0
