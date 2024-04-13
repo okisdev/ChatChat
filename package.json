@@ -11,6 +11,8 @@
     "eslint:fix": "eslint --ext .ts,.tsx --fix ."
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^0.0.0",
+    "@ai-sdk/google": "^0.0.0",
     "@ai-sdk/openai": "^0.0.0",
     "@anthropic-ai/sdk": "^0.18.0",
     "@auth/drizzle-adapter": "^0.8.2",
@@ -34,7 +36,7 @@
     "@types/file-saver": "^2.0.7",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
-    "ai": "^3.0.21",
+    "ai": "^3.0.22",
     "bcrypt-ts": "^5.0.2",
     "cheerio": "^1.0.0-rc.12",
     "class-variance-authority": "^0.7.0",
