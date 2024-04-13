@@ -1,5 +1,5 @@
+import { OpenAI } from '@ai-sdk/openai';
 import { experimental_streamText, ExperimentalMessage, StreamingTextResponse, ToolCallPart, ToolResultPart } from 'ai';
-import { OpenAI } from 'ai/openai';
 import { createStreamableUI, createStreamableValue } from 'ai/rsc';
 
 import { searcherPrompt } from '@/lib/prompt';

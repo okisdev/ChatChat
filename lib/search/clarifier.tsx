@@ -1,5 +1,5 @@
+import { OpenAI } from '@ai-sdk/openai';
 import { experimental_streamObject, ExperimentalMessage } from 'ai';
-import { OpenAI } from 'ai/openai';
 import { createStreamableUI, createStreamableValue } from 'ai/rsc';
 import { z } from 'zod';
 

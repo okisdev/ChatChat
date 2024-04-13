@@ -1,5 +1,5 @@
+import { OpenAI } from '@ai-sdk/openai';
 import { experimental_generateObject, ExperimentalMessage } from 'ai';
-import { OpenAI } from 'ai/openai';
 import { z } from 'zod';
 
 import { challengerPrompt } from '@/lib/prompt';

@@ -1,4 +1,4 @@
-import { Google } from 'ai/google';
+import { Google } from '@ai-sdk/google';
 
 export const google = new Google({
     apiKey: process.env.GOOGLE_API_KEY ?? '',
