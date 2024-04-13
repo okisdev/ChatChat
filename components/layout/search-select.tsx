@@ -37,7 +37,7 @@ export const SearchSelect = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuRadioGroup
-                    value={currentSearchEngineSettings?.Tavily ? 'Tavily' : 'Google'}
+                    value={currentSearchEngine === SearchEngine.Tavily ? SearchEngine.Tavily : undefined}
                     onValueChange={(value) => {
                         setCurrentSearchEngine(value === 'Tavily' ? SearchEngine.Tavily : SearchEngine.Google);
                     }}
@@ -64,7 +64,7 @@ export const SearchSelect = () => {
                             </>
                         )
                     )}
-                    <DropdownMenuRadioItem key='tavily' value='Tavily' className='cursor-pointer'>
+                    <DropdownMenuRadioItem key='tavily' value={SearchEngine.Tavily} className='cursor-pointer'>
                         <div className='flex cursor-pointer items-center space-x-2'>
                             <Image src={`/img/Tavily.png`} alt='Tavily' width={16} height={16} />
                             <p>Tavily</p>
