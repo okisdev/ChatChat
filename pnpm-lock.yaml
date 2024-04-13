@@ -36,8 +36,8 @@ dependencies:
     specifier: ^0.14.7
     version: 0.14.7
   '@huggingface/inference':
-    specifier: ^2.6.6
-    version: 2.6.6
+    specifier: ^2.6.7
+    version: 2.6.7
   '@mistralai/mistralai':
     specifier: ^0.1.3
     version: 0.1.3
@@ -96,11 +96,8 @@ dependencies:
     specifier: ^2.1.0
     version: 2.1.0
   cohere-ai:
-    specifier: ^7.9.1
-    version: 7.9.1
-  embla-carousel-react:
-    specifier: ^8.0.1
-    version: 8.0.1(react@18.2.0)
+    specifier: ^7.9.3
+    version: 7.9.3
   file-saver:
     specifier: ^2.0.5
     version: 2.0.5
@@ -123,11 +120,8 @@ dependencies:
     specifier: ^0.3.0
     version: 0.3.0(react-dom@18.2.0)(react@18.2.0)
   openai:
-    specifier: ^4.33.0
-    version: 4.33.0
-  pnpm:
-    specifier: ^8.15.6
-    version: 8.15.6
+    specifier: ^4.33.1
+    version: 4.33.1
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -194,8 +188,8 @@ devDependencies:
     specifier: 14.2.1
     version: 14.2.1(eslint@8.57.0)(typescript@5.4.4)
   eslint-plugin-simple-import-sort:
-    specifier: ^12.0.0
-    version: 12.0.0(eslint@8.57.0)
+    specifier: ^12.1.0
+    version: 12.1.0(eslint@8.57.0)
   eslint-plugin-tailwindcss:
     specifier: ^3.15.1
     version: 3.15.1(tailwindcss@3.4.3)
@@ -1102,7 +1096,7 @@ packages:
     resolution: {integrity: sha512-h3mutXX0sFg4o9ZDHh3gzsF+qydcrTW9MVll2g/IVrNiQ0pSfXZqOQPRnfd85XU49buY3Zd1oHUDI0Bz8PznJw==}
     engines: {node: '>=18'}
     dependencies:
-      '@huggingface/inference': 2.6.6
+      '@huggingface/inference': 2.6.7
     dev: false
 
   /@huggingface/hub@0.14.7:
@@ -1112,8 +1106,8 @@ packages:
       hash-wasm: 4.11.0
     dev: false
 
-  /@huggingface/inference@2.6.6:
-    resolution: {integrity: sha512-5VEsrKj/gQ0BViUHX43VFlgbVH5OR+w6/auTQkvMqnxF3e8yK2AqAVP+zoF4dcm1DEnxUkPGeNYrxOwIUFxjuw==}
+  /@huggingface/inference@2.6.7:
+    resolution: {integrity: sha512-vFBqvtU3LhxjufTs0jcRrDSc0nK+lah10bOgvlIn80lAH4JwMzHHPBQ4g4ECEdRD0PIt6EpTiidEZQq2sArb5Q==}
     engines: {node: '>=18'}
     dev: false
 
@@ -3320,8 +3314,8 @@ packages:
       periscopic: 3.1.0
     dev: false
 
-  /cohere-ai@7.9.1:
-    resolution: {integrity: sha512-shMz0Bs3p6/Nw5Yi+6Wc9tZ7DCGTtEnf1eAcuesnlyeKoFuZ7+bzeiHkt5E8SvTgAHxN1GCP3UkIoW85QhHKTA==}
+  /cohere-ai@7.9.3:
+    resolution: {integrity: sha512-DcZ6B9Fa1yaFFkZ3+HO/aE4R97m08cZs/ww7YpfEcTatAljznmnXtaFKRMP57olLMGKmYA/oHpkUqh/Vt4kvFA==}
     dependencies:
       form-data: 4.0.0
       js-base64: 3.7.2
@@ -3600,28 +3594,6 @@ packages:
   /electron-to-chromium@1.4.729:
     resolution: {integrity: sha512-bx7+5Saea/qu14kmPTDHQxkp2UnziG3iajUQu3BxFvCOnpAJdDbMV4rSl+EqFDkkpNNVUFlR1kDfpL59xfy1HA==}
     dev: true
-
-  /embla-carousel-react@8.0.1(react@18.2.0):
-    resolution: {integrity: sha512-cpFQ/HwCsjBjzpu9Z9IHmZ9DaCSf/wo4q+qUTcRW3SsNv+1Q8IY7Y8J2QIyTmz0vOWY7tliu3uE2gqRH7ZDwOQ==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.1 || ^18.0.0
-    dependencies:
-      embla-carousel: 8.0.1
-      embla-carousel-reactive-utils: 8.0.1(embla-carousel@8.0.1)
-      react: 18.2.0
-    dev: false
-
-  /embla-carousel-reactive-utils@8.0.1(embla-carousel@8.0.1):
-    resolution: {integrity: sha512-KBSkz2h9LwVFkOrwzIJKgXbmEDlIShkreeOHnV8Cph09AdBMzb412nRkcctbeDcuG9x3CVsqLzJrSXnZeYhFPQ==}
-    peerDependencies:
-      embla-carousel: 8.0.1
-    dependencies:
-      embla-carousel: 8.0.1
-    dev: false
-
-  /embla-carousel@8.0.1:
-    resolution: {integrity: sha512-RsaMRyBCd144N95gb3XoI+H9zj3RI4y0qcfvKYEh2tIAIEenL9CW9vwzltCeoYkWYipGdkvup+HGT9ewG1YTEw==}
-    dev: false
 
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -3983,8 +3955,8 @@ packages:
       string.prototype.matchall: 4.0.11
     dev: true
 
-  /eslint-plugin-simple-import-sort@12.0.0(eslint@8.57.0):
-    resolution: {integrity: sha512-8o0dVEdAkYap0Cn5kNeklaKcT1nUsa3LITWEuFk3nJifOoD+5JQGoyDUW2W/iPWwBsNBJpyJS9y4je/BgxLcyQ==}
+  /eslint-plugin-simple-import-sort@12.1.0(eslint@8.57.0):
+    resolution: {integrity: sha512-Y2fqAfC11TcG/WP3TrI1Gi3p3nc8XJyEOJYHyEPEGI/UAgNx6akxxlX74p7SbAQdLcgASKhj8M0GKvH3vq/+ig==}
     peerDependencies:
       eslint: '>=5.0.0'
     dependencies:
@@ -5793,8 +5765,8 @@ packages:
       wrappy: 1.0.2
     dev: true
 
-  /openai@4.33.0:
-    resolution: {integrity: sha512-Sh4KvplkvkAREuhb8yZpohqsOo08cBBu6LNWLD8YyMxe8yCxbE+ouJYUs1X2oDPrzQGANj0rFNQYiwW9gWLBOg==}
+  /openai@4.33.1:
+    resolution: {integrity: sha512-0DH572aSxGTT1JPOXgJQ9mjiuSPg/7scPot8hLc5I1mfQxPxLXTZWJpWerKaIWOuPkR2nrB0SamGDEehH8RuWA==}
     hasBin: true
     dependencies:
       '@types/node': 18.19.30
@@ -5919,12 +5891,6 @@ packages:
   /pirates@4.0.6:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
-
-  /pnpm@8.15.6:
-    resolution: {integrity: sha512-d7iem+d6Kwatj0A6Gcrl4il29hAj+YrTI9XDAZSVjrwC7gpq5dE+5FT2E05OjK8poF8LGg4dKxe8prah8RWfhg==}
-    engines: {node: '>=16.14'}
-    hasBin: true
-    dev: false
 
   /possible-typed-array-names@1.0.0:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
