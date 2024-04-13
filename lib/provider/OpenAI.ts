@@ -1,4 +1,4 @@
-import { OpenAI } from 'ai/openai';
+import { OpenAI } from '@ai-sdk/openai';
 
 export const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY ?? '',

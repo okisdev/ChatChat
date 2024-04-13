@@ -11,6 +11,7 @@
     "eslint:fix": "eslint --ext .ts,.tsx --fix ."
   },
   "dependencies": {
+    "@ai-sdk/openai": "^0.0.0",
     "@anthropic-ai/sdk": "^0.18.0",
     "@auth/drizzle-adapter": "^0.8.2",
     "@aws-sdk/client-bedrock-runtime": "^3.549.0",

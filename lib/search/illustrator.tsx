@@ -1,5 +1,5 @@
+import { OpenAI } from '@ai-sdk/openai';
 import { experimental_streamObject, ExperimentalMessage } from 'ai';
-import { OpenAI } from 'ai/openai';
 import { createStreamableUI, createStreamableValue } from 'ai/rsc';
 import { z } from 'zod';
 
@@ -10,13 +10,7 @@ import { TIllustrator } from '@/types/search';
 import { ProviderSetting } from '@/types/settings';
 
 export const illustratorSchema = z.object({
-    items: z
-        .array(
-            z.object({
-                query: z.string(),
-            })
-        )
-        .length(3),
+    items: z.array(z.object({ query: z.string() })).length(3),
 });
 
 export const illustrator = async (uiStream: ReturnType<typeof createStreamableUI>, messages: ExperimentalMessage[], model: SimpleModel, currentProviderSettings: ProviderSetting | null) => {
