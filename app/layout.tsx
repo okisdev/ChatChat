@@ -11,6 +11,14 @@ const onest = Onest({ subsets: ['latin'] });
 export const metadata: Metadata = {
     title: 'Chat Chat',
     description: 'Chat Chat - Unlock next-level conversations with AI',
+
+    manifest: '/manifest.json',
+
+    appleWebApp: {
+        capable: true,
+        statusBarStyle: 'default',
+        title: 'Chat Chat',
+    },
 };
 
 export const viewport: Viewport = {
