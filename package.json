@@ -15,9 +15,9 @@
     "@ai-sdk/google": "^0.0.0",
     "@ai-sdk/openai": "^0.0.0",
     "@anthropic-ai/sdk": "^0.18.0",
-    "@auth/drizzle-adapter": "^0.8.2",
     "@aws-sdk/client-bedrock-runtime": "^3.549.0",
     "@azure/openai": "^1.0.0-beta.12",
+    "@ducanh2912/next-pwa": "^10.2.6",
     "@google/generative-ai": "^0.3.1",
     "@huggingface/agents": "^0.0.5",
     "@huggingface/hub": "^0.14.7",
@@ -37,8 +37,6 @@
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "ai": "^3.0.22",
-    "bcrypt-ts": "^5.0.2",
-    "cheerio": "^1.0.0-rc.12",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cohere-ai": "^7.9.3",
@@ -80,7 +78,8 @@
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.13",
     "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.4",
+    "webpack": "^5.91.0"
   },
   "packageManager": "pnpm@8.15.7"
 }
