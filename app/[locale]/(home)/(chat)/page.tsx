@@ -137,7 +137,7 @@ export default function Chat() {
     }, []);
 
     return (
-        <main className='m-3 flex h-screen flex-1 flex-col rounded-lg bg-white/70 p-1 shadow dark:bg-neutral-600/30 dark:text-neutral-200/70'>
+        <>
             <div className='flex items-center justify-between rounded-md bg-transparent'>
                 <div className='flex items-center space-x-1 p-2'>
                     <AddButton />
@@ -157,6 +157,6 @@ export default function Chat() {
                 </div>
             )}
             <InputBox inputRef={inputRef} loading={isLoading} input={input} handleInput={handleInputChange} handleSubmit={handleSubmitChat} handleStop={handleStop} />
-        </main>
+        </>
     );
 }
