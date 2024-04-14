@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl';
 import { BlockTitle } from '@/components/layout/search/block/block-title';
 import { UserAvatar } from '@/components/layout/user-avatar';
 import store from '@/hooks/store';
+import { useMediaQuery } from '@/hooks/window';
 import { TavilyResult } from '@/types/search/resources';
 
 export const Sources = ({ results }: Readonly<{ results: TavilyResult[] }>) => {
@@ -18,8 +19,10 @@ export const Sources = ({ results }: Readonly<{ results: TavilyResult[] }>) => {
 
     const [sameCitationId, setSameCitationId] = useAtom<string>(store.sameCitationAtom);
 
-    const shown = isAllResources ? results : results.slice(0, 3);
-    const hidden = isAllResources ? [] : results.slice(3);
+    const isDesktop = useMediaQuery('(min-width: 768px)');
+
+    const shown = isAllResources ? results : isDesktop ? results.slice(0, 3) : results.slice(0, 2);
+    const hidden = isAllResources ? [] : isDesktop ? results.slice(3) : results.slice(2);
 
     const hiddenCount = hidden.length;
 
@@ -33,7 +36,7 @@ export const Sources = ({ results }: Readonly<{ results: TavilyResult[] }>) => {
                         href={result.url}
                         passHref
                         target='_blank'
-                        className={`h-auto w-3/12 cursor-pointer space-y-3 rounded-md bg-neutral-200/70 p-2 transition duration-200 ease-in-out hover:bg-neutral-200/30 dark:text-neutral-200/80 dark:shadow-lg dark:hover:bg-neutral-700 dark:hover:text-neutral-200/90 ${sameCitationId == encodeURIComponent(result.url) ? 'dark:bg-neutral-700' : 'dark:bg-neutral-800/70'}`}
+                        className={`h-auto w-1/2 cursor-pointer space-y-3 rounded-md bg-neutral-200/70 p-2 transition duration-200 ease-in-out hover:bg-neutral-200/30 dark:text-neutral-200/80 dark:shadow-lg dark:hover:bg-neutral-700 dark:hover:text-neutral-200/90 md:w-3/12 ${sameCitationId == encodeURIComponent(result.url) ? 'dark:bg-neutral-700' : 'dark:bg-neutral-800/70'}`}
                         onMouseEnter={() => setSameCitationId(encodeURIComponent(result.url))}
                         onMouseLeave={() => setSameCitationId('')}
                     >
@@ -69,7 +72,7 @@ export const Sources = ({ results }: Readonly<{ results: TavilyResult[] }>) => {
                     </button>
                 ) : (
                     <button
-                        className='h-auto w-3/12 cursor-pointer space-y-3 rounded-md bg-neutral-200/70 p-2 transition duration-200 ease-in-out hover:bg-neutral-200/30 dark:bg-neutral-800/70 dark:text-neutral-200/80 dark:shadow-lg dark:hover:bg-neutral-800/60 dark:hover:text-neutral-200/90'
+                        className='size-auto cursor-pointer space-y-3 rounded-md bg-neutral-200/70 p-2 transition duration-200 ease-in-out hover:bg-neutral-200/30 dark:bg-neutral-800/70 dark:text-neutral-200/80 dark:shadow-lg dark:hover:bg-neutral-800/60 dark:hover:text-neutral-200/90 md:w-3/12'
                         onClick={() => setIsAllResources(false)}
                     >
                         <p className='self-center truncate text-xs text-neutral-800/50 dark:text-neutral-200/70'>{t('show_less_resources')}</p>

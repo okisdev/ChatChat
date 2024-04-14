@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 
 import { LightBox } from '@/components/layout/lightbox';
 import { BlockTitle } from '@/components/layout/search/block/block-title';
+import { useMediaQuery } from '@/hooks/window';
 
 export const Images = ({ images, query }: { images: string[]; query?: string }) => {
     const t = useTranslations();
@@ -16,8 +17,10 @@ export const Images = ({ images, query }: { images: string[]; query?: string }) 
 
     const [isAllResources, setIsAllResources] = useState<boolean>(false);
 
-    const shown = isAllResources ? images : images.slice(0, 4);
-    const hidden = isAllResources ? [] : images.slice(4);
+    const isDesktop = useMediaQuery('(min-width: 768px)');
+
+    const shown = isAllResources ? images : isDesktop ? images.slice(0, 4) : images.slice(0, 3);
+    const hidden = isAllResources ? [] : isDesktop ? images.slice(4) : images.slice(3);
 
     const hiddenCount = hidden.length;
 
@@ -39,7 +42,7 @@ export const Images = ({ images, query }: { images: string[]; query?: string }) 
             {!images || images.length === 0 ? (
                 <div>{t('no_image_found')}</div>
             ) : (
-                <div className='flex flex-wrap gap-2'>
+                <div className='flex flex-wrap gap-1 md:gap-2'>
                     <LightBox
                         images={lightBoxImages.map((image) => ({ alt: image.alt || '', src: image.src }))}
                         open={open}
@@ -48,7 +51,7 @@ export const Images = ({ images, query }: { images: string[]; query?: string }) 
                         setCurrentIndex={setSelectedIndex}
                     />
                     {shown.map((image: string, index: number) => (
-                        <button key={index} className='relative aspect-video w-3/12 cursor-pointer' onClick={() => onClickOnImage(index)}>
+                        <button key={index} className='relative aspect-video w-1/3 cursor-pointer' onClick={() => onClickOnImage(index)}>
                             {image ? (
                                 <img src={image} alt={query} className='size-full rounded-md object-cover transition-opacity duration-200 ease-in-out hover:opacity-80 hover:zoom-in-100' />
                             ) : (
@@ -78,7 +81,7 @@ export const Images = ({ images, query }: { images: string[]; query?: string }) 
                         </button>
                     ) : (
                         <button
-                            className='h-auto w-3/12 cursor-pointer space-y-3 rounded-md bg-neutral-200/70 p-2 transition duration-200 ease-in-out hover:bg-neutral-200/30 dark:bg-neutral-800/70 dark:text-neutral-200/80 dark:shadow-lg dark:hover:bg-neutral-800/60 dark:hover:text-neutral-200/90'
+                            className='size-auto cursor-pointer space-y-3 rounded-md bg-neutral-200/70 p-2 transition duration-200 ease-in-out hover:bg-neutral-200/30 dark:bg-neutral-800/70 dark:text-neutral-200/80 dark:shadow-lg dark:hover:bg-neutral-800/60 dark:hover:text-neutral-200/90 md:w-3/12'
                             onClick={() => setIsAllResources(false)}
                         >
                             <p className='truncate text-xs text-neutral-800/50 dark:text-neutral-200/70'>{t('show_less_images')}</p>

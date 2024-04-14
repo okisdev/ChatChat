@@ -9,7 +9,7 @@ export default function LocaleLayout({
 }>) {
     return (
         <LocaleProvider>
-            <body className='relative z-0 flex size-full min-h-screen overflow-scroll bg-slate-50 dark:bg-[#222] dark:text-[#eee]'>{children}</body>
+            <body className='relative z-0 flex size-full max-h-screen min-h-screen flex-1 overflow-hidden bg-slate-50 dark:bg-[#222] dark:text-[#eee]'>{children}</body>
         </LocaleProvider>
     );
 }

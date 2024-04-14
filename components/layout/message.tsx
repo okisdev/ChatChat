@@ -17,7 +17,7 @@ export const renderMarkdownMessage = (content: string, hightlight?: string, setH
             rehypePlugins={[rehypeKatex]}
             components={{
                 p: ({ children, ...props }: any) => (
-                    <div className='my-2' {...props}>
+                    <div className='my-2 text-sm md:text-base' {...props}>
                         {children}
                     </div>
                 ),
@@ -89,7 +89,7 @@ export const renderMarkdownMessage = (content: string, hightlight?: string, setH
                     </code>
                 ),
                 img: ({ children, ...props }: any) => (
-                    <div className='container relative mx-auto w-1/2'>
+                    <div className='container relative mx-auto w-full md:w-1/2'>
                         <img className='container mx-auto' {...props} />
                         <button
                             className='absolute bottom-0 right-3 rounded-md bg-neutral-200 p-2 transition duration-200 ease-in-out hover:bg-neutral-300 dark:bg-neutral-800 dark:text-neutral-200/90 dark:shadow-lg dark:hover:bg-neutral-700 dark:hover:shadow-xl'
