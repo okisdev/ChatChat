@@ -17,6 +17,7 @@ import { ApiConfig } from '@/types/app';
 import { Conversation } from '@/types/conversation';
 import { ProviderSetting, SpecifiedProviderSetting } from '@/types/settings';
 import { whatTimeOfDay } from '@/utils/app/time';
+import { generateUUID } from '@/utils/app/uuid';
 
 export default function Chat() {
     const searchParams = useSearchParams();
@@ -111,7 +112,7 @@ export default function Chat() {
             }
         } else {
             if (!currentConversationUUID) {
-                setCurrentConversationUUID(crypto.randomUUID());
+                setCurrentConversationUUID(generateUUID());
             }
 
             if (currentConversationUUID && messages.length > 0) {
