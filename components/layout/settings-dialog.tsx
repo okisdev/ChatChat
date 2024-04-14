@@ -133,7 +133,7 @@ export const SettingsDialog = () => {
             <DialogTrigger className='rounded-md px-2 py-1 outline-none transition duration-300 ease-in-out hover:bg-zinc-200/60 dark:hover:bg-neutral-700/60'>
                 <IoCog size={20} />
             </DialogTrigger>
-            <DialogContent className='flex flex-row dark:border-neutral-500 dark:bg-neutral-700'>
+            <DialogContent className='flex max-h-[80vh] w-[600px] flex-row dark:border-neutral-500 dark:bg-neutral-700'>
                 <div className='flex w-4/12 flex-col space-y-2 border-r border-neutral-200 pr-3 dark:border-neutral-500/30'>
                     <button
                         className={`flex items-center justify-start space-x-1 rounded-md px-3 py-1 transition duration-300 ease-in-out hover:bg-neutral-100 focus:outline-none dark:text-neutral-200 dark:hover:bg-neutral-600/70 ${activeTab === 'general' && 'bg-neutral-200/70 dark:bg-neutral-500/70'}`}
