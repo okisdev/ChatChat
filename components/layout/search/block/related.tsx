@@ -67,11 +67,10 @@ export const Related = ({ relatedQueries }: { relatedQueries: TIllustrator }) =>
                         <button
                             key={index}
                             type='submit'
-                            name={'related_query'}
                             value={item?.query}
                             className='flex w-full items-center space-x-2 rounded-md bg-neutral-100 px-2 py-1 text-left text-sm font-medium text-neutral-600 shadow-sm transition-colors duration-500 ease-in-out hover:bg-neutral-200 hover:text-neutral-700 hover:shadow-md hover:ring-2 hover:ring-neutral-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 dark:bg-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-600 dark:hover:text-neutral-100 dark:hover:ring-neutral-500 dark:focus-visible:ring-neutral-500'
                         >
-                            <LuPlus />
+                            <LuPlus className='size-auto min-w-5' />
                             <p className='text-sm font-medium'>{item?.query}</p>
                         </button>
                     ))}
