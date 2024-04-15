@@ -27,8 +27,8 @@ dependencies:
     specifier: ^10.2.6
     version: 10.2.6(next@14.2.1)(webpack@5.91.0)
   '@google/generative-ai':
-    specifier: ^0.3.1
-    version: 0.3.1
+    specifier: ^0.7.0
+    version: 0.7.0
   '@huggingface/agents':
     specifier: ^0.0.5
     version: 0.0.5
@@ -2230,8 +2230,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@google/generative-ai@0.3.1:
-    resolution: {integrity: sha512-Zh1EK5nCWqIhxPm3K1KOM2mOwwgBvp6lkze74yTj6+Zqibtf55Db1q87cbbzWZeET3ZbNgHMYjVf2JyMM6pI7A==}
+  /@google/generative-ai@0.7.0:
+    resolution: {integrity: sha512-+1kNkKbkDJftrvwfULQphkyC2ZQ42exlyR+TFARMuykuu6y8XyevbX0dDarqt1GVpZDm55yg0TBq6I1J65X6OA==}
     engines: {node: '>=18.0.0'}
     dev: false
 
