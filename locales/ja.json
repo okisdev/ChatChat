@@ -90,5 +90,8 @@
   "provider_configured_globally": "グローバルに構成されたプロバイダー",
   "focus_on": "焦点を当てる",
   "and": "そして",
-  "docs": "ドキュメント"
+  "docs": "ドキュメント",
+  "previous_7_days": "過去7日間",
+  "today": "今日",
+  "yesterday": "昨日"
 }

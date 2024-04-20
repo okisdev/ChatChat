@@ -31,9 +31,9 @@ export const HistoryList = ({ conversations, setConversations }: { conversations
         const date = new Date(dateString);
 
         const dayDiff = (today.setHours(0, 0, 0, 0) - date.setHours(0, 0, 0, 0)) / (1000 * 60 * 60 * 24);
-        if (dayDiff < 1) return 'Today';
-        if (dayDiff < 2) return 'Yesterday';
-        return 'Previous 7 Days';
+        if (dayDiff < 1) return t('today');
+        if (dayDiff < 2) return t('yesterday');
+        return t('previous_7_days');
     };
 
     const groupedConversations = conversations?.reduce((acc: Record<string, Conversation[]>, conversation: Conversation) => {
@@ -54,10 +54,10 @@ export const HistoryList = ({ conversations, setConversations }: { conversations
             ) : (
                 Object.keys(groupedConversations || {})
                     .sort((a, b) => {
-                        if (a === 'Today') return -1;
-                        if (b === 'Today') return 1;
-                        if (a === 'Yesterday') return -1;
-                        if (b === 'Yesterday') return 1;
+                        if (a === t('today')) return -1;
+                        if (b === t('today')) return 1;
+                        if (a === t('yesterday')) return -1;
+                        if (b === t('yesterday')) return 1;
                         return 0;
                     })
                     .map((dateHeader) => (

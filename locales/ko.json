@@ -90,5 +90,8 @@
   "provider_configured_globally": "전역적으로 구성된 공급자",
   "focus_on": "집중하다",
   "and": "그리고",
-  "docs": "문서"
+  "docs": "문서",
+  "previous_7_days": "지난 7일",
+  "today": "오늘",
+  "yesterday": "어제"
 }

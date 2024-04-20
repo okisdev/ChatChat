@@ -90,5 +90,8 @@
   "provider_configured_globally": "Provedor configurado globalmente",
   "focus_on": "Focar em",
   "and": "e",
-  "docs": "Documentos"
+  "docs": "Documentos",
+  "previous_7_days": "7 dias anteriores",
+  "today": "Hoje",
+  "yesterday": "Ontem"
 }

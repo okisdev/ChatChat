@@ -90,5 +90,8 @@
   "provider_configured_globally": "Provider globaal geconfigureerd",
   "focus_on": "Concentreer op",
   "and": "En",
-  "docs": "Documenten"
+  "docs": "Documenten",
+  "previous_7_days": "Vorige 7 dagen",
+  "today": "Vandaag",
+  "yesterday": "Gisteren"
 }

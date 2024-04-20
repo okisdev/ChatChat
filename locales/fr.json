@@ -90,5 +90,8 @@
   "provider_configured_globally": "Fournisseur configuré globalement",
   "focus_on": "Se concentrer sur",
   "and": "et",
-  "docs": "Documents"
+  "docs": "Documents",
+  "previous_7_days": "7 jours précédents",
+  "today": "Aujourd'hui",
+  "yesterday": "Hier"
 }
