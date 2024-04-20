@@ -6,17 +6,17 @@ settings:
 
 dependencies:
   '@ai-sdk/anthropic':
-    specifier: ^0.0.0
-    version: 0.0.0(zod@3.22.5)
+    specifier: ^0.0.3
+    version: 0.0.3(zod@3.22.5)
   '@ai-sdk/google':
-    specifier: ^0.0.0
-    version: 0.0.0(zod@3.22.5)
+    specifier: ^0.0.3
+    version: 0.0.3(zod@3.22.5)
   '@ai-sdk/openai':
-    specifier: ^0.0.0
-    version: 0.0.0(zod@3.22.5)
+    specifier: ^0.0.2
+    version: 0.0.2(zod@3.22.5)
   '@anthropic-ai/sdk':
-    specifier: ^0.18.0
-    version: 0.18.0
+    specifier: ^0.20.6
+    version: 0.20.6
   '@aws-sdk/client-bedrock-runtime':
     specifier: ^3.556.0
     version: 3.556.0
@@ -216,8 +216,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@ai-sdk/anthropic@0.0.0(zod@3.22.5):
-    resolution: {integrity: sha512-PGKKZkGaRa6TOLU/mgVVa/RUklyWI/aBcdI+BiFvqH/r+Ui7qEhmlQrkAUmUOStvYmwU6aKhabhIz2jn7kQrLQ==}
+  /@ai-sdk/anthropic@0.0.3(zod@3.22.5):
+    resolution: {integrity: sha512-cAXuMjQ37t0uAD3Yp82jk1OvXHSTNMNAzYrT/OeJXVZkL80sILI9qnhKflMbLXbYddvL+3XC0HBZ9IhyOf7JoQ==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
@@ -226,12 +226,12 @@ packages:
         optional: true
     dependencies:
       '@ai-sdk/provider': 0.0.0
-      '@ai-sdk/provider-utils': 0.0.0(zod@3.22.5)
+      '@ai-sdk/provider-utils': 0.0.1(zod@3.22.5)
       zod: 3.22.5
     dev: false
 
-  /@ai-sdk/google@0.0.0(zod@3.22.5):
-    resolution: {integrity: sha512-yrdObF5ARasTKZeBIwSDR/Bh9kv88NIho9+hhhaMlzYqaVAM57ePvkBUOjoCa7DWLBwS50zYEQ+YoPxxbl1NCw==}
+  /@ai-sdk/google@0.0.3(zod@3.22.5):
+    resolution: {integrity: sha512-XAhhC4foc66EUyq+wspTdbLXu+JdsEcOYGjYXRe/7tEz9t0stiAaD+EiflGB8Pstr6tkWIrCtAOjJkysN6Wf7w==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
@@ -240,12 +240,12 @@ packages:
         optional: true
     dependencies:
       '@ai-sdk/provider': 0.0.0
-      '@ai-sdk/provider-utils': 0.0.0(zod@3.22.5)
+      '@ai-sdk/provider-utils': 0.0.1(zod@3.22.5)
       zod: 3.22.5
     dev: false
 
-  /@ai-sdk/openai@0.0.0(zod@3.22.5):
-    resolution: {integrity: sha512-47AM6OeOAxdJXPpiKdmIRso+hukmVjIcIflK3giKRHcQm4mMjEZyVOnXS/H6KyFoDGycxghZk2sQzgzn9Fv+ZA==}
+  /@ai-sdk/openai@0.0.2(zod@3.22.5):
+    resolution: {integrity: sha512-Dhq/DPjCR8CcyVzWo980yBkgaUulb4X8B1GMvJJ1/BokPv0e/fP40+K1XP6ARLWWJOf6JRCn1XXDdOkHj2Ljqg==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
@@ -254,23 +254,7 @@ packages:
         optional: true
     dependencies:
       '@ai-sdk/provider': 0.0.0
-      '@ai-sdk/provider-utils': 0.0.0(zod@3.22.5)
-      zod: 3.22.5
-    dev: false
-
-  /@ai-sdk/provider-utils@0.0.0(zod@3.22.5):
-    resolution: {integrity: sha512-A6gFv6EHimayd2c2ayWMpKwADgsRrJg4DYYFnvJ71TXaWuSom7vUoALIobcaggmZ76xuzi17cXPFYg2vVu04WA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.0.0
-    peerDependenciesMeta:
-      zod:
-        optional: true
-    dependencies:
-      '@ai-sdk/provider': 0.0.0
-      eventsource-parser: 1.1.2
-      nanoid: 3.3.6
-      secure-json-parse: 2.7.0
+      '@ai-sdk/provider-utils': 0.0.1(zod@3.22.5)
       zod: 3.22.5
     dev: false
 
@@ -309,14 +293,13 @@ packages:
       '@jridgewell/trace-mapping': 0.3.25
     dev: false
 
-  /@anthropic-ai/sdk@0.18.0:
-    resolution: {integrity: sha512-3XsWEn/4nPGRd4AdSguugbSDFy6Z2AWTNOeI3iK+aV22+w23+vY9CEb3Hiy0kvKIQuxSmZz/+5WKC8nPWy8gVg==}
+  /@anthropic-ai/sdk@0.20.6:
+    resolution: {integrity: sha512-vpVWAol+Ih1UkZGUj8DYPuqWDGxBp6M/JYz4nvq2HBT0zKdvi24Z9oznA7tr+HDed78JZrw+nbxs2I8JbTAIiQ==}
     dependencies:
-      '@types/node': 18.19.30
+      '@types/node': 18.19.31
       '@types/node-fetch': 2.6.11
       abort-controller: 3.0.0
       agentkeepalive: 4.5.0
-      digest-fetch: 1.3.0
       form-data-encoder: 1.7.2
       formdata-node: 4.4.1
       node-fetch: 2.7.0
@@ -3800,6 +3783,12 @@ packages:
 
   /@types/node@18.19.30:
     resolution: {integrity: sha512-453z1zPuJLVDbyahaa1sSD5C2sht6ZpHp5rgJNs+H8YGqhluCXcuOUmBYsAo0Tos0cHySJ3lVUGbGgLlqIkpyg==}
+    dependencies:
+      undici-types: 5.26.5
+    dev: false
+
+  /@types/node@18.19.31:
+    resolution: {integrity: sha512-ArgCD39YpyyrtFKIqMDvjz79jto5fcI/SVUs2HwB+f0dAzq68yqOdyaSivLiLugSziTpNXLQrVb7RZFmdZzbhA==}
     dependencies:
       undici-types: 5.26.5
     dev: false

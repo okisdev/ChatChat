@@ -2,5 +2,5 @@ import { OpenAI } from '@ai-sdk/openai';
 
 export const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY ?? '',
-    // baseUrl: process.env.OPENAI_API_ENDPOINT ?? '',
+    // baseURL: process.env.OPENAI_API_ENDPOINT ?? '',
 });
