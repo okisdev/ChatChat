@@ -90,5 +90,8 @@
   "provider_configured_globally": "Поставщик настроен глобально",
   "focus_on": "Сосредоточиться на",
   "and": "и",
-  "docs": "Документы"
+  "docs": "Документы",
+  "previous_7_days": "Предыдущие 7 дней",
+  "today": "Сегодня",
+  "yesterday": "Вчера"
 }

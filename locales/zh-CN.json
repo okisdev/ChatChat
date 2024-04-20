@@ -90,5 +90,8 @@
   "provider_configured_globally": "全局配置的提供者",
   "focus_on": "专注于",
   "and": "和",
-  "docs": "文档"
+  "docs": "文档",
+  "previous_7_days": "前 7 天",
+  "today": "今天",
+  "yesterday": "昨天"
 }

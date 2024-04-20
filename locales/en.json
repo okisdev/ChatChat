@@ -90,5 +90,10 @@
   "provider_configured_globally": "Provider configured globally",
   "focus_on": "Focus on",
   "and": "and",
-  "docs": "Docs"
+  "docs": "Docs",
+  "no_conversations": "No conversations",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "on": "On",
+  "previous_7_days": "Previous 7 days"
 }
