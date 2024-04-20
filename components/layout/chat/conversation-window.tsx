@@ -24,7 +24,7 @@ export const ConversationWindow = ({
     };
 
     return (
-        <div className='container mx-auto flex w-10/12 flex-col items-start justify-start gap-3'>
+        <div className='container mx-auto flex flex-col items-start justify-start gap-3 md:w-11/12 xl:w-10/12'>
             {messages.map((m) => (
                 <div key={m.id}>
                     {m.role == 'user' ? (

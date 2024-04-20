@@ -83,8 +83,13 @@ export const renderMarkdownMessage = (content: string, hightlight?: string, setH
                         {children}
                     </Link>
                 ),
+                pre: ({ children, ...props }: any) => (
+                    <pre className='overflow-auto whitespace-pre-wrap rounded-md bg-neutral-200 p-1 dark:bg-neutral-600' {...props}>
+                        {children}
+                    </pre>
+                ),
                 code: ({ children, ...props }: any) => (
-                    <code className='rounded-md bg-gray-200 p-1' {...props}>
+                    <code className='overflow-auto whitespace-pre-wrap rounded-md bg-neutral-200 p-1 dark:bg-neutral-600' {...props}>
                         {children}
                     </code>
                 ),

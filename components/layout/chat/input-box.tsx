@@ -47,7 +47,7 @@ export const InputBox = ({
     };
 
     return (
-        <form className='container relative bottom-5 mx-auto w-full space-y-2 pb-3 md:w-10/12' onSubmit={loading ? handleStop : handleSubmit} onKeyDown={handleKeyDown}>
+        <form className='container relative bottom-5 mx-auto w-full space-y-2 pb-3 md:w-11/12 xl:w-10/12' onSubmit={loading ? handleStop : handleSubmit} onKeyDown={handleKeyDown}>
             <div className='mx-3 flex justify-start space-x-3'>
                 <button
                     onClick={() => router.push('?open=settings')}
