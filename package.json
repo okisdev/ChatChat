@@ -14,7 +14,7 @@
     "@ai-sdk/anthropic": "^0.0.0",
     "@ai-sdk/google": "^0.0.0",
     "@ai-sdk/openai": "^0.0.0",
-    "@anthropic-ai/sdk": "^0.18.0",
+    "@anthropic-ai/sdk": "^0.20.0",
     "@aws-sdk/client-bedrock-runtime": "^3.556.0",
     "@azure/openai": "^1.0.0-beta.12",
     "@ducanh2912/next-pwa": "^10.2.6",
