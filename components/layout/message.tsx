@@ -17,7 +17,7 @@ export const renderMarkdownMessage = (content: string, hightlight?: string, setH
             rehypePlugins={[rehypeKatex]}
             components={{
                 p: ({ children, ...props }: any) => (
-                    <div className='my-2 text-sm md:text-base' {...props}>
+                    <div className='text-sm md:text-base' {...props}>
                         {children}
                     </div>
                 ),
