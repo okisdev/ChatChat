@@ -18,7 +18,7 @@
     "@aws-sdk/client-bedrock-runtime": "^3.549.0",
     "@azure/openai": "^1.0.0-beta.12",
     "@ducanh2912/next-pwa": "^10.2.6",
-    "@google/generative-ai": "^0.3.1",
+    "@google/generative-ai": "^0.7.0",
     "@huggingface/agents": "^0.0.5",
     "@huggingface/hub": "^0.14.7",
     "@huggingface/inference": "^2.6.7",
