@@ -74,8 +74,8 @@ export const HistoryList = ({ conversations, setConversations }: { conversations
                                         }}
                                         className='flex w-10/12 items-center justify-start space-x-2 transition duration-300 ease-in-out hover:underline'
                                     >
-                                        <PiChatTeardropBold size={16} />
-                                        <p className='truncate text-sm'>{conversation.conversation[0].content}</p>
+                                        <PiChatTeardropBold size={16} className='w-1/12' />
+                                        <p className='w-9/12 truncate text-start text-sm'>{conversation.conversation[0]?.content}</p>
                                     </button>
                                     <DropdownMenu>
                                         <DropdownMenuTrigger className='cursor-pointer outline-none'>
