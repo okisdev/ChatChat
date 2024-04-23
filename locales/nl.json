@@ -93,5 +93,8 @@
   "docs": "Documenten",
   "previous_7_days": "Vorige 7 dagen",
   "today": "Vandaag",
-  "yesterday": "Gisteren"
+  "yesterday": "Gisteren",
+  "specific_information_not_sure": "Bent u niet zeker van de specifieke informatie met betrekking tot uw vraag?",
+  "no_conversations": "Geen gesprekken",
+  "clarifier": "Zuiveringsmiddel"
 }

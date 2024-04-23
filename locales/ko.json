@@ -93,5 +93,8 @@
   "docs": "문서",
   "previous_7_days": "지난 7일",
   "today": "오늘",
-  "yesterday": "어제"
+  "yesterday": "어제",
+  "specific_information_not_sure": "귀하의 질문과 관련된 구체적인 정보가 확실하지 않습니까?",
+  "no_conversations": "대화 없음",
+  "clarifier": "청징제"
 }

@@ -95,5 +95,7 @@
   "today": "Today",
   "yesterday": "Yesterday",
   "on": "On",
-  "previous_7_days": "Previous 7 days"
+  "previous_7_days": "Previous 7 days",
+  "specific_information_not_sure": "Not sure of the specific information related to your question?",
+  "clarifier": "Clarifier"
 }

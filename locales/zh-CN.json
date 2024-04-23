@@ -93,5 +93,8 @@
   "docs": "文档",
   "previous_7_days": "前 7 天",
   "today": "今天",
-  "yesterday": "昨天"
+  "yesterday": "昨天",
+  "specific_information_not_sure": "不确定与您的问题相关的具体信息？",
+  "no_conversations": "没有对话",
+  "clarifier": "澄清器"
 }

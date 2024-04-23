@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { BsFillQuestionDiamondFill } from 'react-icons/bs';
+import { GoSkip } from 'react-icons/go';
 import { useActions, useStreamableValue, useUIState } from 'ai/rsc';
 import { useAtom } from 'jotai';
 import { useTranslations } from 'next-intl';
@@ -94,11 +95,14 @@ export const Clarifier = ({ clarify }: { clarify?: TClarifier }) => {
 
     return (
         <div className='space-y-2'>
-            <BlockTitle title={data?.question ?? ''} icon={BsFillQuestionDiamondFill} />
+            <BlockTitle title={t('clarifier')} icon={BsFillQuestionDiamondFill} />
             <div className='mx-auto w-full rounded-md border border-neutral-300/40 bg-neutral-200/60 p-4 shadow-md dark:border-neutral-800/60 dark:bg-neutral-800/60 dark:text-neutral-200/80 dark:shadow-lg'>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className='space-y-4'>
+                    <div>
+                        <p className='text-xl'>{data?.question}</p>
+                    </div>
                     {data?.options && data?.options?.length > 0 && (
-                        <div className='mb-4 flex flex-wrap justify-start'>
+                        <div className='flex flex-wrap justify-start'>
                             {data?.options?.map((option, index) => (
                                 <div key={index} className='mb-2 flex items-center space-x-1.5'>
                                     <Checkbox id={option?.value} name={option?.value} onCheckedChange={() => handleOptionChange(option?.content as string)} />
@@ -110,26 +114,33 @@ export const Clarifier = ({ clarify }: { clarify?: TClarifier }) => {
                         </div>
                     )}
                     {data?.allowsInput && (
-                        <div className='mb-6 flex flex-col space-y-2 text-sm'>
+                        <div className='mb-4 flex flex-col space-y-2 text-sm'>
                             <label htmlFor='query'>{data?.clarifyLabel}</label>
                             <Input type='text' name='additional_query' className='w-full' id='query' placeholder={data?.clarifyPlaceholder} value={input} onChange={handleInputChange} />
                         </div>
                     )}
-                    <div className='flex justify-end space-x-3'>
+                    <div className='flex justify-end'>
+                        <button
+                            type='submit'
+                            disabled={!allowSubmit || pending}
+                            className='flex items-center justify-center rounded-md border border-neutral-600/40 px-2 py-1 text-sm transition duration-300 ease-in-out hover:bg-neutral-300/30 data-[state=disabled]:cursor-not-allowed data-[state=enabled]:cursor-pointer data-[state=disabled]:text-neutral-100 dark:border-neutral-900/40 dark:hover:bg-neutral-500/90 dark:hover:text-neutral-300/80'
+                        >
+                            {t('confirm')}
+                        </button>
+                    </div>
+                    <div className='my-4 border-b border-neutral-300/40' />
+                    <div className='flex flex-row items-center justify-between'>
+                        <div className='flex flex-row items-center space-x-1'>
+                            <GoSkip size='20' />
+                            <p>{t('specific_information_not_sure')}</p>
+                        </div>
                         <button
                             type='button'
                             onClick={handleNoIdea}
                             disabled={pending}
-                            className='flex items-center justify-center rounded-md border px-2 py-1 text-sm transition duration-300 ease-in-out hover:bg-neutral-300/30 data-[state=disabled]:cursor-not-allowed data-[state=enabled]:cursor-pointer dark:hover:bg-neutral-500/90 dark:hover:text-neutral-300/80'
+                            className='flex items-center justify-center rounded-md border border-neutral-600/40 px-2 py-1 text-sm transition duration-300 ease-in-out hover:bg-neutral-300/30 data-[state=disabled]:cursor-not-allowed data-[state=enabled]:cursor-pointer dark:border-neutral-900/40 dark:hover:bg-neutral-500/90 dark:hover:text-neutral-300/80'
                         >
                             {t('no_idea')}
-                        </button>
-                        <button
-                            type='submit'
-                            disabled={!allowSubmit || pending}
-                            className='flex items-center justify-center rounded-md border px-2 py-1 text-sm transition duration-300 ease-in-out hover:bg-neutral-300/30 data-[state=disabled]:cursor-not-allowed data-[state=enabled]:cursor-pointer dark:hover:bg-neutral-500/90 dark:hover:text-neutral-300/80'
-                        >
-                            {t('confirm')}
                         </button>
                     </div>
                 </form>
