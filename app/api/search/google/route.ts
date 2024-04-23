@@ -1,4 +1,4 @@
-import { OpenAI } from '@ai-sdk/openai';
+import { createOpenAI } from '@ai-sdk/openai';
 import { experimental_streamText, ExperimentalMessage, StreamingTextResponse, ToolCallPart, ToolResultPart } from 'ai';
 import { createStreamableUI, createStreamableValue } from 'ai/rsc';
 
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
     const uiStream = createStreamableUI();
 
-    const openai = new OpenAI({
+    const openai = createOpenAI({
         apiKey: config.provider?.apiKey ?? process.env.OPENAI_API_KEY ?? '',
         baseUrl: config.provider?.endpoint ?? process.env.OPENAI_API_ENDPOINT ?? 'https://api.openai.com/v1',
     });

@@ -1,4 +1,4 @@
-import { OpenAI } from '@ai-sdk/openai';
+import { createOpenAI } from '@ai-sdk/openai';
 import { experimental_streamObject, ExperimentalMessage } from 'ai';
 import { createStreamableUI, createStreamableValue } from 'ai/rsc';
 import { z } from 'zod';
@@ -20,7 +20,7 @@ export const illustrator = async (uiStream: ReturnType<typeof createStreamableUI
 
     uiStream.append(<Related relatedQueries={objectStream.value} />);
 
-    const openai = new OpenAI({
+    const openai = createOpenAI({
         apiKey: currentProviderSettings?.OpenAI?.apiKey ?? process.env.OPENAI_API_KEY ?? '',
         // baseURL: currentProviderSettings?.OpenAI?.endpoint ?? process.env.OPENAI_API_ENDPOINT ?? 'https://api.openai.com/v1',
     });
