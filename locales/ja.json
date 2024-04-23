@@ -93,5 +93,8 @@
   "docs": "ドキュメント",
   "previous_7_days": "過去7日間",
   "today": "今日",
-  "yesterday": "昨日"
+  "yesterday": "昨日",
+  "specific_information_not_sure": "質問に関連する具体的な情報がわからない場合は、",
+  "no_conversations": "会話なし",
+  "clarifier": "清澄剤"
 }

@@ -93,5 +93,8 @@
   "docs": "Документы",
   "previous_7_days": "Предыдущие 7 дней",
   "today": "Сегодня",
-  "yesterday": "Вчера"
+  "yesterday": "Вчера",
+  "specific_information_not_sure": "Не уверены в конкретной информации, связанной с вашим вопросом?",
+  "no_conversations": "Никаких разговоров",
+  "clarifier": "Осветлитель"
 }

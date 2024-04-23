@@ -93,5 +93,8 @@
   "docs": "Documentos",
   "previous_7_days": "7 dias anteriores",
   "today": "Hoje",
-  "yesterday": "Ontem"
+  "yesterday": "Ontem",
+  "specific_information_not_sure": "Não tem certeza das informações específicas relacionadas à sua pergunta?",
+  "no_conversations": "Nenhuma conversa",
+  "clarifier": "Clarificador"
 }
