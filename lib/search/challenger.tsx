@@ -1,4 +1,4 @@
-import { OpenAI } from '@ai-sdk/openai';
+import { createOpenAI } from '@ai-sdk/openai';
 import { experimental_generateObject, ExperimentalMessage } from 'ai';
 import { z } from 'zod';
 
@@ -13,7 +13,7 @@ export const challengerSchema = z.object({
 export const challenger = async (messages: ExperimentalMessage[], model: SimpleModel, currentProviderSettings: ProviderSetting | null) => {
     'use server';
 
-    const openai = new OpenAI({
+    const openai = createOpenAI({
         apiKey: currentProviderSettings?.OpenAI?.apiKey ?? process.env.OPENAI_API_KEY ?? '',
         // baseURL: currentProviderSettings?.OpenAI?.endpoint ?? process.env.OPENAI_API_ENDPOINT ?? 'https://api.openai.com/v1',
     });
