@@ -49,7 +49,7 @@ export const VersionBadge = () => {
                 <div className='flex w-full flex-col space-y-1 text-xs'>
                     <div className='flex justify-between'>
                         <Link
-                            href='https://docs.harrly.com/chat'
+                            href='https://docs.okis.dev/chat/intro'
                             target='_blank'
                             className='inline-flex items-center space-x-1 rounded px-1 py-0.5 transition duration-200 ease-in-out hover:bg-gray-200 dark:hover:bg-neutral-600'
                         >
