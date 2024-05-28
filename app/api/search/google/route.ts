@@ -1,5 +1,5 @@
 import { createOpenAI } from '@ai-sdk/openai';
-import { experimental_streamText, ExperimentalMessage, StreamingTextResponse, ToolCallPart, ToolResultPart } from 'ai';
+import { CoreMessage, StreamingTextResponse, streamText as aiStreamText, ToolCallPart, ToolResultPart } from 'ai';
 import { createStreamableUI, createStreamableValue } from 'ai/rsc';
 
 import { searcherPrompt } from '@/lib/prompt';
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
         config,
         stream,
     }: {
-        messages: ExperimentalMessage[];
+        messages: CoreMessage[];
         config: ApiConfig;
         stream: boolean;
     } = await req.json();
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
         baseUrl: config.provider?.endpoint ?? process.env.OPENAI_API_ENDPOINT ?? 'https://api.openai.com/v1',
     });
 
-    const result = await experimental_streamText({
+    const result = await aiStreamText({
         model: openai.chat('gpt-4'),
         system: searcherPrompt,
         messages,

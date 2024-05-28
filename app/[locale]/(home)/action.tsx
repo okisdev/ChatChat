@@ -1,4 +1,4 @@
-import { ExperimentalMessage } from 'ai';
+import { CoreMessage } from 'ai';
 import { createAI, createStreamableUI, createStreamableValue, getMutableAIState, StreamableValue } from 'ai/rsc';
 
 import { AskFollowUpQuestion } from '@/components/layout/search/block/ask-follow-up-question';
@@ -13,9 +13,9 @@ import { SimpleModel } from '@/types/model';
 import { SearchEngineSetting, TChallengerAction } from '@/types/search';
 import { ProviderSetting } from '@/types/settings';
 
-const allowProvider = ['OpenAI'] as Provider[];
+const AllowSearchProvider = ['OpenAI'] as Provider[];
 
-const chat = async (model: SimpleModel, messages: ExperimentalMessage[]) => {
+const chat = async (model: SimpleModel, messages: CoreMessage[]) => {
     'use server';
 };
 
@@ -29,7 +29,7 @@ const search = async (
 ) => {
     'use server';
 
-    if (!allowProvider.includes(model?.provider)) {
+    if (!AllowSearchProvider.includes(model?.provider)) {
         return {
             id: Date.now(),
             isGenerating: false,
@@ -60,7 +60,7 @@ const search = async (
     const uiStream = createStreamableUI();
     const isGenerating = createStreamableValue(true);
 
-    const messages: ExperimentalMessage[] = aiState.get() as any;
+    const messages: CoreMessage[] = aiState.get() as any;
 
     const question = formData?.get('input') as string;
 
@@ -69,7 +69,7 @@ const search = async (
 
     if (content) {
         const message = { role: 'user', content };
-        messages.push(message as ExperimentalMessage);
+        messages.push(message as CoreMessage);
         aiState.update([...(aiState.get() as any), message]);
     }
 

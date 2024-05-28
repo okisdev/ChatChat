@@ -1,5 +1,5 @@
 import { createOpenAI } from '@ai-sdk/openai';
-import { experimental_streamObject, ExperimentalMessage } from 'ai';
+import { CoreMessage, streamObject } from 'ai';
 import { createStreamableUI, createStreamableValue } from 'ai/rsc';
 import { z } from 'zod';
 
@@ -17,7 +17,7 @@ export const clarifierSchema = z.object({
     clarifyPlaceholder: z.string().optional().describe('The clarify placeholder for input'),
 });
 
-export const clarifier = async (uiStream: ReturnType<typeof createStreamableUI>, messages: ExperimentalMessage[], model: SimpleModel, currentProviderSettings: ProviderSetting | null) => {
+export const clarifier = async (uiStream: ReturnType<typeof createStreamableUI>, messages: CoreMessage[], model: SimpleModel, currentProviderSettings: ProviderSetting | null) => {
     'use server';
 
     const objectStream = createStreamableValue<TClarifier>();
@@ -31,7 +31,7 @@ export const clarifier = async (uiStream: ReturnType<typeof createStreamableUI>,
         // baseURL: currentProviderSettings?.OpenAI?.endpoint ?? process.env.OPENAI_API_ENDPOINT ?? 'https://api.openai.com/v1',
     });
 
-    await experimental_streamObject({
+    await streamObject({
         model: openai.chat(model.model_id ?? 'gpt-4-turbo'),
         system: clarifierPrompt,
         messages,
