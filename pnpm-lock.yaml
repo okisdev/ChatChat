@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@ai-sdk/anthropic':
-        specifier: ^0.0.16
-        version: 0.0.16(zod@3.23.0)
+        specifier: ^0.0.17
+        version: 0.0.17(zod@3.23.0)
       '@ai-sdk/google':
         specifier: ^0.0.16
         version: 0.0.16(zod@3.23.0)
@@ -217,8 +217,8 @@ packages:
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
     engines: {node: '>=0.10.0'}
 
-  '@ai-sdk/anthropic@0.0.16':
-    resolution: {integrity: sha512-5ZH307aUf38TO/YnmGZCIi8s8t28jMxTtI3wUvdCgBYja83iy5DYvfgLg/AgZGxqIAfVknSNwOH+q8c3WyJVWg==}
+  '@ai-sdk/anthropic@0.0.17':
+    resolution: {integrity: sha512-GH96m+mdz7XA1z4153g+SAGcib6CFdtjbwMXfWWE0q4iIAObeW6eC2N8VuucQdQNSbJ3h62KqdjWMho6k6L8Aw==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
@@ -244,8 +244,21 @@ packages:
       zod:
         optional: true
 
+  '@ai-sdk/provider-utils@0.0.11':
+    resolution: {integrity: sha512-JRDrqL2FGDmLh+a4R5qbS8UrWN9Lt7DpDIY1x6owgXjXkz3Umm1czs1X32VlL0M1dpoSxu4hGBFtXd56+kDzXA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.0.0
+    peerDependenciesMeta:
+      zod:
+        optional: true
+
   '@ai-sdk/provider@0.0.7':
     resolution: {integrity: sha512-PZ3L2FNvw4GHI8UFKt0ZHN5R8LFyDMtP6nlQrqT8N7yAcwBJUMTPYmq6SiWCc/S6JRhUM5pU3aUoFaycoLzxlQ==}
+    engines: {node: '>=18'}
+
+  '@ai-sdk/provider@0.0.8':
+    resolution: {integrity: sha512-+gcMvyPUDfDXV9caN3CG5Le0M5K4CjqTdMV1ODg/AosApQiJW9ByN5imJPdI043zVdt+HS9WG+s0j4am7ca4bg==}
     engines: {node: '>=18'}
 
   '@alloc/quick-lru@5.2.0':
@@ -2937,6 +2950,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   globals@11.12.0:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
@@ -3064,6 +3078,7 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -4111,10 +4126,12 @@ packages:
 
   rimraf@2.7.1:
     resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rollup-plugin-terser@7.0.2:
@@ -4806,10 +4823,10 @@ snapshots:
 
   '@aashutoshrathi/word-wrap@1.2.6': {}
 
-  '@ai-sdk/anthropic@0.0.16(zod@3.23.0)':
+  '@ai-sdk/anthropic@0.0.17(zod@3.23.0)':
     dependencies:
-      '@ai-sdk/provider': 0.0.7
-      '@ai-sdk/provider-utils': 0.0.10(zod@3.23.0)
+      '@ai-sdk/provider': 0.0.8
+      '@ai-sdk/provider-utils': 0.0.11(zod@3.23.0)
       zod: 3.23.0
 
   '@ai-sdk/google@0.0.16(zod@3.23.0)':
@@ -4833,7 +4850,20 @@ snapshots:
     optionalDependencies:
       zod: 3.23.0
 
+  '@ai-sdk/provider-utils@0.0.11(zod@3.23.0)':
+    dependencies:
+      '@ai-sdk/provider': 0.0.8
+      eventsource-parser: 1.1.2
+      nanoid: 3.3.6
+      secure-json-parse: 2.7.0
+    optionalDependencies:
+      zod: 3.23.0
+
   '@ai-sdk/provider@0.0.7':
+    dependencies:
+      json-schema: 0.4.0
+
+  '@ai-sdk/provider@0.0.8':
     dependencies:
       json-schema: 0.4.0
 
