@@ -8,7 +8,7 @@ export const AnthropicProvider = ({ anthropic, setAnthropic }: { anthropic: Prov
                 <p className='px-1 text-sm'>Anthropic API Key</p>
                 <Input
                     type='text'
-                    placeholder='sk-xxxx'
+                    placeholder='sk-ant-xxxx'
                     value={anthropic?.apiKey}
                     onChange={(e) => {
                         setAnthropic({

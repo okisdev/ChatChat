@@ -1,5 +1,5 @@
 import { createOpenAI } from '@ai-sdk/openai';
-import { experimental_streamText, ExperimentalMessage, ToolCallPart, ToolResultPart } from 'ai';
+import { CoreMessage, streamText as aiStreamText, ToolCallPart, ToolResultPart } from 'ai';
 import { createStreamableUI, createStreamableValue } from 'ai/rsc';
 import { z } from 'zod';
 
@@ -22,7 +22,7 @@ export const searcherSchema = z.object({
 export const searcher = async (
     uiStream: ReturnType<typeof createStreamableUI>,
     streamText: ReturnType<typeof createStreamableValue<string>>,
-    messages: ExperimentalMessage[],
+    messages: CoreMessage[],
     isProSearch: boolean,
     model: SimpleModel,
     currentSearchEngineSettings: SearchEngineSetting | null,
@@ -37,7 +37,7 @@ export const searcher = async (
         // baseURL: currentProviderSettings?.OpenAI?.endpoint ?? process.env.OPENAI_API_ENDPOINT ?? 'https://api.openai.com/v1',
     });
 
-    const result = await experimental_streamText({
+    const result = await aiStreamText({
         model: openai.chat(model.model_id ?? 'gpt-4-turbo'),
         maxTokens: 2500,
         system: searcherPrompt,

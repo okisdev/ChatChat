@@ -11,9 +11,9 @@
     "eslint:fix": "eslint --ext .ts,.tsx --fix ."
   },
   "dependencies": {
-    "@ai-sdk/anthropic": "^0.0.5",
-    "@ai-sdk/google": "^0.0.5",
-    "@ai-sdk/openai": "^0.0.4",
+    "@ai-sdk/anthropic": "^0.0.16",
+    "@ai-sdk/google": "^0.0.16",
+    "@ai-sdk/openai": "^0.0.16",
     "@anthropic-ai/sdk": "^0.20.6",
     "@aws-sdk/client-bedrock-runtime": "^3.556.0",
     "@azure/openai": "^1.0.0-beta.12",
@@ -36,7 +36,7 @@
     "@types/file-saver": "^2.0.7",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
-    "ai": "^3.0.24",
+    "ai": "^3.1.15",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cohere-ai": "^7.9.5",
@@ -44,7 +44,7 @@
     "groq-sdk": "^0.3.2",
     "jotai": "^2.8.0",
     "lucide-react": "^0.363.0",
-    "next": "14.2.2",
+    "next": "14.2.3",
     "next-intl": "^3.11.3",
     "next-themes": "^0.3.0",
     "openai": "^4.38.2",
@@ -80,6 +80,5 @@
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0"
-  },
-  "packageManager": "pnpm@8.15.7"
+  }
 }
