@@ -1,0 +1,8 @@
+.vscode-test/
+out/
+dist/
+test-fixtures/
+node_modules/
+
+package-lock.json
+pnpm-lock.yaml

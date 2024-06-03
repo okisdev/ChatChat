@@ -1,82 +1,82 @@
 {
-  "root": true,
-  "extends": [
-    "next",
-    "next/core-web-vitals",
-    "plugin:tailwindcss/recommended"
-  ],
-  "plugins": [
-    "react",
-    "simple-import-sort",
-    "unused-imports"
-  ],
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": "latest"
-  },
-  "rules": {
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
-    "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": [
-      "warn",
-      {
-        "vars": "all",
-        "varsIgnorePattern": "^_",
-        "args": "after-used",
-        "argsIgnorePattern": "^_"
-      }
+    "root": true,
+    "extends": [
+        "next",
+        "next/core-web-vitals",
+        "plugin:tailwindcss/recommended"
     ],
-    "no-console": "warn",
-    "react/no-unescaped-entities": "off"
-  },
-  "overrides": [
-    {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js"
-      ],
-      "parser": "@typescript-eslint/parser"
+    "plugins": [
+        "react",
+        "simple-import-sort",
+        "unused-imports"
+    ],
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": "latest"
     },
-    {
-      "files": [
-        "*.js",
-        "*.jsx",
-        "*.ts",
-        "*.tsx"
-      ],
-      "rules": {
-        "simple-import-sort/imports": [
-          "error",
-          {
-            "groups": [
-              [
-                "^react",
-                "^@?\\w"
-              ],
-              [
-                "^(@|components)(/.*|$)"
-              ],
-              [
-                "^\\u0000"
-              ],
-              [
-                "^\\.\\.(?!/?$)",
-                "^\\.\\./?$"
-              ],
-              [
-                "^\\./(?=.*/)(?!/?$)",
-                "^\\.(?!/?$)",
-                "^\\./?$"
-              ],
-              [
-                "^.+\\.?(css)$"
-              ]
-            ]
-          }
-        ]
-      }
-    }
-  ]
+    "rules": {
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+            "warn",
+            {
+                "vars": "all",
+                "varsIgnorePattern": "^_",
+                "args": "after-used",
+                "argsIgnorePattern": "^_"
+            }
+        ],
+        "no-console": "warn",
+        "react/no-unescaped-entities": "off"
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.ts",
+                "*.tsx",
+                "*.js"
+            ],
+            "parser": "@typescript-eslint/parser"
+        },
+        {
+            "files": [
+                "*.js",
+                "*.jsx",
+                "*.ts",
+                "*.tsx"
+            ],
+            "rules": {
+                "simple-import-sort/imports": [
+                    "error",
+                    {
+                        "groups": [
+                            [
+                                "^react",
+                                "^@?\\w"
+                            ],
+                            [
+                                "^(@|components)(/.*|$)"
+                            ],
+                            [
+                                "^\\u0000"
+                            ],
+                            [
+                                "^\\.\\.(?!/?$)",
+                                "^\\.\\./?$"
+                            ],
+                            [
+                                "^\\./(?=.*/)(?!/?$)",
+                                "^\\.(?!/?$)",
+                                "^\\./?$"
+                            ],
+                            [
+                                "^.+\\.?(css)$"
+                            ]
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
 }

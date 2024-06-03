@@ -45,7 +45,6 @@
 //     return new StreamingTextResponse(output);
 // }
 
-
 export async function GET(req: Request) {
     return Response.json({ error: 'Method Not Allowed' }, { status: 405 });
 }
