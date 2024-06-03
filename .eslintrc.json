@@ -3,7 +3,8 @@
     "extends": [
         "next",
         "next/core-web-vitals",
-        "plugin:tailwindcss/recommended"
+        "plugin:tailwindcss/recommended",
+        "plugin:prettier/recommended"
     ],
     "plugins": [
         "react",

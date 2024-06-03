@@ -71,6 +71,8 @@
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.2",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "eslint-plugin-tailwindcss": "^3.17.0",
     "eslint-plugin-unused-imports": "^3.2.0",
