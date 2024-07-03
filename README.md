@@ -7,7 +7,7 @@
 </p>
 
 <p align='center'>
-    <a href='https://docs.okis.dev/chat/intro' target='_blank'>
+    <a href='https://docs.okis.dev/docs/chat' target='_blank'>
         Documentation
     </a>
 </p>
@@ -29,7 +29,7 @@ https://github.com/okisdev/ChatChat/assets/66008528/f8d943d5-77c9-479b-9d5f-1e77
 
 ## Usage
 
-[docs](https://docs.okis.dev/chat/intro)
+[docs](https://docs.okis.dev/docs/chat)
 
 ## Deployment
 
@@ -37,7 +37,7 @@ https://github.com/okisdev/ChatChat/assets/66008528/f8d943d5-77c9-479b-9d5f-1e77
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/-WWW5r)
 
-more deployment methods in [docs](https://docs.okis.dev/chat/intro)
+more deployment methods in [docs](https://docs.okis.dev/docs/chat)
 
 ## LICENSE
 

@@ -7,7 +7,7 @@
 </p>
 
 <p align='center'>
-    <a href='https://docs.okis.dev/chat/intro' target='_blank'>
+    <a href='https://docs.okis.dev/docs/chat' target='_blank'>
         文件
     </a>
 </p>
@@ -29,7 +29,7 @@ https://github.com/okisdev/ChatChat/assets/66008528/f8d943d5-77c9-479b-9d5f-1e77
 
 ## 使用方式
 
-[文件](https://docs.okis.dev/chat/intro)
+[文件](https://docs.okis.dev/docs/chat)
 
 ## 部署
 
@@ -37,7 +37,7 @@ https://github.com/okisdev/ChatChat/assets/66008528/f8d943d5-77c9-479b-9d5f-1e77
 
 [![在 Railway 上部署](https://railway.app/button.svg)](https://railway.app/template/-WWW5r)
 
-更多部署方法在[文件](https://docs.okis.dev/chat/intro)
+更多部署方法在[文件](https://docs.okis.dev/docs/chat)
 
 ## 許可證
 
