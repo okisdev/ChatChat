@@ -12,7 +12,7 @@ import store from '@/hooks/store';
 export const Answer = ({
     content,
 }: Readonly<{
-    content: string | StreamableValue<string>;
+    content: StreamableValue<string>;
 }>) => {
     const t = useTranslations();
 
