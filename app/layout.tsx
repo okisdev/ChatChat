@@ -15,6 +15,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
+      <head>
+        {process.env.NODE_ENV === 'development' && (
+          <script
+            crossOrigin='anonymous'
+            src='//unpkg.com/react-scan/dist/auto.global.js'
+          />
+        )}
+      </head>
       <body className={cn(geistSans.className, 'antialiased')}>{children}</body>
     </html>
   );
