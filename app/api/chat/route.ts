@@ -1,5 +1,6 @@
 import { convertToModelMessages, streamText, type UIMessage } from 'ai';
 import { headers } from 'next/headers';
+import { v4 as uuidv4 } from 'uuid';
 import {
   convertDbMessagesToUIMessages,
   createConversation,
@@ -15,17 +16,19 @@ import { openai } from '@/lib/ai/provider';
 import { generateConversationTitle } from '@/lib/ai/utils';
 import { auth } from '@/lib/auth';
 import type { Conversation, Message } from '@/types/database';
-import { v4 as uuidv4 } from 'uuid';
 
 interface ChatRequest {
   messages: UIMessage[];
   id?: string;
+  conversationId?: string;
+  projectId?: string;
 }
 
 async function getOrCreateConversation(
   conversationId: string,
   userId: string,
-  messages: UIMessage[]
+  messages: UIMessage[],
+  projectId?: string
 ): Promise<Conversation | null> {
   let conversation = await getConversationById(conversationId);
 
@@ -53,7 +56,7 @@ async function getOrCreateConversation(
     conversation = await createConversation({
       id: newConversationId,
       title,
-      projectId: null,
+      projectId: projectId || null,
       createdById: userId,
       visibility: 'private',
       createdAt: new Date(),
@@ -75,7 +78,8 @@ export async function POST(req: Request) {
       return new Response('Unauthorized', { status: 401 });
     }
 
-    const { messages, id }: ChatRequest = await req.json();
+    const { messages, id, conversationId, projectId }: ChatRequest =
+      await req.json();
 
     if (!messages || messages.length === 0) {
       return new Response('Messages are required', { status: 400 });
@@ -83,15 +87,19 @@ export async function POST(req: Request) {
 
     const currentUserId = session.user.id;
 
-    if (!id) {
+    // Use either id or conversationId (for backwards compatibility)
+    const finalConversationId = id || conversationId;
+
+    if (!finalConversationId) {
       return new Response('Conversation ID is required', { status: 400 });
     }
 
     // Get or create conversation
     const conversation = await getOrCreateConversation(
-      id,
+      finalConversationId,
       currentUserId,
-      messages
+      messages,
+      projectId
     );
 
     if (!conversation) {

@@ -1,17 +1,33 @@
 'use client';
 
 import { useChat } from '@ai-sdk/react';
-import { DefaultChatTransport, type UIMessage } from 'ai';
-import { AlertCircle, Loader2, MessageCircle, Send } from 'lucide-react';
-import { useParams, useRouter } from 'next/navigation';
+import type { UIMessage } from 'ai';
+import { AlertCircle, Loader2, MessageCircle } from 'lucide-react';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import {
+  PromptInput,
+  PromptInputAttachment,
+  PromptInputAttachments,
+  PromptInputBody,
+  type PromptInputMessage,
+  PromptInputSubmit,
+  PromptInputTextarea,
+  PromptInputToolbar,
+} from '@/components/ai-elements/prompt-input';
 import { Response } from '@/components/ai-elements/response';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useSharedAIChatContext } from '@/contexts/ai/chat';
 import { authClient } from '@/lib/auth.client';
 import { cn } from '@/lib/utils';
+
+interface MessageData {
+  id: string;
+  role: string;
+  parts: unknown;
+  createdAt: Date;
+}
 
 interface ConversationData {
   conversation: {
@@ -23,18 +39,15 @@ interface ConversationData {
     createdAt: Date;
     updatedAt: Date;
   };
-  messages: Array<{
-    id: string;
-    role: string;
-    parts: unknown;
-    createdAt: Date;
-  }>;
+  messages: MessageData[];
 }
 
 export default function ConversationPage() {
   const params = useParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const conversationId = params.id as string;
+  const projectId = searchParams.get('projectId');
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const [input, setInput] = useState('');
   const [conversationData, setConversationData] =
@@ -46,17 +59,31 @@ export default function ConversationPage() {
 
   const { data: session } = authClient.useSession();
 
+  // Use shared chat context with conversation ID and project ID
+  const { createChatForConversation } = useSharedAIChatContext();
+  const [conversationChat] = useState(() =>
+    createChatForConversation(conversationId, projectId || undefined)
+  );
+
   const { messages, sendMessage, status, setMessages } = useChat({
-    transport: new DefaultChatTransport({
-      api: '/api/chat',
-      body: {
-        conversationId,
-      },
-    }),
+    chat: conversationChat,
   });
 
   // Load conversation data
   useEffect(() => {
+    async function handleConversationResponse(response: Response) {
+      if (response.status === 404) {
+        setConversationError('Conversation not found');
+        return null;
+      }
+
+      if (!response.ok) {
+        throw new Error('Failed to load conversation');
+      }
+
+      return response.json();
+    }
+
     async function loadConversation() {
       if (!(conversationId && session?.user)) {
         setIsLoadingConversation(false);
@@ -71,28 +98,22 @@ export default function ConversationPage() {
           `/api/chat?conversationId=${conversationId}`
         );
 
-        if (response.status === 404) {
-          setConversationError('Conversation not found');
-          return;
-        }
+        const data = await handleConversationResponse(response);
 
-        if (!response.ok) {
-          throw new Error('Failed to load conversation');
-        }
+        if (data) {
+          setConversationData(data);
 
-        const data: ConversationData = await response.json();
-        setConversationData(data);
+          // Set existing messages in the chat
+          if (data.messages?.length > 0) {
+            const formattedMessages = data.messages.map((msg: MessageData) => ({
+              id: msg.id,
+              role: msg.role as 'user' | 'assistant',
+              parts: msg.parts,
+              createdAt: new Date(msg.createdAt),
+            }));
 
-        // Set existing messages in the chat
-        if (data.messages?.length > 0) {
-          const formattedMessages = data.messages.map((msg) => ({
-            id: msg.id,
-            role: msg.role as 'user' | 'assistant',
-            parts: msg.parts,
-            createdAt: new Date(msg.createdAt),
-          }));
-
-          setMessages(formattedMessages as UIMessage[]);
+            setMessages(formattedMessages as UIMessage[]);
+          }
         }
       } catch (error) {
         console.error('Error loading conversation:', error);
@@ -107,33 +128,39 @@ export default function ConversationPage() {
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
-    if (scrollAreaRef.current) {
-      const scrollContainer = scrollAreaRef.current.querySelector(
-        '[data-radix-scroll-area-viewport]'
-      );
-      if (scrollContainer) {
-        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+    const timer = setTimeout(() => {
+      if (scrollAreaRef.current) {
+        const scrollContainer = scrollAreaRef.current.querySelector(
+          '[data-radix-scroll-area-viewport]'
+        );
+        if (scrollContainer) {
+          scrollContainer.scrollTop = scrollContainer.scrollHeight;
+        }
       }
-    }
-  }, [messages]);
+    }, 0);
 
-  const handleSendMessage = async () => {
-    if (input.trim() && status !== 'streaming') {
+    return () => clearTimeout(timer);
+  });
+
+  const handleSubmit = async (message: PromptInputMessage) => {
+    const hasText = Boolean(message.text?.trim());
+    const hasFiles = Boolean(message.files?.length);
+
+    if ((hasText || hasFiles) && status !== 'streaming') {
       try {
         await sendMessage({
-          parts: [{ type: 'text', text: input.trim() }],
+          parts: [
+            {
+              type: 'text',
+              text: message.text?.trim() || 'Sent with attachments',
+            },
+            ...(message.files || []),
+          ],
         });
         setInput('');
       } catch (error) {
         console.error('Error sending message:', error);
       }
-    }
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
     }
   };
 
@@ -176,7 +203,7 @@ export default function ConversationPage() {
   }
 
   return (
-    <div className='flex h-full flex-col'>
+    <div className='flex h-full min-h-0 flex-1 flex-col'>
       {/* Chat Header */}
       {conversationData && (
         <div className='border-b bg-background/95 px-4 py-3'>
@@ -187,7 +214,7 @@ export default function ConversationPage() {
       )}
 
       {/* Chat Messages Area */}
-      <ScrollArea className='flex-1 px-4 py-6' ref={scrollAreaRef}>
+      <ScrollArea className='h-0 flex-1 px-2' ref={scrollAreaRef}>
         {messages.length === 0 ? (
           /* Welcome State or Empty Conversation */
           <div className='flex h-full items-center justify-center'>
@@ -266,33 +293,25 @@ export default function ConversationPage() {
       </ScrollArea>
 
       {/* Input Area */}
-      <div className='bg-background p-4'>
+      <div className='shrink-0 bg-background px-4 py-2'>
         <div className='mx-auto max-w-4xl'>
-          <div className='flex items-end gap-2'>
-            <div className='flex-1'>
-              <Input
-                className='min-h-[44px] resize-none border-input bg-background px-4 py-3 text-sm placeholder:text-muted-foreground focus-visible:ring-1'
+          <PromptInput globalDrop multiple onSubmit={handleSubmit}>
+            <PromptInputBody>
+              <PromptInputAttachments>
+                {(attachment) => <PromptInputAttachment data={attachment} />}
+              </PromptInputAttachments>
+              <PromptInputTextarea
                 disabled={status === 'streaming'}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
                 placeholder='Type your message here...'
                 value={input}
               />
-            </div>
-            <Button
-              className='h-[44px] w-[44px] shrink-0'
-              disabled={!input.trim() || status === 'streaming'}
-              onClick={handleSendMessage}
-              size='icon'
-            >
-              {status === 'streaming' ? (
-                <Loader2 className='h-4 w-4 animate-spin' />
-              ) : (
-                <Send className='h-4 w-4' />
-              )}
-              <span className='sr-only'>Send message</span>
-            </Button>
-          </div>
+            </PromptInputBody>
+            <PromptInputToolbar>
+              <div />
+              <PromptInputSubmit disabled={!input.trim()} status={status} />
+            </PromptInputToolbar>
+          </PromptInput>
           <div className='mt-2 flex w-full items-center justify-center gap-2 text-center text-muted-foreground text-xs'>
             <p>Verify the AI's answers</p>
             <span>•</span>

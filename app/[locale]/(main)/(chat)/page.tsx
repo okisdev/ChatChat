@@ -1,17 +1,25 @@
 'use client';
 
 import { useChat } from '@ai-sdk/react';
-import { DefaultChatTransport } from 'ai';
-import { Loader2, MessageCircle, Send } from 'lucide-react';
+import { Loader2, MessageCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import {
+  PromptInput,
+  PromptInputAttachment,
+  PromptInputAttachments,
+  PromptInputBody,
+  type PromptInputMessage,
+  PromptInputSubmit,
+  PromptInputTextarea,
+  PromptInputToolbar,
+} from '@/components/ai-elements/prompt-input';
 import { Response } from '@/components/ai-elements/response';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useSharedAIChatContext } from '@/contexts/ai/chat';
 import { authClient } from '@/lib/auth.client';
 import { cn } from '@/lib/utils';
-import { v4 as uuidv4 } from 'uuid';
 
 export default function ChatPage() {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
@@ -19,11 +27,10 @@ export default function ChatPage() {
   const router = useRouter();
   const { data: session } = authClient.useSession();
 
+  // Use shared chat context
+  const { chat } = useSharedAIChatContext();
   const { messages, sendMessage, status } = useChat({
-    transport: new DefaultChatTransport({
-      api: '/api/chat',
-    }),
-    generateId: uuidv4,
+    chat,
   });
 
   // Auto-scroll to bottom when new messages arrive
@@ -36,18 +43,27 @@ export default function ChatPage() {
         scrollContainer.scrollTop = scrollContainer.scrollHeight;
       }
     }
-  }, [messages.length]);
+  }, [messages]);
 
-  const handleSendMessage = async () => {
+  const handleSubmit = async (message: PromptInputMessage) => {
     if (!session?.user) {
       router.push('/login');
       return;
     }
 
-    if (input.trim() && status !== 'streaming') {
+    const hasText = Boolean(message.text?.trim());
+    const hasFiles = Boolean(message.files?.length);
+
+    if ((hasText || hasFiles) && status !== 'streaming') {
       try {
         await sendMessage({
-          parts: [{ type: 'text', text: input.trim() }],
+          parts: [
+            {
+              type: 'text',
+              text: message.text?.trim() || 'Sent with attachments',
+            },
+            ...(message.files || []),
+          ],
         });
         setInput('');
       } catch (error) {
@@ -56,17 +72,10 @@ export default function ChatPage() {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
-    }
-  };
-
   return (
-    <div className='flex h-full flex-col'>
+    <div className='flex h-full min-h-0 flex-1 flex-col'>
       {/* Chat Messages Area */}
-      <ScrollArea className='flex-1 px-4 py-6' ref={scrollAreaRef}>
+      <ScrollArea className='h-0 flex-1 px-2' ref={scrollAreaRef}>
         {messages.length === 0 ? (
           /* Welcome State */
           <div className='flex h-full items-center justify-center'>
@@ -149,33 +158,25 @@ export default function ChatPage() {
       </ScrollArea>
 
       {/* Input Area */}
-      <div className='bg-background p-4'>
+      <div className='shrink-0 bg-background px-4 py-2'>
         <div className='mx-auto max-w-4xl'>
-          <div className='flex items-end gap-2'>
-            <div className='flex-1'>
-              <Input
-                className='min-h-[44px] resize-none border-input bg-background px-4 py-3 text-sm placeholder:text-muted-foreground focus-visible:ring-1'
+          <PromptInput globalDrop multiple onSubmit={handleSubmit}>
+            <PromptInputBody>
+              <PromptInputAttachments>
+                {(attachment) => <PromptInputAttachment data={attachment} />}
+              </PromptInputAttachments>
+              <PromptInputTextarea
                 disabled={status === 'streaming'}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
                 placeholder='Type your message here...'
                 value={input}
               />
-            </div>
-            <Button
-              className='h-[44px] w-[44px] shrink-0'
-              disabled={!input.trim() || status === 'streaming'}
-              onClick={handleSendMessage}
-              size='icon'
-            >
-              {status === 'streaming' ? (
-                <Loader2 className='h-4 w-4 animate-spin' />
-              ) : (
-                <Send className='h-4 w-4' />
-              )}
-              <span className='sr-only'>Send message</span>
-            </Button>
-          </div>
+            </PromptInputBody>
+            <PromptInputToolbar>
+              <div />
+              <PromptInputSubmit disabled={!input.trim()} status={status} />
+            </PromptInputToolbar>
+          </PromptInput>
           <div className='mt-2 flex w-full items-center justify-center gap-2 text-center text-muted-foreground text-xs'>
             <p>Verify the AI's answers</p>
             <span>•</span>

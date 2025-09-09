@@ -159,6 +159,15 @@ export async function getUserDefaultProject(
   return userProject;
 }
 
+export async function getProjectById(id: string): Promise<Project | null> {
+  const [projectData] = await db
+    .select()
+    .from(project)
+    .where(eq(project.id, id));
+
+  return projectData;
+}
+
 // Helper function to convert database messages to UI messages
 export function convertDbMessagesToUIMessages(
   dbMessages: Message[]
@@ -171,4 +180,3 @@ export function convertDbMessagesToUIMessages(
     createdAt: msg.createdAt,
   }));
 }
-
