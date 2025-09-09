@@ -1,26 +1,47 @@
 'use client';
 
-import { MessageCircle, Send } from 'lucide-react';
-import { useState } from 'react';
+import { useChat } from '@ai-sdk/react';
+import { DefaultChatTransport } from 'ai';
+import { Loader2, MessageCircle, Send } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Response } from '@/components/ai-elements/response';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { cn } from '@/lib/utils';
 
 export default function ChatPage() {
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState<
-    Array<{ id: string; text: string; isUser: boolean }>
-  >([]);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const [input, setInput] = useState('');
 
-  const handleSendMessage = () => {
-    if (message.trim()) {
-      const newMessage = {
-        id: Date.now().toString(),
-        text: message.trim(),
-        isUser: true,
-      };
-      setMessages((prev) => [...prev, newMessage]);
-      setMessage('');
+  const { messages, sendMessage, status } = useChat({
+    transport: new DefaultChatTransport({
+      api: '/api/chat',
+    }),
+  });
+
+  // Auto-scroll to bottom when new messages arrive
+  useEffect(() => {
+    if (scrollAreaRef.current) {
+      const scrollContainer = scrollAreaRef.current.querySelector(
+        '[data-radix-scroll-area-viewport]'
+      );
+      if (scrollContainer) {
+        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+      }
+    }
+  }, [messages]);
+
+  const handleSendMessage = async () => {
+    if (input.trim() && status !== 'streaming') {
+      try {
+        await sendMessage({
+          parts: [{ type: 'text', text: input.trim() }],
+        });
+        setInput('');
+      } catch (error) {
+        console.error('Error sending message:', error);
+      }
     }
   };
 
@@ -34,7 +55,7 @@ export default function ChatPage() {
   return (
     <div className='flex h-full flex-col'>
       {/* Chat Messages Area */}
-      <ScrollArea className='flex-1 px-4 py-6'>
+      <ScrollArea className='flex-1 px-4 py-6' ref={scrollAreaRef}>
         {messages.length === 0 ? (
           /* Welcome State */
           <div className='flex h-full items-center justify-center'>
@@ -54,22 +75,54 @@ export default function ChatPage() {
         ) : (
           /* Messages List */
           <div className='space-y-4'>
-            {messages.map((msg) => (
+            {messages.map((message) => (
               <div
-                className={`flex ${msg.isUser ? 'justify-end' : 'justify-start'}`}
-                key={msg.id}
+                className={cn(
+                  'flex',
+                  message.role === 'user' ? 'justify-end' : 'justify-start'
+                )}
+                key={message.id}
               >
                 <div
-                  className={`max-w-[70%] rounded-lg px-4 py-2 ${
-                    msg.isUser
+                  className={cn(
+                    'max-w-[70%] rounded-lg px-4 py-2',
+                    message.role === 'user'
                       ? 'bg-primary text-primary-foreground'
                       : 'bg-muted text-foreground'
-                  }`}
+                  )}
                 >
-                  <p className='text-sm leading-relaxed'>{msg.text}</p>
+                  {message.role === 'user' ? (
+                    <p className='text-sm leading-relaxed'>
+                      {message.parts.map((part, i) => {
+                        if (part.type === 'text') {
+                          return <span key={i}>{part.text}</span>;
+                        }
+                        return null;
+                      })}
+                    </p>
+                  ) : (
+                    <div className='text-sm leading-relaxed'>
+                      <Response>
+                        {message.parts
+                          .filter((part) => part.type === 'text')
+                          .map((part) => part.text)
+                          .join('')}
+                      </Response>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
+            {status === 'streaming' && (
+              <div className='flex justify-start'>
+                <div className='max-w-[70%] rounded-lg bg-muted px-4 py-2 text-foreground'>
+                  <div className='flex items-center gap-2 text-sm'>
+                    <Loader2 className='h-4 w-4 animate-spin' />
+                    <span>AI is thinking...</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </ScrollArea>
@@ -81,19 +134,24 @@ export default function ChatPage() {
             <div className='flex-1'>
               <Input
                 className='min-h-[44px] resize-none border-input bg-background px-4 py-3 text-sm placeholder:text-muted-foreground focus-visible:ring-1'
-                onChange={(e) => setMessage(e.target.value)}
+                disabled={status === 'streaming'}
+                onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder='Type your message here...'
-                value={message}
+                value={input}
               />
             </div>
             <Button
               className='h-[44px] w-[44px] shrink-0'
-              disabled={!message.trim()}
+              disabled={!input.trim() || status === 'streaming'}
               onClick={handleSendMessage}
               size='icon'
             >
-              <Send className='h-4 w-4' />
+              {status === 'streaming' ? (
+                <Loader2 className='h-4 w-4 animate-spin' />
+              ) : (
+                <Send className='h-4 w-4' />
+              )}
               <span className='sr-only'>Send message</span>
             </Button>
           </div>
