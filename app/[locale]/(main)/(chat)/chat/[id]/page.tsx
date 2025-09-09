@@ -147,6 +147,9 @@ export default function ConversationPage() {
     const hasFiles = Boolean(message.files?.length);
 
     if ((hasText || hasFiles) && status !== 'streaming') {
+      // Clear input immediately when sending
+      setInput('');
+
       try {
         await sendMessage({
           parts: [
@@ -157,9 +160,10 @@ export default function ConversationPage() {
             ...(message.files || []),
           ],
         });
-        setInput('');
       } catch (error) {
         console.error('Error sending message:', error);
+        // Restore the message text if sending fails
+        setInput(message.text || '');
       }
     }
   };

@@ -35,15 +35,19 @@ export default function ChatPage() {
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
-    if (scrollAreaRef.current) {
-      const scrollContainer = scrollAreaRef.current.querySelector(
-        '[data-radix-scroll-area-viewport]'
-      );
-      if (scrollContainer) {
-        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+    const timer = setTimeout(() => {
+      if (scrollAreaRef.current) {
+        const scrollContainer = scrollAreaRef.current.querySelector(
+          '[data-radix-scroll-area-viewport]'
+        );
+        if (scrollContainer) {
+          scrollContainer.scrollTop = scrollContainer.scrollHeight;
+        }
       }
-    }
-  }, [messages]);
+    }, 0);
+
+    return () => clearTimeout(timer);
+  });
 
   const handleSubmit = async (message: PromptInputMessage) => {
     if (!session?.user) {
@@ -55,6 +59,9 @@ export default function ChatPage() {
     const hasFiles = Boolean(message.files?.length);
 
     if ((hasText || hasFiles) && status !== 'streaming') {
+      // Clear input immediately when sending
+      setInput('');
+
       try {
         await sendMessage({
           parts: [
@@ -65,9 +72,10 @@ export default function ChatPage() {
             ...(message.files || []),
           ],
         });
-        setInput('');
       } catch (error) {
         console.error('Error sending message:', error);
+        // Restore the message text if sending fails
+        setInput(message.text || '');
       }
     }
   };
@@ -75,31 +83,31 @@ export default function ChatPage() {
   return (
     <div className='flex h-full min-h-0 flex-1 flex-col'>
       {/* Chat Messages Area */}
-      <ScrollArea className='h-0 flex-1 px-2' ref={scrollAreaRef}>
-        {messages.length === 0 ? (
-          /* Welcome State */
-          <div className='flex h-full items-center justify-center'>
-            <div className='text-center'>
-              <div className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-muted'>
-                <MessageCircle className='h-6 w-6 text-muted-foreground' />
-              </div>
-              <h2 className='mb-2 font-semibold text-foreground text-xl'>
-                Welcome to ChatChat
-              </h2>
-              <p className='max-w-md text-muted-foreground text-sm leading-relaxed'>
-                {session?.user
-                  ? 'Start a conversation by typing a message below. Ask questions, explore ideas, or just have a friendly chat.'
-                  : 'Sign in to start chatting and save your conversations.'}
-              </p>
-              {!session?.user && (
-                <Button className='mt-4' onClick={() => router.push('/login')}>
-                  Sign In
-                </Button>
-              )}
+      {messages.length === 0 ? (
+        /* Welcome State */
+        <div className='flex h-0 flex-1 items-center justify-center p-4'>
+          <div className='mx-auto max-w-md text-center'>
+            <div className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-muted'>
+              <MessageCircle className='h-6 w-6 text-muted-foreground' />
             </div>
+            <h2 className='mb-2 font-semibold text-foreground text-xl'>
+              Welcome to ChatChat
+            </h2>
+            <p className='text-muted-foreground text-sm leading-relaxed'>
+              {session?.user
+                ? 'Start a conversation by typing a message below. Ask questions, explore ideas, or just have a friendly chat.'
+                : 'Sign in to start chatting and save your conversations.'}
+            </p>
+            {!session?.user && (
+              <Button className='mt-4' onClick={() => router.push('/login')}>
+                Sign In
+              </Button>
+            )}
           </div>
-        ) : (
-          /* Messages List */
+        </div>
+      ) : (
+        <ScrollArea className='h-0 flex-1 px-2' ref={scrollAreaRef}>
+          {/* Messages List */}
           <div className='space-y-4'>
             {messages.map((message) => (
               <div
@@ -154,8 +162,8 @@ export default function ChatPage() {
               </div>
             )}
           </div>
-        )}
-      </ScrollArea>
+        </ScrollArea>
+      )}
 
       {/* Input Area */}
       <div className='shrink-0 bg-background px-4 py-2'>

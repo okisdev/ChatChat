@@ -139,3 +139,26 @@ export const message = pgTable(
     index('idx_message_created_at').on(table.createdAt),
   ]
 ).enableRLS();
+
+// User preferences: stores user-specific settings as key-value pairs
+export const userPreference = pgTable(
+  'chatchat_user_preference',
+  {
+    id: text('id').primaryKey(),
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    key: text('key').notNull(),
+    value: text('value').notNull(),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at')
+      .defaultNow()
+      .$onUpdate(() => /* @__PURE__ */ new Date())
+      .notNull(),
+  },
+  (table) => [
+    index('idx_user_preference_user_id').on(table.userId),
+    index('idx_user_preference_key').on(table.key),
+    index('idx_user_preference_user_key').on(table.userId, table.key),
+  ]
+).enableRLS();
