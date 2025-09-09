@@ -138,12 +138,12 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild size='default'>
-              <Link href='#'>
+              <Link href='/'>
                 <div className='flex aspect-square size-5 items-center justify-center bg-sidebar-primary text-sidebar-primary-foreground'>
                   <Command className='size-4' />
                 </div>
                 <div className='grid flex-1 text-left text-sm leading-tight'>
-                  <span className='truncate font-medium'>Chat Chat</span>
+                  <span className='truncate font-medium'>ChatChat</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -155,7 +155,7 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
         <NavSecondary className='mt-auto' items={data.navSecondary} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );
