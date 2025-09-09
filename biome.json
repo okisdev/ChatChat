@@ -1,0 +1,74 @@
+{
+  "$schema": "https://biomejs.dev/schemas/latest/schema.json",
+  "extends": [
+    "ultracite"
+  ],
+  "javascript": {
+    "formatter": {
+      "jsxQuoteStyle": "single",
+      "quoteStyle": "single"
+    }
+  },
+  "linter": {
+    "rules": {
+      "correctness": {
+        "noUnusedImports": {
+          "level": "warn",
+          "fix": "none",
+          "options": {}
+        },
+        "noUnusedVariables": {
+          "level": "warn",
+          "fix": "none",
+          "options": {}
+        },
+        "noUnusedFunctionParameters": "warn",
+        "useExhaustiveDependencies": {
+          "level": "warn",
+          "fix": "none",
+          "options": {}
+        },
+        "useSingleJsDocAsterisk": "off",
+        "useJsonImportAttributes": "off"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "warn"
+      },
+      "nursery": {
+        "noShadow": "warn",
+        "useMaxParams": "off",
+        "useConsistentTypeDefinitions": {
+          "level": "warn",
+          "fix": "safe",
+          "options": {}
+        }
+      },
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "useAwait": "off",
+        "noConsole": "off",
+        "noArrayIndexKey": "warn"
+      },
+      "style": {
+        "noEnum": "off",
+        "noMagicNumbers": "off",
+        "noNestedTernary": "warn"
+      },
+      "performance": {
+        "useTopLevelRegex": "warn",
+        "noNamespaceImport": "warn"
+      }
+    }
+  },
+  "json": {
+    "formatter": {
+      "lineWidth": 1
+    }
+  },
+  "files": {
+    "includes": [
+      "**",
+      "!**/components/ui"
+    ]
+  }
+}

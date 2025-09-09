@@ -1,27 +1,33 @@
 {
-  "cSpell.words": [
-    "buildx",
-    "DOCKERHUB",
-    "fastapi",
-    "Groq",
-    "huggingface",
-    "langchain",
-    "langsmith",
-    "Lightbox",
-    "lucide",
-    "markdownit",
-    "mistralai",
-    "mixtral",
-    "onest",
-    "rehype",
-    "sonner",
-    "Tavily",
-    "tippyjs"
-  ],
-  "python.analysis.typeCheckingMode": "basic",
-  "python.analysis.autoImportCompletions": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "emmet.showExpandedAbbreviation": "never",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
   "i18n-ally.localesPaths": [
-    "locales",
+    "locales"
   ],
-  "i18n-ally.keystyle": "flat"
+  "i18n-ally.pathMatcher": "{locale}.json",
+  "i18n-ally.enabledFrameworks": [
+    "next-intl"
+  ]
 }

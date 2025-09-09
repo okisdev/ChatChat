@@ -1,43 +1,21 @@
-import type { Metadata, Viewport } from 'next';
-import { Onest } from 'next/font/google';
-
-import RootProvider from '@/app/provider';
-
+import type { Metadata } from 'next';
+import { geistSans } from '@/styles/font';
 import '@/styles/globals.css';
-import 'tippy.js/dist/tippy.css';
-
-const onest = Onest({ subsets: ['latin'] });
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-    title: 'Chat Chat',
-    description: 'Chat Chat - Unlock next-level conversations with AI',
-
-    manifest: '/manifest.json',
-
-    appleWebApp: {
-        capable: true,
-        statusBarStyle: 'default',
-        title: 'Chat Chat',
-    },
-};
-
-export const viewport: Viewport = {
-    width: 'device-width',
-    initialScale: 1,
-    minimumScale: 1,
-    userScalable: false,
+  title: 'Chat Chat',
+  description: 'Chat Chat',
 };
 
 export default function RootLayout({
-    children,
-    params: { locale },
+  children,
 }: Readonly<{
-    children: React.ReactNode;
-    params: { locale: string };
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang={locale} className={onest.className} suppressHydrationWarning>
-            <RootProvider>{children}</RootProvider>
-        </html>
-    );
+  return (
+    <html lang='en'>
+      <body className={cn(geistSans.className, 'antialiased')}>{children}</body>
+    </html>
+  );
 }
