@@ -1,30 +1,109 @@
 'use client';
 
 import { useChat } from '@ai-sdk/react';
-import { DefaultChatTransport } from 'ai';
-import { Loader2, MessageCircle, Send } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { DefaultChatTransport, type UIMessage } from 'ai';
+import { AlertCircle, Loader2, MessageCircle, Send } from 'lucide-react';
+import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { Response } from '@/components/ai-elements/response';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { authClient } from '@/lib/auth.client';
 import { cn } from '@/lib/utils';
-import { v4 as uuidv4 } from 'uuid';
 
-export default function ChatPage() {
+interface ConversationData {
+  conversation: {
+    id: string;
+    title: string | null;
+    projectId: string;
+    createdById: string;
+    visibility: string;
+    createdAt: Date;
+    updatedAt: Date;
+  };
+  messages: Array<{
+    id: string;
+    role: string;
+    parts: unknown;
+    createdAt: Date;
+  }>;
+}
+
+export default function ConversationPage() {
+  const params = useParams();
+  const router = useRouter();
+  const conversationId = params.id as string;
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const [input, setInput] = useState('');
-  const router = useRouter();
+  const [conversationData, setConversationData] =
+    useState<ConversationData | null>(null);
+  const [isLoadingConversation, setIsLoadingConversation] = useState(true);
+  const [conversationError, setConversationError] = useState<string | null>(
+    null
+  );
+
   const { data: session } = authClient.useSession();
 
-  const { messages, sendMessage, status } = useChat({
+  const { messages, sendMessage, status, setMessages } = useChat({
     transport: new DefaultChatTransport({
       api: '/api/chat',
+      body: {
+        conversationId,
+      },
     }),
-    generateId: uuidv4,
   });
+
+  // Load conversation data
+  useEffect(() => {
+    async function loadConversation() {
+      if (!(conversationId && session?.user)) {
+        setIsLoadingConversation(false);
+        return;
+      }
+
+      try {
+        setIsLoadingConversation(true);
+        setConversationError(null);
+
+        const response = await fetch(
+          `/api/chat?conversationId=${conversationId}`
+        );
+
+        if (response.status === 404) {
+          setConversationError('Conversation not found');
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error('Failed to load conversation');
+        }
+
+        const data: ConversationData = await response.json();
+        setConversationData(data);
+
+        // Set existing messages in the chat
+        if (data.messages?.length > 0) {
+          const formattedMessages = data.messages.map((msg) => ({
+            id: msg.id,
+            role: msg.role as 'user' | 'assistant',
+            parts: msg.parts,
+            createdAt: new Date(msg.createdAt),
+          }));
+
+          setMessages(formattedMessages as UIMessage[]);
+        }
+      } catch (error) {
+        console.error('Error loading conversation:', error);
+        setConversationError('Failed to load conversation');
+      } finally {
+        setIsLoadingConversation(false);
+      }
+    }
+
+    loadConversation();
+  }, [conversationId, session?.user, setMessages]);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -36,14 +115,9 @@ export default function ChatPage() {
         scrollContainer.scrollTop = scrollContainer.scrollHeight;
       }
     }
-  }, [messages.length]);
+  }, [messages]);
 
   const handleSendMessage = async () => {
-    if (!session?.user) {
-      router.push('/login');
-      return;
-    }
-
     if (input.trim() && status !== 'streaming') {
       try {
         await sendMessage({
@@ -63,30 +137,73 @@ export default function ChatPage() {
     }
   };
 
+  // Show loading state while checking auth and loading conversation
+  if (!session?.user || isLoadingConversation) {
+    return (
+      <div className='flex h-full items-center justify-center'>
+        <div className='text-center'>
+          <Loader2 className='mx-auto h-8 w-8 animate-spin text-muted-foreground' />
+          <p className='mt-2 text-muted-foreground text-sm'>
+            {session?.user
+              ? 'Loading conversation...'
+              : 'Checking authentication...'}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle conversation not found or error
+  if (conversationError) {
+    return (
+      <div className='flex h-full items-center justify-center p-4'>
+        <Alert className='max-w-md'>
+          <AlertCircle className='h-4 w-4' />
+          <AlertDescription>
+            {conversationError}. Would you like to{' '}
+            <button
+              className='underline underline-offset-4 hover:text-primary'
+              onClick={() => router.push('/')}
+              type='button'
+            >
+              start a new conversation
+            </button>
+            ?
+          </AlertDescription>
+        </Alert>
+      </div>
+    );
+  }
+
   return (
     <div className='flex h-full flex-col'>
+      {/* Chat Header */}
+      {conversationData && (
+        <div className='border-b bg-background/95 px-4 py-3'>
+          <h1 className='font-medium text-foreground'>
+            {conversationData.conversation.title || 'Untitled Conversation'}
+          </h1>
+        </div>
+      )}
+
       {/* Chat Messages Area */}
       <ScrollArea className='flex-1 px-4 py-6' ref={scrollAreaRef}>
         {messages.length === 0 ? (
-          /* Welcome State */
+          /* Welcome State or Empty Conversation */
           <div className='flex h-full items-center justify-center'>
             <div className='text-center'>
               <div className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-muted'>
                 <MessageCircle className='h-6 w-6 text-muted-foreground' />
               </div>
               <h2 className='mb-2 font-semibold text-foreground text-xl'>
-                Welcome to ChatChat
+                {conversationData?.conversation.title ||
+                  'Continue this conversation'}
               </h2>
               <p className='max-w-md text-muted-foreground text-sm leading-relaxed'>
-                {session?.user
-                  ? 'Start a conversation by typing a message below. Ask questions, explore ideas, or just have a friendly chat.'
-                  : 'Sign in to start chatting and save your conversations.'}
+                {conversationData
+                  ? 'This conversation is empty. Start by sending a message below.'
+                  : 'Start a conversation by typing a message below. Ask questions, explore ideas, or just have a friendly chat.'}
               </p>
-              {!session?.user && (
-                <Button className='mt-4' onClick={() => router.push('/login')}>
-                  Sign In
-                </Button>
-              )}
             </div>
           </div>
         ) : (

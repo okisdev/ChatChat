@@ -20,7 +20,7 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { authClient } from '@/lib/auth.client';
-import { getGravatarUrl, getInitials } from '@/lib/avatar';
+import { getGravatarUrl, getInitials } from '@/utils/avatar';
 
 // Form schemas
 const profileSchema = z.object({

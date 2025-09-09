@@ -151,7 +151,7 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarNav items={data.navMain} />
+        <SidebarNav />
         <NavSecondary className='mt-auto' items={data.navSecondary} />
       </SidebarContent>
       <SidebarFooter>

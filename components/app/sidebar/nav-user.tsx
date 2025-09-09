@@ -19,7 +19,7 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { authClient } from '@/lib/auth.client';
-import { getGravatarUrl, getInitials } from '@/lib/avatar';
+import { getGravatarUrl, getInitials } from '@/utils/avatar';
 
 export function NavUser() {
   const { isMobile } = useSidebar();

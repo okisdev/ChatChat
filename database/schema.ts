@@ -1,4 +1,11 @@
-import { boolean, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
+import {
+  boolean,
+  index,
+  jsonb,
+  pgTable,
+  text,
+  timestamp,
+} from 'drizzle-orm/pg-core';
 
 export const user = pgTable('chatchat_user', {
   id: text('id').primaryKey(),
@@ -59,3 +66,76 @@ export const verification = pgTable('chatchat_verification', {
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
 }).enableRLS();
+
+// Project: groups many conversations
+export const project = pgTable(
+  'chatchat_project',
+  {
+    id: text('id').primaryKey(),
+    name: text('name').notNull(),
+    description: text('description'),
+    visibility: text('visibility').notNull().default('private'),
+    ownerId: text('owner_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at')
+      .defaultNow()
+      .$onUpdate(() => /* @__PURE__ */ new Date())
+      .notNull(),
+  },
+  (table) => ({
+    ownerIdx: index('idx_project_owner_id').on(table.ownerId),
+    createdIdx: index('idx_project_created_at').on(table.createdAt),
+  })
+).enableRLS();
+
+// Conversation: belongs to a project and a user (creator)
+export const conversation = pgTable(
+  'chatchat_conversation',
+  {
+    id: text('id').primaryKey(),
+    title: text('title'),
+    projectId: text('project_id').references(() => project.id, {
+      onDelete: 'cascade',
+    }),
+    createdById: text('created_by_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    visibility: text('visibility').notNull().default('private'),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at')
+      .defaultNow()
+      .$onUpdate(() => /* @__PURE__ */ new Date())
+      .notNull(),
+  },
+  (table) => [
+    index('idx_conversation_project_id').on(table.projectId),
+    index('idx_conversation_created_by_id').on(table.createdById),
+    index('idx_conversation_created_at').on(table.createdAt),
+  ]
+).enableRLS();
+
+// Message: belongs to a conversation
+export const message = pgTable(
+  'chatchat_message',
+  {
+    id: text('id').primaryKey(),
+    conversationId: text('conversation_id')
+      .notNull()
+      .references(() => conversation.id, { onDelete: 'cascade' }),
+    role: text('role').notNull(),
+    parts: jsonb('parts').notNull(),
+    attachments: jsonb('attachments'),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at')
+      .defaultNow()
+      .$onUpdate(() => /* @__PURE__ */ new Date())
+      .notNull(),
+  },
+  (table) => [
+    index('idx_message_conversation_id').on(table.conversationId),
+    index('idx_message_role').on(table.role),
+    index('idx_message_created_at').on(table.createdAt),
+  ]
+).enableRLS();
