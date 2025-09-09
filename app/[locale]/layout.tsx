@@ -3,13 +3,8 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 
-interface Props {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}
-
-export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = await params;
+export default async function LocaleLayout(props: LayoutProps<'/[locale]'>) {
+  const { locale } = await props.params;
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -19,7 +14,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider messages={messages}>
-      {children}
+      {props.children}
     </NextIntlClientProvider>
   );
 }
