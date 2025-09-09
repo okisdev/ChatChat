@@ -10,13 +10,21 @@ import { z } from 'zod';
 import { Alert } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { authClient } from '@/lib/auth.client';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(8, 'Password must be at least 8 characters long'),
+  password: z.string().min(6, 'Password must be at least 6 characters long'),
   rememberMe: z.boolean().optional(),
 });
 
@@ -27,13 +35,14 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-  } = useForm<LoginFormData>({
+  const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     mode: 'onChange',
+    defaultValues: {
+      email: '',
+      password: '',
+      rememberMe: false,
+    },
   });
 
   const onSubmit = async (data: LoginFormData) => {
@@ -77,78 +86,94 @@ export default function LoginPage() {
             </Alert>
           )}
 
-          <form className='space-y-4' onSubmit={handleSubmit(onSubmit)}>
-            <div className='space-y-2'>
-              <Label className='font-medium text-sm' htmlFor='email'>
-                Email
-              </Label>
-              <div className='relative'>
-                <Mail className='-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 transform text-muted-foreground' />
-                <Input
-                  className='pl-10'
-                  id='email'
-                  placeholder='Enter your email'
-                  type='email'
-                  {...register('email')}
-                />
-              </div>
-              {errors.email && (
-                <p className='text-destructive text-sm'>
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            <div className='space-y-2'>
-              <Label className='font-medium text-sm' htmlFor='password'>
-                Password
-              </Label>
-              <div className='relative'>
-                <Lock className='-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 transform text-muted-foreground' />
-                <Input
-                  className='pl-10'
-                  id='password'
-                  placeholder='Enter your password'
-                  type='password'
-                  {...register('password')}
-                />
-              </div>
-              {errors.password && (
-                <p className='text-destructive text-sm'>
-                  {errors.password.message}
-                </p>
-              )}
-            </div>
-
-            <div className='flex items-center space-x-2'>
-              <Checkbox
-                className='h-4 w-4 rounded border-border text-primary focus:ring-2 focus:ring-ring'
-                id='rememberMe'
-                {...register('rememberMe')}
+          <Form {...form}>
+            <form className='space-y-4' onSubmit={form.handleSubmit(onSubmit)}>
+              <FormField
+                control={form.control}
+                name='email'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className='font-medium text-sm'>Email</FormLabel>
+                    <FormControl>
+                      <div className='relative'>
+                        <Mail className='-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 transform text-muted-foreground' />
+                        <Input
+                          className='pl-10'
+                          placeholder='Enter your email'
+                          type='email'
+                          {...field}
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-              <Label
-                className='text-muted-foreground text-sm'
-                htmlFor='rememberMe'
-              >
-                Remember me
-              </Label>
-            </div>
 
-            <Button
-              className='w-full'
-              disabled={isLoading || !isValid}
-              type='submit'
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-                  Signing in...
-                </>
-              ) : (
-                'Sign in'
-              )}
-            </Button>
-          </form>
+              <FormField
+                control={form.control}
+                name='password'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className='font-medium text-sm'>
+                      Password
+                    </FormLabel>
+                    <FormControl>
+                      <div className='relative'>
+                        <Lock className='-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 transform text-muted-foreground' />
+                        <Input
+                          className='pl-10'
+                          placeholder='Enter your password'
+                          type='password'
+                          {...field}
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name='rememberMe'
+                render={({ field }) => (
+                  <FormItem>
+                    <div className='flex items-center space-x-2'>
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          className='h-4 w-4 rounded border-border text-primary focus:ring-2 focus:ring-ring'
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <Label
+                        className='text-muted-foreground text-sm'
+                        htmlFor='rememberMe'
+                      >
+                        Remember me
+                      </Label>
+                    </div>
+                  </FormItem>
+                )}
+              />
+
+              <Button
+                className='w-full'
+                disabled={isLoading || !form.formState.isValid}
+                type='submit'
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                    Signing in...
+                  </>
+                ) : (
+                  'Sign in'
+                )}
+              </Button>
+            </form>
+          </Form>
         </div>
         <div className='text-center'>
           <p className='text-muted-foreground text-sm'>

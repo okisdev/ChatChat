@@ -36,5 +36,5 @@ export default function AuthLayout({
     return null;
   }
 
-  return <div className='min-h-screen'>{children}</div>;
+  return <div className='h-full min-h-0'>{children}</div>;
 }

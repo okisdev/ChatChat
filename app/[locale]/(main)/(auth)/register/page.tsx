@@ -9,8 +9,15 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Alert } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { authClient } from '@/lib/auth.client';
 import { cn } from '@/lib/utils';
 
@@ -45,14 +52,15 @@ export default function RegisterPage() {
   const [success, setSuccess] = useState<string | null>(null);
   const router = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-    watch,
-  } = useForm<RegisterFormData>({
+  const form = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     mode: 'onChange',
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
   });
 
   const onSubmit = async (data: RegisterFormData) => {
@@ -85,7 +93,7 @@ export default function RegisterPage() {
     }
   };
 
-  const password = watch('password');
+  const password = form.watch('password');
 
   return (
     <div className='flex h-full items-center justify-center p-8'>
@@ -109,145 +117,163 @@ export default function RegisterPage() {
             </Alert>
           )}
 
-          <form className='space-y-4' onSubmit={handleSubmit(onSubmit)}>
-            <div className='space-y-2'>
-              <Label className='font-medium text-sm' htmlFor='name'>
-                Full Name
-              </Label>
-              <div className='relative'>
-                <User className='-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 transform text-muted-foreground' />
-                <Input
-                  className='pl-10'
-                  id='name'
-                  placeholder='Enter your full name'
-                  type='text'
-                  {...register('name')}
-                />
-              </div>
-              {errors.name && (
-                <p className='text-destructive text-sm'>
-                  {errors.name.message}
-                </p>
-              )}
-            </div>
+          <Form {...form}>
+            <form className='space-y-4' onSubmit={form.handleSubmit(onSubmit)}>
+              <FormField
+                control={form.control}
+                name='name'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className='font-medium text-sm'>
+                      Full Name
+                    </FormLabel>
+                    <FormControl>
+                      <div className='relative'>
+                        <User className='-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 transform text-muted-foreground' />
+                        <Input
+                          className='pl-10'
+                          placeholder='Enter your full name'
+                          type='text'
+                          {...field}
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <div className='space-y-2'>
-              <Label className='font-medium text-sm' htmlFor='email'>
-                Email
-              </Label>
-              <div className='relative'>
-                <Mail className='-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 transform text-muted-foreground' />
-                <Input
-                  className='pl-10'
-                  id='email'
-                  placeholder='Enter your email'
-                  type='email'
-                  {...register('email')}
-                />
-              </div>
-              {errors.email && (
-                <p className='text-destructive text-sm'>
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
+              <FormField
+                control={form.control}
+                name='email'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className='font-medium text-sm'>Email</FormLabel>
+                    <FormControl>
+                      <div className='relative'>
+                        <Mail className='-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 transform text-muted-foreground' />
+                        <Input
+                          className='pl-10'
+                          placeholder='Enter your email'
+                          type='email'
+                          {...field}
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <div className='space-y-2'>
-              <Label className='font-medium text-sm' htmlFor='password'>
-                Password
-              </Label>
-              <div className='relative'>
-                <Lock className='-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 transform text-muted-foreground' />
-                <Input
-                  className='pl-10'
-                  id='password'
-                  placeholder='Create a strong password'
-                  type='password'
-                  {...register('password')}
-                />
-              </div>
-              {errors.password && (
-                <p className='text-destructive text-sm'>
-                  {errors.password.message}
-                </p>
-              )}
-              {password && password.length > 0 && !errors.password && (
-                <div className='space-y-1'>
-                  <div className='flex items-center text-xs'>
-                    <div className='flex space-x-1'>
-                      <div
-                        className={cn(
-                          'h-1 w-4 rounded',
-                          password.length >= 8 ? 'bg-chart-2' : 'bg-muted'
-                        )}
-                      />
-                      <div
-                        className={cn(
-                          'h-1 w-4 rounded',
-                          UPPERCASE_REGEX.test(password)
-                            ? 'bg-chart-2'
-                            : 'bg-muted'
-                        )}
-                      />
-                      <div
-                        className={cn(
-                          'h-1 w-4 rounded',
-                          LOWERCASE_REGEX.test(password)
-                            ? 'bg-chart-2'
-                            : 'bg-muted'
-                        )}
-                      />
-                      <div
-                        className={cn(
-                          'h-1 w-4 rounded',
-                          DIGIT_REGEX.test(password) ? 'bg-chart-2' : 'bg-muted'
-                        )}
-                      />
-                    </div>
-                    <span className='ml-2 text-muted-foreground'>
-                      Password strength
-                    </span>
-                  </div>
-                </div>
-              )}
-            </div>
+              <FormField
+                control={form.control}
+                name='password'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className='font-medium text-sm'>
+                      Password
+                    </FormLabel>
+                    <FormControl>
+                      <div className='relative'>
+                        <Lock className='-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 transform text-muted-foreground' />
+                        <Input
+                          className='pl-10'
+                          placeholder='Create a strong password'
+                          type='password'
+                          {...field}
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                    {password &&
+                      password.length > 0 &&
+                      !form.formState.errors.password && (
+                        <div className='space-y-1'>
+                          <div className='flex items-center text-xs'>
+                            <div className='flex space-x-1'>
+                              <div
+                                className={cn(
+                                  'h-1 w-4 rounded',
+                                  password.length >= 8
+                                    ? 'bg-chart-2'
+                                    : 'bg-muted'
+                                )}
+                              />
+                              <div
+                                className={cn(
+                                  'h-1 w-4 rounded',
+                                  UPPERCASE_REGEX.test(password)
+                                    ? 'bg-chart-2'
+                                    : 'bg-muted'
+                                )}
+                              />
+                              <div
+                                className={cn(
+                                  'h-1 w-4 rounded',
+                                  LOWERCASE_REGEX.test(password)
+                                    ? 'bg-chart-2'
+                                    : 'bg-muted'
+                                )}
+                              />
+                              <div
+                                className={cn(
+                                  'h-1 w-4 rounded',
+                                  DIGIT_REGEX.test(password)
+                                    ? 'bg-chart-2'
+                                    : 'bg-muted'
+                                )}
+                              />
+                            </div>
+                            <span className='ml-2 text-muted-foreground'>
+                              Password strength
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                  </FormItem>
+                )}
+              />
 
-            <div className='space-y-2'>
-              <Label className='font-medium text-sm' htmlFor='confirmPassword'>
-                Confirm Password
-              </Label>
-              <div className='relative'>
-                <Lock className='-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 transform text-muted-foreground' />
-                <Input
-                  className='pl-10'
-                  id='confirmPassword'
-                  placeholder='Confirm your password'
-                  type='password'
-                  {...register('confirmPassword')}
-                />
-              </div>
-              {errors.confirmPassword && (
-                <p className='text-destructive text-sm'>
-                  {errors.confirmPassword.message}
-                </p>
-              )}
-            </div>
+              <FormField
+                control={form.control}
+                name='confirmPassword'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className='font-medium text-sm'>
+                      Confirm Password
+                    </FormLabel>
+                    <FormControl>
+                      <div className='relative'>
+                        <Lock className='-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 transform text-muted-foreground' />
+                        <Input
+                          className='pl-10'
+                          placeholder='Confirm your password'
+                          type='password'
+                          {...field}
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <Button
-              className='w-full'
-              disabled={isLoading || !isValid}
-              type='submit'
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-                  Creating account...
-                </>
-              ) : (
-                'Create account'
-              )}
-            </Button>
-          </form>
+              <Button
+                className='w-full'
+                disabled={isLoading || !form.formState.isValid}
+                type='submit'
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                    Creating account...
+                  </>
+                ) : (
+                  'Create account'
+                )}
+              </Button>
+            </form>
+          </Form>
         </div>
         <div className='text-center'>
           <p className='text-muted-foreground text-sm'>
