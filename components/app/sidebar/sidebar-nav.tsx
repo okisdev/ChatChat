@@ -85,17 +85,29 @@ export function SidebarNav() {
 
   if (!session?.user) {
     return (
-      <SidebarGroup>
-        <SidebarMenuButton asChild>
-          <Link
-            className='border transition-all hover:border-border hover:bg-muted/50'
-            href='/login'
-          >
-            <Plus />
-            <span>Sign in to start chatting</span>
-          </Link>
-        </SidebarMenuButton>
-      </SidebarGroup>
+      <>
+        <SidebarGroup>
+          <SidebarMenuButton asChild>
+            <Link
+              className='border transition-all hover:border-border hover:bg-muted/50'
+              href='/'
+            >
+              <Plus />
+              <span>Start Chatting</span>
+            </Link>
+          </SidebarMenuButton>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarMenuButton asChild>
+            <Link
+              className='border transition-all hover:border-border hover:bg-muted/50'
+              href='/login'
+            >
+              <span>Sign In to Save Chats</span>
+            </Link>
+          </SidebarMenuButton>
+        </SidebarGroup>
+      </>
     );
   }
 

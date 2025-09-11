@@ -50,11 +50,6 @@ export default function ChatPage() {
   });
 
   const handleSubmit = async (message: PromptInputMessage) => {
-    if (!session?.user) {
-      router.push('/login');
-      return;
-    }
-
     const hasText = Boolean(message.text?.trim());
     const hasFiles = Boolean(message.files?.length);
 
@@ -96,11 +91,11 @@ export default function ChatPage() {
             <p className='text-muted-foreground text-sm leading-relaxed'>
               {session?.user
                 ? 'Start a conversation by typing a message below. Ask questions, explore ideas, or just have a friendly chat.'
-                : 'Sign in to start chatting and save your conversations.'}
+                : 'Start chatting below! Sign in to save your conversations.'}
             </p>
             {!session?.user && (
               <Button className='mt-4' onClick={() => router.push('/login')}>
-                Sign In
+                Sign In to Save Conversations
               </Button>
             )}
           </div>
@@ -186,6 +181,12 @@ export default function ChatPage() {
             </PromptInputToolbar>
           </PromptInput>
           <div className='mt-2 flex w-full items-center justify-center gap-2 text-center text-muted-foreground text-xs'>
+            {!session?.user && (
+              <>
+                <p>⚠️ Chat not saved (sign in to save)</p>
+                <span>•</span>
+              </>
+            )}
             <p>Verify the AI's answers</p>
             <span>•</span>
             <p>Press Enter to send, Shift + Enter for a new line</p>

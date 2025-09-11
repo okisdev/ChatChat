@@ -74,18 +74,12 @@ export async function POST(req: Request) {
       headers: await headers(),
     });
 
-    if (!session?.user) {
-      return new Response('Unauthorized', { status: 401 });
-    }
-
     const { messages, id, conversationId, projectId }: ChatRequest =
       await req.json();
 
     if (!messages || messages.length === 0) {
       return new Response('Messages are required', { status: 400 });
     }
-
-    const currentUserId = session.user.id;
 
     // Use either id or conversationId (for backwards compatibility)
     const finalConversationId = id || conversationId;
@@ -94,24 +88,31 @@ export async function POST(req: Request) {
       return new Response('Conversation ID is required', { status: 400 });
     }
 
-    // Get or create conversation
-    const conversation = await getOrCreateConversation(
-      finalConversationId,
-      currentUserId,
-      messages,
-      projectId
-    );
+    // For authenticated users, handle conversation persistence
+    let conversation: Conversation | null = null;
+    let existingUIMessages: UIMessage[] = [];
 
-    if (!conversation) {
-      return new Response('Failed to create conversation', { status: 500 });
+    if (session?.user) {
+      const currentUserId = session.user.id;
+
+      // Get or create conversation for authenticated users
+      conversation = await getOrCreateConversation(
+        finalConversationId,
+        currentUserId,
+        messages,
+        projectId
+      );
+
+      if (!conversation) {
+        return new Response('Failed to create conversation', { status: 500 });
+      }
+
+      // Load existing messages from database
+      const existingDbMessages = await getMessagesByConversationId(
+        conversation.id
+      );
+      existingUIMessages = convertDbMessagesToUIMessages(existingDbMessages);
     }
-
-    // Load existing messages from database
-    const existingDbMessages = await getMessagesByConversationId(
-      conversation.id
-    );
-    const existingUIMessages =
-      convertDbMessagesToUIMessages(existingDbMessages);
 
     // Get the last user message (the new one)
     const newUserMessage = messages.at(-1);
@@ -124,8 +125,13 @@ export async function POST(req: Request) {
       (m) => m.id === newUserMessage.id
     );
 
-    // Save the new user message if it's actually new
-    if (isNewMessage && newUserMessage.role === 'user') {
+    // Save the new user message if it's actually new and user is authenticated
+    if (
+      session?.user &&
+      conversation &&
+      isNewMessage &&
+      newUserMessage.role === 'user'
+    ) {
       const userMessageData: Message = {
         id: newUserMessage.id || uuidv4(),
         conversationId: conversation.id,
@@ -154,39 +160,47 @@ export async function POST(req: Request) {
         'You are a helpful, friendly, and knowledgeable AI assistant. Provide clear, accurate, and engaging responses.',
       messages: convertToModelMessages(allMessages),
       onFinish: async ({ text }) => {
-        try {
-          // Save AI response to database
-          const aiMessage: Message = {
-            id: uuidv4(),
-            conversationId: conversation.id,
-            role: 'assistant',
-            parts: [{ type: 'text', text }],
-            attachments: [],
-            createdAt: new Date(),
-            updatedAt: new Date(),
-          };
+        // Only save to database if user is authenticated and conversation exists
+        if (session?.user && conversation) {
+          try {
+            // Save AI response to database
+            const aiMessage: Message = {
+              id: uuidv4(),
+              conversationId: conversation.id,
+              role: 'assistant',
+              parts: [{ type: 'text', text }],
+              attachments: [],
+              createdAt: new Date(),
+              updatedAt: new Date(),
+            };
 
-          await saveMessages([aiMessage]);
+            await saveMessages([aiMessage]);
 
-          // Update conversation title if it's the first exchange
-          if (
-            existingDbMessages.length === 0 &&
-            newUserMessage.role === 'user'
-          ) {
-            const title = await generateConversationTitle({
-              message: newUserMessage,
-            });
-            await updateConversationTitle(conversation.id, title);
+            // Update conversation title if it's the first exchange
+            const existingDbMessages = await getMessagesByConversationId(
+              conversation.id
+            );
+            if (
+              existingDbMessages.length <= 2 && // Only user message and AI response
+              newUserMessage.role === 'user'
+            ) {
+              const title = await generateConversationTitle({
+                message: newUserMessage,
+              });
+              await updateConversationTitle(conversation.id, title);
+            }
+          } catch (saveError) {
+            console.error('Error saving AI response:', saveError);
           }
-        } catch (saveError) {
-          console.error('Error saving AI response:', saveError);
         }
       },
     });
 
-    // Return the response with conversation ID in headers
+    // Return the response with conversation ID in headers (if conversation exists)
     const response = result.toUIMessageStreamResponse();
-    response.headers.set('X-Conversation-ID', conversation.id);
+    if (conversation) {
+      response.headers.set('X-Conversation-ID', conversation.id);
+    }
 
     return response;
   } catch (error) {
