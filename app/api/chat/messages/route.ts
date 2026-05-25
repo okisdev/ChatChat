@@ -9,6 +9,7 @@ import { CohereClient } from 'cohere-ai';
 import Groq from 'groq-sdk';
 import OpenAI from 'openai';
 
+import { litellm } from '@/lib/provider/LiteLLM';
 import { Provider } from '@/config/provider';
 import { ApiConfig } from '@/types/app';
 import { toCohereRole } from '@/utils/provider/cohere';
@@ -180,6 +181,15 @@ export async function POST(req: Request) {
                 model: config.model.model_id,
                 stream: true,
                 max_tokens: 4096,
+                messages,
+            });
+            const output = OpenAIStream(response);
+            return new StreamingTextResponse(output);
+        }
+        case Provider.LiteLLM: {
+            const response = await litellm.chat.completions.create({
+                model: config.model.model_id,
+                stream: true,
                 messages,
             });
             const output = OpenAIStream(response);
