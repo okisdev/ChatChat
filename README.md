@@ -37,6 +37,11 @@ https://github.com/okisdev/ChatChat/assets/66008528/f8d943d5-77c9-479b-9d5f-1e77
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/-WWW5r)
 
+[![Deploy on Easypanel][easypanel-btn]][easypanel-deploy]
+
+[easypanel-btn]: https://easypanel.io/img/deploy-on-easypanel-40.svg
+[easypanel-deploy]: https://easypanel.io/templates/chatchat
+
 more deployment methods in [docs](https://docs.okis.dev/docs/chat)
 
 ## LICENSE
