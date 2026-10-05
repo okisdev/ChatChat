@@ -1,5 +1,7 @@
 # Chat Chat
 
+[![Deploy to Railyard](https://app.railyard.run/deploy/badge)](https://app.railyard.run/deploy?repo=https://github.com/okisdev/ChatChat)
+
 > Your own unified chat and search to AI platform, with a simple and easy to use interface.
 
 <p align='center'>
